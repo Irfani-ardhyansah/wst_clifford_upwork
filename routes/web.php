@@ -10,6 +10,10 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('/index', function () {
         return view('admin.portal-bak');
