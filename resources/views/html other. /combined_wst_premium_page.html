@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Water Solutions Technology – Unified Page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    header {
+      background-color: #000;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid #444;
+    }
+
+    header.shrink {
+      padding: 10px 30px;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .menu-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .menu-wrapper:hover {
+      background-color: #1a1a1a;
+    }
+
+    .menu-icon {
+      font-size: 1.4rem;
+    }
+
+    .menu-label {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .hero {
+      background-image: url('https://images.unsplash.com/photo-1600267165430-2321b7a1b57c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 160px 20px 120px;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .cta-button {
+      background-color: #000;
+      color: white;
+      padding: 12px 24px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    section {
+      padding: 100px 40px 60px;
+      max-width: 1100px;
+      margin: auto;
+      border-bottom: 1px solid #ccc;
+    }
+
+    h2 {
+      color: #111;
+    }
+
+    .metric-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin: 20px 0;
+    }
+
+    .metric-grid div {
+      flex: 1 1 200px;
+      background: #f4f4f4;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .case-card {
+      background: #f9f9f9;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<header id="main-header">
+  <div class="logo">Water Solutions Technology</div>
+  <div class="menu-wrapper">
+    <div class="menu-icon">&#9776;</div>
+    <div class="menu-label">Menu</div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Total Water Visibility. Unmatched Peace of Mind.</h1>
+    <p>Precision water audits and monitoring that protect your assets, budget, and reputation.</p>
+    <button class="cta-button">Request a Confidential Audit</button>
+  </div>
+</section>
+
+<!-- Water Audit Overview -->
+<section>
+  <h2>Every Property Now Has an AI Water Analyst</h2>
+  <p>Elara AI delivers real-time insights, predictive alerts, and ESG-ready reporting — all without manual data entry.</p>
+  <button class="cta-button">Request Elara Demo</button>
+</section>
+
+<!-- Flow Management -->
+<section>
+  <h2>Water Meter Accuracy & Flow Optimization</h2>
+  <p>Accurate metering is the foundation for smart flow control, verified savings, and compliance-grade reporting.</p>
+  <div class="metric-grid">
+    <div><strong>Flow Accuracy</strong><br>95%+</div>
+    <div><strong>Water Saved</strong><br>27.8% Avg</div>
+    <div><strong>System Pressure</strong><br>Stabilized</div>
+    <div><strong>ROI</strong><br>6–11 months</div>
+  </div>
+</section>
+
+<!-- Hospitality Case Study -->
+<section>
+  <h2>Hospitality: Hilton Downtown</h2>
+  <p>Saved 184,000 gal/month. ROI in under 6 months. Stabilized water pressure during peak occupancy.</p>
+  <div class="metric-grid">
+    <div><strong>Water Use Intensity</strong><br>-34%</div>
+    <div><strong>NOI Growth</strong><br>+8%</div>
+    <div><strong>RevPAR Impact</strong><br>+5%</div>
+    <div><strong>ROI</strong><br>5.7 months</div>
+  </div>
+</section>
+
+<!-- Manufacturing Case Study -->
+<section>
+  <h2>Manufacturing: PureDrinks Ltd.</h2>
+  <p>Water use cut by 32%, 0 complaints, stabilized high-volume filling operations.</p>
+  <div class="metric-grid">
+    <div><strong>Avg Reduction</strong><br>22–35%</div>
+    <div><strong>Compliance Risk</strong><br>↓ Reduced</div>
+    <div><strong>Flow Accuracy</strong><br>95%+</div>
+    <div><strong>ROI</strong><br>5.2× Avg</div>
+  </div>
+</section>
+
+<script>
+  const header = document.getElementById("main-header");
+  window.onscroll = () => {
+    if (window.scrollY > 20) {
+      header.classList.add("shrink");
+    } else {
+      header.classList.remove("shrink");
+    }
+  };
+</script>
+
+</body>
+</html>

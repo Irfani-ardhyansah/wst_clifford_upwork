@@ -1,0 +1,267 @@
+@extends('layouts.app')
+
+@section('title', 'Water Solutions Technology')
+
+@section('content')
+
+@php
+$industries = [
+    [
+        'slug' => 'hospitality',
+        'img' => '/assets/img/industries/hotel_industry_water_savings_2.jpeg',
+        'title' => 'Hospitality',
+        'desc' => 'Smart water reuse, leak detection, and accurate metering in hotels and resorts.',
+        'url' => route('industries.case_study'), 
+        'btn_text' => 'View Solutions',
+    ],
+    [
+        'slug' => 'manufacturing',
+        'img' => '/assets/img/industries/manufacturing_water_effciency_1.jpeg',
+        'title' => 'Manufacturing & Industrial',
+        'desc' => 'Process cooling, water reuse and high-volume system optimization.',
+        'url' => route('industries.case_study'),
+        'btn_text' => 'View Solutions',
+    ],
+    [
+        'slug' => 'golf',
+        'img' => '/assets/img/industries/golf_course_water_savings_1.jpeg',
+        'title' => 'Golf Courses',
+        'desc' => 'Will provide 3 irrigation case studies (Concours club, Kimpton, Ocean One).',
+        'url' => '#',
+        'btn_text' => 'View Solutions',
+    ],
+    [
+        'slug' => 'healthcare',
+        'img' => '/assets/img/industries/healthcare_facility_water_efficiency_1.jpeg',
+        'title' => 'Health Care Facilities',
+        'desc' => 'Confidential coming soon (Use Jeffs).',
+        'url' => '#',
+        'btn_text' => 'View Solutions',
+    ],
+    [
+        'slug' => 'office',
+        'img' => '/assets/img/industries/office_building_water_efficiency_1.jpeg',
+        'title' => 'Office Buildings',
+        'desc' => 'Will provide 3 case studies (SLGreen Reality Corp).',
+        'url' => '#',
+        'btn_text' => 'View Solutions',
+    ],
+    [
+        'slug' => 'restaurants',
+        'img' => '/assets/img/industries/restaurant_water_savings_1.jpeg',
+        'title' => 'Restaurants',
+        'desc' => 'Dennys 3 locations.',
+        'url' => '#',
+        'btn_text' => 'View Solutions',
+    ],
+    [
+        'slug' => 'education',
+        'img' => '/assets/img/industries/campus_water_efficiency_2.jpeg',
+        'title' => 'Schools, Universities & Stadiums',
+        'desc' => 'Whole-campus metering and bulk-use optimization for institutions.',
+        'url' => '#',
+        'btn_text' => 'View Solutions',
+    ],
+    [
+        'slug' => 'senior',
+        'img' => '/assets/img/industries/senior_living_home_water_savings_1.jpeg',
+        'title' => 'Senior Living Homes',
+        'desc' => 'Safe, accessible water systems with consistent flow monitoring.',
+        'url' => '#',
+        'btn_text' => 'View Solutions',
+    ],
+    [
+        'slug' => 'laundries',
+        'img' => '/assets/img/industries/laundry_water_savings_1.jpeg',
+        'title' => 'Commercial Laundries',
+        'desc' => 'Water reuse and accurate flow control for high-throughput laundry systems.',
+        'url' => '#',
+        'btn_text' => 'View Solutions',
+    ],
+    [
+        'slug' => 'supermarkets',
+        'img' => '/assets/img/industries/supermarket_water_savings_1.jpeg',
+        'title' => 'Supermarkets',
+        'desc' => 'Cooling systems, sanitation stations, and fixture optimization.',
+        'url' => '#',
+        'btn_text' => 'View Solutions',
+    ],
+    [
+        'slug' => 'carwash',
+        'img' => '/assets/img/industries/carwash_water_saving_1.jpeg',
+        'title' => 'Service Stations & Car Washes',
+        'desc' => 'Rinse water recycling and pump performance optimization.',
+        'url' => '#',
+        'btn_text' => 'View Solutions',
+    ],
+    [
+        'slug' => 'condos',
+        'img' => '/assets/img/industries/condo_water_savings_1.jpeg',
+        'title' => 'Condominiums',
+        'desc' => 'Fair billing, leak detection, and water balance optimization.',
+        'url' => '#',
+        'btn_text' => 'View Solutions',
+    ],
+    [
+        'slug' => 'clubs',
+        'img' => '/assets/img/industries/yacht_club_marina_water_savings_2.jpeg',
+        'title' => 'Clubs & Marinas',
+        'desc' => 'Water efficiency for coastal and recreational venues.',
+        'url' => '#',
+        'btn_text' => 'View Solutions',
+    ],
+    [
+        'slug' => 'parks',
+        'img' => '/assets/img/industries/water_park_resorts_water_savings_1.jpeg',
+        'title' => 'Water Parks',
+        'desc' => 'Reclaim and reuse for rides, splash zones and locker facilities.',
+        'url' => '#',
+        'btn_text' => 'View Solutions',
+    ],
+    [
+        'slug' => 'others',
+        'img' => '/assets/img/industries/others_we_serve_water_savings_1.jpeg',
+        'title' => 'Others We Serve',
+        'desc' => 'Need a custom solution? We serve unique and hybrid-use cases too.',
+        'url' => '#', // Ubah jika ada route khusus
+        'btn_text' => 'Talk to an Expert', // Perhatikan teks tombol ini beda sendiri
+    ],
+];
+@endphp
+
+    <section>
+      <div class="max-w-screen-xl mx-auto px-4 py-8">
+        <div class="text-center mb-8">
+          <h1 class="text-4xl mb-2">Industries We Serve</h1>
+          <p class="text-gray-600">Tailored water efficiency strategies for every sector.</p>
+        </div>
+        <div class="text-right mb-4">
+          <button onclick="toggleFilter()" class="bg-gray-800 text-white px-4 py-2 rounded-none cursor-pointer">Filter by Sector</button>
+        </div>
+        <div id="filterDropdown" class="hidden mb-4">
+          <select id="sectorSelect" onchange="filterTiles()" class="p-2">
+            <option value="all">All Industries</option>
+            <!-- <option value="hospitality">Hospitality</option>
+            <option value="manufacturing">Manufacturing & Industrial</option> -->
+            <option value="golf">Golf Courses</option>
+            <option value="healthcare">Health Care Facilities</option>
+            <option value="office">Office Buildings</option>
+            <option value="restaurants">Restaurants</option>
+            <option value="education">Schools, Universities & Stadiums</option>
+            <option value="senior">Senior Living Homes</option>
+            <option value="laundries">Commercial Laundries</option>
+            <option value="supermarkets">Supermarkets</option>
+            <option value="carwash">Service Stations & Car Washes</option>
+            <option value="condos">Condominiums</option>
+            <option value="clubs">Clubs & Marinas</option>
+            <option value="parks">Water Parks</option>
+            <option value="others">Others We Serve</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            @foreach($industries as $item)
+                <div class="tile {{ $item['slug'] }} bg-white rounded-none overflow-hidden shadow-md flex flex-col transition-all duration-300 hover:translate-y-[-5px] hover:shadow-lg">
+                    <img src="{{ $item['img'] }}" alt="{{ $item['title'] }}" class="w-full h-48 object-cover">
+                    
+                    <div class="p-4 flex-grow">
+                        <h3>{{ $item['title'] }}</h3>
+                        <p class="text-gray-700">{{ $item['desc'] }}</p>
+                    </div>
+                    
+                    <a href="{{ $item['url'] }}" class="block text-center bg-gray-100 text-black py-3 border-t border-gray-300 hover:bg-gray-200 transition-colors">
+                        {{ $item['btn_text'] }}
+                    </a>
+                </div>
+            @endforeach
+        </div>
+      </div>
+    </section>
+    <!-- ========== Protect Your Asset Performance: Clean, Compact Two Column ========== -->
+    <section class="bg-gray-50 py-16">
+      <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center px-4">
+        <!-- LEFT: Heading & Description -->
+        <div class="text-left">
+          <h2 class="text-3xl md:text-4xl font-serif tracking-tight font-semibold mb-5 text-gray-900 uppercase">
+            PROTECT YOUR ASSET PERFORMANCE
+          </h2>
+          <p class="text-lg text-gray-700 font-light mb-8 max-w-md">
+            Request a confidential water audit to optimize your property’s health and profitability.
+          </p>
+          <a href="#contact-form" class="inline-block border border-gray-900 text-gray-900 font-light px-8 py-2 rounded-none bg-transparent transition
+            hover:bg-gray-900 hover:text-white hover:shadow-md focus:outline-none tracking-wide text-base"
+          >
+            SPEAK WITH AN AUDITOR
+          </a>
+        </div>
+        <!-- RIGHT: Premium Contact Form -->
+        <div>
+          <form id="contact-form" class="flex flex-col gap-4 max-w-lg w-full">
+            <div class="flex gap-4">
+              <input id="first-name" name="first-name" type="text" required
+                placeholder="First Name"
+                class="flex-1 border border-gray-300 px-3 py-2 bg-white text-gray-900 font-light rounded-none text-base placeholder-gray-400 focus:border-gray-900 focus:outline-none"/>
+              <input id="last-name" name="last-name" type="text" required
+                placeholder="Last Name"
+                class="flex-1 border border-gray-300 px-3 py-2 bg-white text-gray-900 font-light rounded-none text-base placeholder-gray-400 focus:border-gray-900 focus:outline-none"/>
+            </div>
+            <div class="flex gap-4">
+              <input id="company-name" name="company-name" type="text"
+                placeholder="Company Name"
+                class="flex-1 border border-gray-300 px-3 py-2 bg-white text-gray-900 font-light rounded-none text-base placeholder-gray-400 focus:border-gray-900 focus:outline-none"/>
+              <input id="company-role" name="company-role" type="text"
+                placeholder="Company Role"
+                class="flex-1 border border-gray-300 px-3 py-2 bg-white text-gray-900 font-light rounded-none text-base placeholder-gray-400 focus:border-gray-900 focus:outline-none"/>
+            </div>
+            <div class="flex gap-4">
+              <input id="contact-number" name="contact-number" type="tel"
+                placeholder="Contact Number"
+                class="flex-1 border border-gray-300 px-3 py-2 bg-white text-gray-900 font-light rounded-none text-base placeholder-gray-400 focus:border-gray-900 focus:outline-none"/>
+              <input id="email" name="email" type="email" required
+                placeholder="Email"
+                class="flex-1 border border-gray-300 px-3 py-2 bg-white text-gray-900 font-light rounded-none text-base placeholder-gray-400 focus:border-gray-900 focus:outline-none"/>
+            </div>
+            <select id="reason" name="reason"
+              class="border border-gray-300 px-3 py-2 bg-white text-gray-900 font-light rounded-none text-base placeholder-gray-400 focus:border-gray-900 focus:outline-none">
+              <option value="">Reason for Contact</option>
+              <option>Request a Water Audit</option>
+              <option>Billing or Invoice Question</option>
+              <option>Consultation on Smart Water Solutions</option>
+              <option>Technical Support</option>
+              <option>General Inquiry</option>
+            </select>
+            <textarea id="message" name="message" rows="3" required
+              placeholder="Message"
+              class="border border-gray-300 px-3 py-2 bg-white text-gray-900 font-light rounded-none text-base placeholder-gray-400 focus:border-gray-900 focus:outline-none resize-none"></textarea>
+            <button type="submit"
+              class="mt-2 border border-gray-900 text-gray-900 font-light px-8 py-2 rounded-none bg-transparent transition
+                hover:bg-gray-900 hover:text-white hover:shadow-md tracking-wide text-base">
+              Submit Request
+            </button>
+          </form>
+        </div>
+    </section>
+    </main>
+@endsection
+
+@push('scripts')
+<script>
+  function toggleFilter() {
+    document.getElementById("filterDropdown").classList.toggle("hidden");
+  }
+
+  function filterTiles() {
+    const value = document.getElementById("sectorSelect").value;
+    const tiles = document.querySelectorAll(".tile");
+
+    tiles.forEach(tile => {
+      if (value === "all" || tile.classList.contains(value)) {
+        tile.classList.remove("hidden"); 
+      } else {
+        tile.classList.add("hidden"); 
+      }
+    });
+  }
+</script>
+@endpush
+  
+  

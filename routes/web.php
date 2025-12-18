@@ -1,0 +1,111 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\IndustryController as AdminIndustryController;
+use App\Http\Controllers\Admin\CaseStudyController as AdminCaseStudyController;
+use App\Http\Controllers\Front\IndustryController;
+use App\Http\Controllers\Admin\PortalController;
+
+Route::get('/', function () {
+    return view('index');
+})->name('index');
+
+Route::prefix('admin')->name('admin.')->group(function() {
+    Route::get('/index', function () {
+        return view('admin.portal-bak');
+    })->name('index');
+
+        Route::get('/case-studies', [PortalController::class, 'caseStudies'])->name('case-studies');
+        Route::get('/white-papers', [PortalController::class, 'whitePapers'])->name('white-papers');
+});
+
+Route::prefix('services')->name('services.')->group(function () {
+    Route::get('/audit', function () {
+        return view('services.audit');
+    })->name('audit');
+
+    Route::get('cooling_towers', function () {
+        return view('services.cooling_towers');
+    })->name('cooling_towers');
+
+    Route::get('/elara_ai', function () {
+        return view('services.elara_ai');
+    })->name('elara_ai');
+
+    Route::get('/scope_studies', function () {
+        return view('services.scope_studies');
+    })->name('scope_studies');
+
+    Route::get('/meter_accuracy_optimization', function () {
+        return view('services.meter_accuracy_optimization');
+    })->name('meter_accuracy_optimization');
+
+    Route::get('/smart_water_monitoring', function () {
+        return view('services.smart_water_monitoring');
+    })->name('smart_water_monitoring');
+
+    Route::get('/smart_water_recovery', function () {
+        return view('services.smart_water_recovery');
+    })->name('smart_water_recovery');
+});
+
+Route::prefix('opportunities')->name('opportunities.')->group(function () {
+    Route::get('/property_owners_managers', function () {
+        return view('opportunities.property_owners_managers');
+    })->name('property_owners_managers');
+
+    Route::get('/mep_installers', function () {
+        return view('opportunities.mep_installers');
+    })->name('mep_installers');
+
+    Route::get('/esg', function () {
+        return view('opportunities.esg');
+    })->name('esg');
+
+    Route::get('/careers', function () {
+        return view('opportunities.careers');
+    })->name('careers');
+
+    Route::get('/agents', function () {
+        return view('opportunities.agents');
+    })->name('agents');
+
+    Route::get('/about', function () {
+        return view('opportunities.about');
+    })->name('about');
+
+    Route::get('/investor', function () {
+        return view('opportunities.investor');
+    })->name('investor');
+});
+
+Route::prefix('industries')->name('industries.')->group(function () {
+    Route::get('/', [IndustryController::class, 'index'])->name('index');
+    Route::get('/{slug}', [IndustryController::class, 'showCaseStudy'])->name('case_study');
+});
+
+Route::prefix('resources')->name('resources.')->group(function () {
+    Route::get('/selection_tool', function () {
+        return view('resources.water_consumption_tool.selection_tool');
+    })->name('tools.selection_tool');
+
+    Route::get('/cooling_tower', function () {
+        return view('resources.water_consumption_tool.cooling_tower');
+    })->name('tools.cooling_tower');
+
+   Route::get('/whole_building', function () {
+        return view('resources.water_consumption_tool.whole_building');
+    })->name('tools.whole_building');
+
+    Route::get('/white_papers', function () {
+        return view('resources.white_papers');
+    })->name('white_papers');
+
+    Route::get('/my_city_rebates', function () {
+        return view('resources.my_city_rebates');
+    })->name('my_city_rebates');
+
+    Route::get('/financing_form', function () {
+        return view('resources.financing_form');
+    })->name('financing_form');
+});
