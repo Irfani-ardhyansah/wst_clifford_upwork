@@ -6,10 +6,8 @@
 @section('content')
 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     
-    {{-- Main Card Container --}}
     <div class="bg-white rounded-2xl shadow-xl shadow-gray-200/40 overflow-hidden border border-gray-100">
         
-        {{-- Header & Toolbar Section (Digabung agar cohesive) --}}
         <div class="p-6 border-b border-gray-100 bg-white relative z-20">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
                 <div>
@@ -95,6 +93,7 @@
                     <tr class="bg-gray-50/80 border-b border-gray-100 text-xs uppercase tracking-wider text-gray-500 font-semibold">
                         <th class="px-6 py-4 first:pl-8">Project Info</th>
                         <th class="px-6 py-4">Industry</th>
+                        <th class="px-6 py-4 text-center">Sort Order</th>
                         <th class="px-6 py-4">Status</th>
                         <th class="px-6 py-4 text-right last:pr-8">Actions</th>
                     </tr>
@@ -135,6 +134,12 @@
                                 @else
                                     <span class="text-gray-400 text-sm">-</span>
                                 @endif
+                            </td>
+
+                            <td class="px-6 py-5 text-center">
+                                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-50 text-gray-600 text-sm font-semibold border border-gray-200">
+                                    {{ $item->sort_order }}
+                                </span>
                             </td>
 
                             <td class="px-6 py-5">

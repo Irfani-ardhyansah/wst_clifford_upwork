@@ -34,6 +34,16 @@ Route::middleware(['auth', 'role:admin'])
             Route::delete('/{caseStudy}', [AdminCaseStudyController::class, 'destroy'])->name('destroy');
         });
 
+        Route::prefix('industries')->name('industries.')->group(function () {
+            Route::get('/', [AdminIndustryController::class, 'index'])->name('index');
+            Route::get('/create', [AdminIndustryController::class, 'create'])->name('create');
+            Route::post('/', [AdminIndustryController::class, 'store'])->name('store');
+            Route::get('/{industry}/edit', [AdminIndustryController::class, 'edit'])->name('edit');
+            Route::put('/{industry}', [AdminIndustryController::class, 'update'])->name('update');
+            Route::delete('/{industry}', [AdminIndustryController::class, 'destroy'])->name('destroy');
+        });
+
+
         Route::get('/dashboard', [AdminPortalController::class, 'dashboard'])->name('admin.dashboard');
         // Route::get('/case-studies', [AdminPortalController::class, 'caseStudies'])->name('case-studies');
         Route::get('/white-papers', [AdminPortalController::class, 'whitePapers'])->name('white-papers');

@@ -37,12 +37,12 @@
                     <i class="fa-solid fa-layer-group w-5"></i> All Resources
                 </button>
 
-                <a href="{{ route('admin.white-papers') }}"
+                <a href="{{ route('admin.industries.index') }}"
                 class="flex items-center gap-3 px-4 py-3 rounded-xl transition
-                {{ request()->routeIs('admin.white-papers')
+                {{ request()->routeIs('admin.industries*')
                         ? 'bg-teal-600 text-white shadow-lg shadow-teal-900/20'
                         : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
-                    <i class="fa-solid fa-file-lines w-5"></i> White Papers
+                    <i class="fa-solid fa-file-lines w-5"></i> Industries
                 </a>
 
                 <a href="{{ route('admin.case-studies.index') }}"

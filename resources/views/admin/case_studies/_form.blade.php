@@ -50,38 +50,58 @@
         </div>
     <!-- </div> -->
 
-    <div>
-        <label class="block text-sm font-medium mb-1 text-gray-700">Cover Image</label>
-        <input type="file" name="image" accept="image/*"
-                class="w-full border border-gray-300 rounded-lg px-4 py-2 bg-white">
-        @error('image') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Cover Image</label>
+        
+        <div class="flex items-center gap-6">
+            @if(isset($caseStudy) && $caseStudy->image_path)
+                <div class="relative group flex-shrink-0">
+                    <img src="{{ Storage::url($caseStudy->image_path) }}" 
+                        alt="Current Image" 
+                        class="h-20 w-24 object-cover rounded-lg border border-gray-300 shadow-sm">
+                    <div class="absolute inset-0 bg-black/50 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                        <span class="text-white text-xs font-medium">Current</span>
+                    </div>
+                </div>
+            @endif
 
-        @if(isset($caseStudy) && $caseStudy->image_path)
-            <div class="mt-2">
-                <p class="text-xs text-gray-500 mb-1">Current Image:</p>
-                <img src="{{ Storage::url($caseStudy->image_path) }}" alt="Preview" class="h-20 w-auto rounded border">
+            <div class="flex-1">
+                <input type="file" name="image" accept="image/*"
+                    class="block w-full text-sm text-gray-500
+                    file:mr-4 file:py-2 file:px-4
+                    file:rounded-lg file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-white file:text-teal-700
+                    file:ring-1 file:ring-gray-200
+                    hover:file:bg-teal-50 transition cursor-pointer">
+                <p class="text-xs text-gray-500 mt-2">
+                    Supported formats: JPEG, PNG, WEBP. Max size: 2MB.
+                </p>
+                @error('image') <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span> @enderror
             </div>
-        @endif
+        </div>
     </div>
 
-    <div class="flex items-center gap-6 pt-2">
-        <label class="flex items-center space-x-2 cursor-pointer">
-            <input type="checkbox" name="is_active" value="1"
-                    {{ old('is_active', $caseStudy->is_active ?? true) ? 'checked' : '' }}
-                    class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-            <span class="text-sm font-medium text-gray-700">Active</span>
-        </label>
+<div class="flex items-center gap-6 pt-2">
+    <label class="flex items-center space-x-2 cursor-pointer group">
+        <input type="checkbox" name="is_active" value="1"
+               {{ old('is_active', $caseStudy->is_active ?? true) ? 'checked' : '' }}
+               class="rounded border-gray-300 text-teal-600 shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 
+                      checked:bg-teal-600 checked:border-transparent transition cursor-pointer">
+        <span class="text-sm font-medium text-gray-700 group-hover:text-teal-700 transition">Active</span>
+    </label>
 
-        <label class="flex items-center space-x-2 cursor-pointer">
-            <input type="checkbox" name="is_featured" value="1"
-                    {{ old('is_featured', $caseStudy->is_featured ?? false) ? 'checked' : '' }}
-                    class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-            <span class="text-sm font-medium text-gray-700">Featured</span>
-        </label>
-    </div>
+    <label class="flex items-center space-x-2 cursor-pointer group">
+        <input type="checkbox" name="is_featured" value="1"
+               {{ old('is_featured', $caseStudy->is_featured ?? false) ? 'checked' : '' }}
+               class="rounded border-gray-300 text-teal-600 shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50 
+                      checked:bg-teal-600 checked:border-transparent transition cursor-pointer">
+        <span class="text-sm font-medium text-gray-700 group-hover:text-teal-700 transition">Featured</span>
+    </label>
+</div>
 
     <div class="pt-4">
-        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+        <button type="submit" class="bg-teal-600 text-white px-6 py-2.5 rounded-lg hover:bg-teal-700 transition font-medium shadow-lg shadow-teal-900/10">
             {{ isset($caseStudy) ? 'Update Case Study' : 'Create Case Study' }}
         </button>
     </div>

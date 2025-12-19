@@ -48,6 +48,13 @@ class CaseStudyController extends Controller
             'sort_order'       => 'integer',
         ]);
 
+        if ($request->filled('sort_order')) {
+            $this->reorderOnCreate($request->sort_order);
+            $validated['sort_order'] = $request->sort_order;
+        } else {
+            $validated['sort_order'] = Industry::max('sort_order') + 1;
+        }
+
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = Str::slug($request->title) . '-' . time() . '.' . $file->getClientOriginalExtension();
@@ -84,6 +91,11 @@ class CaseStudyController extends Controller
             'sort_order'       => 'integer',
         ]);
 
+        if ($request->filled('sort_order') && $request->sort_order != $caseStudy->sort_order) {
+            $this->reorderOnUpdate($caseStudy->sort_order, $request->sort_order);
+            $validated['sort_order'] = $request->sort_order;
+        }
+
         if ($request->hasFile('image')) {
             if ($caseStudy->image_path && Storage::disk('public')->exists($caseStudy->image_path)) {
                 Storage::disk('public')->delete($caseStudy->image_path);
@@ -118,5 +130,24 @@ class CaseStudyController extends Controller
         
         $caseStudy->delete();
         return redirect()->back()->with('success', 'Case Study deleted.');
+    }
+
+    private function reorderOnCreate($newOrder)
+    {
+        Industry::where('sort_order', '>=', $newOrder)
+                    ->increment('sort_order');
+    }
+
+    private function reorderOnUpdate($currentOrder, $newOrder)
+    {
+        if ($newOrder < $currentOrder) {
+            Industry::where('sort_order', '>=', $newOrder)
+                        ->where('sort_order', '<', $currentOrder)
+                        ->increment('sort_order');
+        } elseif ($newOrder > $currentOrder) {
+            Industry::where('sort_order', '>', $currentOrder)
+                        ->where('sort_order', '<=', $newOrder)
+                        ->decrement('sort_order');
+        }
     }
 }
