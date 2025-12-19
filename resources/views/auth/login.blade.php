@@ -60,7 +60,7 @@
 
             <!-- Login Card -->
             <div class="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl shadow-2xl p-8">
-                <form method="POST" action="#" class="space-y-6">
+                <form method="POST" action="{{ route('login.custom') }}" class="space-y-6">
                     @csrf
 
                     <div>
@@ -82,7 +82,11 @@
                         </label>
                         <a href="#" class="hover:text-white">Forgot?</a>
                     </div>
-
+                    @if ($errors->any())
+                        <div class="bg-red-500/10 border border-red-500/30 text-red-400 text-sm rounded-lg p-3">
+                            {{ $errors->first() }}
+                        </div>
+                    @endif
                     <button type="submit"
                         class="w-full py-3 border border-white/40 rounded-lg tracking-wide uppercase text-sm hover:bg-white hover:text-black transition">
                         Sign In

@@ -183,7 +183,7 @@
               </div>
               <div class="p-8">
                   <div id="pending-asset-preview" class="bg-gray-50 rounded-lg p-4 mb-6 flex items-center gap-4 hidden">
-                      <div class="w-12 h-12 rounded-lg bg-teal-100 text-teal-600 flex items-center justify-center">
+                      <div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center">
                           <i class="fa-solid fa-file-lines text-xl"></i>
                       </div>
                       <div class="flex-1 min-w-0">
@@ -191,31 +191,51 @@
                           <p class="text-sm text-gray-500">Case Study</p>
                       </div>
                   </div>
+                  @guest
+                    <form method="POST" action="{{ route('login.phone') }}"  class="space-y-4">
+                        @csrf
+                        <input type="hidden" name="case_study_id" id="modal-case-id">
 
-                  <form id="leads-form" class="space-y-4">
-                      @csrf
-                      <input type="hidden" name="case_study_id" id="modal-case-id">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Full Name <span class="text-red-500">*</span></label>
+                            <input type="text" name="name" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Company <span class="text-red-500">*</span></label>
+                            <input type="text" name="company" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Work Email <span class="text-red-500">*</span></label>
+                            <input type="email" name="email" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number <span class="text-red-500">*</span></label>
+                            <input type="number" name="phone" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-500">
+                        </div>
+                          <button type="submit"
+                              class="w-full bg-black hover:bg-teal-700 text-white font-bold py-3 rounded-lg mt-2 transition">
+                              <i class="fa-solid fa-unlock mr-2"></i>Get Instant Access
+                          </button>
+                    </form>
+                  @endguest
+                  @auth
+                    <div class="text-center space-y-4">
 
-                      <div>
-                          <label class="block text-sm font-medium text-gray-700 mb-1">Full Name <span class="text-red-500">*</span></label>
-                          <input type="text" name="name" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-500">
-                      </div>
-                      <div>
-                          <label class="block text-sm font-medium text-gray-700 mb-1">Company <span class="text-red-500">*</span></label>
-                          <input type="text" name="company" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-500">
-                      </div>
-                      <div>
-                          <label class="block text-sm font-medium text-gray-700 mb-1">Work Email <span class="text-red-500">*</span></label>
-                          <input type="email" name="email" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-500">
-                      </div>
-                      <div>
-                          <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number <span class="text-red-500">*</span></label>
-                          <input type="number" name="phone" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-500">
-                      </div>
-                      <button type="submit" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 rounded-lg mt-2 transition">
-                          <i class="fa-solid fa-unlock mr-2"></i>Get Instant Access
-                      </button>
-                  </form>
+                        <p class="text-lg font-semibold">
+                            Welcome back, {{ auth()->user()->name }}
+                        </p>
+
+                        <p class="text-gray-500 text-sm">
+                            You already have access to this premium content.
+                        </p>
+
+                        <button onclick="proceedToAsset()"
+                                class="w-full bg-black hover:bg-gray-700 text-white font-bold
+                                      py-3 rounded-lg transition">
+                            <i class="fa-solid fa-arrow-right mr-2"></i> View Content
+                        </button>
+                    </div>
+                @endauth
               </div>
           </div>
       </div>

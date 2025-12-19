@@ -1,10 +1,16 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\IndustryController as AdminIndustryController;
 use App\Http\Controllers\Admin\CaseStudyController as AdminCaseStudyController;
 use App\Http\Controllers\Front\IndustryController;
-use App\Http\Controllers\Admin\PortalController;
+use App\Http\Controllers\Admin\PortalController as AdminPortalController;
+use App\Http\Controllers\AuthController;
+
+Route::post('/login', [AuthController::class, 'login'])->name('login.custom');
+Route::post('/login-by-phone', [AuthController::class, 'loginByPhone'])->name('login.phone');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/', function () {
     return view('index');
@@ -14,13 +20,14 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::prefix('admin')->name('admin.')->group(function() {
-    Route::get('/index', function () {
-        return view('admin.portal-bak');
-    })->name('index');
+Route::middleware(['auth', 'role:admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function() {
+        Route::get('/dashboard', [AdminPortalController::class, 'dashboard'])->name('admin.dashboard');
+        Route::get('/case-studies', [AdminPortalController::class, 'caseStudies'])->name('case-studies');
+        Route::get('/white-papers', [AdminPortalController::class, 'whitePapers'])->name('white-papers');
 
-        Route::get('/case-studies', [PortalController::class, 'caseStudies'])->name('case-studies');
-        Route::get('/white-papers', [PortalController::class, 'whitePapers'])->name('white-papers');
 });
 
 Route::prefix('services')->name('services.')->group(function () {

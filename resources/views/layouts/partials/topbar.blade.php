@@ -168,5 +168,35 @@
       </div>
   </div>
 
+  @guest
+    <a
+        href="{{ route('login') }}"
+        class="rounded-3xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105"
+        title="Login"
+    >
+        <svg class="h-4 w-4 inline text-gray-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+            <polyline points="10 17 15 12 10 7"/>
+            <line x1="15" y1="12" x2="3" y2="12"/>
+        </svg>
+    </a>
+  @endguest
+  @auth
+    <form method="POST" action="{{ route('logout') }}" class="inline">
+        @csrf
+        <button
+            type="submit"
+            class="rounded-3xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105"
+            title="Logout"
+        >
+            <svg class="h-4 w-4 inline text-gray-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                <polyline points="16 17 21 12 16 7"/>
+                <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+        </button>
+    </form>
+  @endauth
+
   </div>
   <!-- end small navbar -->

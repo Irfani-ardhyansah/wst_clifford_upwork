@@ -24,39 +24,68 @@
             <div class="h-20 flex items-center px-8 border-b border-gray-800">
                 <div class="flex items-center gap-3">
                     <div class="w-8 h-8 rounded bg-teal-500 flex items-center justify-center font-bold text-black">W</div>
-                    <span class="font-bold text-xl tracking-tight">WST<span class="text-teal-500">Portal</span></span>
+                    <span class="font-bold text-xl tracking-tight">
+                        WST<span class="text-teal-500">Portal</span>
+                    </span>
                 </div>
             </div>
+
             <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-1">
-                
-                <button onclick="router('portal')" id="nav-portal" class="nav-btn active w-full text-left px-4 py-3 rounded-lg hover:bg-gray-800/50 transition flex items-center gap-3 text-gray-300">
+                <button onclick="router('portal')" id="nav-portal"
+                    class="nav-btn active w-full text-left px-4 py-3 rounded-lg
+                        hover:bg-gray-800/50 transition flex items-center gap-3 text-gray-300">
                     <i class="fa-solid fa-layer-group w-5"></i> All Resources
                 </button>
 
-                <a href="{{ route('admin.white-papers') }}" class="flex items-center gap-3 px-4 py-3 {{ request()->routeIs('portal.white-papers') ? 'bg-teal-600 text-white shadow-lg shadow-teal-900/20' : 'text-gray-400 hover:text-white hover:bg-white/10' }} rounded-xl transition">
+                <a href="{{ route('admin.white-papers') }}"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl transition
+                {{ request()->routeIs('admin.white-papers')
+                        ? 'bg-teal-600 text-white shadow-lg shadow-teal-900/20'
+                        : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
                     <i class="fa-solid fa-file-lines w-5"></i> White Papers
                 </a>
 
-                <a href="{{ route('admin.case-studies') }}" class="flex items-center gap-3 px-4 py-3 {{ request()->routeIs('portal.case-studies') ? 'bg-teal-600 text-white shadow-lg shadow-teal-900/20' : 'text-gray-400 hover:text-white hover:bg-white/10' }} rounded-xl transition">
+                <a href="{{ route('admin.case-studies') }}"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl transition
+                {{ request()->routeIs('admin.case-studies')
+                        ? 'bg-teal-600 text-white shadow-lg shadow-teal-900/20'
+                        : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
                     <i class="fa-solid fa-briefcase w-5"></i> Case Studies
                 </a>
 
-                <button onclick="filterAssets('Webinar')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-gray-800/50 transition flex items-center gap-3 text-gray-400">
+                <button onclick="filterAssets('Webinar')"
+                    class="nav-btn w-full text-left px-4 py-3 rounded-lg
+                        hover:bg-gray-800/50 transition flex items-center gap-3 text-gray-400">
                     <i class="fa-solid fa-video w-5"></i> Webinars
                 </button>
 
-                <button onclick="filterAssets('Tool')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-gray-800/50 transition flex items-center gap-3 text-gray-400">
+                <button onclick="filterAssets('Tool')"
+                    class="nav-btn w-full text-left px-4 py-3 rounded-lg
+                        hover:bg-gray-800/50 transition flex items-center gap-3 text-gray-400">
                     <i class="fa-solid fa-calculator w-5"></i> Tools & Calculators
                 </button>
             </nav>
+
+            <div class="mt-auto p-4 border-t border-gray-800">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit"
+                        class="w-full flex items-center gap-3 px-4 py-3 rounded-xl
+                            text-red-400 hover:text-white hover:bg-red-600/20 transition">
+                        <i class="fa-solid fa-right-from-bracket w-5"></i>
+                        Logout
+                    </button>
+                </form>
+            </div>
         </aside>
+
 
         <div class="flex-1 flex flex-col min-w-0 overflow-hidden relative">
             
             <header class="h-20 glass-panel border-b border-gray-200 flex items-center justify-between px-8 z-10">
                 <h1 class="text-2xl font-bold">@yield('header_title')</h1>
                 <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-blue-500 border-2 border-white shadow-md"></div>
+                    <!-- <div class="w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-blue-500 border-2 border-white shadow-md"></div> -->
                 </div>
             </header>
 

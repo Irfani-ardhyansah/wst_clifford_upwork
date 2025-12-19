@@ -24,4 +24,16 @@ class PortalController extends Controller
         
         return view('admin.white_papers', compact('whitePapers'));
     }
+
+    public function dashboard()
+    {
+        return view('admin.dashboard', [
+            'stats' => [
+                'case_studies' => \App\Models\CaseStudy::count(),
+                // 'white_papers' => \App\Models\WhitePaper::count(),
+                // 'companies'    => \App\Models\Company::count(),
+                'admins'       => \App\Models\User::where('role', 'admin')->count(),
+            ]
+        ]);
+    }
 }
