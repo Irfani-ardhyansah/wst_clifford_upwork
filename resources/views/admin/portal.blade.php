@@ -45,9 +45,9 @@
                     <i class="fa-solid fa-file-lines w-5"></i> White Papers
                 </a>
 
-                <a href="{{ route('admin.case-studies') }}"
+                <a href="{{ route('admin.case-studies.index') }}"
                 class="flex items-center gap-3 px-4 py-3 rounded-xl transition
-                {{ request()->routeIs('admin.case-studies')
+                {{ request()->routeIs('admin.case-studies*')
                         ? 'bg-teal-600 text-white shadow-lg shadow-teal-900/20'
                         : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
                     <i class="fa-solid fa-briefcase w-5"></i> Case Studies

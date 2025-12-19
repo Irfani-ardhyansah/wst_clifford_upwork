@@ -11,34 +11,47 @@ use Illuminate\Support\Facades\Storage;
 
 class CaseStudyController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Eager loading relasi industry agar query efisien
-        $caseStudies = CaseStudy::with('industry')->orderBy('sort_order', 'asc')->get();
-        return response()->json($caseStudies);
+        $query = CaseStudy::with('industry')->latest();
+        if ($request->filled('industry_id')) {
+            $query->where('industry_id', $request->industry_id);
+        }
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                ->orWhere('category', 'like', "%{$search}%");
+            });
+        }
+        $caseStudies = $query->paginate(10)->withQueryString();
+        $industries = Industry::orderBy('title', 'asc')->get();
+
+        return view('admin.case_studies.index', compact('caseStudies', 'industries'));
     }
 
     public function create()
     {
-        // Kita butuh list Industry untuk dropdown select option
-        $industries = Industry::where('is_active', true)->pluck('title', 'id');
-        // return view('admin.case_studies.create', compact('industries'));
+        $industries = Industry::where('is_active', true)->get();
+        return view('admin.case_studies.create', compact('industries'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'industry_id'      => 'required|exists:industries,id', // Pastikan ID industri valid
+            'industry_id'      => 'required|exists:industries,id', 
             'title'            => 'required|string|max:255',
-            'category'         => 'nullable|string|max:100', // Boutique, Full-Service, dll
-            'impact_highlight' => 'nullable|string|max:255', // Quote miring
+            'category'         => 'nullable|string|max:100', 
+            'impact_highlight' => 'nullable|string|max:255', 
             'image'            => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'link_url'         => 'nullable|url',
             'sort_order'       => 'integer',
         ]);
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('case_studies', 'public');
+            $file = $request->file('image');
+            $filename = Str::slug($request->title) . '-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('case_studies', $filename, 'public');
             $validated['image_path'] = $path;
         }
 
@@ -51,6 +64,12 @@ class CaseStudyController extends Controller
         CaseStudy::create($validated);
 
         return redirect()->back()->with('success', 'Case Study created successfully.');
+    }
+
+    public function edit(CaseStudy $caseStudy)
+    {
+        $industries = Industry::where('is_active', true)->get();
+        return view('admin.case_studies.edit', compact('caseStudy', 'industries'));
     }
 
     public function update(Request $request, CaseStudy $caseStudy)
@@ -69,7 +88,13 @@ class CaseStudyController extends Controller
             if ($caseStudy->image_path && Storage::disk('public')->exists($caseStudy->image_path)) {
                 Storage::disk('public')->delete($caseStudy->image_path);
             }
-            $path = $request->file('image')->store('case_studies', 'public');
+
+            $file = $request->file('image');
+
+            $filename = Str::slug($request->title) . '-' . time() . '.' . $file->getClientOriginalExtension();
+
+            $path = $file->storeAs('case_studies', $filename, 'public');
+            
             $validated['image_path'] = $path;
         }
 

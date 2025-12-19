@@ -24,8 +24,18 @@ Route::middleware(['auth', 'role:admin'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function() {
+
+        Route::prefix('case-studies')->name('case-studies.')->group(function () {
+            Route::get('/', [AdminCaseStudyController::class, 'index'])->name('index');
+            Route::get('/create', [AdminCaseStudyController::class, 'create'])->name('create');
+            Route::post('/', [AdminCaseStudyController::class, 'store'])->name('store');
+            Route::get('/{caseStudy}/edit', [AdminCaseStudyController::class, 'edit'])->name('edit');
+            Route::put('/{caseStudy}', [AdminCaseStudyController::class, 'update'])->name('update');
+            Route::delete('/{caseStudy}', [AdminCaseStudyController::class, 'destroy'])->name('destroy');
+        });
+
         Route::get('/dashboard', [AdminPortalController::class, 'dashboard'])->name('admin.dashboard');
-        Route::get('/case-studies', [AdminPortalController::class, 'caseStudies'])->name('case-studies');
+        // Route::get('/case-studies', [AdminPortalController::class, 'caseStudies'])->name('case-studies');
         Route::get('/white-papers', [AdminPortalController::class, 'whitePapers'])->name('white-papers');
 
 });
