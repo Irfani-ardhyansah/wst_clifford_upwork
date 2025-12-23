@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\CaseStudyController as AdminCaseStudyController;
 use App\Http\Controllers\Front\IndustryController;
 use App\Http\Controllers\Admin\PortalController as AdminPortalController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\AssetController as AdminAssetController;
+use App\Http\Controllers\Front\MemberDashboardController;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login.custom');
 Route::post('/login-by-phone', [AuthController::class, 'loginByPhone'])->name('login.phone');
@@ -24,11 +26,20 @@ Route::middleware(['auth', 'role:admin'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function() {
+        
+        Route::prefix('assets')->name('assets.')->group(function () {
+            Route::get('/', [AdminAssetController::class, 'index'])->name('index');
+            Route::get('/create', [AdminAssetController::class, 'create'])->name('create');
+            Route::post('/', [AdminAssetController::class, 'store'])->name('store');
+            Route::get('/{asset}/edit', [AdminAssetController::class, 'edit'])->name('edit');
+            Route::put('/{asset}', [AdminAssetController::class, 'update'])->name('update');
+            Route::delete('/{asset}', [AdminAssetController::class, 'destroy'])->name('destroy');
+        });
 
         Route::prefix('case-studies')->name('case-studies.')->group(function () {
             Route::get('/', [AdminCaseStudyController::class, 'index'])->name('index');
             Route::get('/create', [AdminCaseStudyController::class, 'create'])->name('create');
-            Route::post('/', [AdminCaseStudyController::class, 'store'])->name('store');
+        Route::post('/', [AdminCaseStudyController::class, 'store'])->name('store');
             Route::get('/{caseStudy}/edit', [AdminCaseStudyController::class, 'edit'])->name('edit');
             Route::put('/{caseStudy}', [AdminCaseStudyController::class, 'update'])->name('update');
             Route::delete('/{caseStudy}', [AdminCaseStudyController::class, 'destroy'])->name('destroy');
@@ -48,6 +59,10 @@ Route::middleware(['auth', 'role:admin'])
         // Route::get('/case-studies', [AdminPortalController::class, 'caseStudies'])->name('case-studies');
         Route::get('/white-papers', [AdminPortalController::class, 'whitePapers'])->name('white-papers');
 
+});
+
+Route::prefix('member-dashboard')->name('member-dashboard.')->group(function () {
+    Route::get('/', [MemberDashboardController::class, 'index'])->name('index');
 });
 
 Route::prefix('services')->name('services.')->group(function () {

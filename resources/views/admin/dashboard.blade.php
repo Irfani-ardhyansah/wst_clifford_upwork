@@ -54,7 +54,7 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <a href="{{ route('admin.case-studies') }}"
+        <a href="{{ route('admin.case-studies.index') }}"
            class="group bg-white rounded-xl border border-gray-100 p-6 shadow-sm hover:border-teal-500 transition">
             <div class="flex items-center gap-4">
                 <div class="w-12 h-12 rounded-lg bg-teal-100 text-teal-600 flex items-center justify-center text-xl">

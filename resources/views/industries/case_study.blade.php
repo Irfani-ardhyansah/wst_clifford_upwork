@@ -229,11 +229,11 @@
                             You already have access to this premium content.
                         </p>
 
-                        <button onclick="proceedToAsset()"
-                                class="w-full bg-black hover:bg-gray-700 text-white font-bold
-                                      py-3 rounded-lg transition">
-                            <i class="fa-solid fa-arrow-right mr-2"></i> View Content
-                        </button>
+                      <a class="btn" href="{{route('member-dashboard.index')}}"
+                              class="w-full bg-black hover:bg-gray-700 text-white font-bold
+                                    py-3 rounded-lg transition">
+                          <i class="fa-solid fa-arrow-right mr-2"></i> View Content
+                      </a>
                     </div>
                 @endauth
               </div>

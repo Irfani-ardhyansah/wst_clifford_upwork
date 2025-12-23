@@ -40,7 +40,8 @@ class AuthController extends Controller
 
         $this->loginUser($request, $user);
 
-        return redirect()->intended($this->redirectByRole());
+        // return redirect()->intended($this->redirectByRole());
+        return redirect()->back();
     }
 
 

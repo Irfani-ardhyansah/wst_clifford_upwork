@@ -25,13 +25,13 @@
     <!-- Toilets -->
       <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-md transition duration-200">
         <div class="mb-4">
-          <img src="/icons/toilet.svg" alt="Toilet" class="w-12 h-12 mx-auto">
+          <img src="{{asset('assets/images/icons/toilet.svg')}}" alt="Toilet" class="w-12 h-12 mx-auto">
         </div>
-        <h3 class="text-xl font-medium text-gray-800 mb-2">Water Consumption Selection Tool</h3>
+        <h3 class="text-xl font-medium text-gray-800 mb-2">Whole Building</h3>
         <p class="text-gray-600 text-sm">
-          Toilets waste up to 200 gallons per day in older systems. Pinpoint inefficiencies and get savings instantly.
+          Assess your building’s total daily consumption. Uncover high-usage periods and optimize across systems.
         </p>
-        <a href="{{ route('resources.tools.selection_tool') }}" class="mt-4 inline-block bg-black text-white font-light tracking-wide text-sm py-2 px-5 rounded-md hover:bg-gray-800 transition-all duration-200">Launch Tool</a>
+        <a href="{{ route('resources.tools.whole_building') }}" class="mt-4 inline-block bg-black text-white font-light tracking-wide text-sm py-2 px-5 rounded-md hover:bg-gray-800 transition-all duration-200">Launch Tool</a>
       </div>
     
     <!-- Whole Building -->
@@ -39,11 +39,11 @@
       <div class="mb-4">
         <img src="/icons/whole-building.svg" alt="Whole Building" class="w-12 h-12 mx-auto">
       </div>
-      <h3 class="text-xl font-medium text-gray-800 mb-2">Whole Building Water Consumption</h3>
+      <h3 class="text-xl font-medium text-gray-800 mb-2">Cooling Tower</h3>
       <p class="text-gray-600 text-sm">
-        Assess your building’s total daily consumption. Uncover high-usage periods and optimize across systems.
+        Monitor blowdown, cycles of concentration, and make‑up water. Cooling towers can account for 30–50% of usage.
       </p>
-      <a href="{{ route('resources.tools.whole_building') }}" class="mt-4 inline-block bg-black text-white font-light tracking-wide text-sm py-2 px-5 rounded-md hover:bg-gray-800 transition-all duration-200">Launch Tool</a>
+      <a href="{{ route('resources.tools.cooling_tower') }}" class="mt-4 inline-block bg-black text-white font-light tracking-wide text-sm py-2 px-5 rounded-md hover:bg-gray-800 transition-all duration-200">Launch Tool</a>
     </div>
 
     <!-- Cooling Tower -->
@@ -51,9 +51,9 @@
       <div class="mb-4">
         <img src="cooling_tower_consumtoion_tool.jpeg" alt="Cooling Tower" class="w-12 h-12 mx-auto">
       </div>
-      <h3 class="text-xl font-medium text-gray-800 mb-2">Cooling Tower Water Consumption</h3>
+      <h3 class="text-xl font-medium text-gray-800 mb-2 text-red-500">Toilets</h3>
       <p class="text-gray-600 text-sm">
-        Monitor blowdown, cycles of concentration, and make‑up water. Cooling towers can account for 30–50% of usage.
+        Toilets waste up to 200 gallons per day in older systems. Pinpoint inefficiencies and get savings instantly.
       </p>
       <a href="{{ route('resources.tools.cooling_tower') }}" class="mt-4 inline-block bg-black text-white font-light tracking-wide text-sm py-2 px-5 rounded-md hover:bg-gray-800 transition-all duration-200">Launch Tool</a>
     </div>
