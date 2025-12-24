@@ -43,8 +43,11 @@
                             <i class="fa-solid fa-industry w-5"></i> Industries
                         </a>
 
-                        <a href="#"
-                        class="flex items-center gap-3 px-4 py-3 rounded-xl transition">
+                        <a href="{{route('admin.white-papers.index')}}"
+                        class="flex items-center gap-3 px-4 py-3 rounded-xl transition
+                        {{ request()->routeIs('admin.white-papers*')
+                                ? 'active'
+                                : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
                             <i class="fa-solid fa-file-lines w-5"></i> White Papers
                         </a>
 

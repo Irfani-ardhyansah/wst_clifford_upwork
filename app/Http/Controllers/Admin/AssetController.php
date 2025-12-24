@@ -50,12 +50,10 @@ class AssetController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'industry_id'      => 'nullable|exists:industries,id',
+            'industry_id'      => 'required_if:category,case_study|nullable|exists:industries,id',
             'title'            => 'required|string|max:255',
             'category'         => 'required|string|max:100',
-            'category'         => 'required|string|max:100',
-            'category'         => 'required|string|max:100',
-            'video'            => 'required_if:category,Webinar|nullable|file|mimes:mp4,mov,ogg,qt|max:51200',
+            'video'            => 'required_if:category,webinar|nullable|file|mimes:mp4,mov,ogg,qt|max:51200',
             'html_content'     => 'nullable|string',
             'image'            => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'sort_order'       => 'nullable|integer',
@@ -101,7 +99,7 @@ class AssetController extends Controller
     public function update(Request $request, Asset $asset)
     {
         $validated = $request->validate([
-            'industry_id'      => 'nullable|exists:industries,id',
+            'industry_id'      => 'required_if:category,case_study|nullable|exists:industries,id',
             'title'            => 'required|string|max:255',
             'category'         => 'required|string',
             'video'            => 'nullable|file|mimes:mp4,mov,ogg,qt|max:51200', 

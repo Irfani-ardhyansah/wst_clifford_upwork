@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Industry;
-use Illuminate\Http\Request;
 use App\Models\Asset;
+use Illuminate\Http\Request;
 
-class CaseStudyController extends Controller
+class WhitePaperController extends Controller
 {
     public function index(Request $request)
     { 
-        $query = Asset::where('category', 'case-study')->with('industry')->latest();
+        $query = Asset::where('category', 'white-paper')->latest();
         if ($request->filled('industry_id')) {
             $query->where('industry_id', $request->industry_id);
         }
@@ -25,9 +24,8 @@ class CaseStudyController extends Controller
                 ->orWhere('category', 'like', "%{$search}%");
             });
         }
-        $caseStudies = $query->paginate(10)->withQueryString();
-        $industries = Industry::orderBy('title', 'asc')->get();
+        $whitePapers = $query->paginate(10)->withQueryString();
 
-        return view('admin.case_studies.index', compact('caseStudies', 'industries'));
+        return view('admin.white_papers.index', compact('whitePapers'));
     }
 }

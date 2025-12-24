@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\IndustryController as AdminIndustryController;
 use App\Http\Controllers\Admin\CaseStudyController as AdminCaseStudyController;
+use App\Http\Controllers\Admin\WhitePaperController as AdminWhitePaperController;
 use App\Http\Controllers\Front\IndustryController;
 use App\Http\Controllers\Admin\PortalController as AdminPortalController;
 use App\Http\Controllers\AuthController;
@@ -38,11 +39,10 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::prefix('case-studies')->name('case-studies.')->group(function () {
             Route::get('/', [AdminCaseStudyController::class, 'index'])->name('index');
-            Route::get('/create', [AdminCaseStudyController::class, 'create'])->name('create');
-        Route::post('/', [AdminCaseStudyController::class, 'store'])->name('store');
-            Route::get('/{caseStudy}/edit', [AdminCaseStudyController::class, 'edit'])->name('edit');
-            Route::put('/{caseStudy}', [AdminCaseStudyController::class, 'update'])->name('update');
-            Route::delete('/{caseStudy}', [AdminCaseStudyController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::prefix('white-papers')->name('white-papers.')->group(function () {
+            Route::get('/', [AdminWhitePaperController::class, 'index'])->name('index');
         });
 
         Route::prefix('industries')->name('industries.')->group(function () {
@@ -57,7 +57,7 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::get('/dashboard', [AdminPortalController::class, 'dashboard'])->name('admin.dashboard');
         // Route::get('/case-studies', [AdminPortalController::class, 'caseStudies'])->name('case-studies');
-        Route::get('/white-papers', [AdminPortalController::class, 'whitePapers'])->name('white-papers');
+        // Route::get('/white-papers', [AdminPortalController::class, 'whitePapers'])->name('white-papers');
 
 });
 

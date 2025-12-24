@@ -34,30 +34,6 @@
                         >
                     </div>
 
-                    <div class="hidden md:block w-px h-6 bg-gray-200 mx-2"></div>
-
-                    <div class="flex items-center md:w-64 border-t md:border-t-0 border-gray-200 pt-2 md:pt-0 mt-2 md:mt-0">
-                        <div class="flex items-center px-3 text-gray-500">
-                            <i class="fa-solid fa-filter text-sm mr-2"></i>
-                            <span class="text-sm font-medium whitespace-nowrap hidden sm:inline">Filter</span>
-                        </div>
-                        <div class="relative w-full group">
-                            <select name="industry_id" 
-                                    onchange="this.form.submit()" 
-                                    class="w-full pl-2 pr-8 py-2 bg-transparent border-0 text-sm text-gray-700 font-medium focus:ring-0 cursor-pointer hover:bg-gray-100/50 transition rounded-lg appearance-none text-right md:text-left">
-                                <option value="">All Industries</option>
-                                @foreach($industries as $industry)
-                                    <option value="{{ $industry->id }}" {{ request('industry_id') == $industry->id ? 'selected' : '' }}>
-                                        {{ $industry->title }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-400 group-hover:text-gray-600 transition">
-                                <i class="fa-solid fa-chevron-down text-xs"></i>
-                            </div>
-                        </div>
-                    </div>
-
                     @if(request('search') || request('industry_id'))
                         <div class="flex items-center pl-2 md:border-l border-gray-200 ml-2">
                             <a href="{{ route('admin.assets.index') }}" 
@@ -73,7 +49,7 @@
             {{-- Indikator Hasil Pencarian (Opsional, untuk UX lebih jelas) --}}
             @if(request('search'))
                 <p class="text-sm text-gray-500 mb-4 px-1">
-                    Found {{ $caseStudies->total() }} results for "<span class="font-semibold text-gray-800">{{ request('search') }}</span>"
+                    Found {{ $whitePapers->total() }} results for "<span class="font-semibold text-gray-800">{{ request('search') }}</span>"
                 </p>
             @endif
         </div>
@@ -98,7 +74,7 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-50">
-                    @forelse($caseStudies as $item)
+                    @forelse($whitePapers as $item)
                         <tr class="group transition-all duration-200 hover:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.1)] hover:bg-white hover:-translate-y-[2px] relative hover:z-20">
                             
                             <td class="px-6 py-5 first:pl-8">
@@ -194,9 +170,9 @@
             </table>
         </div>
         
-        @if($caseStudies->hasPages())
+        @if($whitePapers->hasPages())
             <div class="bg-white px-6 py-4 border-t border-gray-100">
-                {{ $caseStudies->links() }}
+                {{ $whitePapers->links() }}
             </div>
         @endif
     </div>

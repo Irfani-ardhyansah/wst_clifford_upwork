@@ -13,20 +13,21 @@
         <div>
             <label class="block text-sm font-medium mb-1 text-gray-700">Category <span class="text-red-500">*</span></label>
             <select name="category" id="categorySelect" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-teal-500 focus:outline-none">
-                @foreach($categories as $row)
-                    <option value="{{ $row['value'] }}" {{ old('category') == $row['value'] ? 'selected' : '' }}>
-                        {{ $row['text'] }}
-                    </option>
-                @endforeach
+            @foreach($categories as $row)
+                <option value="{{ $row['value'] }}"
+                    {{ old('category', $asset->category ?? '') == $row['value'] ? 'selected' : '' }}>
+                    {{ $row['text'] }}
+                </option>
+            @endforeach
             </select>
             @error('category') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
         </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
+        <div id="field-industry">
             <label class="block text-sm font-medium mb-1 text-gray-700">Industry</label>
-            <select name="industry_id" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-teal-500 focus:outline-none">
+            <select id="industry_id" name="industry_id" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-teal-500 focus:outline-none">
                 <option value="">All Industries</option>
                 @foreach($industries as $industry)
                     <option value="{{ $industry->id }}" 
@@ -104,11 +105,6 @@
             <input type="checkbox" name="is_featured" value="1" {{ old('is_featured', $asset->is_featured ?? false) ? 'checked' : '' }} class="rounded text-teal-600 focus:ring-teal-500">
             <span class="text-sm font-medium text-gray-700">Featured</span>
         </label>
-        
-        <div class="ml-auto flex items-center gap-2">
-            <label class="text-sm font-medium text-gray-700">Sort Order:</label>
-            <input type="number" name="sort_order" value="{{ old('sort_order', $asset->sort_order ?? 0) }}" class="w-20 border border-gray-300 rounded px-2 py-1 text-sm">
-        </div>
     </div>
 
     <div class="pt-4 flex justify-end">
@@ -120,28 +116,44 @@
     </div>
 </div>
 
+@push('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const categorySelect = document.getElementById('categorySelect');
-        const impactField = document.getElementById('field-impact');
-        const videoField = document.getElementById('field-video');
+$(function () {
+    const $category = $('#categorySelect');
+    const $video    = $('#field-video');
+    const $industry = $('#field-industry');
 
-        function toggleFields() {
-            const category = categorySelect.value;
-            
-            // Reset
-            impactField.classList.add('hidden');
-            videoField.classList.add('hidden');
+    const isEdit = {{ isset($asset) ? 'true' : 'false' }};
 
-            if (category === 'Case Study') {
-                impactField.classList.remove('hidden');
-            } else if (category === 'Webinar') {
-                videoField.classList.remove('hidden');
-            }
+    function toggleFields(resetValue = true) {
+        const category = $category.val();
+
+        // hide all
+        $video.addClass('hidden');
+        $industry.addClass('hidden');
+
+        // reset ONLY on create
+        if (!isEdit && resetValue) {
+            $('#industry_id').val('');
         }
 
-        // Run on change and on load
-        categorySelect.addEventListener('change', toggleFields);
-        toggleFields(); // Initial run
+        if (category === 'webinar') {
+            $video.removeClass('hidden');
+        }
+
+        if (category === 'case-study') {
+            $industry.removeClass('hidden');
+        }
+    }
+
+    // on change → reset allowed
+    $category.on('change', function () {
+        toggleFields(true);
     });
+
+    // initial load → DO NOT reset (important for edit)
+    toggleFields(false);
+});
 </script>
+@endpush
+

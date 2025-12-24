@@ -124,7 +124,6 @@
                     <tr class="bg-gray-50/80 border-b border-gray-100 text-xs uppercase tracking-wider text-gray-500 font-semibold">
                         <th class="px-6 py-4 first:pl-8">Asset Info</th>
                         <th class="px-6 py-4">Industry</th>
-                        <th class="px-6 py-4 text-center">Sort Order</th>
                         <th class="px-6 py-4">Status</th>
                         <th class="px-6 py-4 text-right last:pr-8">Actions</th>
                     </tr>
@@ -188,12 +187,6 @@
                                 @else
                                     <span class="text-gray-400 text-sm italic">Global / All</span>
                                 @endif
-                            </td>
-
-                            <td class="px-6 py-5 text-center">
-                                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-50 text-gray-600 text-sm font-semibold border border-gray-200 font-mono">
-                                    {{ $item->sort_order }}
-                                </span>
                             </td>
 
                             <td class="px-6 py-5">
