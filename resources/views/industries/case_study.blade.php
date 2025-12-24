@@ -88,7 +88,7 @@
                 <button
                   class="open-modal-btn group inline-flex items-center rounded-full px-6 py-3 bg-gray-900 text-white font-semibold shadow-md 
                     hover:shadow-lg hover:-translate-y-0.5 transition-all"
-                    data-id="{{ $item->id }}" data-title="{{ $item->title }}"
+                    data-id="{{ $item->id }}" data-title="{{ $item->title }}" data-image="{{ asset('storage/' . $item->image_path) }}"
                     >
                   <span>View Case Study</span>
                   <span class="ml-4 grid place-items-center w-9 h-9 rounded-full">
@@ -184,7 +184,17 @@
               <div class="p-8">
                   <div id="pending-asset-preview" class="bg-gray-50 rounded-lg p-4 mb-6 flex items-center gap-4 hidden">
                       <div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center">
-                          <i class="fa-solid fa-file-lines text-xl"></i>
+                          <i 
+                              id="modal-icon"
+                              class="fa-solid fa-file-lines text-xl text-blue-600"
+                          ></i>
+
+                          <img
+                              id="modal-image"
+                              src=""
+                              alt="Asset Preview"
+                              class="hidden w-full h-full object-cover rounded-lg"
+                          >
                       </div>
                       <div class="flex-1 min-w-0">
                           <p class="font-semibold truncate" id="modal-asset-title">Asset Title</p>
@@ -253,19 +263,27 @@ $(document).ready(function() {
 
         const caseId = $(this).data('id');
         const caseTitle = $(this).data('title');
-
+        const image     = $(this).data('image');
+        
         $('#modal-case-id').val(caseId);
         $('#modal-asset-title').text(caseTitle);
 
-        $('#pending-asset-preview').removeClass('hidden').addClass('flex');
+        $('#modal-image').addClass('hidden').attr('src', '');
+        $('#modal-icon').removeClass('hidden');
 
-        // 4. Animasi Muncul
-        // Hapus class hidden & opacity-0 bawaan Tailwind biar kelihatan
+        if (image) {
+            $('#modal-image')
+                .attr('src', image)
+                .removeClass('hidden');
+
+            $('#modal-icon').addClass('hidden');
+        }
+
+        $('#pending-asset-preview').removeClass('hidden').addClass('flex');
         $('#auth-modal').removeClass('hidden opacity-0').addClass('flex');
         
-        // Efek Zoom In
         setTimeout(function() {
-             $('#modal-content').removeClass('scale-95').addClass('scale-100');
+          $('#modal-content').removeClass('scale-95').addClass('scale-100');
         }, 10);
     });
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Industry;
-use App\Models\CaseStudy;
+use App\Models\Asset;
 
 class IndustryController extends Controller
 {
@@ -19,11 +19,11 @@ class IndustryController extends Controller
 
     public function showCaseStudy(string $slug)
     {
-        $case_studies = CaseStudy::select('case_studies.*', 'industries.title as industry_name')
-            ->join('industries', 'case_studies.industry_id', '=', 'industries.id')
+        $case_studies = Asset::select('assets.*', 'industries.title as industry_name')
+            ->join('industries', 'assets.industry_id', '=', 'industries.id')
             ->where('industries.slug', $slug)
-            ->where('case_studies.is_active', true)
-            ->orderBy('case_studies.sort_order', 'asc')
+            ->where('assets.is_active', true)
+            ->orderBy('assets.sort_order', 'asc')
             ->get();
 
         return view('industries.case_study', compact('case_studies'));

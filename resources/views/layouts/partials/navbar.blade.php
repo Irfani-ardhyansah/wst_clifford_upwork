@@ -45,7 +45,7 @@
       <a href="{{ route('resources.tools.selection_tool') }}" class="block hover:bg-gray-100 px-2 py-1 rounded">Water Consumption Tool</a>
       <a href="{{ route('resources.my_city_rebates') }}" class="block hover:bg-gray-100 px-2 py-1 rounded">My City Rebates</a>
       <a href="{{ route('resources.financing_form') }}" class="block hover:bg-gray-100 px-2 py-1 rounded">Financing Application Form</a>
-      <a href="{{ route('resources.white_papers') }}" class="block hover:bg-gray-100 px-2 py-1 rounded">White Paper</a>
+      <a href="{{ route('resources.white-papers') }}" class="block hover:bg-gray-100 px-2 py-1 rounded">White Paper</a>
     </div>
   </div>
   <a href="#" class="hover:text-blue-400">About</a>

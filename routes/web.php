@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\PortalController as AdminPortalController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\AssetController as AdminAssetController;
 use App\Http\Controllers\Front\MemberDashboardController;
+use App\Http\Controllers\Front\WhitePaperController;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login.custom');
 Route::post('/login-by-phone', [AuthController::class, 'loginByPhone'])->name('login.phone');
@@ -143,9 +144,8 @@ Route::prefix('resources')->name('resources.')->group(function () {
         return view('resources.water_consumption_tool.whole_building');
     })->name('tools.whole_building');
 
-    Route::get('/white_papers', function () {
-        return view('resources.white_papers');
-    })->name('white_papers');
+    Route::get('/white-papers', [WhitePaperController::class, 'index'])
+    ->name('white-papers');
 
     Route::get('/my_city_rebates', function () {
         return view('resources.my_city_rebates');

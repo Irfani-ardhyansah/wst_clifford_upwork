@@ -51,7 +51,7 @@ class IndustrySeeder extends Seeder
         ]);
         array_push($arrHospitalityId, $hospitalityId);
 
-        $hospitalityId = DB::table('industries')->insertGetId([
+        DB::table('industries')->insert([
             'title'       => 'Health Care Facilities',
             'slug'        => Str::slug('Health Care Facilities'),
             'description' => 'Confidential coming soon (Use Jeffs).',
@@ -62,53 +62,5 @@ class IndustrySeeder extends Seeder
             'created_at'  => Carbon::now(),
             'updated_at'  => Carbon::now(),
         ]);
-        array_push($arrHospitalityId, $hospitalityId);
-
-        foreach($arrHospitalityId as $id) {
-            DB::table('case_studies')->insert([
-                [
-                    'industry_id'      => $id, 
-                    'title'            => 'Westin Hotel & Resorts',
-                    'slug'             => Str::slug('Westin Hotel & Resorts'),
-                    'category'         => 'Full-Service',
-                    'impact_highlight' => 'Saved 184,000 gallons /month.',
-                    'image_path'       => 'industries/hospitality/westin_fort_lauderdale.jpeg',
-                    'link_url'         => '#',
-                    'sort_order'       => 1,
-                    'is_featured'      => true,
-                    'is_active'        => true,
-                    'created_at'       => Carbon::now(),
-                    'updated_at'       => Carbon::now(),
-                ],
-                [
-                    'industry_id'      => $id,
-                    'title'            => 'Even Hotels',
-                    'slug'             => Str::slug('Even Hotels'),
-                    'category'         => 'Boutique',
-                    'impact_highlight' => 'Reduced consumption by 30%.',
-                    'image_path'       => 'industries/hospitality/even-hotels-miami-5997860446-4x3.png',
-                    'link_url'         => '#',
-                    'sort_order'       => 2,
-                    'is_featured'      => true,
-                    'is_active'        => true,
-                    'created_at'       => Carbon::now(),
-                    'updated_at'       => Carbon::now(),
-                ],
-                [
-                    'industry_id'      => $id,
-                    'title'            => 'Kimpton',
-                    'slug'             => Str::slug('Kimpton'),
-                    'category'         => 'Independent',
-                    'impact_highlight' => 'Payback period in 11 months.',
-                    'image_path'       => 'industries/hospitality/kimpton-hotel-palomar-phoenix-exterior-ea53d8e1.png',
-                    'link_url'         => '#',
-                    'sort_order'       => 3,
-                    'is_featured'      => true,
-                    'is_active'        => true,
-                    'created_at'       => Carbon::now(),
-                    'updated_at'       => Carbon::now(),
-                ],
-            ]);
-        }
     }
 }
