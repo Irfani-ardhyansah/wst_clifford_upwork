@@ -169,14 +169,35 @@
             $modal.removeClass('hidden').hide().fadeIn(200);
             $body.css('overflow', 'hidden');
 
-            setTimeout(function () {
-                $modalPanel
-                    .removeClass('opacity-0 translate-y-8')
-                    .addClass('opacity-100 translate-y-0');
-            }, 20);
+            // setTimeout(function () {
+            //     $modalPanel
+            //         .removeClass('opacity-0 translate-y-8')
+            //         .addClass('opacity-100 translate-y-0');
+            // }, 20);
 
             $.get(`/member-dashboard/${id}/content`, function (res) {
-                $modalBody.html(res.html);
+                // 1. Bersihkan modal body dulu
+                $modalBody.empty();
+
+                // 2. Buat elemen Iframe dinamis
+                // Beri style height agar tidak gepeng (misal 80vh atau 600px)
+                var $iframe = $('<iframe style="width:100%; height: 100%; border:none; display:block;"></iframe>');
+                
+                // 3. Masukkan frame kosong ke modal
+                $modalBody.append($iframe);
+
+                // 4. Tulis konten HTML (dari controller) ke dalam "dokumen" milik Iframe tersebut
+                var doc = $iframe[0].contentWindow.document;
+                doc.open();
+                doc.write('<!DOCTYPE html>');
+                doc.write('<html><head>');
+                doc.write('<meta charset="UTF-8">');
+                doc.write('<script src="https://cdn.tailwindcss.com"><\/script>');
+                doc.write('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">');
+                doc.write('</head><body>');
+                doc.write(res.html); // ← aman
+                doc.write('</body></html>');
+                doc.close();
             });
         });
 

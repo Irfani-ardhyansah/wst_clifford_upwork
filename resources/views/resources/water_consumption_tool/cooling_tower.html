@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Water Solutions Technology</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+  <style>
+    /* OFF-SCREEN PDF CONTAINER */
+    #reportContent {
+      position: absolute;
+      top: -10000px;
+      left: -10000px;
+      width: 8.5in;
+      padding: 0.5in;
+      background: white;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+   
+      <!-- ================= Back to Top Arrow ================= -->
+      <section aria-label="Back to Top Button">
+        <button  onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="fixed bottom-8 right-8 bg-white text-black border border-gray-300 shadow hover:bg-gray-100 transition p-3 rounded-full z-40" aria-label="Scroll back to top">
+        <svg  class="h-5 w-5"  
+           fill="none" 
+           stroke="currentColor" 
+           stroke-width="2" 
+           viewBox="0 0 24 24" 
+           xmlns="http://www.w3.org/2000/svg"
+           aria-hidden="true"
+           focusable="false">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+       </svg>
+        </button>
+ </section>
+
+   <main>
+     <!-- CALCULATOR SECTION -->
+  <section id="savings-model" class="py-20">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-3xl font-extrabold text-gray-900 mb-6">See Your Cooling Tower Savings</h2>
+      <!-- inputs -->
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-6 mb-8">
+        <div>
+          <label class="block text-gray-700">Current CoC</label>
+          <input id="inputCoCBefore" type="number" step="0.1" value="2.5"
+                 class="mt-1 w-full border-gray-300 px-3 py-2" />
+        </div>
+        <div>
+          <label class="block text-gray-700">Target CoC</label>
+          <input id="inputCoCAfter" type="number" step="0.1" value="3.5"
+                 class="mt-1 w-full border-gray-300 px-3 py-2" />
+        </div>
+        <div>
+          <label class="block text-gray-700">Tower Capacity (tons)</label>
+          <input id="inputCapacity" type="number" step="10" value="100"
+                 class="mt-1 w-full border-gray-300 px-3 py-2" />
+        </div>
+        <div>
+          <label class="block text-gray-700">Cost per Gallon ($)</label>
+          <input id="inputCost" type="number" step="0.001" value="0.003"
+                 class="mt-1 w-full border-gray-300 px-3 py-2" />
+        </div>
+      </div>
+
+      <!-- chart -->
+      <div class="bg-gray-900 p-6 shadow-lg mb-4" style="border-radius:0;">
+        <canvas id="savingsChart" class="w-full h-80"></canvas>
+      </div>
+
+      <!-- dynamic summary -->
+      <p id="summaryText" class="text-gray-800 mb-2"></p>
+      <p id="costText" class="text-gray-800 mb-6"></p>
+
+      <!-- Detail Report CTA (hidden until first calculation) -->
+      <button id="btnDetailReport"
+              class="hidden bg-black text-white px-6 py-3 font-semibold shadow hover:bg-gray-800 transition">
+        Detail Report
+      </button>
+    </div>
+  </section>
+
+  <!-- MODAL FORM FOR DETAILS -->
+  <div id="reportModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
+      <h3 class="text-xl font-bold mb-4">Request Your Detailed Report</h3>
+      <form id="reportForm" class="space-y-4">
+        <div>
+          <label class="block text-gray-700">Company / Business Name</label>
+          <input id="fieldCompany" type="text" required
+                 class="w-full border-gray-300 px-3 py-2" />
+        </div>
+        <div>
+          <label class="block text-gray-700">Contact Number</label>
+          <input id="fieldPhone" type="tel" required
+                 class="w-full border-gray-300 px-3 py-2" />
+        </div>
+        <div>
+          <label class="block text-gray-700">Email Address</label>
+          <input id="fieldEmail" type="email" required
+                 class="w-full border-gray-300 px-3 py-2" />
+        </div>
+        <div class="flex justify-end space-x-2">
+          <button type="button" id="btnCancel"
+                  class="px-4 py-2 border rounded">Cancel</button>
+          <button type="submit"
+                  class="bg-black text-white px-4 py-2 rounded-none font-semibold">Generate PDF</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- OFF-SCREEN PDF CONTENT -->
+  <div id="reportContent">
+    <h1 id="pdfTitle" class="text-2xl font-bold mb-4"></h1>
+    <p id="pdfSub" class="mb-6"></p>
+    <h2 class="text-xl font-semibold mb-2">OPEX Savings vs. CAPEX Deferral</h2>
+    <div style="display:flex; gap:20px; margin-bottom:1rem;">
+      <canvas id="pdfChart1" style="width:48%; height:200px;"></canvas>
+      <canvas id="pdfChart2" style="width:48%; height:200px;"></canvas>
+    </div>
+    <h2 class="text-xl font-semibold mb-2">Potential Annual Savings (per 100-ton tower)</h2>
+    <table style="width:100%;border-collapse:collapse;font-size:12px;">
+      <thead>
+        <tr>
+          <th style="border:1px solid #ddd;padding:6px;text-align:left">Category</th>
+          <th style="border:1px solid #ddd;padding:6px;text-align:left">Range</th>
+          <th style="border:1px solid #ddd;padding:6px;text-align:left">Annual Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="border:1px solid #ddd;padding:6px">Make-Up Water</td><td style="border:1px solid #ddd;padding:6px">15–25%</td><td style="border:1px solid #ddd;padding:6px">400–700k gal (~$4k–$8k)</td></tr>
+        <tr><td style="border:1px solid #ddd;padding:6px">Blow-Down Water</td><td style="border:1px solid #ddd;padding:6px">20–30%</td><td style="border:1px solid #ddd;padding:6px">300–500k gal (~$3k–$6k)</td></tr>
+        <tr><td style="border:1px solid #ddd;padding:6px">Chemical Treatment</td><td style="border:1px solid #ddd;padding:6px">10–15%</td><td style="border:1px solid #ddd;padding:6px">$2k–$4k</td></tr>
+        <tr><td style="border:1px solid #ddd;padding:6px">Energy (pumping)</td><td style="border:1px solid #ddd;padding:6px">5–10%</td><td style="border:1px solid #ddd;padding:6px">$1k–$2k</td></tr>
+        <tr><td style="border:1px solid #ddd;padding:6px">Maintenance & Downtime</td><td style="border:1px solid #ddd;padding:6px">0–2 events</td><td style="border:1px solid #ddd;padding:6px">$5k–$15k</td></tr>
+      </tbody>
+    </table>
+    <p class="mt-6 text-sm">
+      Generated by Water Solutions Technology • Contact: <span id="pdfEmail"></span> • <span id="pdfPhone"></span>
+    </p>
+  </div>
+
+   </main>
+     <script src="/assets/js/script.js"></script>
+     <script>
+      // 1) Live calculator Chart.js
+      const ctx = document.getElementById('savingsChart').getContext('2d');
+      const savingsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Before','After'],
+          datasets: [
+            { label:'CoC Ratio',        data:[2.5,3.5], backgroundColor:['#FBBF24','#10B981'], yAxisID:'coc' },
+            { label:'Water Use (gal/day)', data:[0,0], backgroundColor:['#3B82F6','#60A5FA'], yAxisID:'water' }
+          ]
+        },
+        options: {
+          responsive:true, maintainAspectRatio:false,
+          scales: {
+            coc:   { type:'linear', position:'left', title:{display:true,text:'CoC',color:'#FBBF24'}, ticks:{color:'#FBBF24'} },
+            water: { type:'linear', position:'right', title:{display:true,text:'gal/day',color:'#3B82F6'}, ticks:{color:'#3B82F6',callback:v=>v/1000+'k'} }
+          },
+          plugins:{ legend:{position:'bottom',labels:{color:'#444'}} }
+        }
+      });
+  
+      // 2) Utility & update logic
+      function dailyEvap(tons){return tons*24*1.8;}
+      function usage(e,coc){return e*(coc/(coc-1));}
+      const elB=document.getElementById('inputCoCBefore'),
+            elA=document.getElementById('inputCoCAfter'),
+            elT=document.getElementById('inputCapacity'),
+            elC=document.getElementById('inputCost'),
+            sum=document.getElementById('summaryText'),
+            cos=document.getElementById('costText'),
+            btn=document.getElementById('btnDetailReport');
+      function updateAll(){
+        const cb=+elB.value, ca=+elA.value, cap=+elT.value, cg=+elC.value;
+        const evap=dailyEvap(cap), ub=usage(evap,cb), ua=usage(evap,ca);
+        const sd=ub-ua, sm=sd*30, cd=sd*cg, cm=sm*cg;
+        savingsChart.data.datasets[0].data=[cb,ca];
+        savingsChart.data.datasets[1].data=[ub,ua];
+        savingsChart.update();
+        sum.textContent = `At ${cap} tons, raising CoC from ${cb.toFixed(1)}→${ca.toFixed(1)} saves ${sd.toFixed(0)} gal/day (${sm.toFixed(0)} gal/mo).`;
+        cos.textContent = `That equates to $${cd.toFixed(2)}/day or $${cm.toFixed(2)}/month at $${cg.toFixed(3)}/gal.`;
+        btn.classList.remove('hidden');
+      }
+      [elB,elA,elT,elC].forEach(i=>i.addEventListener('input',updateAll));
+      updateAll();
+  
+      // 3) Modal & PDF logic
+      const modal = document.getElementById('reportModal'),
+            form  = document.getElementById('reportForm'),
+            cancel= document.getElementById('btnCancel');
+      btn.onclick    = ()=> modal.classList.remove('hidden');
+      cancel.onclick = ()=> modal.classList.add('hidden');
+      form.onsubmit  = e=>{
+        e.preventDefault();
+        modal.classList.add('hidden');
+        // fill PDF header
+        const biz  = document.getElementById('fieldCompany').value.trim() || 'Report';
+        const phone= document.getElementById('fieldPhone').value.trim();
+        const mail = document.getElementById('fieldEmail').value.trim();
+        document.getElementById('pdfTitle').innerText = biz;
+        document.getElementById('pdfSub').innerText   = `1 cooling tower analyzed`;
+        document.getElementById('pdfPhone').innerText = phone;
+        document.getElementById('pdfEmail').innerText = mail;
+        // draw PDF charts
+        const c1 = document.getElementById('pdfChart1').getContext('2d');
+        new Chart(c1,{type:'bar',data:{labels:['OPEX Savings'],datasets:[{data:[45],backgroundColor:['#10B981']}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
+        const c2 = document.getElementById('pdfChart2').getContext('2d');
+        new Chart(c2,{type:'bar',data:{labels:['CAPEX Deferral'],datasets:[{data:[15],backgroundColor:['#F59E0B']}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
+        // give Chart.js 500ms to render before pdf
+        setTimeout(()=>{
+          html2pdf()
+            .set({
+              margin:[8,8],
+              filename:`${biz.replace(/\s+/g,'_')}_Cooling_Tower_Report.pdf`,
+              html2canvas:{scale:2},
+              jsPDF:{unit:'pt',format:'letter'}
+            })
+            .from(document.getElementById('reportContent'))
+            .save();
+        }, 500);
+      };
+    </script>
+    </body>
+  </html>
+  
+  

@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRESB Water Performance Assessment Tool</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .premium-border {
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    
+    .premium-shadow {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+    
+    .premium-shadow-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .premium-shadow-hover:hover {
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 4px 10px rgba(0, 0, 0, 0.4);
+      transform: translateY(-2px);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { animation: fadeIn 0.6s ease-out; }
+    
+    .pie-segment {
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .pie-segment:hover {
+      opacity: 0.8;
+      filter: brightness(1.1);
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .metric-value {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-track {
+      background: rgba(0, 0, 0, 0.08);
+      height: 0.5rem;
+      border-radius: 0.25rem;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      background: #64748b;
+      height: 1.5rem;
+      width: 1.5rem;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    input[type="range"]::-moz-range-track {
+      background: rgba(0, 0, 0, 0.08);
+      height: 0.5rem;
+      border-radius: 0.25rem;
+    }
+    input[type="range"]::-moz-range-thumb {
+      background: #64748b;
+      height: 1.5rem;
+      width: 1.5rem;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    
+    .cta-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 9999px;
+      background: #64748b;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    
+    .cta-primary:hover {
+      background: linear-gradient(135deg, #475569 0%, #334155 100%);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+    }
+    
+    .cta-primary .arrow-circle {
+      display: grid;
+      place-items: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      margin-left: 1rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .cta-primary:hover .arrow-circle {
+      transform: rotate(45deg);
+      background: rgba(255, 255, 255, 0.25);
+    }
+    
+    .cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 9999px;
+      background: white;
+      color: #18181b;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      border: 2px solid #e4e4e7;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      width: 100%;
+    }
+    
+    .cta-secondary:hover {
+      background: #fafafa;
+      border-color: #18181b;
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .cta-secondary .arrow-circle {
+      display: grid;
+      place-items: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 9999px;
+      background: rgba(24, 24, 27, 0.05);
+      color: #18181b;
+      margin-left: 1rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .cta-secondary:hover .arrow-circle {
+      transform: rotate(45deg);
+      background: rgba(24, 24, 27, 0.1);
+    }
+    
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      backdrop-filter: blur(4px);
+    }
+    
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease-out;
+    }
+    
+    .modal-content {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
+      border-radius: 1rem;
+      max-width: 600px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: slideUp 0.3s ease-out;
+    }
+    
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white antialiased">
+
+<!-- Booking Modal -->
+<div id="bookingModal" class="modal">
+  <div class="modal-content">
+    <div class="p-8">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-light text-white">Schedule Your GRESB Consultation</h2>
+        <button onclick="closeModal()" class="text-white/40 hover:text-white/70 text-2xl">×</button>
+      </div>
+      
+      <p class="text-white/70 mb-8">
+        Our water performance specialists will analyze your portfolio and provide actionable strategies to maximize your GRESB score.
+      </p>
+      
+      <form id="bookingForm" class="space-y-6">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-xs font-medium text-white/60 uppercase tracking-wide mb-2">
+              First Name *
+            </label>
+            <input
+              type="text"
+              id="firstName"
+              required
+              class="w-full px-4 py-3 bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="John"
+            />
+          </div>
+          
+          <div>
+            <label class="block text-xs font-medium text-white/60 uppercase tracking-wide mb-2">
+              Last Name *
+            </label>
+            <input
+              type="text"
+              id="lastName"
+              required
+              class="w-full px-4 py-3 bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Doe"
+            />
+          </div>
+        </div>
+        
+        <div>
+          <label class="block text-xs font-medium text-white/60 uppercase tracking-wide mb-2">
+            Work Email *
+          </label>
+          <input
+            type="email"
+            id="email"
+            required
+            class="w-full px-4 py-3 bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="john.doe@company.com"
+          />
+        </div>
+        
+        <div>
+          <label class="block text-xs font-medium text-white/60 uppercase tracking-wide mb-2">
+            Company *
+          </label>
+          <input
+            type="text"
+            id="company"
+            required
+            class="w-full px-4 py-3 bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="ABC Asset Management"
+          />
+        </div>
+        
+        <div>
+          <label class="block text-xs font-medium text-white/60 uppercase tracking-wide mb-2">
+            Phone Number
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            class="w-full px-4 py-3 bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="+1 (555) 123-4567"
+          />
+        </div>
+        
+        <div>
+          <label class="block text-xs font-medium text-white/60 uppercase tracking-wide mb-2">
+            Portfolio Size (# of Properties)
+          </label>
+          <input
+            type="number"
+            id="portfolioSize"
+            class="w-full px-4 py-3 bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="e.g., 25"
+          />
+        </div>
+        
+        <div>
+          <label class="block text-xs font-medium text-white/60 uppercase tracking-wide mb-2">
+            Primary Interest
+          </label>
+          <select
+            id="interest"
+            class="w-full px-4 py-3 bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="">Select your primary goal...</option>
+            <option value="gresb">Improve GRESB Score</option>
+            <option value="audit">Comprehensive Portfolio Audit</option>
+            <option value="monitoring">Smart Monitoring Implementation</option>
+            <option value="savings">Cost Reduction & Efficiency</option>
+            <option value="compliance">Regulatory Compliance</option>
+          </select>
+        </div>
+        
+        <div>
+          <label class="block text-xs font-medium text-white/60 uppercase tracking-wide mb-2">
+            Preferred Meeting Time
+          </label>
+          <select
+            id="timePreference"
+            class="w-full px-4 py-3 bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="">Select your availability...</option>
+            <option value="morning">Morning (8am - 12pm EST)</option>
+            <option value="afternoon">Afternoon (12pm - 5pm EST)</option>
+            <option value="flexible">Flexible</option>
+          </select>
+        </div>
+        
+        <div>
+          <label class="block text-xs font-medium text-white/60 uppercase tracking-wide mb-2">
+            Additional Notes
+          </label>
+          <textarea
+            id="notes"
+            rows="3"
+            class="w-full px-4 py-3 bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Tell us about your specific challenges or goals..."
+          ></textarea>
+        </div>
+        
+        <div class="bg-white/5 p-4 border border-white/20 text-xs text-white/70">
+          <strong>What to expect:</strong> Our team will review your assessment and reach out within 24 hours to schedule a 30-minute consultation call.
+        </div>
+        
+        <button
+          type="submit"
+          class="cta-primary"
+        >
+          <span>Submit Consultation Request</span>
+          <span class="arrow-circle">
+            <i class="ri-send-plane-fill text-xl"></i>
+          </span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="min-h-screen py-20 px-6">
+  <div class="max-w-7xl mx-auto">
+    
+    <!-- Header -->
+    <header class="text-center mb-16 fade-in">
+      <div class="flex items-center justify-center mb-8">
+        <span class="text-xs font-medium tracking-widest text-white/60 uppercase">
+          GRESB 2025 Water Assessment
+        </span>
+      </div>
+      <h1 class="text-4xl lg:text-5xl font-light text-white mb-6 leading-tight tracking-tight">
+        Calculate Your Water Performance Score
+      </h1>
+      <p class="text-xl text-white/70 max-w-3xl mx-auto font-light leading-relaxed">
+        Benchmark your portfolio against industry leaders and identify opportunities to maximize your GRESB water indicator points
+      </p>
+    </header>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+      
+      <!-- Main Input Section -->
+      <div class="lg:col-span-2 space-y-8">
+        
+        <!-- Portfolio Composition -->
+        <section class="p-10 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-2xl fade-in">
+          <div class="flex items-center justify-between mb-8">
+            <div>
+              <h2 class="text-2xl font-light text-white mb-2 tracking-tight">Portfolio Composition</h2>
+              <p class="text-sm text-white/60">Select asset types and allocation by gross floor area</p>
+            </div>
+            <div id="total-percentage" class="text-3xl font-light text-white"></div>
+          </div>
+          
+          <!-- Property Type Grid -->
+          <div id="property-grid" class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8"></div>
+          
+          <!-- Percentage Allocation -->
+          <div id="percentage-inputs" class="space-y-3 mb-6"></div>
+          
+          <!-- Validation Message -->
+          <div id="validation-message"></div>
+        </section>
+        
+        <!-- Portfolio Details -->
+        <section id="details-section" class="p-10 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-2xl fade-in" style="display: none;">
+          <h2 class="text-2xl font-light text-white mb-8 tracking-tight">Portfolio Details</h2>
+          
+          <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <div>
+              <label class="block text-xs font-medium text-white/60 uppercase tracking-wide mb-4">
+                Total number of properties
+              </label>
+              <input
+                type="number"
+                id="property-count"
+                value="10"
+                min="1"
+                oninput="updatePropertyCount(this.value)"
+                class="w-full px-4 py-3 bg-white/10 border border-white/20 focus:outline-none focus:ring-1 focus:ring-blue-500 text-lg"
+                placeholder="e.g., 25"
+              />
+            </div>
+            
+            <div>
+              <label class="block text-xs font-medium text-white/60 uppercase tracking-wide mb-4">
+                Total gross floor area (m²)
+              </label>
+              <input
+                type="number"
+                id="floor-area"
+                value="500000"
+                min="10000"
+                step="10000"
+                oninput="updateFloorArea(this.value)"
+                class="w-full px-4 py-3 bg-white/10 border border-white/20 focus:outline-none focus:ring-1 focus:ring-blue-500 text-lg"
+                placeholder="e.g., 500,000"
+              />
+            </div>
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <div>
+              <label class="block text-xs font-medium text-white/60 uppercase tracking-wide mb-4">
+                Current Overall GRESB Score (out of 100)
+              </label>
+              <input
+                type="number"
+                id="overall-gresb"
+                value=""
+                min="0"
+                max="100"
+                step="1"
+                oninput="updateOverallGRESB(this.value)"
+                class="w-full px-4 py-3 bg-white/10 border border-white/20 focus:outline-none focus:ring-1 focus:ring-blue-500 text-lg"
+                placeholder="e.g., 68"
+              />
+              <div class="mt-2 text-xs text-white/60">
+                Your most recent total GRESB assessment score
+              </div>
+            </div>
+            
+            <div id="star-rating-display" class="flex flex-col justify-center" style="display: none;">
+              <div class="text-xs font-medium text-white/60 uppercase tracking-wide mb-3">
+                Current Rating
+              </div>
+              <div id="current-stars" class="text-3xl mb-2"></div>
+              <div id="rating-label" class="text-sm font-medium text-white/80"></div>
+            </div>
+          </div>
+          
+          <div class="mb-8">
+            <label class="block text-xs font-medium text-white/60 uppercase tracking-wide mb-4">
+              Estimated annual water & sewer costs (USD)
+            </label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-white/40 text-lg">$</span>
+              <input
+                type="number"
+                id="water-spend"
+                value=""
+                min="0"
+                step="1000"
+                oninput="updateWaterSpend(this.value)"
+                class="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 focus:outline-none focus:ring-1 focus:ring-blue-500 text-lg"
+                placeholder="e.g., 150,000"
+              />
+            </div>
+            <div class="mt-2 text-xs text-white/60">
+              Include water consumption, sewer fees, and recurring maintenance costs
+            </div>
+          </div>
+          
+          <div class="p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
+            <div class="text-xs text-white/60 uppercase tracking-wide mb-2">Portfolio Overview</div>
+            <div id="portfolio-summary" class="text-sm text-white/80"></div>
+          </div>
+        </section>
+        
+        <!-- Certification Targets -->
+        <section id="cert-section" class="p-10 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-2xl fade-in" style="display: none;">
+          <div class="flex items-center justify-between mb-8">
+            <div>
+              <h2 class="text-2xl font-light text-white mb-2 tracking-tight">Certification Targets</h2>
+              <p class="text-sm text-white/60">Select sustainability certifications you're pursuing</p>
+            </div>
+          </div>
+          
+          <div class="space-y-3">
+            <label class="flex items-center gap-4 p-5 border border-white/20 hover:bg-white/5 cursor-pointer transition">
+              <input type="checkbox" onchange="updateCertifications()" class="w-5 h-5 cert-check" data-cert="GRESB" checked>
+              <div class="flex-1">
+                <div class="font-medium text-white">GRESB</div>
+                <div class="text-xs text-white/60">Global Real Estate Sustainability Benchmark</div>
+              </div>
+              <div class="px-3 py-1 bg-gray-900 text-white text-xs font-medium tracking-wide">
+                PRIMARY FOCUS
+              </div>
+            </label>
+            
+            <label class="flex items-center gap-4 p-5 border border-white/20 hover:bg-white/5 cursor-pointer transition">
+              <input type="checkbox" onchange="updateCertifications()" class="w-5 h-5 cert-check" data-cert="LEED">
+              <div class="flex-1">
+                <div class="font-medium text-white">LEED</div>
+                <div class="text-xs text-white/60">Leadership in Energy and Environmental Design</div>
+              </div>
+            </label>
+            
+            <label class="flex items-center gap-4 p-5 border border-white/20 hover:bg-white/5 cursor-pointer transition">
+              <input type="checkbox" onchange="updateCertifications()" class="w-5 h-5 cert-check" data-cert="BREEAM">
+              <div class="flex-1">
+                <div class="font-medium text-white">BREEAM</div>
+                <div class="text-xs text-white/60">Building Research Establishment Environmental Assessment</div>
+              </div>
+            </label>
+            
+            <label class="flex items-center gap-4 p-5 border border-white/20 hover:bg-white/5 cursor-pointer transition">
+              <input type="checkbox" onchange="updateCertifications()" class="w-5 h-5 cert-check" data-cert="Other">
+              <div class="flex-1">
+                <div class="font-medium text-white">Other Certifications</div>
+                <div class="text-xs text-white/60">WELL, Fitwel, Green Star, etc.</div>
+              </div>
+            </label>
+          </div>
+        </section>
+        
+        <!-- Data Management Assessment -->
+        <section id="data-section" class="p-10 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-2xl fade-in" style="display: none;">
+          <h2 class="text-2xl font-light text-white mb-8 tracking-tight">Water Data Management</h2>
+          
+          <!-- WT1: Data Coverage -->
+          <div class="mb-10 pb-10 border-b border-white/10">
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <h3 class="text-lg font-medium text-white mb-2">Asset-Level Data Coverage</h3>
+                <p class="text-sm text-white/60">Percentage of portfolio with verified consumption data (WT1)</p>
+              </div>
+              <div class="text-right">
+                <div class="text-xs text-white/60 uppercase tracking-wide">up to 4.0 pts</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <input
+                type="range"
+                id="data-coverage"
+                min="0"
+                max="100"
+                value="50"
+                oninput="updateDataCoverage(this.value)"
+                class="flex-1 h-2"
+              />
+              <span id="coverage-display" class="text-2xl font-light text-white w-20 text-right">50%</span>
+            </div>
+            <div class="mt-4 text-sm text-white/70">
+              <span id="coverage-feedback"></span>
+            </div>
+          </div>
+          
+          <!-- Data Collection Method -->
+          <div class="mb-10 pb-10 border-b border-white/10">
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <h3 class="text-lg font-medium text-white mb-2">Metering & Data Collection</h3>
+                <p class="text-sm text-white/60">Primary method for capturing consumption data</p>
+              </div>
+              <div class="text-right">
+                <div class="text-xs text-white/60 uppercase tracking-wide">sub-metering: +0.25 pts</div>
+              </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-3">
+              <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
+                <input type="radio" name="metering" value="none" onchange="updateMetering(this.value)" class="w-4 h-4">
+                <span class="text-sm text-white/80">No systematic metering</span>
+              </label>
+              <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
+                <input type="radio" name="metering" value="main" onchange="updateMetering(this.value)" class="w-4 h-4" checked>
+                <span class="text-sm text-white/80">Main meter only (utility bills)</span>
+              </label>
+              <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
+                <input type="radio" name="metering" value="partial-sub" onchange="updateMetering(this.value)" class="w-4 h-4">
+                <span class="text-sm text-white/80">Partial sub-metering (&lt;50% of assets)</span>
+              </label>
+              <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
+                <input type="radio" name="metering" value="full-sub" onchange="updateMetering(this.value)" class="w-4 h-4">
+                <span class="text-sm text-white/80">Comprehensive sub-metering (≥50%)</span>
+              </label>
+            </div>
+          </div>
+          
+          <!-- Data Management System -->
+          <div class="mb-10 pb-10 border-b border-white/10">
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <h3 class="text-lg font-medium text-white mb-2">Data Management Platform</h3>
+                <p class="text-sm text-white/60">System used for data aggregation and reporting</p>
+              </div>
+              <div class="text-right">
+                <div class="text-xs text-white/60 uppercase tracking-wide">MR3: +0.42 pts</div>
+              </div>
+            </div>
+            <div class="space-y-2">
+              <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
+                <input type="radio" name="platform" value="none" onchange="updatePlatform(this.value)" class="w-4 h-4">
+                <span class="text-sm text-white/80">No centralized system</span>
+              </label>
+              <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
+                <input type="radio" name="platform" value="spreadsheet" onchange="updatePlatform(this.value)" class="w-4 h-4" checked>
+                <span class="text-sm text-white/80">Spreadsheet-based tracking</span>
+              </label>
+              <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
+                <input type="radio" name="platform" value="software" onchange="updatePlatform(this.value)" class="w-4 h-4">
+                <span class="text-sm text-white/80">Dedicated ESG/utility management software</span>
+              </label>
+              <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
+                <input type="radio" name="platform" value="automated" onchange="updatePlatform(this.value)" class="w-4 h-4">
+                <span class="text-sm text-white/80">Real-time monitoring with API integrations</span>
+              </label>
+            </div>
+          </div>
+          
+          <!-- External Review -->
+          <div class="mb-10 pb-10 border-b border-white/10">
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <h3 class="text-lg font-medium text-white mb-2">Data Verification</h3>
+                <p class="text-sm text-white/60">Third-party review or audit of water consumption data</p>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <button onclick="updateVerification('yes')" id="verify-yes" class="flex-1 px-6 py-3 border border-white/20 hover:border-gray-900 hover:bg-white/5 transition text-sm font-medium text-white/80">
+                Yes, independently verified
+              </button>
+              <button onclick="updateVerification('no')" id="verify-no" class="flex-1 px-6 py-3 border-2 border-gray-900 bg-gray-900 text-white transition text-sm font-medium">
+                Not currently verified
+              </button>
+            </div>
+          </div>
+          
+          <!-- Efficiency Measures -->
+          <div class="mb-10 pb-10 border-b border-white/10">
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <h3 class="text-lg font-medium text-white mb-2">Water Efficiency Programs</h3>
+                <p class="text-sm text-white/60">Active conservation initiatives with documented outcomes (RA4)</p>
+              </div>
+              <div class="text-right">
+                <div class="text-xs text-white/60 uppercase tracking-wide">up to 0.5 pts</div>
+              </div>
+            </div>
+            <div class="space-y-2">
+              <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
+                <input type="checkbox" onchange="updateEfficiency()" class="w-4 h-4 efficiency-check" data-value="fixtures">
+                <span class="text-sm text-white/80">Low-flow fixtures & appliances</span>
+              </label>
+              <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
+                <input type="checkbox" onchange="updateEfficiency()" class="w-4 h-4 efficiency-check" data-value="landscape">
+                <span class="text-sm text-white/80">Smart irrigation / landscaping water reduction</span>
+              </label>
+              <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
+                <input type="checkbox" onchange="updateEfficiency()" class="w-4 h-4 efficiency-check" data-value="cooling">
+                <span class="text-sm text-white/80">Cooling tower optimization</span>
+              </label>
+              <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
+                <input type="checkbox" onchange="updateEfficiency()" class="w-4 h-4 efficiency-check" data-value="leak">
+                <span class="text-sm text-white/80">Leak detection & rapid response program</span>
+              </label>
+              <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
+                <input type="checkbox" onchange="updateEfficiency()" class="w-4 h-4 efficiency-check" data-value="reuse">
+                <span class="text-sm text-white/80">Water reuse/recycling systems</span>
+              </label>
+            </div>
+          </div>
+          
+          <!-- Performance Tracking -->
+          <div class="mb-8">
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <h3 class="text-lg font-medium text-white mb-2">Year-Over-Year Performance</h3>
+                <p class="text-sm text-white/60">Like-for-like intensity tracking (RA1 + Performance Improvement)</p>
+              </div>
+              <div class="text-right">
+                <div class="text-xs text-white/60 uppercase tracking-wide">up to 2.5 pts</div>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <button onclick="updateTracking('none')" id="track-none" class="px-4 py-3 border border-white/20 hover:border-gray-900 hover:bg-white/5 transition text-sm font-medium text-white/80">
+                No tracking
+              </button>
+              <button onclick="updateTracking('1year')" id="track-1year" class="px-4 py-3 border border-white/20 hover:border-gray-900 hover:bg-white/5 transition text-sm font-medium text-white/80">
+                1 year
+              </button>
+              <button onclick="updateTracking('2year')" id="track-2year" class="px-4 py-3 border-2 border-gray-900 bg-gray-900 text-white transition text-sm font-medium">
+                2+ years
+              </button>
+              <button onclick="updateTracking('3year')" id="track-3year" class="px-4 py-3 border border-white/20 hover:border-gray-900 hover:bg-white/5 transition text-sm font-medium text-white/80">
+                3+ years
+              </button>
+            </div>
+          </div>
+          
+        </section>
+        
+      </div>
+      
+      <!-- Sidebar - Live Calculations -->
+      <div class="lg:col-span-1 space-y-6">
+        
+        <!-- Portfolio Visualization -->
+        <div id="portfolio-viz" class="p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-2xl fade-in">
+          <h3 class="text-lg font-medium text-white mb-6 tracking-tight">Portfolio Overview</h3>
+          <div id="pie-chart-container" class="flex items-center justify-center" style="min-height: 250px;">
+            <div class="text-center text-white/40">
+              <div class="text-5xl mb-3">🏢</div>
+              <div class="text-sm">Select asset types to<br/>visualize your portfolio</div>
+            </div>
+          </div>
+          <div id="portfolio-legend" class="mt-6 space-y-2"></div>
+        </div>
+        
+        <!-- GRESB Score Impact -->
+        <div id="gresb-impact" class="p-8 bg-white/5 premium-border premium-shadow fade-in" style="display: none;">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="text-3xl">💧</div>
+            <h3 class="text-lg font-medium text-white tracking-tight">Water Indicator Score</h3>
+          </div>
+          <div class="flex items-baseline gap-2 mb-2">
+            <div id="gresb-points" class="text-5xl font-light text-white metric-value">0.0</div>
+            <div class="text-2xl text-white/40">/ 7.67</div>
+          </div>
+          <p class="text-xs text-white/60 uppercase tracking-wide mb-6">Current estimated GRESB water points</p>
+          <div class="space-y-2 text-xs">
+            <div class="flex items-center justify-between py-2 border-t border-white/10">
+              <span class="text-white/70">WT1: Data Coverage</span>
+              <span id="wt1-points" class="font-medium text-white">0.0</span>
+            </div>
+            <div class="flex items-center justify-between py-2 border-t border-white/10">
+              <span class="text-white/70">Sub-metering</span>
+              <span id="meter-points" class="font-medium text-white">0.0</span>
+            </div>
+            <div class="flex items-center justify-between py-2 border-t border-white/10">
+              <span class="text-white/70">MR3: External Review</span>
+              <span id="mr3-points" class="font-medium text-white">0.0</span>
+            </div>
+            <div class="flex items-center justify-between py-2 border-t border-white/10">
+              <span class="text-white/70">RA4: Efficiency Measures</span>
+              <span id="ra4-points" class="font-medium text-white">0.0</span>
+            </div>
+            <div class="flex items-center justify-between py-2 border-t border-white/10">
+              <span class="text-white/70">Performance Improvement</span>
+              <span id="perf-points" class="font-medium text-white">0.0</span>
+            </div>
+            <div class="flex items-center justify-between py-2 border-t border-white/10">
+              <span class="text-white/70">RA1: Risk Assessment</span>
+              <span id="ra1-points" class="font-medium text-white">0.0</span>
+            </div>
+          </div>
+          <div id="score-message" class="mt-6 p-4 text-xs"></div>
+        </div>
+        
+        <!-- Overall GRESB Impact Card -->
+        <div id="overall-impact-card" class="p-8 bg-gradient-to-br from-blue-50 to-indigo-50 premium-border premium-shadow fade-in" style="display: none;">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="text-3xl">🏆</div>
+            <h3 class="text-lg font-medium text-white tracking-tight">Overall GRESB Impact</h3>
+          </div>
+          
+          <!-- Before/After Comparison -->
+          <div class="grid grid-cols-2 gap-4 mb-6">
+            <!-- Current -->
+            <div class="bg-white p-4 rounded-lg border border-white/20">
+              <div class="text-xs text-white/60 uppercase tracking-wide mb-2">Current</div>
+              <div id="current-overall-score" class="text-3xl font-light text-white mb-2">68</div>
+              <div id="current-overall-stars" class="text-lg mb-1">⭐⭐⭐</div>
+              <div id="current-overall-label" class="text-xs font-medium text-white/70">3-Star</div>
+            </div>
+            
+            <!-- Projected -->
+            <div class="bg-white p-4 rounded-lg border-2 border-green-500">
+              <div class="text-xs text-green-600 uppercase tracking-wide mb-2 font-medium">Projected</div>
+              <div id="projected-overall-score" class="text-3xl font-light text-green-600 mb-2">71.5</div>
+              <div id="projected-overall-stars" class="text-lg mb-1">⭐⭐⭐⭐</div>
+              <div id="projected-overall-label" class="text-xs font-medium text-green-600">4-Star</div>
+            </div>
+          </div>
+          
+          <!-- Improvement Summary -->
+          <div class="bg-white p-4 rounded-lg border border-white/20 mb-4">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-sm text-white/70">Total Score Gain</span>
+              <span id="score-gain" class="text-xl font-medium text-green-600">+3.5</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-white/70">Percentile Improvement</span>
+              <span id="percentile-change" class="text-sm font-medium text-white">↑ 15%</span>
+            </div>
+          </div>
+          
+          <!-- Investor Appeal -->
+          <div class="bg-gradient-to-r from-amber-500/10 to-orange-500/10 p-4 rounded-lg border border-amber-500/20">
+            <div class="text-xs font-medium text-amber-300 uppercase tracking-wide mb-2">Investor Appeal</div>
+            <div id="investor-message" class="text-sm text-amber-200 leading-relaxed"></div>
+          </div>
+        </div>
+        
+        <!-- Benchmark Comparison -->
+        <div id="benchmark-card" class="p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-2xl fade-in" style="display: none;">
+          <h3 class="text-lg font-medium text-white mb-6 tracking-tight">Industry Benchmarks</h3>
+          <div id="benchmark-content"></div>
+        </div>
+        
+        <!-- Educational Insight -->
+        <div class="p-8 bg-gray-900 text-white premium-shadow">
+          <div class="text-xs font-medium text-white/40 uppercase tracking-wide mb-3">Top Performer Insight</div>
+          <div class="text-4xl font-light text-white mb-4">+15-25</div>
+          <p class="text-sm text-white/50 leading-relaxed mb-4">
+            Asset managers with comprehensive asset-level water data score 15-25 points higher in their <strong>overall GRESB assessment</strong> compared to portfolio-level reporting only.
+          </p>
+          <div class="pt-4 border-t border-gray-700">
+            <div class="text-xs text-white/40">
+              Water data quality impacts Management & Performance scores beyond the ~10-point Water indicator section
+            </div>
+          </div>
+        </div>
+        
+        <!-- CTA Card -->
+        <div id="cta-card" class="p-8 bg-white premium-border premium-shadow text-center" style="display: none;">
+          <h3 class="text-xl font-light text-black mb-3 tracking-tight">Maximize Your Water Score</h3>
+          <p class="text-sm text-black/70 mb-8 leading-relaxed">
+            Get your personalized 90-day roadmap to achieve optimal GRESB water performance.
+          </p>
+          <button
+            onclick="generatePDFReport()"
+            class="cta-primary premium-shadow-hover mb-3"
+          >
+            <span>Download PDF Report</span>
+            <span class="arrow-circle">
+              <i class="ri-arrow-right-up-line text-xl"></i>
+            </span>
+          </button>
+          <button
+            onclick="openModal()"
+            class="cta-secondary"
+          >
+            <span>Schedule Consultation</span>
+            <span class="arrow-circle">
+              <i class="ri-calendar-line text-xl"></i>
+            </span>
+          </button>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+</div>
+
+<script>
+// State management
+const state = {
+  propertyTypes: {},
+  propertyCount: 10,
+  floorArea: 500000,
+  waterSpend: 0,
+  overallGRESB: null,
+  certifications: ['GRESB'],
+  dataCoverage: 50,
+  metering: 'main',
+  platform: 'spreadsheet',
+  verification: 'no',
+  efficiencyMeasures: [],
+  performanceTracking: '2year'
+};
+
+// Property type definitions
+const propertyTypes = [
+  { id: 'office', name: 'Office Buildings', icon: '🏢', benchmark: 0.70, avgGresb: 72, color: '#06b6d4' },
+  { id: 'retail', name: 'Supermarkets', icon: '🛒', benchmark: 0.60, avgGresb: 68, color: '#ef4444' },
+  { id: 'residential', name: 'Condominiums', icon: '🏘️', benchmark: 1.00, avgGresb: 65, color: '#10b981' },
+  { id: 'hospitality', name: 'Hospitality', icon: '🏨', benchmark: 1.20, avgGresb: 70, color: '#8b5cf6' },
+  { id: 'healthcare', name: 'Health Care', icon: '🏥', benchmark: 0.90, avgGresb: 75, color: '#3b82f6' },
+  { id: 'industrial', name: 'Manufacturing', icon: '🏭', benchmark: 0.40, avgGresb: 63, color: '#64748b' },
+  { id: 'golf', name: 'Golf Courses', icon: '⛳', benchmark: 2.50, avgGresb: 58, color: '#22c55e' },
+  { id: 'restaurants', name: 'Restaurants', icon: '🍽️', benchmark: 0.85, avgGresb: 62, color: '#f59e0b' },
+  { id: 'education', name: 'Schools & Universities', icon: '🎓', benchmark: 0.65, avgGresb: 71, color: '#6366f1' },
+  { id: 'senior', name: 'Senior Living', icon: '🏡', benchmark: 1.10, avgGresb: 67, color: '#a855f7' },
+  { id: 'laundry', name: 'Commercial Laundries', icon: '🧺', benchmark: 3.00, avgGresb: 55, color: '#14b8a6' },
+  { id: 'carwash', name: 'Service Stations', icon: '🚗', benchmark: 1.50, avgGresb: 60, color: '#84cc16' },
+  { id: 'marina', name: 'Clubs & Marinas', icon: '⚓', benchmark: 0.80, avgGresb: 64, color: '#0ea5e9' },
+  { id: 'waterpark', name: 'Water Parks', icon: '🎢', benchmark: 4.00, avgGresb: 52, color: '#06b6d4' }
+];
+
+// Modal Functions
+function openModal() {
+  document.getElementById('bookingModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('bookingModal').classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+// Handle booking form submission
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const formData = {
+    firstName: document.getElementById('firstName').value,
+    lastName: document.getElementById('lastName').value,
+    email: document.getElementById('email').value,
+    company: document.getElementById('company').value,
+    phone: document.getElementById('phone').value,
+    portfolioSize: document.getElementById('portfolioSize').value,
+    interest: document.getElementById('interest').value,
+    timePreference: document.getElementById('timePreference').value,
+    notes: document.getElementById('notes').value,
+    assessmentData: {
+      waterScore: parseFloat(document.getElementById('gresb-points').textContent),
+      overallGRESB: state.overallGRESB,
+      properties: state.propertyCount,
+      floorArea: state.floorArea,
+      waterSpend: state.waterSpend
+    }
+  };
+  
+  // Calculate projected score if overall GRESB provided
+  let projectedInfo = '';
+  if (state.overallGRESB) {
+    const waterGain = 7.67 - formData.assessmentData.waterScore;
+    const projectedScore = state.overallGRESB + waterGain;
+    projectedInfo = `
+Current Overall GRESB: ${state.overallGRESB}/100
+Water Score Improvement: +${waterGain.toFixed(1)} points
+Projected Overall GRESB: ${projectedScore.toFixed(1)}/100
+`;
+  }
+  
+  // Create mailto with form data
+  const subject = encodeURIComponent('GRESB Consultation Request - ' + formData.firstName + ' ' + formData.lastName);
+  const body = encodeURIComponent(`
+New GRESB Consultation Request
+
+CONTACT INFORMATION:
+Name: ${formData.firstName} ${formData.lastName}
+Email: ${formData.email}
+Company: ${formData.company}
+Phone: ${formData.phone}
+
+PORTFOLIO DETAILS:
+Portfolio Size: ${formData.portfolioSize} properties
+Total Floor Area: ${formData.assessmentData.floorArea.toLocaleString()} m²
+Annual Water Spend: ${formData.assessmentData.waterSpend.toLocaleString()}
+
+GRESB ASSESSMENT:
+Water Indicator Score: ${formData.assessmentData.waterScore.toFixed(2)} / 7.67
+${projectedInfo}
+
+CONSULTATION PREFERENCES:
+Primary Interest: ${formData.interest}
+Preferred Time: ${formData.timePreference}
+
+ADDITIONAL NOTES:
+${formData.notes}
+
+---
+This request was generated from the GRESB Water Performance Assessment Tool
+  `);
+  
+  // Open email client
+  window.location.href = `mailto:acc@watersolutech.com?subject=${subject}&body=${body}`;
+  
+  // Show success message
+  alert('Opening your email client with pre-filled consultation request. Please review and send when ready!');
+  closeModal();
+});
+
+// Close modal when clicking outside
+document.getElementById('bookingModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeModal();
+  }
+});
+
+// Initialize
+function init() {
+  renderPropertyGrid();
+  updateUI();
+}
+
+function renderPropertyGrid() {
+  const grid = document.getElementById('property-grid');
+  grid.innerHTML = propertyTypes.map(type => `
+    <button
+      onclick="togglePropertyType('${type.id}')"
+      id="prop-${type.id}"
+      class="p-4 border border-white/20 bg-white hover:border-gray-900 hover:bg-white/5 transition-all duration-300 text-center"
+    >
+      <div class="text-2xl mb-2">${type.icon}</div>
+      <div class="text-xs font-medium text-white/80 leading-tight">${type.name}</div>
+    </button>
+  `).join('');
+}
+
+function togglePropertyType(id) {
+  if (state.propertyTypes[id]) {
+    delete state.propertyTypes[id];
+  } else {
+    state.propertyTypes[id] = 10;
+  }
+  updateUI();
+}
+
+function updatePropertyPercentage(id, value) {
+  const numValue = parseFloat(value) || 0;
+  if (numValue > 0) {
+    state.propertyTypes[id] = Math.min(100, Math.max(0, numValue));
+  } else {
+    delete state.propertyTypes[id];
+  }
+  updateUI();
+}
+
+function updatePropertyCount(value) {
+  state.propertyCount = parseInt(value) || 1;
+  updatePortfolioSummary();
+}
+
+function updateFloorArea(value) {
+  state.floorArea = parseInt(value) || 10000;
+  updatePortfolioSummary();
+}
+
+function updateWaterSpend(value) {
+  state.waterSpend = parseInt(value) || 0;
+  updatePortfolioSummary();
+}
+
+function updateOverallGRESB(value) {
+  state.overallGRESB = value ? parseFloat(value) : null;
+  updateStarRating();
+  updatePortfolioSummary();
+  updateUI();
+}
+
+function updateStarRating() {
+  if (!state.overallGRESB) {
+    document.getElementById('star-rating-display').style.display = 'none';
+    return;
+  }
+  
+  document.getElementById('star-rating-display').style.display = 'flex';
+  
+  const score = state.overallGRESB;
+  let stars = '';
+  let rating = '';
+  let color = '';
+  
+  if (score >= 95) {
+    stars = '⭐⭐⭐⭐⭐';
+    rating = '5-Star Leader';
+    color = '#059669';
+  } else if (score >= 80) {
+    stars = '⭐⭐⭐⭐';
+    rating = '4-Star Performer';
+    color = '#10b981';
+  } else if (score >= 60) {
+    stars = '⭐⭐⭐';
+    rating = '3-Star Average';
+    color = '#f59e0b';
+  } else if (score >= 40) {
+    stars = '⭐⭐';
+    rating = '2-Star Below Average';
+    color = '#f97316';
+  } else {
+    stars = '⭐';
+    rating = '1-Star';
+    color = '#ef4444';
+  }
+  
+  document.getElementById('current-stars').textContent = stars;
+  document.getElementById('rating-label').innerHTML = `<span style="color: ${color}">${rating}</span>`;
+}
+
+function getStarRating(score) {
+  if (score >= 95) return { stars: '⭐⭐⭐⭐⭐', label: '5-Star Leader', color: '#059669' };
+  if (score >= 80) return { stars: '⭐⭐⭐⭐', label: '4-Star Performer', color: '#10b981' };
+  if (score >= 60) return { stars: '⭐⭐⭐', label: '3-Star Average', color: '#f59e0b' };
+  if (score >= 40) return { stars: '⭐⭐', label: '2-Star Below Average', color: '#f97316' };
+  return { stars: '⭐', label: '1-Star', color: '#ef4444' };
+}
+
+function updateCertifications() {
+  const checkboxes = document.querySelectorAll('.cert-check:checked');
+  state.certifications = Array.from(checkboxes).map(cb => cb.dataset.cert);
+}
+
+function updateDataCoverage(value) {
+  state.dataCoverage = parseFloat(value);
+  document.getElementById('coverage-display').textContent = `${value}%`;
+  
+  let feedback = '';
+  if (value < 50) feedback = '⚠️ Below minimum threshold - significant point loss';
+  else if (value < 70) feedback = '📊 Meets minimum - room for improvement';
+  else if (value < 90) feedback = '✓ Good coverage - competitive positioning';
+  else feedback = '🌟 Excellent coverage - top quartile performance';
+  document.getElementById('coverage-feedback').textContent = feedback;
+  
+  updateUI();
+}
+
+function updateMetering(method) {
+  state.metering = method;
+  updateUI();
+}
+
+function updatePlatform(platform) {
+  state.platform = platform;
+  updateUI();
+}
+
+function updateVerification(status) {
+  state.verification = status;
+  ['verify-yes', 'verify-no'].forEach(id => {
+    const btn = document.getElementById(id);
+    btn.classList.remove('border-2', 'border-gray-900', 'bg-gray-900', 'text-white');
+    btn.classList.add('border', 'border-white/10', 'text-white/80');
+  });
+  const btn = document.getElementById(`verify-${status}`);
+  btn.classList.add('border-2', 'border-gray-900', 'bg-gray-900', 'text-white');
+  btn.classList.remove('border', 'border-white/10', 'text-white/80');
+  updateUI();
+}
+
+function updateEfficiency() {
+  const checkboxes = document.querySelectorAll('.efficiency-check:checked');
+  state.efficiencyMeasures = Array.from(checkboxes).map(cb => cb.dataset.value);
+  updateUI();
+}
+
+function updateTracking(period) {
+  state.performanceTracking = period;
+  ['track-none', 'track-1year', 'track-2year', 'track-3year'].forEach(id => {
+    const btn = document.getElementById(id);
+    btn.classList.remove('border-2', 'border-gray-900', 'bg-gray-900', 'text-white');
+    btn.classList.add('border', 'border-white/10', 'text-white/80');
+  });
+  const btn = document.getElementById(`track-${period}`);
+  btn.classList.add('border-2', 'border-gray-900', 'bg-gray-900', 'text-white');
+  btn.classList.remove('border', 'border-white/10', 'text-white/80');
+  updateUI();
+}
+
+function updatePortfolioSummary() {
+  const avgSize = state.floorArea / state.propertyCount;
+  const spendPerSqm = state.waterSpend / state.floorArea;
+  
+  document.getElementById('portfolio-summary').innerHTML = `
+    ${state.propertyCount} properties averaging ${avgSize.toLocaleString()} m² each
+    ${state.waterSpend > 0 ? `<br/>$${spendPerSqm.toFixed(2)}/m² annual water costs` : ''}
+  `;
+}
+
+function updateUI() {
+  updatePropertyInputs();
+  updateTotalPercentage();
+  updatePieChart();
+  updatePortfolioLegend();
+  updateGRESBScore();
+  updateBenchmarks();
+  toggleSections();
+}
+
+function updatePropertyInputs() {
+  const container = document.getElementById('percentage-inputs');
+  const selectedTypes = Object.keys(state.propertyTypes);
+  
+  if (selectedTypes.length === 0) {
+    container.innerHTML = '';
+    return;
+  }
+  
+  container.innerHTML = selectedTypes.map(id => {
+    const type = propertyTypes.find(t => t.id === id);
+    return `
+      <div class="flex items-center gap-4 p-5 bg-white/5 border border-white/20">
+        <div class="flex items-center gap-3 flex-1">
+          <div class="text-xl">${type.icon}</div>
+          <div class="text-sm font-medium text-white">${type.name}</div>
+        </div>
+        <div class="flex items-center gap-2">
+          <input
+            type="number"
+            value="${state.propertyTypes[id]}"
+            onchange="updatePropertyPercentage('${id}', this.value)"
+            class="w-20 px-3 py-2 bg-white/10 border border-white/20 text-center focus:outline-none focus:ring-1 focus:ring-blue-500"
+            min="0"
+            max="100"
+            step="1"
+          />
+          <span class="text-white/60 w-6">%</span>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function updateTotalPercentage() {
+  const total = Object.values(state.propertyTypes).reduce((sum, val) => sum + val, 0);
+  const display = document.getElementById('total-percentage');
+  const validation = document.getElementById('validation-message');
+  const isValid = Math.abs(total - 100) < 0.1;
+  
+  if (Object.keys(state.propertyTypes).length === 0) {
+    display.innerHTML = '';
+    validation.innerHTML = '';
+    return;
+  }
+  
+  display.innerHTML = `<span class="${isValid ? 'text-green-600' : 'text-orange-500'}">${total.toFixed(0)}%</span>`;
+  
+  if (!isValid) {
+    validation.innerHTML = `
+      <div class="p-5 bg-orange-50 border border-orange-200">
+        <div class="flex items-center gap-3 text-orange-800 text-sm">
+          <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+          </svg>
+          <span class="font-medium">Portfolio allocation must total 100% (currently ${total.toFixed(0)}%)</span>
+        </div>
+      </div>
+    `;
+  } else {
+    validation.innerHTML = `
+      <div class="p-5 bg-green-500/10 border border-green-500/20">
+        <div class="flex items-center gap-3 text-green-800 text-sm">
+          <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span class="font-medium">Portfolio composition ready</span>
+        </div>
+      </div>
+    `;
+  }
+}
+
+function updatePieChart() {
+  const container = document.getElementById('pie-chart-container');
+  const data = Object.entries(state.propertyTypes)
+    .filter(([_, value]) => value > 0)
+    .map(([key, value]) => ({
+      type: propertyTypes.find(t => t.id === key),
+      value: value
+    }));
+  
+  if (data.length === 0) {
+    container.innerHTML = `
+      <div class="text-center text-white/40">
+        <div class="text-5xl mb-3">🏢</div>
+        <div class="text-sm">Select asset types to<br/>visualize your portfolio</div>
+      </div>
+    `;
+    return;
+  }
+  
+  let currentAngle = -90;
+  const segments = data.map(item => {
+    const angle = (item.value / 100) * 360;
+    const segment = {
+      ...item,
+      startAngle: currentAngle,
+      endAngle: currentAngle + angle
+    };
+    currentAngle += angle;
+    return segment;
+  });
+  
+  const svgContent = segments.map(seg => {
+    const x1 = 100 + 90 * Math.cos((seg.startAngle * Math.PI) / 180);
+    const y1 = 100 + 90 * Math.sin((seg.startAngle * Math.PI) / 180);
+    const x2 = 100 + 90 * Math.cos((seg.endAngle * Math.PI) / 180);
+    const y2 = 100 + 90 * Math.sin((seg.endAngle * Math.PI) / 180);
+    const largeArc = seg.value > 50 ? 1 : 0;
+    
+    const labelAngle = seg.startAngle + (seg.endAngle - seg.startAngle) / 2;
+    const labelX = 100 + 65 * Math.cos((labelAngle * Math.PI) / 180);
+    const labelY = 100 + 65 * Math.sin((labelAngle * Math.PI) / 180);
+    
+    return `
+      <g class="pie-segment">
+        <path
+          d="M 100 100 L ${x1} ${y1} A 90 90 0 ${largeArc} 1 ${x2} ${y2} Z"
+          fill="${seg.type.color}"
+          opacity="0.85"
+        />
+        ${seg.value > 8 ? `
+          <text x="${labelX}" y="${labelY}" 
+                text-anchor="middle" 
+                fill="white" 
+                font-size="13" 
+                font-weight="600">
+            ${seg.value.toFixed(0)}%
+          </text>
+        ` : ''}
+      </g>
+    `;
+  }).join('');
+  
+  container.innerHTML = `
+    <svg viewBox="0 0 200 200" class="w-full h-full max-w-xs">
+      ${svgContent}
+      <circle cx="100" cy="100" r="35" fill="white"/>
+      <text x="100" y="100" text-anchor="middle" fill="#6b7280" font-size="11" font-weight="400">Portfolio</text>
+      <text x="100" y="115" text-anchor="middle" fill="#1f2937" font-size="18" font-weight="600">${data.length}</text>
+    </svg>
+  `;
+}
+
+function updatePortfolioLegend() {
+  const legend = document.getElementById('portfolio-legend');
+  const data = Object.entries(state.propertyTypes)
+    .filter(([_, value]) => value > 0)
+    .map(([key, value]) => ({
+      type: propertyTypes.find(t => t.id === key),
+      value: value
+    }))
+    .sort((a, b) => b.value - a.value);
+  
+  if (data.length === 0) {
+    legend.innerHTML = '';
+    return;
+  }
+  
+  legend.innerHTML = data.map(item => `
+    <div class="flex items-center justify-between text-sm py-2 border-t border-white/10">
+      <div class="flex items-center gap-2">
+        <div class="w-3 h-3 flex-shrink-0" style="background: ${item.type.color}"></div>
+        <span class="text-white/70 text-xs">${item.type.icon} ${item.type.name}</span>
+      </div>
+      <span class="font-medium text-white">${item.value.toFixed(0)}%</span>
+    </div>
+  `).join('');
+}
+
+function updateGRESBScore() {
+  let total = 0;
+  
+  const wt1 = (state.dataCoverage / 100) * 4;
+  total += wt1;
+  
+  let meterPts = 0;
+  if (state.metering === 'full-sub') meterPts = 0.25;
+  else if (state.metering === 'partial-sub') meterPts = 0.13;
+  total += meterPts;
+  
+  const mr3 = state.verification === 'yes' ? 0.4166 : 0;
+  total += mr3;
+  
+  const ra4 = Math.min(state.efficiencyMeasures.length * 0.1, 0.5);
+  total += ra4;
+  
+  let perfPts = 0;
+  if (state.performanceTracking === '3year') perfPts = 2.0;
+  else if (state.performanceTracking === '2year') perfPts = 1.5;
+  else if (state.performanceTracking === '1year') perfPts = 0.5;
+  total += perfPts;
+  
+  const ra1 = (state.efficiencyMeasures.length > 0 && state.performanceTracking !== 'none') ? 0.5 : 0;
+  total += ra1;
+  
+  document.getElementById('gresb-points').textContent = total.toFixed(2);
+  document.getElementById('wt1-points').textContent = wt1.toFixed(2);
+  document.getElementById('meter-points').textContent = meterPts.toFixed(2);
+  document.getElementById('mr3-points').textContent = mr3.toFixed(2);
+  document.getElementById('ra4-points').textContent = ra4.toFixed(2);
+  document.getElementById('perf-points').textContent = perfPts.toFixed(2);
+  document.getElementById('ra1-points').textContent = ra1.toFixed(2);
+  
+  const messageEl = document.getElementById('score-message');
+  const percentage = (total / 7.67) * 100;
+  
+  if (percentage >= 90) {
+    messageEl.className = 'mt-6 p-4 text-xs bg-green-500/10 border border-green-500/20 text-green-800';
+    messageEl.textContent = '🌟 Excellent! Top-tier GRESB water performance';
+  } else if (percentage >= 70) {
+    messageEl.className = 'mt-6 p-4 text-xs bg-blue-500/10 border border-blue-500/20 text-blue-800';
+    messageEl.textContent = '✓ Strong performance with room to optimize';
+  } else if (percentage >= 50) {
+    messageEl.className = 'mt-6 p-4 text-xs bg-yellow-50 border border-yellow-200 text-yellow-800';
+    messageEl.textContent = '📊 Competitive but significant upside available';
+  } else {
+    messageEl.className = 'mt-6 p-4 text-xs bg-orange-50 border border-orange-200 text-orange-800';
+    messageEl.textContent = '⚠️ Below target - priority improvements needed';
+  }
+  
+  // Update Overall Impact Card
+  updateOverallImpact(total);
+}
+
+function updateOverallImpact(waterPoints) {
+  if (!state.overallGRESB) {
+    document.getElementById('overall-impact-card').style.display = 'none';
+    return;
+  }
+  
+  document.getElementById('overall-impact-card').style.display = 'block';
+  
+  const currentScore = parseFloat(state.overallGRESB);
+  const waterImprovement = 7.67 - waterPoints; // Points available to gain
+  const projectedScore = currentScore + waterImprovement;
+  
+  // Current rating
+  const currentRating = getStarRating(currentScore);
+  document.getElementById('current-overall-score').textContent = currentScore.toFixed(1);
+  document.getElementById('current-overall-stars').textContent = currentRating.stars;
+  document.getElementById('current-overall-label').innerHTML = `<span style="color: ${currentRating.color}">${currentRating.label}</span>`;
+  
+  // Projected rating
+  const projectedRating = getStarRating(projectedScore);
+  document.getElementById('projected-overall-score').textContent = projectedScore.toFixed(1);
+  document.getElementById('projected-overall-stars').textContent = projectedRating.stars;
+  document.getElementById('projected-overall-label').innerHTML = `<span style="color: ${projectedRating.color}">${projectedRating.label}</span>`;
+  
+  // Score gain
+  document.getElementById('score-gain').textContent = `+${waterImprovement.toFixed(1)}`;
+  
+  // Percentile calculation (rough estimate)
+  const percentileGain = Math.round(waterImprovement * 2);
+  document.getElementById('percentile-change').textContent = `↑ ${percentileGain}%`;
+  
+  // Investor appeal message
+  let investorMessage = '';
+  const ratingChange = projectedRating.label !== currentRating.label;
+  
+  if (ratingChange) {
+    if (projectedScore >= 80) {
+      investorMessage = `🚀 Moving to ${projectedRating.label} positions you in the <strong>top quartile</strong>. 78% of ESG-focused funds prioritize 4+ star assets.`;
+    } else if (projectedScore >= 60) {
+      investorMessage = `📈 Advancing to ${projectedRating.label} significantly improves access to sustainability-linked financing. Typical rate reduction: 15-25 bps.`;
+    } else {
+      investorMessage = `⚡ Improvement to ${projectedRating.label} demonstrates commitment to ESG excellence, attracting institutional capital.`;
+    }
+  } else {
+    investorMessage = `📊 +${waterImprovement.toFixed(1)} points strengthens your competitive position within ${currentRating.label} category.`;
+  }
+  
+  document.getElementById('investor-message').innerHTML = investorMessage;
+}
+
+function updateBenchmarks() {
+  const container = document.getElementById('benchmark-content');
+  const selectedTypes = Object.entries(state.propertyTypes)
+    .filter(([_, value]) => value > 0)
+    .map(([key]) => propertyTypes.find(t => t.id === key))
+    .slice(0, 3);
+  
+  if (selectedTypes.length === 0) return;
+  
+  container.innerHTML = selectedTypes.map(type => `
+    <div class="mb-6 pb-6 border-b border-white/10 last:border-0">
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2 text-sm">
+          <span>${type.icon}</span>
+          <span class="font-medium text-white">${type.name}</span>
+        </div>
+      </div>
+      <div class="space-y-2 text-xs">
+        <div class="flex justify-between text-white/70">
+          <span>Top performers:</span>
+          <span class="font-medium text-green-600">&lt;${(type.benchmark * 0.7).toFixed(2)} m³/m²/yr</span>
+        </div>
+        <div class="flex justify-between text-white/70">
+          <span>Average GRESB:</span>
+          <span class="font-medium text-blue-300">${type.avgGresb}/100</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleSections() {
+  const hasProperties = Object.keys(state.propertyTypes).length > 0;
+  const total = Object.values(state.propertyTypes).reduce((sum, val) => sum + val, 0);
+  const isValid = Math.abs(total - 100) < 0.1;
+  
+  document.getElementById('details-section').style.display = hasProperties && isValid ? 'block' : 'none';
+  document.getElementById('cert-section').style.display = hasProperties && isValid ? 'block' : 'none';
+  document.getElementById('data-section').style.display = hasProperties && isValid ? 'block' : 'none';
+  document.getElementById('gresb-impact').style.display = hasProperties && isValid ? 'block' : 'none';
+  
+  // Show overall impact card only if overall GRESB score is provided
+  if (hasProperties && isValid && state.overallGRESB) {
+    document.getElementById('overall-impact-card').style.display = 'block';
+  } else {
+    document.getElementById('overall-impact-card').style.display = 'none';
+  }
+  
+  document.getElementById('benchmark-card').style.display = hasProperties && isValid ? 'block' : 'none';
+  document.getElementById('cta-card').style.display = hasProperties && isValid ? 'block' : 'none';
+}
+
+// PDF Generation FIX
+async function generatePDFReport() {
+  const { jsPDF } = window.jspdf;
+  
+  // Tampilkan loading cursor karena proses rendering gambar butuh waktu sedikit
+  document.body.style.cursor = 'wait';
+
+  try {
+    // 1. CAPTURE GRAFIK (PIE CHART) DARI LAYAR
+    // Kita ambil elemen visual portfolio
+    const vizElement = document.getElementById('portfolio-viz');
+    
+    // Gunakan html2canvas untuk mengubah div menjadi gambar
+    const canvas = await html2canvas(vizElement, {
+      scale: 2, // Resolusi tinggi
+      backgroundColor: '#1f2937', // Sesuaikan background agar cocok (Dark mode capture)
+      logging: false
+    });
+    const chartImgData = canvas.toDataURL('image/png');
+
+    const doc = new jsPDF();
+    const score = parseFloat(document.getElementById('gresb-points').textContent);
+    const potential = (7.67 - score).toFixed(2);
+    const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+    // Calculate ROI metrics
+    const potentialSavings = state.waterSpend * 0.18;
+    const implementationCost = state.floorArea * 0.50;
+    const simplePayback = implementationCost / (potentialSavings || 1);
+    const capitalAccessValue = parseFloat(potential) * 15000;
+
+    // ========== PAGE 1 ==========
+    // Header
+    doc.setFillColor(31, 41, 55);
+    doc.rect(0, 0, 210, 35, 'F');
+    doc.setFillColor(75, 85, 99);
+    doc.rect(0, 35, 210, 1, 'F');
+
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(20);
+    doc.text('GRESB Water Performance Assessment', 20, 15);
+    doc.setFontSize(10);
+    doc.setTextColor(209, 213, 219);
+    doc.text('Portfolio Benchmarking Report - CONFIDENTIAL', 20, 22);
+
+    doc.setFontSize(8);
+    doc.text(`Date: ${date}`, 160, 10);
+    doc.text(`ID: WST-${Date.now()}`, 160, 14);
+
+    doc.setTextColor(107, 114, 128);
+    doc.setFontSize(7);
+    doc.text('200 S. Andrews Avenue', 160, 38);
+    doc.text('Fort Lauderdale, FL 33301', 160, 41);
+    doc.text('acc@watersolutech.com', 160, 44);
+
+    // Executive Summary
+    doc.setDrawColor(229, 231, 235);
+    doc.setLineWidth(0.5);
+    doc.setFillColor(249, 250, 251);
+    doc.rect(15, 48, 180, 50, 'FD');
+
+    doc.setFillColor(31, 41, 55);
+    doc.rect(15, 48, 3, 50, 'F');
+
+    doc.setFontSize(13);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(31, 41, 55);
+    doc.text('EXECUTIVE SUMMARY', 23, 56);
+
+    doc.setFontSize(9);
+    doc.setFont(undefined, 'normal');
+    doc.setTextColor(75, 85, 99);
+    doc.text(`Current GRESB Water Score: ${score.toFixed(2)} / 7.67 points`, 23, 65);
+    doc.text(`Improvement Opportunity: +${potential} points available`, 23, 72);
+    doc.text(`Portfolio: ${state.propertyCount} properties | ${(state.floorArea/1000).toFixed(0)}K m2 GFA`, 23, 79);
+
+    // ROI Highlights
+    doc.setFillColor(220, 252, 231);
+    doc.setDrawColor(134, 239, 172);
+    doc.rect(23, 85, 167, 10, 'FD');
+    doc.setFontSize(8);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(21, 128, 61);
+    
+    // (FIX: Hapus Emoji Tas Uang karena jsPDF tidak support)
+    if (state.waterSpend > 0) {
+      doc.text(`Est. Annual Savings: $${potentialSavings.toLocaleString()} | Payback: ${simplePayback.toFixed(1)} years`, 26, 91);
+    } else {
+      doc.text(`Complete assessment to unlock detailed ROI analysis`, 26, 91);
+    }
+
+    // Score Breakdown
+    let yPos = 108;
+    doc.setFontSize(11);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(31, 41, 55);
+    doc.text('DETAILED SCORE BREAKDOWN', 20, yPos);
+
+    yPos += 10;
+    doc.setFontSize(10);
+    doc.setFont(undefined, 'normal');
+
+    const scoreItems = [
+      { label: 'WT1: Data Coverage', points: document.getElementById('wt1-points').textContent, max: '4.00' },
+      { label: 'Sub-metering', points: document.getElementById('meter-points').textContent, max: '0.25' },
+      { label: 'MR3: External Review', points: document.getElementById('mr3-points').textContent, max: '0.42' },
+      { label: 'RA4: Efficiency Programs', points: document.getElementById('ra4-points').textContent, max: '0.50' },
+      { label: 'Performance Improvement', points: document.getElementById('perf-points').textContent, max: '2.00' },
+      { label: 'RA1: Risk Assessment', points: document.getElementById('ra1-points').textContent, max: '0.50' }
+    ];
+
+    scoreItems.forEach(item => {
+      doc.text(`${item.label}:`, 25, yPos);
+      doc.text(`${item.points} / ${item.max}`, 150, yPos);
+      yPos += 7;
+    });
+
+    // Quick Wins
+    yPos += 8;
+    doc.setFillColor(254, 243, 199);
+    doc.setDrawColor(251, 191, 36);
+    doc.rect(15, yPos - 5, 180, 30, 'FD');
+
+    doc.setFontSize(11);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(146, 64, 14);
+    // (FIX: Hapus Emoji Petir)
+    doc.text('QUICK WIN OPPORTUNITIES (90-Day Impact)', 20, yPos);
+
+    yPos += 8;
+    doc.setFontSize(9);
+    doc.setFont(undefined, 'normal');
+    doc.setTextColor(120, 53, 15);
+
+    const quickWins = [];
+    if (state.dataCoverage < 95) quickWins.push(`- Data Coverage: +${((95-state.dataCoverage)/100*4).toFixed(1)} pts | 30 days`);
+    if (state.verification !== 'yes') quickWins.push('- Third-Party Verification: +0.42 pts | 45 days');
+    if (state.metering !== 'full-sub') quickWins.push('- Sub-metering: +0.13-0.25 pts | 60 days');
+
+    if (quickWins.length === 0) {
+      doc.text('- Strong performance - focus on maintaining excellence', 20, yPos);
+    } else {
+      quickWins.slice(0, 3).forEach(win => {
+        doc.text(win, 20, yPos);
+        yPos += 6;
+      });
+    }
+
+    // Portfolio Composition with CHART IMAGE
+    yPos += 15;
+    doc.setFontSize(12);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(31, 41, 55);
+    doc.text('Portfolio Composition & Visualization', 20, yPos);
+
+    // TEMPEL GAMBAR GRAFIK DI SINI
+    // Format: (imageData, format, x, y, width, height)
+    // Kita taruh agak ke kanan
+    doc.addImage(chartImgData, 'PNG', 120, yPos - 5, 60, 60);
+
+    yPos += 10;
+    doc.setFontSize(10);
+    doc.setFont(undefined, 'normal');
+
+    // List text properti di kiri
+    Object.entries(state.propertyTypes).forEach(([id, percentage]) => {
+      const type = propertyTypes.find(t => t.id === id);
+      // Hapus icon/emoji dari nama agar PDF tidak error
+      doc.text(`${type.name}:`, 25, yPos);
+      doc.text(`${percentage}%`, 100, yPos);
+      yPos += 6;
+    });
+
+    // ========== PAGE 2 - Implementation Roadmap ==========
+    doc.addPage();
+
+    doc.setFillColor(31, 41, 55);
+    doc.rect(0, 0, 210, 25, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(16);
+    doc.text('90-Day Implementation Roadmap', 20, 15);
+
+    // Phase 1
+    yPos = 40;
+    doc.setFillColor(31, 41, 55);
+    doc.rect(15, yPos - 5, 180, 10, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(11);
+    doc.setFont(undefined, 'bold');
+    doc.text('PHASE 1: Data Foundation (Days 1-30)', 20, yPos);
+
+    yPos += 8;
+    doc.setFontSize(9);
+    doc.setFont(undefined, 'normal');
+    doc.setTextColor(60, 60, 60);
+    const phase1 = [
+      '- Complete portfolio water consumption audit',
+      '- Validate meter accuracy and coverage',
+      '- Document data collection methodologies',
+      '- Gather 3+ years of historical records',
+      '- Identify data gaps and establish baselines'
+    ];
+    phase1.forEach(item => {
+      doc.text(item, 20, yPos);
+      yPos += 6;
+    });
+
+    // Phase 2
+    yPos += 8;
+    doc.setFillColor(75, 85, 99);
+    doc.rect(15, yPos - 5, 180, 10, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(11);
+    doc.setFont(undefined, 'bold');
+    doc.text('PHASE 2: Systems & Monitoring (Days 31-60)', 20, yPos);
+
+    yPos += 8;
+    doc.setFontSize(9);
+    doc.setFont(undefined, 'normal');
+    doc.setTextColor(60, 60, 60);
+    const phase2 = [
+      '- Install automated data collection systems',
+      '- Establish real-time monitoring protocols',
+      '- Create asset-level reporting dashboards',
+      '- Develop water management policies',
+      '- Set asset-specific efficiency targets'
+    ];
+    phase2.forEach(item => {
+      doc.text(item, 20, yPos);
+      yPos += 6;
+    });
+
+    // Phase 3
+    yPos += 8;
+    doc.setFillColor(107, 114, 128);
+    doc.rect(15, yPos - 5, 180, 10, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(11);
+    doc.setFont(undefined, 'bold');
+    doc.text('PHASE 3: GRESB Optimization (Days 61-90)', 20, yPos);
+
+    yPos += 8;
+    doc.setFontSize(9);
+    doc.setFont(undefined, 'normal');
+    doc.setTextColor(60, 60, 60);
+    const phase3 = [
+      '- Format data for GRESB submission',
+      '- Engage third-party verification',
+      '- Prepare supporting documentation',
+      '- Validate calculations and benchmarks',
+      '- Submit enhanced GRESB assessment'
+    ];
+    phase3.forEach(item => {
+      doc.text(item, 20, yPos);
+      yPos += 6;
+    });
+
+    // Expected Outcomes
+    yPos += 12;
+    doc.setFillColor(31, 41, 55);
+    doc.rect(15, yPos - 3, 180, 0.5, 'F');
+
+    doc.setFontSize(12);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(31, 41, 55);
+    doc.text('EXPECTED OUTCOMES', 20, yPos);
+
+    yPos += 8;
+    doc.setFillColor(248, 248, 248);
+    doc.rect(15, yPos - 4, 180, 32, 'F');
+
+    doc.setFontSize(9);
+    doc.setFont(undefined, 'normal');
+    doc.setTextColor(60, 60, 60);
+    doc.text('Target GRESB Water Score:', 20, yPos);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(31, 41, 55);
+    doc.text('6.5+ / 7.67 points', 150, yPos);
+
+    yPos += 7;
+    doc.setFont(undefined, 'normal');
+    doc.setTextColor(60, 60, 60);
+    doc.text('Data Coverage Target:', 20, yPos);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(31, 41, 55);
+    doc.text('95%+ of portfolio', 150, yPos);
+
+    yPos += 7;
+    doc.setFont(undefined, 'normal');
+    doc.setTextColor(60, 60, 60);
+    doc.text('Annual Water Cost Savings:', 20, yPos);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(31, 41, 55);
+    if (state.waterSpend > 0) {
+      doc.text(`$${potentialSavings.toLocaleString()}`, 150, yPos);
+    } else {
+      doc.text('Calculate after intake', 150, yPos);
+    }
+
+    yPos += 7;
+    doc.setFont(undefined, 'normal');
+    doc.setTextColor(60, 60, 60);
+    doc.text('Enhanced Capital Access Value:', 20, yPos);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(31, 41, 55);
+    doc.text(`$${capitalAccessValue.toLocaleString()}`, 150, yPos);
+
+    // Investment Overview
+    yPos += 15;
+    doc.setFillColor(239, 246, 255);
+    doc.setDrawColor(59, 130, 246);
+    doc.setLineWidth(1);
+    doc.rect(15, yPos - 5, 180, 35, 'FD');
+
+    doc.setFontSize(11);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(30, 58, 138);
+    // (FIX: Hapus Emoji Diamond)
+    doc.text('INVESTMENT OVERVIEW', 20, yPos);
+
+    yPos += 8;
+    doc.setFontSize(9);
+    doc.setFont(undefined, 'normal');
+    doc.setTextColor(30, 64, 175);
+
+    if (state.waterSpend > 0) {
+      doc.text(`Implementation Cost: $${implementationCost.toLocaleString()}`, 20, yPos);
+      yPos += 6;
+      doc.text(`Annual Savings: $${potentialSavings.toLocaleString()}`, 20, yPos);
+      yPos += 6;
+      doc.text(`Payback Period: ${simplePayback.toFixed(1)} years`, 20, yPos);
+      yPos += 6;
+      doc.text(`10-Year NPV (@ 5%): $${((potentialSavings * 7.72) - implementationCost).toLocaleString()}`, 20, yPos);
+    } else {
+      doc.text('Complete water spend data for detailed projections', 20, yPos);
+      yPos += 6;
+      doc.text('Schedule consultation for portfolio-specific ROI', 20, yPos);
+    }
+
+    // Next Steps
+    yPos += 15;
+    doc.setFillColor(254, 242, 242);
+    doc.setDrawColor(239, 68, 68);
+    doc.rect(15, yPos - 5, 180, 28, 'FD');
+
+    doc.setFontSize(11);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(153, 27, 27);
+    // (FIX: Hapus Emoji Target)
+    doc.text('IMMEDIATE NEXT STEPS', 20, yPos);
+
+    yPos += 8;
+    doc.setFontSize(9);
+    doc.setFont(undefined, 'normal');
+    doc.setTextColor(127, 29, 29);
+    doc.text('1. Schedule 30-min strategy call to review findings', 20, yPos);
+    yPos += 6;
+    doc.text('2. Complimentary audit (qualified portfolios)', 20, yPos);
+    yPos += 6;
+    doc.text('3. Receive custom 90-day plan with guaranteed ROI', 20, yPos);
+
+    // Footer
+    doc.setFontSize(8);
+    doc.setTextColor(128, 128, 128);
+    doc.text('Water Solutions Technology | Confidential', 20, 280);
+    doc.text('acc@watersolutech.com | 200 S. Andrews Ave, Fort Lauderdale, FL', 20, 285);
+    doc.setFont(undefined, 'bold');
+    doc.setTextColor(220, 38, 38);
+    // (FIX: Hapus Emoji Jam)
+    doc.text('Q1 2025 slots filling fast', 20, 290);
+
+    // Save
+    doc.save(`GRESB-Water-Assessment-${Date.now()}.pdf`);
+
+  } catch (error) {
+    console.error("PDF Generation Error:", error);
+    alert("Error generating PDF. Please check console.");
+  } finally {
+    document.body.style.cursor = 'default';
+  }
+}
+
+init();
+</script>
+
+</body>
+</html>

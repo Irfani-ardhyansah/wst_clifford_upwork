@@ -121,15 +121,44 @@ class AssetsSeeder extends Seeder
             ],
         ]);
 
+
         DB::table('assets')->insert([
             [
-                'title'       => 'Energy Savings Calculator',
-                'slug'        => Str::slug('Energy Savings Calculator'),
+                'title'       => 'Whole Building',
+                'slug'        => Str::slug('Whole Building'),
                 'category'    => 'tool',
-                'description' => 'Estimate your hotel energy savings.',
-                'image_path'       => 'industries/hospitality/even-hotels-miami-5997860446-4x3.png',
-                'sort_order'  => 1,
+                'tags'        => 'Assessment,Consumption',
+                'description' => 'Assess your building’s total daily consumption. Uncover high-usage periods and optimize across systems.',
+                'image_path'  => 'tools/icon-whole-building.png', // Pastikan file gambar ada di storage
+                'sort_order'  => 5,
                 'is_active'   => 1,
+                'is_featured' => 0,
+                'created_at'  => $now,
+                'updated_at'  => $now,
+            ],
+            [
+                'title'       => 'Cooling Tower',
+                'slug'        => Str::slug('Cooling Tower'),
+                'category'    => 'tool',
+                'tags'        => 'HVAC,Efficiency',
+                'description' => 'Monitor blowdown, cycles of concentration, and make-up water. Cooling towers can account for 30–50% of usage.',
+                'image_path'  => 'tools/icon-cooling-tower.png', // Pastikan file gambar ada di storage
+                'sort_order'  => 6,
+                'is_active'   => 1,
+                'is_featured' => 0,
+                'created_at'  => $now,
+                'updated_at'  => $now,
+            ],
+            [
+                'title'       => 'Toilets',
+                'slug'        => Str::slug('Toilets'),
+                'category'    => 'tool',
+                'tags'        => 'Restroom,Leaks',
+                'description' => 'Toilets waste up to 200 gallons per day in older systems. Pinpoint inefficiencies and get savings instantly.',
+                'image_path'  => 'tools/icon-toilets.png', // Pastikan file gambar ada di storage
+                'sort_order'  => 7,
+                'is_active'   => 1,
+                'is_featured' => 0,
                 'created_at'  => $now,
                 'updated_at'  => $now,
             ],

@@ -1,7 +1,7 @@
 
 
       <!-- =============== FOOTER SECTION (PREMIUM, MATCHES HEADER) =============== -->
-       <footer class="relative bg-black text-white pt-16 pb-0 mt-32 shadow-xl px-0">
+       <footer class="relative bg-black text-white pt-16 pb-0 shadow-xl px-0">
       <div class="max-w-12xl mx-auto flex flex-col md:flex-row md:justify-between px-10">
         <div class="mb-12 md:mb-0 flex-1 min-w-[270px]">
           <div class="flex items-center mb-3">

@@ -22,7 +22,7 @@
 
     @include('layouts.partials.header')
 
-    <main>
+    <main class="@yield('main-class', 'bg-gray-50')">
         @yield('content')
     </main>
 
