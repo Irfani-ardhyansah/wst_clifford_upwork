@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\IndustryController as AdminIndustryController;
 use App\Http\Controllers\Admin\CaseStudyController as AdminCaseStudyController;
 use App\Http\Controllers\Admin\WhitePaperController as AdminWhitePaperController;
+use App\Http\Controllers\Admin\ToolController as AdminToolController;
+use App\Http\Controllers\Admin\WebinarController as AdminWebinarController;
 use App\Http\Controllers\Front\IndustryController;
 use App\Http\Controllers\Admin\PortalController as AdminPortalController;
 use App\Http\Controllers\AuthController;
@@ -46,6 +48,14 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::prefix('white-papers')->name('white-papers.')->group(function () {
             Route::get('/', [AdminWhitePaperController::class, 'index'])->name('index');
+        });
+
+        Route::prefix('tools')->name('tools.')->group(function () {
+            Route::get('/', [AdminToolController::class, 'index'])->name('index');
+        });
+
+        Route::prefix('webinars')->name('webinars.')->group(function () {
+            Route::get('/', [AdminWebinarController::class, 'index'])->name('index');
         });
 
         Route::prefix('industries')->name('industries.')->group(function () {

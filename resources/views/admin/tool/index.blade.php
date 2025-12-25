@@ -1,7 +1,7 @@
 @extends('admin.portal')
 
-@section('title', 'White Papers')
-@section('header_title', 'White Papers')
+@section('title', 'Tools')
+@section('header_title', 'Tools')
 
 @section('content')
 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,7 +34,7 @@
                         >
                     </div>
 
-                    @if(request('search'))
+                    @if(request('search') || request('industry_id'))
                         <div class="flex items-center pl-2 md:border-l border-gray-200 ml-2">
                             <a href="{{ route('admin.assets.index') }}" 
                             class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition" 
@@ -46,10 +46,9 @@
                 </form>
             </div>
 
-            {{-- Indikator Hasil Pencarian (Opsional, untuk UX lebih jelas) --}}
             @if(request('search'))
                 <p class="text-sm text-gray-500 mb-4 px-1">
-                    Found {{ $whitePapers->total() }} results for "<span class="font-semibold text-gray-800">{{ request('search') }}</span>"
+                    Found {{ $tools->total() }} results for "<span class="font-semibold text-gray-800">{{ request('search') }}</span>"
                 </p>
             @endif
         </div>
@@ -73,7 +72,7 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-50">
-                    @forelse($whitePapers as $item)
+                    @forelse($tools as $item)
                         <tr class="group transition-all duration-200 hover:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.1)] hover:bg-white hover:-translate-y-[2px] relative hover:z-20">
                             
                             <td class="px-6 py-5 first:pl-8">
@@ -159,9 +158,9 @@
             </table>
         </div>
         
-        @if($whitePapers->hasPages())
+        @if($tools->hasPages())
             <div class="bg-white px-6 py-4 border-t border-gray-100">
-                {{ $whitePapers->links() }}
+                {{ $tools->links() }}
             </div>
         @endif
     </div>

@@ -1,7 +1,7 @@
 @extends('admin.portal')
 
-@section('title', 'White Papers')
-@section('header_title', 'White Papers')
+@section('title', 'Webinar')
+@section('header_title', 'Webinar')
 
 @section('content')
 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,7 +34,7 @@
                         >
                     </div>
 
-                    @if(request('search'))
+                    @if(request('search') || request('industry_id'))
                         <div class="flex items-center pl-2 md:border-l border-gray-200 ml-2">
                             <a href="{{ route('admin.assets.index') }}" 
                             class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition" 
@@ -49,7 +49,7 @@
             {{-- Indikator Hasil Pencarian (Opsional, untuk UX lebih jelas) --}}
             @if(request('search'))
                 <p class="text-sm text-gray-500 mb-4 px-1">
-                    Found {{ $whitePapers->total() }} results for "<span class="font-semibold text-gray-800">{{ request('search') }}</span>"
+                    Found {{ $webinars->total() }} results for "<span class="font-semibold text-gray-800">{{ request('search') }}</span>"
                 </p>
             @endif
         </div>
@@ -73,19 +73,33 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-50">
-                    @forelse($whitePapers as $item)
+                    @forelse($webinars as $item)
                         <tr class="group transition-all duration-200 hover:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.1)] hover:bg-white hover:-translate-y-[2px] relative hover:z-20">
                             
                             <td class="px-6 py-5 first:pl-8">
                                 <div class="flex items-center gap-5">
                                     <div class="relative h-16 w-24 flex-shrink-0 rounded-xl overflow-hidden border border-gray-200/80 shadow-sm bg-gray-100">
+                                        @if(!empty($item->video_path))
+                                            <a href="{{ Storage::url($item->video_path) }}" 
+                                            target="_blank"
+                                            class="relative h-16 w-24 flex-shrink-0 rounded-xl overflow-hidden border border-gray-200/80 shadow-sm bg-gray-100 group block cursor-pointer">
+                                        @else
+                                            <div class="relative h-16 w-24 flex-shrink-0 rounded-xl overflow-hidden border border-gray-200/80 shadow-sm bg-gray-100 group">
+                                        @endif
+                                        
                                         @if($item->image_path)
                                             <img src="{{ Storage::url($item->image_path) }}" 
-                                                 class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500" 
-                                                 alt="{{ $item->title }}">
+                                                class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500" 
+                                                alt="{{ $item->title }}">
                                         @else
                                             <div class="h-full w-full flex items-center justify-center text-gray-400 bg-gray-50">
                                                 <i class="fa-regular fa-image text-2xl opacity-50"></i>
+                                            </div>
+                                        @endif
+
+                                        @if(!empty($item->video_path))
+                                            </a>
+                                        @else
                                             </div>
                                         @endif
                                     </div>
@@ -117,13 +131,13 @@
                             <td class="px-6 py-5 text-right last:pr-8">
                                 <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-all duration-200 transform group-hover:translate-x-0 translate-x-4">
                                     <a href="{{ route('admin.assets.edit', $item) }}" 
-                                       class="p-2 bg-white border border-gray-200 rounded-lg text-gray-400 hover:text-blue-600 hover:border-blue-300 hover:shadow-sm hover:bg-blue-50 transition"
-                                       title="Edit">
+                                        class="p-2 bg-white border border-gray-200 rounded-lg text-gray-400 hover:text-blue-600 hover:border-blue-300 hover:shadow-sm hover:bg-blue-50 transition"
+                                        title="Edit">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </a>
 
                                     <form action="{{ route('admin.assets.destroy', $item) }}" method="POST" 
-                                          onsubmit="return confirm('Are you sure?');">
+                                        onsubmit="return confirm('Are you sure?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" 
@@ -146,7 +160,7 @@
                                     <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm border border-gray-100">
                                         <i class="fa-solid fa-folder-plus text-3xl text-teal-600/80"></i>
                                     </div>
-                                    <h3 class="text-xl font-bold text-gray-900 mb-2">No Case Studies Yet</h3>
+                                    <h3 class="text-xl font-bold text-gray-900 mb-2">No Webinar Yet</h3>
                                     <p class="text-gray-500 mb-6 max-w-md mx-auto">Get started by adding your first project showcase to the portfolio.</p>
                                     <a href="{{ route('admin.assets.create') }}" class="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-xl font-medium transition shadow-md shadow-teal-600/20 hover:shadow-lg hover:-translate-y-0.5">
                                         <i class="fa-solid fa-plus"></i> Create New Project
@@ -159,9 +173,9 @@
             </table>
         </div>
         
-        @if($whitePapers->hasPages())
+        @if($webinars->hasPages())
             <div class="bg-white px-6 py-4 border-t border-gray-100">
-                {{ $whitePapers->links() }}
+                {{ $webinars->links() }}
             </div>
         @endif
     </div>

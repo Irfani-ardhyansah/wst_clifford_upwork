@@ -128,11 +128,9 @@ $(function () {
     function toggleFields(resetValue = true) {
         const category = $category.val();
 
-        // hide all
         $video.addClass('hidden');
         $industry.addClass('hidden');
 
-        // reset ONLY on create
         if (!isEdit && resetValue) {
             $('#industry_id').val('');
         }
@@ -146,12 +144,10 @@ $(function () {
         }
     }
 
-    // on change → reset allowed
     $category.on('change', function () {
         toggleFields(true);
     });
 
-    // initial load → DO NOT reset (important for edit)
     toggleFields(false);
 });
 </script>

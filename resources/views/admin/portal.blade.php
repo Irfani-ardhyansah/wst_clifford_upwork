@@ -59,17 +59,21 @@
                             <i class="fa-solid fa-briefcase w-5"></i> Case Studies
                         </a>
 
-                        <button onclick="filterAssets('Webinar')"
-                            class="nav-btn w-full text-left px-4 py-3 rounded-lg
-                                hover:bg-gray-800/50 transition flex items-center gap-3 text-gray-400">
+                        <a href="{{ route('admin.webinars.index') }}"
+                        class="flex items-center gap-3 px-4 py-3 rounded-xl transition
+                        {{ request()->routeIs('admin.webinars*')
+                                ? 'active'
+                                : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
                             <i class="fa-solid fa-video w-5"></i> Webinars
-                        </button>
+                        </a>
 
-                        <button onclick="filterAssets('Tool')"
-                            class="nav-btn w-full text-left px-4 py-3 rounded-lg
-                                hover:bg-gray-800/50 transition flex items-center gap-3 text-gray-400">
+                        <a href="{{ route('admin.tools.index') }}"
+                        class="flex items-center gap-3 px-4 py-3 rounded-xl transition
+                        {{ request()->routeIs('admin.tools*')
+                                ? 'active'
+                                : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
                             <i class="fa-solid fa-calculator w-5"></i> Tools & Calculators
-                        </button>
+                        </a>
 
                         <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mt-8 mb-3 px-3">Users Page</p>
                 @endif
