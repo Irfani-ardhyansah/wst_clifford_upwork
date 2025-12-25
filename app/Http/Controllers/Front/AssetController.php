@@ -25,12 +25,18 @@ class AssetController extends Controller
             ]);
         }
 
+        if (!blank($asset->video_path)) {
+            return response()->json([
+                'title' => $asset->title, // Opsional: untuk ganti judul modal
+                'html'  => view('member_dashboard.video_player', compact('asset'))->render()
+            ]);
+        }
+
         if (blank($asset->html_content)) {
             return response()->json([
                 'html' => view('member_dashboard.empty-content', compact('asset'))->render()
             ]);
         }
-
 
         return response()->json([
             'html' => $asset->html_content,

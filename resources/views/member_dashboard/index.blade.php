@@ -160,14 +160,12 @@
 
             let id = $(this).data('id');
 
-            // 1️⃣ reset modal body + loading
             $modalBody.html(`
                 <div class="flex justify-center items-center h-40">
                     <i class="fa-solid fa-spinner fa-spin text-3xl text-gray-400"></i>
                 </div>
             `);
 
-            // 2️⃣ buka modal (SAMA persis kaya punyamu)
             $modal.removeClass('hidden').hide().fadeIn(200);
             $body.css('overflow', 'hidden');
 
@@ -177,7 +175,6 @@
                     .addClass('opacity-100 translate-y-0');
             }, 20);
 
-            // 3️⃣ fetch konten
             $.get(`/member-dashboard/${id}/content`, function (res) {
                 $modalBody.html(res.html);
             });
