@@ -71,7 +71,7 @@
             </div>
         </a>
 
-        <a href="{{ route('admin.white-papers') }}"
+        <a href="{{ route('admin.white-papers.index') }}"
            class="group bg-white rounded-xl border border-gray-100 p-6 shadow-sm hover:border-indigo-500 transition">
             <div class="flex items-center gap-4">
                 <div class="w-12 h-12 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl">

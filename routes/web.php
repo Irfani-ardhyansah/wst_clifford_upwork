@@ -11,6 +11,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\AssetController as AdminAssetController;
 use App\Http\Controllers\Front\MemberDashboardController;
 use App\Http\Controllers\Front\WhitePaperController;
+use App\Http\Controllers\Front\CaseStudyController;
+use App\Http\Controllers\Front\AssetController;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login.custom');
 Route::post('/login-by-phone', [AuthController::class, 'loginByPhone'])->name('login.phone');
@@ -55,15 +57,13 @@ Route::middleware(['auth', 'role:admin'])
             Route::delete('/{industry}', [AdminIndustryController::class, 'destroy'])->name('destroy');
         });
 
-
         Route::get('/dashboard', [AdminPortalController::class, 'dashboard'])->name('admin.dashboard');
-        // Route::get('/case-studies', [AdminPortalController::class, 'caseStudies'])->name('case-studies');
-        // Route::get('/white-papers', [AdminPortalController::class, 'whitePapers'])->name('white-papers');
 
 });
 
 Route::prefix('member-dashboard')->name('member-dashboard.')->group(function () {
     Route::get('/', [MemberDashboardController::class, 'index'])->name('index');
+    Route::get('/{id}/content', [AssetController::class, 'show'])->name('show');
 });
 
 Route::prefix('services')->name('services.')->group(function () {
@@ -128,7 +128,7 @@ Route::prefix('opportunities')->name('opportunities.')->group(function () {
 
 Route::prefix('industries')->name('industries.')->group(function () {
     Route::get('/', [IndustryController::class, 'index'])->name('index');
-    Route::get('/{slug}', [IndustryController::class, 'showCaseStudy'])->name('case_study');
+    Route::get('/{slug}', [CaseStudyController::class, 'getByIndustrySlug'])->name('case_study');
 });
 
 Route::prefix('resources')->name('resources.')->group(function () {
@@ -144,9 +144,8 @@ Route::prefix('resources')->name('resources.')->group(function () {
         return view('resources.water_consumption_tool.whole_building');
     })->name('tools.whole_building');
 
-    Route::get('/white-papers', [WhitePaperController::class, 'index'])
-    ->name('white-papers');
-
+    Route::get('/white-papers', [WhitePaperController::class, 'index'])->name('white-papers');
+    Route::get('/assets/{slug}', [AssetController::class, 'show'])->middleware('auth');
     Route::get('/my_city_rebates', function () {
         return view('resources.my_city_rebates');
     })->name('my_city_rebates');

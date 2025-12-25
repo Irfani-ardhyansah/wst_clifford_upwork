@@ -187,11 +187,8 @@ $(document).ready(function() {
 
         $('#pending-asset-preview').removeClass('hidden').addClass('flex');
 
-        // 4. Animasi Muncul
-        // Hapus class hidden & opacity-0 bawaan Tailwind biar kelihatan
         $('#auth-modal').removeClass('hidden opacity-0').addClass('flex');
         
-        // Efek Zoom In
         setTimeout(function() {
              $('#modal-content').removeClass('scale-95').addClass('scale-100');
         }, 10);

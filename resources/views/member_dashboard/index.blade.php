@@ -77,8 +77,8 @@
                                 </a>
                             </h3>
 
-                            <p class="text-sm text-gray-500 mb-6 line-clamp-3 leading-relaxed">
-                                {{ $asset->description ?? Str::limit(strip_tags($asset->html_content), 120) }}
+                            <p class="text-sm text-gray-500 mb-6 line-clamp-3 leading-relaxed ">
+                                {{ Str::limit(strip_tags($asset->description), 80)}}
                             </p>
 
                             <div class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
@@ -94,9 +94,6 @@
                             </div>
                         </div>
 
-                        <template id="content-{{ $asset->id }}">
-                            {!! $asset->html_content !!}
-                        </template>
                     </div>
                 @empty
                     <div class="col-span-full py-16 text-center border-2 border-dashed border-gray-100 rounded-xl">
@@ -158,23 +155,32 @@
             }
         });
 
-        $(document).on('click', '#openModalBtn', function(e) {
+        $(document).on('click', '#openModalBtn', function (e) {
+            e.preventDefault();
+
             let id = $(this).data('id');
-            var templateContent = $('#content-' + id).html();
 
-            if (templateContent) {
-                var fullContent = `
-                    ${templateContent}
-                `;
-                $modalBody.html(fullContent);
-                $modal.removeClass('hidden').hide().fadeIn(200);
-                $body.css('overflow', 'hidden');
-                setTimeout(function() {
-                    $modalPanel.removeClass('opacity-0 translate-y-8');
-                    $modalPanel.addClass('opacity-100 translate-y-0');
-                }, 20);
-            }
+            // 1️⃣ reset modal body + loading
+            $modalBody.html(`
+                <div class="flex justify-center items-center h-40">
+                    <i class="fa-solid fa-spinner fa-spin text-3xl text-gray-400"></i>
+                </div>
+            `);
 
+            // 2️⃣ buka modal (SAMA persis kaya punyamu)
+            $modal.removeClass('hidden').hide().fadeIn(200);
+            $body.css('overflow', 'hidden');
+
+            setTimeout(function () {
+                $modalPanel
+                    .removeClass('opacity-0 translate-y-8')
+                    .addClass('opacity-100 translate-y-0');
+            }, 20);
+
+            // 3️⃣ fetch konten
+            $.get(`/member-dashboard/${id}/content`, function (res) {
+                $modalBody.html(res.html);
+            });
         });
 
         function performClose() {

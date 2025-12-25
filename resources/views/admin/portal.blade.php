@@ -98,6 +98,22 @@
                             <i class="fa-solid fa-briefcase w-5"></i> Case Studies
                     </a>
 
+                    <a href="{{ route('member-dashboard.index', ['category' => 'webinar']) }}"
+                        class="flex items-center gap-3 px-4 py-3 rounded-xl transition
+                        {{ request('category') == 'webinar'
+                                ? 'active'
+                                : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
+                        <i class="fa-solid fa-video w-5"></i> Webinars
+                    </a>
+
+                    <a href="{{ route('member-dashboard.index', ['category' => 'tool']) }}"
+                        class="flex items-center gap-3 px-4 py-3 rounded-xl transition
+                        {{ request('category') == 'tool'
+                                ? 'active'
+                                : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
+                        <i class="fa-solid fa-calculator w-5"></i> Tools & Calculators
+                    </a>
+
                 </nav>
 
             <div class="mt-auto p-4 border-t border-gray-800">
