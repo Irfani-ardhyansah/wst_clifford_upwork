@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             IndustrySeeder::class,
             AssetsSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            AssetViewsSeeder::class
             // Kamu bisa tambah seeder lain di sini, misal: UserSeeder::class
         ]);
     }

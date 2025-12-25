@@ -57,7 +57,8 @@ Route::middleware(['auth', 'role:admin'])
             Route::delete('/{industry}', [AdminIndustryController::class, 'destroy'])->name('destroy');
         });
 
-        Route::get('/dashboard', [AdminPortalController::class, 'dashboard'])->name('admin.dashboard');
+        Route::get('/dashboard', [AdminPortalController::class, 'dashboard'])->name('dashboard');
+        Route::get('/users/export', [AdminPortalController::class, 'exportUsersCsv'])->name('users.export');
 
 });
 

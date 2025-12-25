@@ -28,4 +28,9 @@ class Asset extends Model
     {
         return $this->belongsTo(Industry::class);
     }
+    
+    public function views()
+    {
+        return $this->hasMany(AssetView::class);
+    }
 }
