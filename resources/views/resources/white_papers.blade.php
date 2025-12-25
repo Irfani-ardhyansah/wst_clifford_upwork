@@ -40,7 +40,7 @@
                   hover:shadow-lg hover:-translate-y-0.5 transition-all"
                   data-id="{{ $item->id }}" data-title="{{ $item->title }}" data-image="{{ asset('storage/' . $item->image_path) }}"
                   >
-                <span>View Case Study</span>
+                <span>View White Papers</span>
                 <span class="ml-auto grid place-items-center w-9 h-9 rounded-full">
                   <i class="ri-arrow-right-up-line ml-3"></i>
                 </span>
