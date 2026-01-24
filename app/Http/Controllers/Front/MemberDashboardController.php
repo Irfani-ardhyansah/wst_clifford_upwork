@@ -6,9 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Asset;
+use App\Models\Industry;
 
 class MemberDashboardController extends Controller
 {
+    public $categories = [
+            ['value' => 'case-study', 'text' => 'Case Study'], 
+            ['value' => 'webinar', 'text' => 'Webinar'], 
+            ['value' => 'white-paper', 'text' => 'White Paper'], 
+            ['value' => 'tool', 'text' => 'Tool'], 
+        ];
+
     public function index(Request $request)
     {
         $query = Asset::where('is_active', true)
@@ -19,6 +27,10 @@ class MemberDashboardController extends Controller
         if ($request->filled('category')) {
             $typeFunction = 'detail';
             $query->where('category', $request->category);
+        }
+
+        if ($request->filled('industry_id')) {
+            $query->where('industry_id', $request->industry_id);
         }
 
         if ($request->filled('search')) {
@@ -34,12 +46,15 @@ class MemberDashboardController extends Controller
 
         $pageTitle = $request->category ? Str::plural($request->category) : 'All Resources';
 
+        $categories = $this->categories;
+        $industries = Industry::orderBy('title', 'asc')->get();
+
         $sidebarMenu = [
             ['value' => 'white-paper', 'label' => 'White Papers', 'icon' => 'fa-file-lines'],
             ['value' => 'case-study', 'label' => 'Case Studies', 'icon' => 'fa-briefcase'],
             ['value' => 'webinar', 'label' => 'Webinars', 'icon' => 'fa-video'],
             ['value' => 'tool', 'label' => 'Tools & Calculators', 'icon' => 'fa-calculator'],
         ];
-        return view('member_dashboard.index', compact('assets', 'pageTitle', 'sidebarMenu', 'typeFunction'));
+        return view('member_dashboard.index', compact('assets', 'pageTitle', 'sidebarMenu', 'typeFunction', 'industries', 'categories'));
     }
 }

@@ -20,24 +20,62 @@
         @endif
 
         <div class="px-6 py-8 md:px-10">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-                <div>
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-8">
+                <div class="mb-2 lg:mb-0">
                     <h2 class="text-xl font-bold text-gray-900">{{ $pageTitle }}</h2>
                     <p class="text-sm text-gray-500 mt-1">{{ $assets->total() }} resources available</p>
                 </div>
 
-                <form action="{{ route('member-dashboard.index') }}" method="GET" class="w-full md:w-80">
-                    @if(request('category'))
-                        <input type="hidden" name="category" value="{{ request('category') }}">
-                    @endif
-                    <div class="relative group">
+                <form action="{{ route('member-dashboard.index') }}" method="GET" 
+                    class="flex flex-col md:flex-row gap-3 w-full lg:w-auto">
+                    
+                    {{-- 1. Filter Industry --}}
+                    <div class="relative group min-w-[200px]">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <i class="fa-solid fa-building text-gray-400"></i>
+                        </div>
+                        <select name="industry_id" onchange="this.form.submit()"
+                            class="w-full pl-10 pr-8 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-gray-400 transition-all shadow-sm appearance-none cursor-pointer">
+                            <option value="">All Industries</option>
+                            @foreach($industries as $industry)
+                                <option value="{{ $industry->id }}" {{ request('industry_id') == $industry->id ? 'selected' : '' }}>
+                                    {{ $industry->title }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <i class="fa-solid fa-chevron-down text-xs text-gray-400"></i>
+                        </div>
+                    </div>
+
+                    <div class="relative group min-w-[180px]">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <i class="fa-solid fa-layer-group text-gray-400"></i>
+                        </div>
+                        <select name="category" onchange="this.form.submit()"
+                            class="w-full pl-10 pr-8 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-gray-400 transition-all shadow-sm appearance-none cursor-pointer">
+                            <option value="">All Categories</option>
+                            @foreach($categories as $row)
+                                <option value="{{ $row['value'] }}" {{ request('category') == $row['value'] ? 'selected' : '' }}>
+                                    {{ $row['text'] }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <i class="fa-solid fa-chevron-down text-xs text-gray-400"></i>
+                        </div>
+                    </div>
+
+                    {{-- 3. Search Input --}}
+                    <div class="relative group w-full md:w-64">
                         <input type="text" name="search" value="{{ request('search') }}"
-                                placeholder="Search resources..." 
+                                placeholder="Search..." 
                                 class="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-gray-400 transition-all shadow-sm">
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                             <i class="fa-solid fa-magnifying-glass text-gray-400 group-focus-within:text-teal-600 transition-colors"></i>
                         </div>
                     </div>
+
                 </form>
             </div>
 
