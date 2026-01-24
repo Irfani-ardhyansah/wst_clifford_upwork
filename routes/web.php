@@ -71,6 +71,7 @@ Route::middleware(['auth', 'role:admin'])
         Route::get('/dashboard', [AdminPortalController::class, 'dashboard'])->name('dashboard');
         Route::get('/users/export', [AdminPortalController::class, 'exportUsersCsv'])->name('users.export');
 
+        Route::get('/dashboard/asset/{id}/details', [AdminPortalController::class, 'getAssetViewDetails'])->name('asset.details');
 });
 
 Route::prefix('member-dashboard')->name('member-dashboard.')->group(function () {
@@ -144,10 +145,6 @@ Route::prefix('industries')->name('industries.')->group(function () {
 });
 
 Route::prefix('resources')->name('resources.')->group(function () {
-    // Route::get('/selection_tool', function () {
-    //     return view('resources.water_consumption_tool.selection_tool');
-    // })->name('tools.selection_tool');
-
     Route::get('/cooling_tower', function () {
         return view('resources.water_consumption_tool.cooling_tower');
     })->name('tools.cooling_tower');

@@ -97,4 +97,13 @@ class PortalController extends Controller
             'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
         ]);
     }
+
+    public function getAssetViewDetails($id, Request $request)
+    {
+        $asset = Asset::with(['views.user'])->findOrFail($id);
+
+        $views_count = AssetView::where('asset_id', $id)->count(); 
+
+        return view('admin.components.asset-log-detail-card', compact('asset', 'views_count'));
+    }
 }

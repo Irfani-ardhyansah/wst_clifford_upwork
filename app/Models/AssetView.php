@@ -11,4 +11,9 @@ class AssetView extends Model
         'user_id',
         'view_date',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

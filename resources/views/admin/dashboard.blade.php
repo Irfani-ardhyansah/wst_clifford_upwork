@@ -62,6 +62,9 @@
             <ul class="space-y-4">
                 @forelse($topAssets ?? [] as $index => $asset)
                     <li class="flex items-center justify-between">
+                        <button type="button" 
+                            data-url="{{ route('admin.asset.details', $asset->id) }}"
+                            class="asset-trigger w-full flex items-center justify-between group p-3 rounded-lg border border-transparent hover:bg-gray-50 hover:border-gray-200 transition-all duration-200 text-left">
                         <div class="flex items-center gap-3">
                             <span class="text-gray-300 font-bold">
                                 {{ $index + 1 }}
@@ -85,6 +88,13 @@
         </div>
 
     </div>
+
+    <div id="detail-loader" class="hidden mt-8 text-center py-12">
+        <i class="fa-solid fa-circle-notch fa-spin text-3xl text-teal-500 mb-3"></i>
+        <p class="text-gray-400 animate-pulse">Loading logs data...</p>
+    </div>
+
+    <div id="asset-detail-container" class="mt-8" style="display: none;"></div>
 
     <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mt-8">
         <div class="p-4 border-b border-gray-100 flex justify-between items-center">
@@ -139,6 +149,7 @@
 @endsection
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
 const ctx = document.getElementById('assetChart');
@@ -174,5 +185,55 @@ new Chart(ctx, {
     function exportLeads() {
         window.location.href = "{{ route('admin.users.export') }}";
     }
+
+    $(document).ready(function() {
+        
+        // 1. Handle Klik pada List Item
+        $('.asset-trigger').on('click', function(e) {
+            e.preventDefault();
+            
+            let url = $(this).data('url');
+            let container = $('#asset-detail-container');
+            let loader = $('#detail-loader');
+            let allTriggers = $('.asset-trigger');
+
+            // Visual feedback pada tombol yang aktif
+            allTriggers.removeClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
+            $(this).addClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
+
+            // Animasi slide up container lama (jika ada)
+            container.slideUp(200, function() {
+                // Tampilkan loader
+                loader.removeClass('hidden').fadeIn(100);
+                
+                // Request AJAX
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function(response) {
+                        loader.hide(); // Sembunyikan loader
+                        
+                        container.html(response).slideDown(400);
+
+                        $('html, body').animate({
+                            scrollTop: container.offset().top - 150
+                        }, 600);
+                    },
+                    error: function(xhr) {
+                        loader.hide();
+                        alert('Failed to load asset details.');
+                    }
+                });
+            });
+        });
+
+        // 2. Handle Tombol Close (Delegated Event karena tombol dibuat dinamis)
+        $(document).on('click', '#close-detail-btn', function() {
+            $('#asset-detail-container').slideUp(300);
+            // Hapus highlight aktif pada list
+            $('.asset-trigger').removeClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
+        });
+
+});
 </script>
 @endpush
