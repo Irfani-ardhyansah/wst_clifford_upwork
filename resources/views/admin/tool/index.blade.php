@@ -160,7 +160,7 @@
         
         @if($tools->hasPages())
             <div class="bg-white px-6 py-4 border-t border-gray-100">
-                {{ $tools->links() }}
+                {{ $tools->links('pagination.custom') }}
             </div>
         @endif
     </div>

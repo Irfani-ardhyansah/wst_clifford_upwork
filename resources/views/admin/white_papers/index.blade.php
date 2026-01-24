@@ -161,7 +161,7 @@
         
         @if($whitePapers->hasPages())
             <div class="bg-white px-6 py-4 border-t border-gray-100">
-                {{ $whitePapers->links() }}
+                {{ $whitePapers->links('pagination.custom') }}
             </div>
         @endif
     </div>

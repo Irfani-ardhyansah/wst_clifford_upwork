@@ -150,7 +150,7 @@
         
         @if($industries->hasPages())
             <div class="bg-white px-6 py-4 border-t border-gray-100">
-                {{ $industries->links() }}
+                {{ $industries->links('pagination.custom') }}
             </div>
         @endif
     </div>

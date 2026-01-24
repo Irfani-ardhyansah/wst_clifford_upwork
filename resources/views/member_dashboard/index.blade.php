@@ -148,7 +148,7 @@
 
             @if($assets->hasPages())
                 <div class="flex items-center justify-center border-t border-gray-100 pt-8 pb-4">
-                    {{ $assets->links() }} 
+                    {{ $assets->links('pagination.custom') }} 
                 </div>
             @endif
 

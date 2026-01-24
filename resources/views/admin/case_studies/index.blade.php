@@ -196,7 +196,7 @@
         
         @if($caseStudies->hasPages())
             <div class="bg-white px-6 py-4 border-t border-gray-100">
-                {{ $caseStudies->links() }}
+                {{ $caseStudies->links('pagination.custom') }}
             </div>
         @endif
     </div>

@@ -256,7 +256,7 @@
         
         @if($assets->hasPages())
             <div class="bg-white px-6 py-4 border-t border-gray-100">
-                {{ $assets->links() }}
+                {{ $assets->links('pagination.custom') }}
             </div>
         @endif
     </div>
