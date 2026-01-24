@@ -17,6 +17,7 @@ use App\Http\Controllers\Front\WhitePaperController;
 use App\Http\Controllers\Front\CaseStudyController;
 use App\Http\Controllers\Front\AssetController;
 use App\Http\Controllers\Front\ToolController;
+use Illuminate\Support\Facades\Artisan;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login.custom');
 Route::post('/login-by-phone', [AuthController::class, 'loginByPhone'])->name('login.phone');
@@ -168,3 +169,19 @@ Route::prefix('resources')->name('resources.')->group(function () {
 });
 
 Route::post('/subscribe', [SubscriberController::class, 'store'])->name('subscribe.store');
+
+Route::get('/fix-link', function () {
+    $publicStorage = base_path('../public/storage');
+    if (file_exists($publicStorage)) {
+        app('files')->delete($publicStorage);
+    }
+    Artisan::call('storage:link');
+    return "Link diperbarui!";
+});
+
+Route::get('/optimize', function() {
+    Artisan::call('config:cache');
+    Artisan::call('route:cache');
+    Artisan::call('view:clear');
+    return "Cache cleared!";
+});
