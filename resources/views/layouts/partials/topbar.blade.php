@@ -32,7 +32,7 @@
         <a href="#" class="block hover:bg-gray-50 rounded px-2 py-1">Smart Monitoring</a>
         <a href="#" class="block hover:bg-gray-50 rounded px-2 py-1">Project Progress</a>
         <a href="#" class="block hover:bg-gray-50 rounded px-2 py-1">Elara AI Assistant</a>
-        @guest
+        <!-- @guest
             <a
                 href="{{ route('login') }}"
                 class="block hover:bg-gray-50 rounded px-2 py-1"
@@ -40,8 +40,32 @@
             >
                 Login
             </a>
-        @endguest
-        @auth
+        @endguest -->
+        <a
+            id="nav-login-link"
+            href="{{ route('login') }}"
+            class="{{ Auth::check() ? 'hidden' : '' }} block hover:bg-gray-50 rounded px-2 py-1 transition"
+            title="Login"
+        >
+            Login
+        </a>
+
+        <form 
+            id="nav-logout-form" 
+            method="POST" 
+            action="{{ route('logout') }}" 
+            class="{{ Auth::check() ? 'inline' : 'hidden inline' }}"
+        >
+            @csrf
+            <button
+                type="submit"
+                class="block hover:bg-gray-50 rounded px-2 py-1 transition text-red-500 hover:text-red-600"
+                title="Logout"
+            >
+                Logout
+            </button>
+        </form>
+        <!-- @auth
             <form method="POST" action="{{ route('logout') }}" class="inline">
                 @csrf
                 <button
@@ -52,7 +76,7 @@
                     Logout
                 </button>
             </form>
-        @endauth
+        @endauth -->
 
       </div>
     </div>

@@ -40,6 +40,43 @@ class AuthController extends Controller
 
         $this->loginUser($request, $user);
 
+        $redirectUrl = route('member-dashboard.index');
+        $sourceUrl = $request->input('source_url');
+
+        if ($sourceUrl) {
+            $path = parse_url($sourceUrl, PHP_URL_PATH);
+            
+            $segments = explode('/', trim($path, '/'));
+
+            if (isset($segments[0])) {
+                
+                if ($segments[0] === 'industries') {
+                    $redirectUrl = route('member-dashboard.index', ['category' => 'case-study']);
+                } 
+                elseif ($segments[0] === 'resources') {
+                    // Cek Segment Kedua
+                    if (isset($segments[1])) {
+                        if ($segments[1] === 'tool') {
+                            $redirectUrl = route('member-dashboard.index', ['category' => 'tool']);
+                        } elseif ($segments[1] === 'white-paper') {
+                            $redirectUrl = route('member-dashboard.index', ['category' => 'white-paper']);
+                        }
+                    }
+                }
+            }
+        }
+
+        if ($request->ajax() || $request->wantsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Login successful',
+                'user' => [
+                    'name' => $user->name,
+                ],
+                'redirect_url' => $redirectUrl
+            ]);
+        }
+
         // return redirect()->intended($this->redirectByRole());
         return redirect()->back();
     }

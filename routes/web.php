@@ -75,7 +75,7 @@ Route::middleware(['auth', 'role:admin'])
         Route::get('/dashboard/asset/{id}/details', [AdminPortalController::class, 'getAssetViewDetails'])->name('asset.details');
 });
 
-Route::prefix('member-dashboard')->name('member-dashboard.')->group(function () {
+Route::middleware('auth')->prefix('member-dashboard')->name('member-dashboard.')->group(function () {
     Route::get('/', [MemberDashboardController::class, 'index'])->name('index');
     Route::get('/{id}/content', [AssetController::class, 'show'])->name('show');
 });
@@ -154,9 +154,9 @@ Route::prefix('resources')->name('resources.')->group(function () {
         return view('resources.water_consumption_tool.whole_building');
     })->name('tools.whole_building');
 
-    Route::get('/white-papers', [WhitePaperController::class, 'index'])->name('white-papers');
+    Route::get('/white-paper', [WhitePaperController::class, 'index'])->name('white-papers');
     Route::get('/assets/{slug}', [AssetController::class, 'show']);
-    Route::get('/selection-tool', [ToolController::class, 'index'])->name('tools.selection_tool');
+    Route::get('/tool', [ToolController::class, 'index'])->name('tools.selection_tool');
 
     Route::get('/my_city_rebates', function () {
         return view('resources.my_city_rebates');

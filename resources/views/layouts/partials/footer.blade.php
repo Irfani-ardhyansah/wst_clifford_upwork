@@ -79,10 +79,14 @@
             <a href="#" class="text-xs text-gray-400 hover:text-blue-400">Privacy Policy</a>
             <span class="text-xs text-gray-400">|</span>
             <a href="#" class="text-xs text-gray-400 hover:text-blue-400">User Agreement</a>
-            @guest
-              <span class="text-xs text-gray-400">|</span>
-              <a href="{{route('login')}}" class="text-xs text-gray-400 hover:text-blue-400">Admin Access</a>
-            @endguest
+            <span id="admin-links-container">
+                @guest
+                    <span class="text-xs text-gray-400">|</span>
+                    <a href="{{ route('login') }}" class="admin-login-link text-xs text-gray-400 hover:text-blue-400">
+                        Admin Access
+                    </a>
+                @endguest
+            </span>
           </div>
           <div class="flex items-center">
             <span class="text-xs text-gray-200 mr-2 tracking-wide">Stay Connected:</span>

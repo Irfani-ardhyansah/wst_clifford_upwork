@@ -68,6 +68,64 @@
             // initial state
             updateIcon();
         });
+
+        $(document).ready(function() {
+
+            $('#ajaxUserLoginForm').on('submit', function(e) {
+                e.preventDefault(); 
+
+                let form = $(this);
+                let btn = $('#btn-submit-auth');
+                let originalBtnText = btn.html();
+                
+                btn.prop('disabled', true).html('<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...');
+
+                $.ajax({
+                    url: form.attr('action'),
+                    type: "POST",
+                    data: form.serialize(),
+                    success: function(response) {
+                        if(response.status === 'success') {
+                            $('#success-user-name').text(response.user.name);
+                            
+                            if(response.redirect_url) {
+                                $('#success-redirect-btn').attr('href', response.redirect_url);
+                            }
+
+                            $('#auth-form-container').slideUp(300, function() {
+                                $('#auth-success-container').removeClass('hidden').hide().fadeIn(400);
+                            });
+
+                            $('#admin-links-container').fadeOut(500);
+                            $('#nav-login-link').addClass('hidden');
+                            $('#nav-logout-form').removeClass('hidden');
+
+                        } else {
+                            alert('Something went wrong.');
+                        }
+                    },
+                    error: function(xhr) {
+                        btn.prop('disabled', false).html(originalBtnText);
+                        
+                        if (xhr.status === 422) {
+                            let errors = xhr.responseJSON.errors;
+                            let errorMessage = '';
+                            $.each(errors, function(key, value) {
+                                errorMessage += value[0] + '\n';
+                            });
+                            alert(errorMessage); 
+                        } else {
+                            alert('Server error. Please try again later.');
+                        }
+                    },
+                    complete: function() {
+                        // Jika sukses, tombol tetap disabled biar gak double submit
+                        // Jika error, tombol sudah di-enable di block error
+                    }
+                });
+            });
+
+        });
     </script>
     </body>
 </html>
