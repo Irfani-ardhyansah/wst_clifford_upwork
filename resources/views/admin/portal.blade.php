@@ -8,8 +8,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <style>
+        .dataTables_wrapper .dataTables_length select {
+            padding-right: 2rem; background-position: right 0.5rem center; border-radius: 0.5rem; border-color: #e5e7eb; font-size: 0.875rem;
+        }
+        .dataTables_wrapper .dataTables_filter input {
+            border-radius: 0.5rem; border: 1px solid #e5e7eb; padding: 0.3rem 0.5rem; margin-left: 0.5rem; font-size: 0.875rem;
+        }
+        table.dataTable.no-footer { border-bottom: 1px solid #e5e7eb; }
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            background: #0d9488 !important; color: white !important; border: 1px solid #0d9488 !important; border-radius: 0.375rem;
+        }
         /* CSS dari file lama dipindah kesini */
         :root { --primary: #000000; --accent: #0d9488; --bg-gray: #f8fafc; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg-gray); }

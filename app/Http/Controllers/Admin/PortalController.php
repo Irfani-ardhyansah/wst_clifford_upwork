@@ -7,6 +7,7 @@ use App\Models\CaseStudy;
 use App\Models\Asset;
 use App\Models\AssetView;
 use App\Models\User;
+use App\Models\Subscriber;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Illuminate\Support\Str;
@@ -33,7 +34,14 @@ class PortalController extends Controller
     public function dashboard()
     {
         $registeredUsers = User::where('role', 'user')
+                            ->latest()
                             ->get()
+                            ->map(function ($user) {
+                                $user->formatted_created_at = $user->created_at->format('d/m/Y');
+                                return $user;
+                            });
+
+        $subscribers = Subscriber::latest()->get()
                             ->map(function ($user) {
                                 $user->formatted_created_at = $user->created_at->format('d/m/Y');
                                 return $user;
@@ -49,6 +57,8 @@ class PortalController extends Controller
             'top_asset_title' => Asset::withCount('views')
                 ->orderByDesc('views_count')
                 ->value('title'),
+
+            'total_subscribers' => Subscriber::count()
         ];
 
         $topAssets = Asset::withCount('views')
@@ -67,7 +77,8 @@ class PortalController extends Controller
             'stats',
             'topAssets',
             'chartLabels',
-            'chartValues'
+            'chartValues',
+            'subscribers'
         ));
     }
 

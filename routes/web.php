@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\WebinarController as AdminWebinarController;
 use App\Http\Controllers\Front\IndustryController;
 use App\Http\Controllers\Admin\PortalController as AdminPortalController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\Admin\AssetController as AdminAssetController;
 use App\Http\Controllers\Front\MemberDashboardController;
 use App\Http\Controllers\Front\WhitePaperController;
@@ -165,3 +166,5 @@ Route::prefix('resources')->name('resources.')->group(function () {
         return view('resources.financing_form');
     })->name('financing_form');
 });
+
+Route::post('/subscribe', [SubscriberController::class, 'store'])->name('subscribe.store');

@@ -49,98 +49,6 @@
     </div>
   </div>
   <a href="#" class="hover:text-blue-400">About</a>
-
-    <!-- <div x-data="{ dropdown: null, subDropdown: null }" class="relative" @mouseenter="dropdown = 'resources'" @mouseleave="dropdown = null; subDropdown = null">
-  
-      <button class="flex items-center gap-1 hover:text-blue-400 focus:outline-none">
-        Resources
-        <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
-        </svg>
-      </button>
-
-      <div x-show="dropdown === 'resources'" 
-          x-transition:enter="transition ease-out duration-200" 
-          x-transition:enter-start="opacity-0 scale-95" 
-          x-transition:enter-end="opacity-100 scale-100" 
-          x-transition:leave="transition ease-in duration-150" 
-          x-transition:leave-start="opacity-100 scale-100" 
-          x-transition:leave-end="opacity-0 scale-95"
-          class="absolute left-0 top-10 w-72 bg-white text-gray-900 shadow-xl rounded-b-lg p-2 z-40 space-y-1">
-
-        <div class="relative" @mouseenter="subDropdown = 'water'" @mouseleave="subDropdown = null">
-          <a href="{{ route('resources.tools.selection_tool') }}" 
-            @mouseenter="subDropdown = null" 
-            class="block hover:bg-gray-100 px-2 py-2 rounded">
-            Water Consumption Tool
-          </a>
-
-          <button class="w-full text-left flex items-center justify-between hover:bg-gray-100 px-2 py-2 rounded">
-            <span>Water Consumption Selection Tool</span>
-            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-          </button>
-
-          <div x-show="subDropdown === 'water'"
-              x-transition:enter="transition ease-out duration-100"
-              x-transition:enter-start="opacity-0 -translate-x-2"
-              x-transition:enter-end="opacity-100 translate-x-0"
-              class="absolute left-full top-0 ml-1 w-64 bg-white shadow-xl rounded-lg p-2 border border-gray-100">
-            <a href="{{ route('resources.tools.whole_building') }}" class="block hover:bg-gray-100 px-2 py-2 rounded">Whole Building Water Utility Reduction Calculator</a>
-            <a href="{{ route('resources.tools.cooling_tower') }}" class="block hover:bg-gray-100 px-2 py-2 rounded">Cooling Tower Water Consumption</a>
-            <a href="#" class="block hover:bg-gray-100 px-2 py-2 rounded text-red-500">ESG Peer Comparison Calculator</a>
-          </div>
-        </div>
-
-        <div class="relative" @mouseenter="subDropdown = 'papers'" @mouseleave="subDropdown = null">
-          <button class="w-full text-left flex items-center justify-between hover:bg-gray-100 px-2 py-2 rounded text-red-500">
-            <span>White Papers</span>
-            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-          </button>
-
-          <div x-show="subDropdown === 'papers'"
-              x-transition:enter="transition ease-out duration-100"
-              x-transition:enter-start="opacity-0 -translate-x-2"
-              x-transition:enter-end="opacity-100 translate-x-0"
-              class="absolute left-full top-0 ml-1 w-64 bg-white shadow-xl rounded-lg p-2 border border-gray-100">
-            <a href="#" class="block hover:bg-gray-100 px-2 py-2 rounded text-red-500">Commercial Building</a>
-            <a href="#" class="block hover:bg-gray-100 px-2 py-2 rounded text-red-500">Cooling Towers</a>
-            <a href="#" class="block hover:bg-gray-100 px-2 py-2 rounded text-red-500">School and Campuses</a>
-            <a href="#" class="block hover:bg-gray-100 px-2 py-2 rounded text-red-500">Manufacturing & Industrial</a>
-          </div>
-        </div>
-
-        <a href="{{ route('resources.my_city_rebates') }}" 
-          @mouseenter="subDropdown = null" 
-          class="block hover:bg-gray-100 px-2 py-2 rounded">
-          My City Water Rebates
-        </a>
-
-        <a href="{{ route('resources.financing_form') }}" 
-          @mouseenter="subDropdown = null" 
-          class="block hover:bg-gray-100 px-2 py-2 rounded">
-          Financing Form
-        </a>
-
-        <a href="#" 
-          @mouseenter="subDropdown = null" 
-          class="block hover:bg-gray-100 px-2 py-2 rounded text-red-500">
-          Webinars & Events
-        </a>
-
-        <a href="#" 
-          @mouseenter="subDropdown = null" 
-          class="block hover:bg-gray-100 px-2 py-2 rounded text-red-500">
-          Blog
-        </a>
-
-        <a href="#" 
-          @mouseenter="subDropdown = null" 
-          class="block hover:bg-gray-100 px-2 py-2 rounded text-red-500">
-          Articles
-        </a>
-
-      </div>
-    </div> -->
   </nav>
 
   <div class="flex items-center space-x-3 md:space-x-4">
@@ -245,4 +153,4 @@
       </div>
     </div>
   </div>
-  </div>
+</div>

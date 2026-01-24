@@ -204,12 +204,6 @@
       </div>
     </div>
   </section>
-
-<section class="flex justify-center">
-<a href="/property-managers" class="inline-flex items-center rounded-full border px-6 py-3 text-sm hover:bg-gray-100">
-  Operational playbook for PMs & AMs
-</a>
-  </section>
 @endsection
 
 @push('scripts')

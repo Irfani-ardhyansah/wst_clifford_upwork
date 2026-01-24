@@ -1,6 +1,6 @@
 
 <header x-data="header()" x-init="init()"
-    :class="headerShrink ? 'shadow-lg bg-black/95' : 'pb-2 bg-black/90'"
+    :class="headerShrink ? 'shadow-lg gray-50' : 'pb-2 bg-gray-50'"
     class="sticky top-0 z-50 transition-all duration-300">
 
     @include('layouts.partials.topbar')

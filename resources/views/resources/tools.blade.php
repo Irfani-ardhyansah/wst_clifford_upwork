@@ -36,15 +36,14 @@
 
             <div class="mt-4 flex items-center justify-between">
               <button
-                class="open-modal-btn w-full group inline-flex items-center rounded-full w-auto px-6 py-3 bg-gray-900 text-white font-semibold shadow-md 
-                  hover:shadow-lg hover:-translate-y-0.5 transition-all"
+                  class="open-modal-btn w-full group inline-flex items-center justify-between rounded-full bg-gray-900 text-white px-6 py-3 font-semibold shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-gray-800"
                   data-id="{{ $item->id }}" data-title="{{ $item->title }}" data-image="{{ asset('storage/' . $item->image_path) }}"
-                  >
+              >
                 <span>View Tools</span>
-                <span class="ml-auto grid place-items-center w-9 h-9 rounded-full">
-                  <i class="ri-arrow-right-up-line ml-3"></i>
+                <span class="ml-auto grid place-items-center w-9 h-9 rounded-full bg-white/10 text-white transition-transform duration-300 group-hover:rotate-45">
+                    <i class="ri-arrow-right-up-line"></i>
                 </span>
-              </button>
+            </button>
             </div>
           </div>
         </div>
@@ -62,19 +61,7 @@
         Want new white papers delivered to your inbox?
       </h4>
 
-      <form class="mt-4 flex justify-center flex-wrap gap-4">
-        <input
-          type="email"
-          placeholder="Enter your email"
-          class="border border-gray-300 px-4 py-2 rounded-lg w-72"
-        >
-        <button
-          type="submit"
-          class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
-        >
-          Subscribe
-        </button>
-      </form>
+      @include('layouts.partials.subscribe')
     </div>
 
   </div>
@@ -205,6 +192,59 @@ $(document).ready(function() {
     $('#leads-form').on('submit', function(e) {
         const submitBtn = $(this).find('button[type="submit"]');
         submitBtn.prop('disabled', true).html('<i class="fa-solid fa-spinner fa-spin mr-2"></i> Processing...');
+    });
+
+        $('#subscribeForm').on('submit', function(e) {
+        e.preventDefault();
+        
+        let form = $(this);
+        let btn = $('#btnSubscribe');
+        let originalBtnText = btn.html();
+        let emailInput = $('#emailInput');
+        let errorMsg = $('#subscribeError');
+
+        btn.prop('disabled', true).html('<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...');
+        errorMsg.addClass('hidden').text('');
+        emailInput.removeClass('border-red-500 ring-red-500');
+
+        $.ajax({
+            url: "{{ route('subscribe.store') }}",
+            type: "POST",
+            data: form.serialize(),
+            success: function(response) {
+                if(response.status === 'success') {
+                    form[0].reset(); 
+                    $('#successEmail').text(emailInput.val());
+                    $('#successModal').removeClass('hidden').addClass('flex'); 
+                }
+            },
+            error: function(xhr) {
+                let errors = xhr.responseJSON.errors;
+                let errorMessage = 'Something went wrong. Please try again.';
+                
+                if(errors && errors.email) {
+                    errorMessage = errors.email[0]; 
+                } else if (xhr.responseJSON.message) {
+                    errorMessage = xhr.responseJSON.message;
+                }
+
+                errorMsg.text(errorMessage).removeClass('hidden');
+                emailInput.addClass('border-red-500 ring-red-500 focus:border-red-500 focus:ring-red-500');
+            },
+            complete: function() {
+                btn.prop('disabled', false).html(originalBtnText);
+            }
+        });
+    });
+
+    $('#closeModalBtn').on('click', function() {
+        $('#successModal').addClass('hidden').removeClass('flex');
+    });
+
+    $('#successModal').on('click', function(e) {
+        if (e.target === this) {
+            $(this).addClass('hidden').removeClass('flex');
+        }
     });
 });
 </script>

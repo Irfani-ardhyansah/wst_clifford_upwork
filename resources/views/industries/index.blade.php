@@ -16,8 +16,6 @@
         <div id="filterDropdown" class="hidden mb-4">
           <select id="sectorSelect" onchange="filterTiles()" class="p-2">
             <option value="all">All Industries</option>
-            <!-- <option value="hospitality">Hospitality</option>
-            <option value="manufacturing">Manufacturing & Industrial</option> -->
             <option value="golf">Golf Courses</option>
             <option value="healthcare">Health Care Facilities</option>
             <option value="office">Office Buildings</option>

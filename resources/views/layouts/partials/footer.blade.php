@@ -40,49 +40,53 @@
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 flex-1 min-w-[320px]">
           <div>
             <div class="font-semibold uppercase text-gray-300 text-xs mb-2 tracking-widest">About</div>
-            <a href="/about/story" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Our Story</a>
-            <a href="/about/team" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Team</a>
-                      <a href="/pages/opportunities/wst_careers.html" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Careers</a>
-            <a href="/contact" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Contact</a>
+            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Our Story</a>
+            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Team</a>
+            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Careers</a>
+            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Contact</a>
           </div>
           <div>
             <div class="font-semibold uppercase text-gray-300 text-xs mb-2 tracking-widest">Portfolio</div>
-            <a href="/portfolio/projects" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Projects</a>
-            <a href="/portfolio/case-studies" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Case Studies</a>
-            <a href="/industries" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Industries</a>
+            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Projects</a>
+            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Case Studies</a>
+            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Industries</a>
           </div>
           <div>
             <div class="font-semibold uppercase text-gray-300 text-xs mb-2 tracking-widest">Resources</div>
-            <a href="/blog" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Blog</a>
-            <a href="/faqs" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">FAQs</a>
-            <a href="/resources/water-consumption-tool" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Water Consumption Tool</a>
-            <a href="/resources/financing-application" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Financing Application</a>
+            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Blog</a>
+            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">FAQs</a>
+            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Water Consumption Tool</a>
+            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Financing Application</a>
           </div>
           <div>
             <div class="font-semibold uppercase text-gray-300 text-xs mb-2 tracking-widest">Legal</div>
-            <a href="/terms-of-service" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Terms of Service</a>
-            <a href="/privacy-policy" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Privacy Policy</a>
-            <a href="/user-agreement" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">User Agreement</a>
+            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Terms of Service</a>
+            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Privacy Policy</a>
+            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">User Agreement</a>
           </div>
         </div>
       </div>
       
       <div class="max-w-7xl mx-auto flex justify-end px-6 pt-6">
-        <a href="/webinars-events" class="text-sm text-gray-300 hover:text-blue-400 mx-3">Webinars & Events</a>
-        <a href="/login" class="text-sm text-gray-300 hover:text-blue-400 mx-3">Login</a>
+        <a href="#" class="text-sm text-gray-300 hover:text-blue-400 mx-3">Webinars & Events</a>
+        <a href="#" class="text-sm text-gray-300 hover:text-blue-400 mx-3">Login</a>
       </div>
       
       <div class="bg-black w-full mt-6 border-t border-gray-800">
         <div class="max-w-12xl mx-auto flex flex-col md:flex-row items-center justify-between py-3 px-12">
           <div class="text-xs text-gray-400">&copy; 2025 Water Solutions Technology. All rights reserved.</div>
           <div class="flex-1 flex justify-center space-x-6">
-            <a href="/privacy-policy" class="text-xs text-gray-400 hover:text-blue-400">Privacy Policy</a>
+            <a href="#" class="text-xs text-gray-400 hover:text-blue-400">Privacy Policy</a>
             <span class="text-xs text-gray-400">|</span>
-            <a href="/user-agreement" class="text-xs text-gray-400 hover:text-blue-400">User Agreement</a>
+            <a href="#" class="text-xs text-gray-400 hover:text-blue-400">User Agreement</a>
+            @guest
+              <span class="text-xs text-gray-400">|</span>
+              <a href="{{route('login')}}" class="text-xs text-gray-400 hover:text-blue-400">Admin Access</a>
+            @endguest
           </div>
           <div class="flex items-center">
             <span class="text-xs text-gray-200 mr-2 tracking-wide">Stay Connected:</span>
-            <a href="/choose-portfolio" class="bg-white hover:bg-gray-300 text-black px-4 py-1 rounded uppercase text-xs tracking-wider ml-2 font-bold shadow transition">CHOOSE YOUR PORTFOLIO</a>
+            <a href="#" class="bg-white hover:bg-gray-300 text-black px-4 py-1 rounded uppercase text-xs tracking-wider ml-2 font-bold shadow transition">CHOOSE YOUR PORTFOLIO</a>
           </div>
         </div>
       </div>

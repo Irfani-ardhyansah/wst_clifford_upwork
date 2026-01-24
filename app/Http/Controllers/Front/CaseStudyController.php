@@ -11,6 +11,8 @@ class CaseStudyController extends Controller
 {
     public function getByIndustrySlug(string $slug)
     {
+        $industry = Industry::where('slug',$slug)->first();
+
         $case_studies = Asset::select('assets.*', 'industries.title as industry_name')
             ->join('industries', 'assets.industry_id', '=', 'industries.id')
             ->where('industries.slug', $slug)
@@ -18,6 +20,6 @@ class CaseStudyController extends Controller
             ->orderBy('assets.sort_order', 'asc')
             ->get();
 
-        return view('industries.case_study', compact('case_studies'));
+        return view('industries.case_study', compact('case_studies', 'industry'));
     }
 }
