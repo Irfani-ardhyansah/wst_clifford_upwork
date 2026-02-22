@@ -30,7 +30,7 @@
               {{ $item->title }}
             </h3>
 
-            <p class="mt-2 text-gray-600 text-sm">
+            <p class="mt-2 text-gray-600 text-sm line-clamp-2 min-h-[2.5rem]">
               {{ $item->description }}
             </p>
 

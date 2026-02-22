@@ -8,7 +8,6 @@
         
         <div>
             <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
-                <i class="fa-solid fa-chart-pie text-teal-500"></i>
                 {{ $asset->title }}
             </h2>
             <p class="text-gray-500 text-sm mt-1 ml-7">

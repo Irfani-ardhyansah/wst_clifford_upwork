@@ -88,9 +88,9 @@
                         if(response.status === 'success') {
                             $('#success-user-name').text(response.user.name);
                             
-                            if(response.redirect_url) {
-                                $('#success-redirect-btn').attr('href', response.redirect_url);
-                            }
+                            // if(response.redirect_url) {
+                            //     $('#success-redirect-btn').attr('href', response.redirect_url);
+                            // }
 
                             $('#auth-form-container').slideUp(300, function() {
                                 $('#auth-success-container').removeClass('hidden').hide().fadeIn(400);

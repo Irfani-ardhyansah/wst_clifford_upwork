@@ -18,6 +18,7 @@ use App\Http\Controllers\Front\CaseStudyController;
 use App\Http\Controllers\Front\AssetController;
 use App\Http\Controllers\Front\ToolController;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\Admin\GRESBWaterController;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login.custom');
 Route::post('/login-by-phone', [AuthController::class, 'loginByPhone'])->name('login.phone');
@@ -73,12 +74,20 @@ Route::middleware(['auth', 'role:admin'])
         Route::get('/dashboard', [AdminPortalController::class, 'dashboard'])->name('dashboard');
         Route::get('/users/export', [AdminPortalController::class, 'exportUsersCsv'])->name('users.export');
 
+        Route::get('/gresb-consultation', [GRESBWaterController::class, 'adminIndex'])->name('gresb-water.index');
+        Route::put('/gresb-water/status/{id}', [GRESBWaterController::class, 'updateStatus'])->name('gresb-water.status');
+        Route::delete('/gresb-consultation/{id}', [GRESBWaterController::class, 'destroy'])->name('gresb-water.destroy');
+        
         Route::get('/dashboard/asset/{id}/details', [AdminPortalController::class, 'getAssetViewDetails'])->name('asset.details');
 });
 
 Route::middleware('auth')->prefix('member-dashboard')->name('member-dashboard.')->group(function () {
     Route::get('/', [MemberDashboardController::class, 'index'])->name('index');
     Route::get('/{id}/content', [AssetController::class, 'show'])->name('show');
+
+    ROUTE::get('/gresb-water', [GRESBWaterController::class, 'index'])->name('gresb-water.index');
+    ROUTE::get('/gresb-water/form', [GRESBWaterController::class, 'form'])->name('gresb-water.form');
+    Route::post('/gresb-consultation', [GRESBWaterController::class, 'store'])->name('gresb-water.store');
 });
 
 Route::prefix('services')->name('services.')->group(function () {

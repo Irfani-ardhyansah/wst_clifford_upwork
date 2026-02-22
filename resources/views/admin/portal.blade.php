@@ -27,6 +27,7 @@
         /* ... sisa style lainnya ... */
         .active { background-color: rgba(255,255,255,0.1); border-right: 3px solid var(--accent); }
     </style>
+    @stack('styles')
 </head>
 <body class="text-gray-800 antialiased">
 
@@ -94,6 +95,14 @@
                                 : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
                             <i class="fa-solid fa-calculator w-5"></i> Tools & Calculators
                         </a>
+
+                        <a href="{{ route('admin.gresb-water.index') }}"
+                            class="flex items-center gap-3 px-4 py-3 rounded-xl transition
+                            {{ request()->routeIs('admin.gresb-water.index') 
+                                    ? 'active' 
+                                    : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
+                            <i class="fa-solid fa-droplet w-5"></i> GRESB Consultant List
+                        </a>
                     <p class="text-xs text-gray-500 mt-1">User Output</p>
                     @endif 
 
@@ -135,6 +144,22 @@
                                 ? 'active'
                                 : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
                         <i class="fa-solid fa-calculator w-5"></i> Tools & Calculators
+                    </a>
+
+                    <a href="{{ route('member-dashboard.gresb-water.index') }}"
+                        class="flex items-center gap-3 px-4 py-3 rounded-xl transition
+                        {{ request()->routeIs('member-dashboard.gresb-water.index') 
+                                ? 'active' 
+                                : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
+                        <i class="fa-solid fa-droplet w-5"></i> GRESB Water List
+                    </a>
+
+                    <a href="{{ route('member-dashboard.gresb-water.form') }}"
+                        class="flex items-center gap-3 px-4 py-3 rounded-xl transition
+                        {{ request()->routeIs('member-dashboard.gresb-water.form') 
+                                ? 'active' 
+                                : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
+                        <i class="fa-solid fa-file-signature w-5"></i> GRESB Consultation
                     </a>
 
                     <p class="text-xs text-gray-500 mt-1">Quick Links</p>

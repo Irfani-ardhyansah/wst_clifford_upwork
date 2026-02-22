@@ -2,7 +2,7 @@
     $destination = route('member-dashboard.index'); 
 
     if (request()->is('industries/*')) {
-        $destination = route('member-dashboard.index', ['category' => 'case-study']);
+        $destination = route('member-dashboard.index', ['category' => 'case-study', 'industry_id' => $industry->id]);
     } 
     elseif (request()->is('resources/tool*')) {
         $destination = route('member-dashboard.index', ['category' => 'tool']);
@@ -73,7 +73,7 @@
                         You have successfully registered. You can now access the premium content.
                     </p>
 
-                    <a id="success-redirect-btn" href="{{ route('member-dashboard.index') }}" 
+                    <a id="success-redirect-btn" href="{{ $destination }}" 
                         class="block w-full bg-black hover:bg-gray-800 text-white font-bold py-3 rounded-lg transition">
                         <i class="fa-solid fa-arrow-right mr-2"></i> View Content
                     </a>

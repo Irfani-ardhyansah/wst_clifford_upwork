@@ -73,36 +73,44 @@
         </p>
       </div>
     </div>
-    <div class="case-grid">
-      <!-- Card 1 -->
-      @foreach($case_studies as $item)
-        <div class="case-card">
-          @if($item->image_path)
-            <img src="{{ asset('storage/' . $item->image_path) }}" 
-                alt="{{ $item->title }}">
-          @else
-            <img src="https://via.placeholder.com/400x300?text=No+Image" 
-                alt="Placeholder">
-          @endif
-          <div class="case-content">
-            <h3>{{$item->title}}</h3>
-            <div class="subtitle">{{$item->category}}</div>
-            <div class="quote">{{$item->impact_highlight}}</div>
-            <button
-                class="open-modal-btn group inline-flex items-center justify-between rounded-full bg-gray-900 text-white px-6 py-3 font-semibold shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-gray-800"
-                data-id="{{ $item->id }}" 
-                data-title="{{ $item->title }}" 
-                data-image="{{ asset('storage/' . $item->image_path) }}"
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        @forelse ($case_studies as $item)    
+          <div class="bg-gray-50 rounded-2xl shadow hover:shadow-lg transition duration-300">
+            <img
+              src="{{ asset('storage/' .$item->image_path) }}"
+              alt="{{ $item->title }}"
+              class="rounded-t-2xl w-full h-48 object-cover"
             >
-                <span>View Case Study</span>
 
-                <span class="ml-4 grid place-items-center w-9 h-9 rounded-full bg-white/10 text-white transition-transform duration-300 group-hover:rotate-45">
-                    <i class="ri-arrow-right-up-line"></i>
-                </span>
-            </button>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-800">
+                {{ $item->title }}
+              </h3>
+
+              <p class="mt-2 text-gray-600 text-sm line-clamp-2 min-h-[2.5rem]">
+                {{ $item->description }}
+              </p>
+
+              <div class="mt-4 flex items-center justify-between">
+                <button
+                    class="open-modal-btn w-full group inline-flex items-center justify-between rounded-full bg-gray-900 text-white px-6 py-3 font-semibold shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-gray-800"
+                    data-id="{{ $item->id }}" data-title="{{ $item->title }}" data-image="{{ asset('storage/' . $item->image_path) }}"
+                >
+                  <span>View Tools</span>
+                  <span class="ml-auto grid place-items-center w-9 h-9 rounded-full bg-white/10 text-white transition-transform duration-300 group-hover:rotate-45">
+                      <i class="ri-arrow-right-up-line"></i>
+                  </span>
+              </button>
+              </div>
+            </div>
           </div>
-        </div>
-      @endforeach
+        @empty
+          <p class="text-gray-500 col-span-3 text-center">
+            No white papers available at the moment.
+          </p>
+        @endforelse
+      </div>
     </div>
   </section>
 

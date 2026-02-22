@@ -91,6 +91,9 @@
                         class="w-full py-3 border border-white/40 rounded-lg tracking-wide uppercase text-sm hover:bg-white hover:text-black transition">
                         Sign In
                     </button>
+                    <div class="w-full flex justify-center mt-4">
+                        <a href="{{route('index')}}" class="hover:underline">Main Website</a>
+                    </div>
                 </form>
             </div>
 

@@ -111,7 +111,9 @@ class PortalController extends Controller
 
     public function getAssetViewDetails($id, Request $request)
     {
-        $asset = Asset::with(['views.user'])->findOrFail($id);
+        $asset = Asset::with(['views' => function ($query) {
+            $query->orderBy('view_date', 'desc')->with('user');
+        }])->findOrFail($id);
 
         $views_count = AssetView::where('asset_id', $id)->count(); 
 
