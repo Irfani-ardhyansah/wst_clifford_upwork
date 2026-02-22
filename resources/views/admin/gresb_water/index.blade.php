@@ -40,7 +40,9 @@
                         <th class="px-6 py-4">Interest</th>
                         <th class="px-6 py-4">Timeline</th>
                         <th class="px-6 py-4">Status</th>
-                        <th class="px-6 py-4 text-right last:pr-8">Actions</th>
+                        @if(auth()->user()->role == 'admin')
+                            <th class="px-6 py-4 text-right last:pr-8">Actions</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-50">
@@ -79,20 +81,23 @@
 
                             <td class="px-6 py-5">
                                 <div class="flex flex-col items-start gap-1">
-                                    <span class="inline-flex items-center gap-1.5 pl-2 pr-3 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wide bg-blue-50 text-blue-700 border border-blue-200/60">
-                                        <i class="fa-regular fa-clock"></i>
-                                        @php
-                                            $times = [
-                                                'morning' => 'Morning (8am - 12pm EST)',
-                                                'afternoon' => 'Afternoon (12pm - 5pm EST)',
-                                                'flexible' => 'Flexible'
-                                            ];
-                                        @endphp
-                                        {{ $times[$item->time_preference] ?? 'Flexible' }}
+
+                                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide bg-blue-50 text-blue-700 border border-blue-200/60">
+                                        <i class="fa-regular fa-calendar"></i>
+
+                                        @if($item->time_preference)
+                                            {{ $item->time_preference->format('M d, Y') }}
+                                            •
+                                            {{ $item->time_preference->format('H:i') }}
+                                        @else
+                                            Not Scheduled
+                                        @endif
                                     </span>
+
                                     <span class="text-[10px] text-gray-400 italic">
-                                        Received: {{ $item->created_at->format('M d, Y') }}
+                                        Requested: {{ $item->created_at->format('M d, Y H:i') }}
                                     </span>
+
                                 </div>
                             </td>
                             <td class="px-6 py-5">
@@ -104,20 +109,22 @@
                                     <span class="px-3 py-1 rounded-full text-[10px] font-bold bg-gray-100 text-gray-500 uppercase">Pending</span>
                                 @endif
                             </td>
-                            <td class="px-6 py-5 text-right last:pr-8">
-                                <div class="flex items-center justify-end gap-2">
-                                    <button onclick="openStatusModal({{ $item->id }}, {{ $item->status }})" class="p-2 text-gray-400 hover:text-blue-600 transition">
-                                        <i class="fa-regular fa-pen-to-square"></i>
-                                    </button>
-
-                                    <form action="{{ route('admin.gresb-water.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Delete this record?');">
-                                        @csrf @method('DELETE')
-                                        <button type="submit" class="p-2 text-gray-400 hover:text-red-600 transition">
-                                            <i class="fa-regular fa-trash-can"></i>
+                            @if(auth()->user()->role == 'admin')
+                                <td class="px-6 py-5 text-right last:pr-8">
+                                    <div class="flex items-center justify-end gap-2">
+                                        <button onclick="openStatusModal({{ $item->id }}, {{ $item->status }})" class="p-2 text-gray-400 hover:text-blue-600 transition">
+                                            <i class="fa-regular fa-pen-to-square"></i>
                                         </button>
-                                    </form>
-                                </div>
-                            </td>
+
+                                        <form action="{{ route('admin.gresb-water.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Delete this record?');">
+                                            @csrf @method('DELETE')
+                                            <button type="submit" class="p-2 text-gray-400 hover:text-red-600 transition">
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            @endif
                         </tr>
                     @empty
                         <tr><td colspan="4" class="px-6 py-10 text-center text-gray-400">No records found.</td></tr>
@@ -128,29 +135,31 @@
     </div>
 </div>
 
-<div id="statusModal" class="fixed inset-0 z-[99] hidden flex items-center justify-center bg-black/50">
-    <div class="bg-white rounded-2xl p-6 w-full max-w-sm shadow-2xl">
-        <h3 class="text-lg font-bold mb-4">Update Status</h3>
-        <form id="statusForm" method="POST">
-            @csrf @method('PUT')
-            <input type="hidden" name="status" id="statusInput">
-            <div class="grid grid-cols-2 gap-3">
-                <button type="button" onclick="setStatus(1)" class="p-4 border-2 border-gray-100 rounded-xl hover:border-green-500 hover:bg-green-50 transition text-center group">
-                    <i class="fa-solid fa-check-circle text-2xl text-gray-300 group-hover:text-green-500 mb-2"></i>
-                    <div class="text-xs font-bold uppercase">Approve</div>
-                </button>
-                <button type="button" onclick="setStatus(2)" class="p-4 border-2 border-gray-100 rounded-xl hover:border-red-500 hover:bg-red-50 transition text-center group">
-                    <i class="fa-solid fa-times-circle text-2xl text-gray-300 group-hover:text-red-500 mb-2"></i>
-                    <div class="text-xs font-bold uppercase">Reject</div>
-                </button>
-            </div>
-            <div class="mt-6 flex justify-end gap-3">
-                <button type="button" onclick="closeStatusModal()" class="text-sm text-gray-500">Cancel</button>
-                <button type="submit" class="bg-gray-900 text-white px-6 py-2 rounded-lg text-sm font-bold">Save Changes</button>
-            </div>
-        </form>
+@if(auth()->user()->role == 'admin')
+    <div id="statusModal" class="fixed inset-0 z-[99] hidden flex items-center justify-center bg-black/50">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-sm shadow-2xl">
+            <h3 class="text-lg font-bold mb-4">Update Status</h3>
+            <form id="statusForm" method="POST">
+                @csrf @method('PUT')
+                <input type="hidden" name="status" id="statusInput">
+                <div class="grid grid-cols-2 gap-3">
+                    <button type="button" onclick="setStatus(1)" class="p-4 border-2 border-gray-100 rounded-xl hover:border-green-500 hover:bg-green-50 transition text-center group">
+                        <i class="fa-solid fa-check-circle text-2xl text-gray-300 group-hover:text-green-500 mb-2"></i>
+                        <div class="text-xs font-bold uppercase">Approve</div>
+                    </button>
+                    <button type="button" onclick="setStatus(2)" class="p-4 border-2 border-gray-100 rounded-xl hover:border-red-500 hover:bg-red-50 transition text-center group">
+                        <i class="fa-solid fa-times-circle text-2xl text-gray-300 group-hover:text-red-500 mb-2"></i>
+                        <div class="text-xs font-bold uppercase">Reject</div>
+                    </button>
+                </div>
+                <div class="mt-6 flex justify-end gap-3">
+                    <button type="button" onclick="closeStatusModal()" class="text-sm text-gray-500">Cancel</button>
+                    <button type="submit" class="bg-gray-900 text-white px-6 py-2 rounded-lg text-sm font-bold">Save Changes</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
+@endif
 @endsection
 
 @push('scripts')

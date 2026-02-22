@@ -20,4 +20,8 @@ class GresbConsultation extends Model {
         'notes',
         'status'
     ];
+
+    protected $casts = [
+        'time_preference' => 'datetime',
+    ];
 }

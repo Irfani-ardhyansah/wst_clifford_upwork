@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('phone')->nullable();
             $table->integer('portfolio_size')->nullable();
             $table->string('interest')->nullable();
-            $table->string('time_preference')->nullable();
+            $table->dateTime('time_preference')->nullable();
             $table->text('notes')->nullable();
             $table->itneger('status')->nullable();
             $table->timestamps();

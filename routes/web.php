@@ -160,7 +160,7 @@ Route::prefix('resources')->name('resources.')->group(function () {
         return view('resources.water_consumption_tool.cooling_tower');
     })->name('tools.cooling_tower');
 
-   Route::get('/whole_building', function () {
+    Route::get('/whole_building', function () {
         return view('resources.water_consumption_tool.whole_building');
     })->name('tools.whole_building');
 

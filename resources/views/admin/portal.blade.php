@@ -159,7 +159,15 @@
                         {{ request()->routeIs('member-dashboard.gresb-water.form') 
                                 ? 'active' 
                                 : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
-                        <i class="fa-solid fa-file-signature w-5"></i> GRESB Consultation
+                        <i class="fa-solid fa-file-signature w-5"></i> GRESB Consultation Form 
+                    </a>
+
+                    <a href="{{ route('admin.gresb-water.index') }}"
+                        class="flex items-center gap-3 px-4 py-3 rounded-xl transition
+                        {{ request()->routeIs('admin.gresb-water.index') 
+                                ? 'active' 
+                                : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
+                        <i class="fa-solid fa-droplet w-5"></i> GRESB Consultant List
                     </a>
 
                     <p class="text-xs text-gray-500 mt-1">Quick Links</p>

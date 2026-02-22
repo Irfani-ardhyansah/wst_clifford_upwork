@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\GresbConsultation;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Carbon;
 
 class GRESBWaterController extends Controller
 {
@@ -14,11 +17,13 @@ class GRESBWaterController extends Controller
 
     public function form(Request $request)
     {
-        return view('member_dashboard.gresb_water.form');
+        $user = Auth::user();
+        return view('member_dashboard.gresb_water.form', compact('user'));
     }
 
-    public function store(Request $request) {
-        $validated = $request->validate([
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
             'first_name'     => 'required|string|max:255',
             'last_name'      => 'required|string|max:255',
             'email'          => 'required|email|max:255',
@@ -26,13 +31,34 @@ class GRESBWaterController extends Controller
             'phone'          => 'nullable|string|max:20',
             'portfolio_size' => 'nullable|integer',
             'interest'       => 'nullable|string',
-            'time_preference'=> 'nullable|string',
             'notes'          => 'nullable|string',
+            'time_preference' => [
+                'nullable',
+                'date',
+                function ($attribute, $value, $fail) {
+                    $selected = Carbon::parse($value);
+                    $now = now()->startOfMinute();
+
+                    if ($selected->lt($now)) {
+                        $fail('The meeting time must be in the future.');
+                    }
+                },
+            ],
         ]);
 
-        GresbConsultation::create($validated);
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'Please fix the form errors.');
+        }
 
-        return redirect()->back()->with('success', 'Consultation request submitted successfully!');
+        GresbConsultation::create($validator->validated());
+
+        return redirect()
+            ->back()
+            ->with('success', 'Consultation request submitted successfully!');
     }
 
     public function update(Request $request, $id) {
@@ -46,7 +72,7 @@ class GRESBWaterController extends Controller
             'phone'          => 'nullable|string|max:20',
             'portfolio_size' => 'nullable|integer',
             'interest'       => 'nullable|string',
-            'time_preference'=> 'nullable|string',
+            'time_preference'=> 'nullable|date|after:now',
             'notes'          => 'nullable|string',
         ]);
 
