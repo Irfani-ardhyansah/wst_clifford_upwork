@@ -17,7 +17,8 @@ return new class extends Migration {
             $table->string('interest')->nullable();
             $table->dateTime('time_preference')->nullable();
             $table->text('notes')->nullable();
-            $table->itneger('status')->nullable();
+            $table->integer('status')->nullable();
+            $table->string('meeting_link')->nullable();
             $table->timestamps();
         });
     }

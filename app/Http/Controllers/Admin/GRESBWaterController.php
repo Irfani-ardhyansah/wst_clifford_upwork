@@ -7,6 +7,8 @@ use App\Models\GresbConsultation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ConsultationSubmittedMail;
 
 class GRESBWaterController extends Controller
 {
@@ -54,7 +56,18 @@ class GRESBWaterController extends Controller
                 ->with('error', 'Please fix the form errors.');
         }
 
-        GresbConsultation::create($validator->validated());
+        $consultation = GresbConsultation::create($validator->validated());
+
+        // Proses Pembuatan Link Nanti Disini 
+
+        // 
+        // $consultation->update([
+        //     'meeting_link' => $request->meeting_link
+        // ]);
+
+        if (app()->environment('production')) {
+            $this->sendConsultationEmail($consultation);
+        }
 
         return redirect()
             ->back()
@@ -108,5 +121,15 @@ class GRESBWaterController extends Controller
         $consultation->update(['status' => $request->status]);
 
         return redirect()->back()->with('success', 'Status updated successfully!');
+    }
+
+    private function sendConsultationEmail($consultation)
+    {
+        try {
+            Mail::to($consultation->email)
+                ->queue(new ConsultationSubmittedMail($consultation));
+        } catch (\Exception $e) {
+            \Log::error('Email failed: ' . $e->getMessage());
+        }
     }
 }
