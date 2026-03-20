@@ -111,7 +111,12 @@ class GRESBWaterController extends Controller
                 ->orWhere('company', 'like', '%' . $request->search . '%');
         }
 
-        $consultations = $query->orderBy('created_at', 'desc')->paginate(10);
+        if (auth()->user()->role !== 'admin') {
+            $query->whereNotNull('time_preference')
+                ->where('time_preference', '>=', Carbon::now());
+        }
+        
+        $consultations = $query->orderBy('time_preference', 'desc')->paginate(10);
         return view('admin.gresb_water.index', compact('consultations'));
     }
 

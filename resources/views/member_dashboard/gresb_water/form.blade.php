@@ -314,4 +314,15 @@
         </div>
     </div>
 </div>
+
+<!-- <a 
+    href="https://outlook.office.com/book/ScheduleYourWaterAdvisoryCall@ertwtr.com/?ismsaljsauthenabled"
+    target="_blank"
+    class="px-4 py-2 bg-blue-600 text-white rounded-lg"
+>
+    Schedule Call
+</a> -->
+
+
+<iframe src='https://outlook.office.com/book/ScheduleYourWaterAdvisoryCall@ertwtr.com/?ismsaljsauthenabled' width='100%' height='100%' scrolling='yes' style='border:0'></iframe>
 @endsection

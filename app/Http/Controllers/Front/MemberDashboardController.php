@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Asset;
 use App\Models\Industry;
+use App\Models\Article;
 
 class MemberDashboardController extends Controller
 {
@@ -56,5 +57,25 @@ class MemberDashboardController extends Controller
             ['value' => 'tool', 'label' => 'Tools & Calculators', 'icon' => 'fa-calculator'],
         ];
         return view('member_dashboard.index', compact('assets', 'pageTitle', 'sidebarMenu', 'typeFunction', 'industries', 'categories'));
+    }
+
+    public function articles(Request $request)
+    {
+        $query = Article::where('status', 'published');
+
+        if ($request->filled('search')) {
+            $s = $request->search;
+            $query->where('title', 'like', "%{$s}%");
+        }
+
+        $articles = $query->paginate(9)->withQueryString();
+
+        return view('member_dashboard.articles.index', compact('articles'));
+    }
+
+    public function articleContent($id)
+    {
+        $article = Article::findOrFail($id);
+        return view('member_dashboard.articles._modal', compact('article'));
     }
 }

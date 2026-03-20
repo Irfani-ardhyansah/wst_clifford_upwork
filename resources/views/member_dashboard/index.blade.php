@@ -163,7 +163,7 @@
         
         <div class="fixed inset-0 bg-white w-screen h-screen flex flex-col">
             <button type="button" id="closeModalBtn"
-                    class="fixed top-6 left-6 z-[100] p-3 rounded-full bg-white/80 backdrop-blur-sm border border-gray-200 text-gray-500 shadow-lg hover:bg-gray-100 hover:text-gray-900 transition-all duration-200 group">
+                    class="fixed top-6 right-6 z-[100] p-3 rounded-full bg-white/80 backdrop-blur-sm border border-gray-200 text-gray-500 shadow-lg hover:bg-gray-100 hover:text-gray-900 transition-all duration-200 group">
                 <svg class="h-6 w-6 group-hover:rotate-90 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>

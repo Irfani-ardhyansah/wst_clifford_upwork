@@ -34,10 +34,6 @@
                                 </a>
                             </p>
 
-                            <p>
-                                If you have any urgent questions, feel free to reply to this email.
-                            </p>
-
                             <br>
 
                             <p>

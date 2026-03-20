@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\PortalController as AdminPortalController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\Admin\AssetController as AdminAssetController;
+use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Front\MemberDashboardController;
 use App\Http\Controllers\Front\WhitePaperController;
 use App\Http\Controllers\Front\CaseStudyController;
@@ -44,6 +45,15 @@ Route::middleware(['auth', 'role:admin'])
             Route::get('/{asset}/edit', [AdminAssetController::class, 'edit'])->name('edit');
             Route::put('/{asset}', [AdminAssetController::class, 'update'])->name('update');
             Route::delete('/{asset}', [AdminAssetController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::prefix('articles')->name('articles.')->group(function () {
+            Route::get('/', [AdminArticleController::class, 'index'])->name('index');
+            Route::get('/create', [AdminArticleController::class, 'create'])->name('create');
+            Route::post('/', [AdminArticleController::class, 'store'])->name('store');
+            Route::get('/{article}/edit', [AdminArticleController::class, 'edit'])->name('edit');
+            Route::put('/{article}', [AdminArticleController::class, 'update'])->name('update');
+            Route::delete('/{article}', [AdminArticleController::class, 'destroy'])->name('destroy');
         });
 
         Route::prefix('case-studies')->name('case-studies.')->group(function () {
@@ -84,6 +94,9 @@ Route::middleware(['auth', 'role:admin'])
 Route::middleware('auth')->prefix('member-dashboard')->name('member-dashboard.')->group(function () {
     Route::get('/', [MemberDashboardController::class, 'index'])->name('index');
     Route::get('/{id}/content', [AssetController::class, 'show'])->name('show');
+
+    Route::get('/articles', [MemberDashboardController::class, 'articles'])->name('articles.index');
+    Route::get('/articles/{id}/content', [MemberDashboardController::class, 'articleContent'])->name('articles.content');
 
     ROUTE::get('/gresb-water', [GRESBWaterController::class, 'index'])->name('gresb-water.index');
     ROUTE::get('/gresb-water/form', [GRESBWaterController::class, 'form'])->name('gresb-water.form');

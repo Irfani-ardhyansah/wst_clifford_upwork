@@ -6,6 +6,7 @@
     <title>@yield('title', 'Portal') - WST Member</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/logo.png') }}">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
@@ -56,6 +57,14 @@
                             <i class="fa-solid fa-layer-group w-5"></i> All Resources
                         </a>
 
+                        <a href="{{ route('admin.articles.index') }}"
+                        class="flex items-center gap-3 px-4 py-3 rounded-xl transition
+                        {{ request()->routeIs('admin.articles*')
+                                ? 'active'
+                                : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
+                            <i class="fa-solid fa-newspaper w-5"></i> Articles
+                        </a>
+
                         <a href="{{ route('admin.industries.index') }}"
                         class="flex items-center gap-3 px-4 py-3 rounded-xl transition
                         {{ request()->routeIs('admin.industries*')
@@ -101,7 +110,7 @@
                             {{ request()->routeIs('admin.gresb-water.index') 
                                     ? 'active' 
                                     : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
-                            <i class="fa-solid fa-droplet w-5"></i> GRESB Consultant List
+                            <i class="fa-solid fa-droplet w-5"></i> Schedule Audit & Water Management Advisory Call
                         </a>
                     <p class="text-xs text-gray-500 mt-1">User Output</p>
                     @endif 
@@ -114,12 +123,20 @@
                         <i class="fa-solid fa-layer-group w-5"></i> All Resources
                     </a>
 
+                    <a href="{{ route('member-dashboard.articles.index') }}"
+                        class="flex items-center gap-3 px-4 py-3 rounded-xl transition
+                        {{ request()->routeIs('member-dashboard.articles*')
+                                ? 'active'
+                                : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
+                        <i class="fa-solid fa-newspaper w-5"></i> Articles
+                    </a>
+
                     <a href="{{ route('member-dashboard.index', ['category' => 'white-paper']) }}"
                         class="flex items-center gap-3 px-4 py-3 rounded-xl transition
                         {{ request('category') == 'white-paper'
                                 ? 'active'
                                 : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
-                            <i class="fa-solid fa-file-lines w-5"></i> White Papers
+                            <i class="fa-solid fa-file-lines w-5"></i> Industry White Papers
                         </a>
 
                     <a href="{{ route('member-dashboard.index', ['category' => 'case-study']) }}"
@@ -135,7 +152,7 @@
                         {{ request('category') == 'webinar'
                                 ? 'active'
                                 : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
-                        <i class="fa-solid fa-video w-5"></i> Webinars
+                        <i class="fa-solid fa-video w-5"></i> Webinars On Demand
                     </a>
 
                     <a href="{{ route('member-dashboard.index', ['category' => 'tool']) }}"
@@ -143,7 +160,7 @@
                         {{ request('category') == 'tool'
                                 ? 'active'
                                 : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
-                        <i class="fa-solid fa-calculator w-5"></i> Tools & Calculators
+                        <i class="fa-solid fa-calculator w-5"></i> Water Target tools 
                     </a>
 
                     <a href="{{ route('member-dashboard.gresb-water.index') }}"
@@ -151,10 +168,10 @@
                         {{ request()->routeIs('member-dashboard.gresb-water.index') 
                                 ? 'active' 
                                 : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
-                        <i class="fa-solid fa-droplet w-5"></i> GRESB Water List
+                        <i class="fa-solid fa-droplet w-5"></i> Cost Reduction Estimators
                     </a>
 
-                    <a href="{{ route('member-dashboard.gresb-water.form') }}"
+                    <!-- <a href="{{ route('member-dashboard.gresb-water.form') }}"
                         class="flex items-center gap-3 px-4 py-3 rounded-xl transition
                         {{ request()->routeIs('member-dashboard.gresb-water.form') 
                                 ? 'active' 
@@ -168,7 +185,53 @@
                                 ? 'active' 
                                 : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
                         <i class="fa-solid fa-droplet w-5"></i> GRESB Consultant List
-                    </a>
+                    </a> -->
+
+                    @php
+                        $isGresbActive = request()->routeIs('admin.gresb-water.index') 
+                            || request()->routeIs('member-dashboard.gresb-water.form');
+                    @endphp
+                    <div x-data="{ open: {{ $isGresbActive ? 'true' : 'false' }} }" class="mb-2">
+
+                        <!-- Parent -->
+                        <button 
+                            @click="open = !open" 
+                            type="button"
+                            class="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition
+                            {{ $isGresbActive ? 'active' : 'text-gray-400 hover:text-white hover:bg-white/10' }}
+                            focus:outline-none">
+
+                            <i class="fa-solid fa-calendar-check w-5"></i>
+                            <span>Schedule Audit & Water Management Advisory Call</span>
+
+                            <svg :class="{'rotate-180': open}" 
+                                class="ml-auto h-4 w-4 transition-transform" 
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        <!-- Children -->
+                        <div x-show="open" x-cloak class="pl-8 mt-1 space-y-1">
+
+                            <a href="{{ route('admin.gresb-water.index') }}"
+                            class="flex items-center gap-3 px-4 py-2 rounded-lg transition
+                            {{ request()->routeIs('admin.gresb-water.index') 
+                                    ? 'text-teal-400 font-semibold bg-white/10' 
+                                    : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
+                                <i class="fa-solid fa-clock w-4"></i> Upcoming
+                            </a>
+
+                            <a href="{{ route('member-dashboard.gresb-water.form') }}"
+                            class="flex items-center gap-3 px-4 py-2 rounded-lg transition
+                            {{ request()->routeIs('member-dashboard.gresb-water.form') 
+                                    ? 'text-teal-400 font-semibold bg-white/10' 
+                                    : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
+                                <i class="fa-solid fa-plus w-4"></i> Scheduled New
+                            </a>
+
+                        </div>
+                    </div>
 
                     <p class="text-xs text-gray-500 mt-1">Quick Links</p>
 
