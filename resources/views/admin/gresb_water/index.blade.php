@@ -40,6 +40,7 @@
                         <th class="px-6 py-4">Interest</th>
                         <th class="px-6 py-4">Timeline</th>
                         <th class="px-6 py-4">Status</th>
+                        <th class="px-6 py-4">Meeting Link</th>
                         @if(auth()->user()->role == 'admin')
                             <th class="px-6 py-4 text-right last:pr-8">Actions</th>
                         @endif
@@ -109,12 +110,25 @@
                                     <span class="px-3 py-1 rounded-full text-[10px] font-bold bg-gray-100 text-gray-500 uppercase">Pending</span>
                                 @endif
                             </td>
+                            <td class="px-6 py-5">
+                                @if($item->status == 1 && $item->meeting_link)
+                                    <a href="{{ $item->meeting_link }}" target="_blank" class="text-xs text-blue-600 hover:underline">Join Meeting</a>
+                                @elseif($item->status == 1)
+                                    <span class="text-xs text-gray-500">Link in progress</span>
+                                @elseif($item->status == 2)
+                                    <span class="text-xs text-red-500">Rejected</span>
+                                @else
+                                    <span class="text-xs text-gray-400">Pending approval</span>
+                                @endif
+                            </td>
                             @if(auth()->user()->role == 'admin')
                                 <td class="px-6 py-5 text-right last:pr-8">
                                     <div class="flex items-center justify-end gap-2">
-                                        <button onclick="openStatusModal({{ $item->id }}, {{ $item->status }})" class="p-2 text-gray-400 hover:text-blue-600 transition">
-                                            <i class="fa-regular fa-pen-to-square"></i>
-                                        </button>
+                                        @if($item->status == null)
+                                            <button onclick="openStatusModal({{ $item->id }}, {{ $item->status }})" class="p-2 text-gray-400 hover:text-blue-600 transition">
+                                                <i class="fa-regular fa-pen-to-square"></i>
+                                            </button>
+                                        @endif
 
                                         <form action="{{ route('admin.gresb-water.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Delete this record?');">
                                             @csrf @method('DELETE')

@@ -28,10 +28,11 @@
 
                             <p>
                                 <strong>Meeting Link:</strong><br>
-                                <!-- <a href="{{ $consultation->meeting_link }}"> -->
-                                <a href="#">
-                                    Join Meeting
-                                </a>
+                                @if($consultation->meeting_link)
+                                    <a href="{{ $consultation->meeting_link }}" target="_blank" rel="noopener noreferrer">{{ $consultation->meeting_link }}</a>
+                                @else
+                                    N/A (konsultasi belum disetujui)
+                                @endif
                             </p>
 
                             <br>

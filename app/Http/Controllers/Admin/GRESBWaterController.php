@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use App\Mail\ConsultationSubmittedMail;
 
 class GRESBWaterController extends Controller
@@ -65,9 +66,9 @@ class GRESBWaterController extends Controller
         //     'meeting_link' => $request->meeting_link
         // ]);
 
-        if (app()->environment('production')) {
-            $this->sendConsultationEmail($consultation);
-        }
+        // if (app()->environment('production')) {
+        //     $this->sendConsultationEmail($consultation);
+        // }
 
         return redirect()
             ->back()
@@ -123,7 +124,24 @@ class GRESBWaterController extends Controller
     public function updateStatus(Request $request, $id)
     {
         $consultation = GresbConsultation::findOrFail($id);
-        $consultation->update(['status' => $request->status]);
+        $newStatus = (int) $request->status;
+
+        $updateData = [
+            'status' => $newStatus,
+        ];
+
+        if ($newStatus === 1) {
+            if (!$consultation->meeting_link) {
+                $slug = 'gresb-' . $consultation->id . '-' . Str::lower(Str::random(8));
+                $updateData['meeting_link'] = 'https://meet.jit.si/' . $slug;
+            }
+        }
+
+        $consultation->update($updateData);
+
+        if ($newStatus === 1) {
+            $this->sendConsultationEmail($consultation->fresh());
+        }
 
         return redirect()->back()->with('success', 'Status updated successfully!');
     }

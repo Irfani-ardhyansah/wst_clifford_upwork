@@ -18,7 +18,8 @@ class GresbConsultation extends Model {
         'interest',
         'time_preference',
         'notes',
-        'status'
+        'status',
+        'meeting_link'
     ];
 
     protected $casts = [
