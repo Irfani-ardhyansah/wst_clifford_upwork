@@ -82,6 +82,7 @@ Route::middleware(['auth', 'role:admin'])
         });
 
         Route::get('/dashboard', [AdminPortalController::class, 'dashboard'])->name('dashboard');
+        Route::get('/dashboard/assets/ajax', [AdminPortalController::class, 'getAssetsAjax'])->name('dashboard.assets.ajax');
         Route::get('/users/export', [AdminPortalController::class, 'exportUsersCsv'])->name('users.export');
 
         Route::get('/gresb-consultation', [GRESBWaterController::class, 'adminIndex'])->name('gresb-water.index');

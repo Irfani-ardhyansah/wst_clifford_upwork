@@ -8,12 +8,20 @@ use App\Models\Asset;
 use App\Models\AssetView;
 use App\Models\User;
 use App\Models\Subscriber;
+use App\Models\Industry;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Illuminate\Support\Str;
 
 class PortalController extends Controller
 {
+    public $categories = [
+        ['value' => 'case-study', 'text' => 'Case Study'], 
+            ['value' => 'webinar', 'text' => 'Webinar'], 
+            ['value' => 'white-paper', 'text' => 'White Paper'], 
+            ['value' => 'tool', 'text' => 'Tool'], 
+        ];
+
     public function caseStudies()
     {
         $caseStudies = CaseStudy::where('is_active', true)
@@ -72,14 +80,41 @@ class PortalController extends Controller
         });
         $chartValues = $topAssets->pluck('views_count');
 
+        $industries = Industry::orderBy('title')->get();
+
+        $categories = $this->categories;
+
         return view('admin.dashboard', compact(
             'registeredUsers',
             'stats',
             'topAssets',
             'chartLabels',
             'chartValues',
-            'subscribers'
+            'subscribers',
+            'industries',
+            'categories'
         ));
+    }
+
+    public function getAssetsAjax(Request $request)
+    {
+        $query = Asset::with('industry')->withCount('views');
+        if ($request->filled('industry_id')) {
+            $query->where('industry_id', $request->industry_id);
+        }
+        if ($request->filled('category')) {
+            $query->where('category', $request->category);
+        }
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                ->orWhere('category', 'like', "%{$search}%");
+            });
+        }
+        $assets = $query->latest()->limit(10)->get();
+
+        return view('admin.partials.assets_list', compact('assets'));
     }
 
     public function exportUsersCsv()

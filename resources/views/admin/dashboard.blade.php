@@ -96,6 +96,93 @@
 
     </div>
 
+    <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm mt-8">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">
+            List Of Assets
+        </h3>
+
+        <!-- <div class="mb-4 flex flex-wrap gap-4">
+            <input type="text" id="search" placeholder="Search..." class="border border-gray-300 rounded px-3 py-2">
+            <select id="category" class="border border-gray-300 rounded px-3 py-2">
+                <option value="">All Categories</option>
+                <option value="case-study">Case Study</option>
+                <option value="webinar">Webinar</option>
+                <option value="white-paper">White Paper</option>
+                <option value="tool">Tool</option>
+            </select>
+            <select id="industry_id" class="border border-gray-300 rounded px-3 py-2">
+                <option value="">All Industries</option>
+                @foreach($industries ?? [] as $industry)
+                    <option value="{{ $industry->id }}">{{ $industry->title }}</option>
+                @endforeach
+            </select>
+        </div> -->
+
+        <div class="flex flex-col md:flex-row md:items-center w-full gap-2">
+
+            <div class="relative flex-1 group w-full">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <i class="fa-solid fa-magnifying-glass text-gray-400 group-focus-within:text-teal-600 transition"></i>
+                </div>
+                <input type="text" 
+                    id="search"
+                    value="{{ request('search') }}"
+                    placeholder="Search asset title..." 
+                    class="block w-full pl-10 pr-3 py-2 bg-transparent border-0 text-sm text-gray-900 placeholder-gray-400 focus:ring-0 focus:bg-white/50 rounded-lg transition"
+                >
+            </div>
+
+            <div class="hidden md:block w-px h-6 bg-gray-200 mx-1"></div>
+
+            <div class="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
+                
+                <div class="relative min-w-[160px] group bg-white md:bg-transparent rounded-lg md:rounded-none border md:border-0 border-gray-200">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <i class="fa-solid fa-layer-group text-gray-400 text-xs"></i>
+                    </div>
+                    <select id="category" 
+                            onchange="this.form.submit()" 
+                            class="w-full pl-8 pr-8 py-2 bg-transparent border-0 text-sm text-gray-700 font-medium focus:ring-0 cursor-pointer hover:bg-gray-100/50 transition rounded-lg appearance-none">
+                        <option value="">All Categories</option>
+                        @foreach($categories as $row)
+                            <option value="{{ $row['value'] }}" {{ request('category') == $row['value'] ? 'selected' : '' }}>
+                                {{ $row['text'] }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-400 group-hover:text-gray-600 transition">
+                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </div>
+                </div>
+
+                <div class="hidden sm:block w-px h-6 bg-gray-200 my-auto"></div>
+
+                <div class="relative min-w-[160px] group bg-white md:bg-transparent rounded-lg md:rounded-none border md:border-0 border-gray-200">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <i class="fa-solid fa-building text-gray-400 text-xs"></i>
+                    </div>
+                    <select id="industry_id" 
+                            onchange="this.form.submit()" 
+                            class="w-full pl-8 pr-8 py-2 bg-transparent border-0 text-sm text-gray-700 font-medium focus:ring-0 cursor-pointer hover:bg-gray-100/50 transition rounded-lg appearance-none">
+                        <option value="">All Industries</option>
+                        @foreach($industries as $industry)
+                            <option value="{{ $industry->id }}" {{ request('industry_id') == $industry->id ? 'selected' : '' }}>
+                                {{ $industry->title }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-400 group-hover:text-gray-600 transition">
+                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="assets-results">
+            <!-- Assets will be loaded here -->
+        </div>
+    </div>
+
     <div id="detail-loader" class="hidden mt-8 text-center py-12">
         <i class="fa-solid fa-circle-notch fa-spin text-3xl text-teal-500 mb-3"></i>
         <p class="text-gray-400 animate-pulse">Loading logs data...</p>
@@ -228,17 +315,27 @@
     }
 
     $(document).ready(function() {
-        $('.asset-trigger').on('click', function(e) {
+        // Menampilkan detail asset logs dengan AJAX ketika tombol dipilih
+        $(document).on('click', '.asset-trigger', function(e) {
             e.preventDefault();
             
-            let url = $(this).data('url');
+            let $this = $(this);
+            let url = $this.data('url');
             let container = $('#asset-detail-container');
             let loader = $('#detail-loader');
             let allTriggers = $('.asset-trigger');
 
-            // Visual feedback pada tombol yang aktif
+            // Cek jika button ini sudah active
+            if ($this.hasClass('bg-teal-50')) {
+                // Jika ya, un-active dan close container
+                $this.removeClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
+                container.slideUp(300);
+                return;
+            }
+
+            // Jika tidak active, active dan load detail
             allTriggers.removeClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
-            $(this).addClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
+            $this.addClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
 
             // Animasi slide up container lama (jika ada)
             container.slideUp(200, function() {
@@ -299,6 +396,24 @@
             pageLength: 10,
             order: [[2, 'desc']]
         });
+
+        // Assets filter AJAX
+        function loadAssets() {
+            let search = $('#search').val();
+            let category = $('#category').val();
+            let industry_id = $('#industry_id').val();
+            $.ajax({
+                url: "{{ route('admin.dashboard.assets.ajax') }}",
+                type: 'GET',
+                data: { search, category, industry_id },
+                success: function(response) {
+                    $('#assets-results').html(response);
+                }
+            });
+        }
+
+        $('#search, #category, #industry_id').on('change input', loadAssets);
+        loadAssets(); // initial load
     });
 </script>
 @endpush
