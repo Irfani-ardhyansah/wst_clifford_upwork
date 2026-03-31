@@ -33,6 +33,24 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
+// Route::get('/new-design', function () {
+//     return view('new-design');
+// })->name('new-design');
+
+Route::prefix('new-design')->group(function() {
+    Route::get('/dashboard', function () {
+        return view('new_design.dashboard');
+    })->name('new-design.dashboard');
+
+    Route::get('/portal', function () {
+        return view('new_design.portal');
+    })->name('new-design.portal');
+
+    Route::get('/wst_portal', function () {
+        return view('new_design.wst_portal');
+    })->name('new-design.wst_portal');
+});
+
 Route::middleware(['auth', 'role:admin'])
     ->prefix('admin')
     ->name('admin.')

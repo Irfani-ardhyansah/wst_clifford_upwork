@@ -5,35 +5,35 @@
 
 @section('content')
 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="page-hdr">
+        <div class="page-hdr-left"><h2>Industries</h2><p>Manage industry categories and segments</p></div>
+        <div class="page-hdr-right">
+            <a href="{{ route('admin.industries.create')  }}" 
+                class="inline-flex items-center justify-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-5 py-2.5 rounded-xl font-medium transition-all duration-200 shadow-md shadow-teal-600/20 hover:shadow-lg hover:shadow-teal-600/30 hover:-translate-y-0.5"
+                >
+                <i class="fa-solid fa-plus text-sm"></i> <span>Add Industry</span>
+            </a>
+        </div>
+    </div>
     
-    <div class="bg-white rounded-2xl shadow-xl shadow-gray-200/40 overflow-hidden border border-gray-100">
-        
-        <div class="p-6 border-b border-gray-100 bg-white relative z-20">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-                <div>
-                    <h3>Master data for business sectors.</h3>
-                </div>
-                <a href="{{ route('admin.industries.create') }}" 
-                   class="inline-flex items-center justify-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-5 py-2.5 rounded-xl font-medium transition-all duration-200 shadow-md shadow-teal-600/20 hover:shadow-lg hover:shadow-teal-600/30 hover:-translate-y-0.5">
-                    <i class="fa-solid fa-plus text-sm"></i> <span>Add Industry</span>
-                </a>
-            </div>
+    <div class="bg-[var(--surface)] rounded-2xl shadow-xl overflow-hidden border border-[var(--border)]">
 
-            <div class="bg-gray-50 rounded-xl p-1.5 mb-2 border border-gray-100 max-w-2xl">
+        <div class="p-6 border-b border-[var(--border)] bg-[var(--surface)] relative z-20">
+
+            <div class="bg-[var(--surface-2)] rounded-xl p-1.5 mb-6 border border-[var(--border)]">
                 <form action="{{ route('admin.industries.index') }}" method="GET" class="relative group">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <i class="fa-solid fa-magnifying-glass text-gray-400 group-focus-within:text-teal-600 transition"></i>
+                        <i class="fa-solid fa-magnifying-glass text-[var(--text-3)] text-xs"></i>
                     </div>
                     <input type="text" 
                             name="search" 
                             value="{{ request('search') }}"
                             placeholder="Search industry name or description..." 
-                            class="block w-full pl-10 pr-10 py-2 bg-transparent border-0 text-sm text-gray-900 placeholder-gray-400 focus:ring-0 focus:bg-white/50 rounded-lg transition">
-                    
+                            class="block w-full pl-10 pr-3 py-2 bg-transparent border-0 text-sm text-[var(--text-1)] placeholder-[var(--text-3)] focus:ring-0 focus:bg-white/50 rounded-lg transition">
                     @if(request('search'))
                         <div class="absolute inset-y-0 right-0 flex items-center pr-2">
                             <a href="{{ route('admin.industries.index') }}" 
-                               class="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-md transition">
+                                class="p-2 text-[var(--text-3)] hover:text-red-500 hover:bg-red-50 rounded-lg transition" >
                                 <i class="fa-solid fa-xmark"></i>
                             </a>
                         </div>
@@ -54,31 +54,35 @@
         <div class="relative z-10 overflow-x-auto">
             <table class="w-full text-left border-collapse">
                 <thead>
-                    <tr class="bg-gray-50/80 border-b border-gray-100 text-xs uppercase tracking-wider text-gray-500 font-semibold">
+                    <tr class="bg-[var(--surface-2)] border-b border-[var(--border)] text-xs uppercase tracking-wider text-[var(--text-3)] font-semibold">
                         <th class="px-6 py-4 first:pl-8">Industry Info</th>
                         <th class="px-6 py-4 text-center">Sort Order</th>
                         <th class="px-6 py-4">Status</th>
                         <th class="px-6 py-4 text-right last:pr-8">Actions</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-50">
+                <tbody class="divide-y divide-[var(--border)]">
                     @forelse($industries as $item)
-                        <tr class="group transition-all duration-200 hover:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.1)] hover:bg-white hover:-translate-y-[2px] relative hover:z-20">
+                        <tr class="group transition-all duration-200 
+                            hover:bg-[var(--surface-2)] 
+                            hover:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.1)] 
+                            hover:-translate-y-[2px] relative hover:z-20">
+                            
                             <td class="px-6 py-5 first:pl-8 max-w-md">
                                 <div class="flex items-start gap-4">
-                                    <div class="relative h-12 w-12 flex-shrink-0 rounded-lg overflow-hidden border border-gray-200 bg-gray-100 mt-1">
+                                    <div class="relative h-16 w-24 flex-shrink-0 rounded-xl overflow-hidden border border-[var(--border)] shadow-sm bg-[var(--surface-2)] group-hover:border-teal-200 transition">
                                         @if($item->image_path)
                                             <img src="{{ Storage::url($item->image_path) }}" 
                                                 class="h-full w-full object-cover group-hover:scale-110 transition duration-500">
                                         @else
-                                            <div class="h-full w-full flex items-center justify-center text-gray-400">
+                                            <div class="h-full w-full flex items-center justify-center text-[var(--text-3)] bg-[var(--surface-2)]">
                                                 <i class="fa-solid fa-industry text-lg"></i>
                                             </div>
                                         @endif
                                     </div>
                                     
                                     <div>
-                                        <div class="font-bold text-gray-900 group-hover:text-teal-700 transition-colors flex items-center gap-2">
+                                        <div class="font-bold text-base text-[var(--text-1)] group-hover:text-[var(--primary)] transition-colors line-clamp-1">
                                             {{ $item->title }}
                                             <a href="{{ url('industries/' . $item->slug) }}" target="_blank" class="text-gray-400 hover:text-teal-500 text-xs">
                                                 <i class="fa-solid fa-up-right-from-square"></i>

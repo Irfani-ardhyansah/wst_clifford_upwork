@@ -5,29 +5,24 @@
 
 @section('content')
 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="bg-white rounded-2xl shadow-xl shadow-gray-200/40 overflow-hidden border border-gray-100">
-        
-        <!-- Header -->
-        <div class="p-6 border-b border-gray-100 bg-white relative z-20">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-                <div>
-                    <h3 class="text-lg font-semibold text-gray-900">Manage Articles</h3>
-                    <p class="text-sm text-gray-500">Create, edit, or remove articles.</p>
-                </div>
-                <a href="{{ route('admin.articles.create') }}" 
-                    class="inline-flex items-center justify-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-5 py-2.5 rounded-xl font-medium transition-all duration-200 shadow-md shadow-teal-600/20 hover:shadow-lg hover:shadow-teal-600/30 hover:-translate-y-0.5">
-                    <i class="fa-solid fa-plus text-sm"></i> 
-                    <span>Add Article</span>
-                </a>
-            </div>
+    <div class="page-hdr">
+        <div class="page-hdr-left"><h2>Articles</h2><p>Manage editorial content and insights</p></div>
+        <div class="page-hdr-right">
+            <a href="{{ route('admin.articles.create')  }}" 
+                class="inline-flex items-center justify-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-5 py-2.5 rounded-xl font-medium transition-all duration-200 shadow-md shadow-teal-600/20 hover:shadow-lg hover:shadow-teal-600/30 hover:-translate-y-0.5"
+                >
+                <i class="fa-solid fa-plus text-sm"></i> <span>Add Article</span>
+            </a>
         </div>
+    </div>
+    
+    <div class="bg-[var(--surface)] rounded-2xl shadow-xl overflow-hidden border border-[var(--border)]">
 
         <!-- Table -->
         <div class="relative z-10 overflow-x-auto">
             <table class="w-full text-left border-collapse">
                 <thead>
-                    <tr class="bg-gray-50/80 border-b border-gray-100 text-xs uppercase tracking-wider text-gray-500 font-semibold">
+                    <tr class="bg-[var(--surface-2)] border-b border-[var(--border)] text-xs uppercase tracking-wider text-[var(--text-3)] font-semibold">
                         <th class="px-6 py-4 first:pl-8">Article Info</th>
                         <th class="px-6 py-4">Source</th>
                         <th class="px-6 py-4">Status</th>
@@ -35,9 +30,12 @@
                         <th class="px-6 py-4 text-right last:pr-8">Actions</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-50">
+                <tbody class="divide-y divide-[var(--border)]">
                     @forelse($articles as $article)
-                        <tr class="group transition-all duration-200 hover:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.1)] hover:bg-white hover:-translate-y-[2px] relative hover:z-20">
+                        <tr class="group transition-all duration-200 
+                            hover:bg-[var(--surface-2)] 
+                            hover:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.1)] 
+                            hover:-translate-y-[2px] relative hover:z-20">
 
                             <!-- Article Info -->
                             <td class="px-6 py-5 first:pl-8">
@@ -49,17 +47,17 @@
                                                 class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500" 
                                                 alt="{{ $article->title }}">
                                         @else
-                                            <div class="h-full w-full flex items-center justify-center text-gray-400 bg-gray-50">
+                                            <div class="h-full w-full flex items-center justify-center text-[var(--text-3)] bg-[var(--surface-2)]">
                                                 <i class="fa-regular fa-image text-2xl opacity-50"></i>
                                             </div>
                                         @endif
                                     </div>
 
                                     <div>
-                                        <div class="font-bold text-base text-gray-900 group-hover:text-teal-700 transition-colors">
+                                        <div class="font-bold text-base text-[var(--text-1)] group-hover:text-[var(--primary)] transition-colors">
                                             {{ $article->title }}
                                         </div>
-                                        <div class="text-sm text-gray-500 mt-1 font-medium">
+                                        <div class="text-sm text-[var(--text-3)] mt-1 font-medium">
                                             {{ $article->slug }}
                                         </div>
                                     </div>
@@ -127,12 +125,14 @@
                     @empty
                         <tr>
                             <td colspan="5" class="px-6 py-16 text-center">
-                                <div class="flex flex-col items-center justify-center bg-gray-50/50 rounded-2xl p-8 border border-dashed border-gray-200">
+                                <div class="flex flex-col items-center justify-center 
+                                    bg-[var(--surface-2)] rounded-2xl p-8 
+                                    border border-dashed border-[var(--border)]">
                                     <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm border border-gray-100">
                                         <i class="fa-solid fa-newspaper text-3xl text-teal-600/80"></i>
                                     </div>
-                                    <h3 class="text-xl font-bold text-gray-900 mb-2">No Articles Yet</h3>
-                                    <p class="text-gray-500 mb-6 max-w-md mx-auto">
+                                    <h3 class="text-xl font-bold text-[var(--text-1)] mb-2">No Articles Yet</h3>
+                                    <p class="text-[var(--text-3)] mb-6 max-w-md mx-auto">
                                         Start building your expert insights by adding your first article.
                                     </p>
                                     <a href="{{ route('admin.articles.create') }}" 

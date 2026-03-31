@@ -5,14 +5,17 @@
 
 @section('content')
 <div class="max-w-3xl mx-auto px-4">
+
     <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-bold"></h1>
-        <a href="{{ route('admin.assets.index') }}" class="text-gray-600 hover:text-gray-900">
+        <h1 class="text-2xl font-bold text-[var(--text-1)]"></h1>
+        <a href="{{ route('admin.assets.index') }}" 
+            class="text-[var(--text-3)] hover:text-[var(--text-1)] transition">
             &larr; Back
         </a>
     </div>
 
-    <div class="bg-white rounded-xl shadow p-6">
+    <div class="bg-[var(--surface)] rounded-xl shadow border border-[var(--border)] p-6">
+
         @if ($errors->any())
             <div class="mb-6 rounded-xl border border-red-200 bg-red-50 p-4">
                 <div class="flex items-start gap-3">
@@ -30,10 +33,12 @@
                 </div>
             </div>
         @endif
+
         <form action="{{ route('admin.assets.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @include('admin.assets._form', ['asset' => null])
         </form>
+
     </div>
 </div>
 @endsection

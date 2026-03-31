@@ -5,271 +5,237 @@
 
 @section('content')
 
-    <div class="mb-8">
-        <h2 class="text-2xl font-bold text-gray-800">
-            Welcome back, {{ auth()->user()->name ?? 'Admin' }}
-        </h2>
-        <p class="text-gray-500">
-            Manage assets and track engagement
-        </p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-10">
-        <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
-            <p class="text-xs text-gray-400 uppercase tracking-wide mb-2">Total Assets</p>
-            <p class="text-3xl font-bold text-gray-800">
-                {{ $stats['total_assets'] ?? 0 }}
-            </p>
-        </div>
-
-        <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
-            <p class="text-xs text-gray-400 uppercase tracking-wide mb-2">Total Views</p>
-            <p class="text-3xl font-bold text-teal-600">
-                {{ $stats['total_views'] ?? 0 }}
-            </p>
-        </div>
-
-        <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
-            <p class="text-xs text-gray-400 uppercase tracking-wide mb-2">Registered Users</p>
-            <p class="text-3xl font-bold text-gray-800">
-                {{ $stats['registered_users'] ?? 0 }}
-            </p>
-        </div>
-
-        <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
-            <p class="text-xs text-gray-400 uppercase tracking-wide mb-2">Total Subscribers</p>
-            <p class="text-3xl font-bold text-gray-800">
-                {{ $stats['total_subscribers'] ?? 0 }}
-            </p>
-        </div>
-
-        <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
-            <p class="text-xs text-gray-400 uppercase tracking-wide mb-2">Top Asset</p>
-            <p class="text-sm font-semibold text-gray-800 truncate">
-                {{ $stats['top_asset_title'] ?? '-' }}
-            </p>
+    <div class="page-hdr">
+        <div class="page-hdr-left">
+            <h2>Portfolio Intelligence</h2>
+            <p id="date-label">Loading…</p>
         </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-        <div class="lg:col-span-2 bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">
-                Asset Engagement
-            </h3>
-
-            <canvas id="assetChart" height="120"></canvas>
+    <div class="stats-strip" id="stats-strip" style="grid-template-columns:repeat(5,1fr);">
+        <div class="stat-cell">
+            <div class="stat-label">
+                <i class="fa-solid fa-layer-group" style="color:var(--blue);"></i>Total Assets
+            </div>
+            <div class="stat-num" id="cnt-assets">{{ $stats['total_assets'] ?? 0 }}</div>
+            <div class="stat-sub">Published resources</div>
         </div>
+        <div class="stat-cell">
+            <div class="stat-label">
+                <i class="fa-solid fa-eye" style="color:var(--accent);"></i>Total Views
+            </div>
+            <div class="stat-num accent" id="cnt-views">{{ $stats['total_views'] ?? 0 }}</div>
+            <div class="stat-sub">Users</div>
+        </div>
+        <div class="stat-cell">
+            <div class="stat-label">
+                <i class="fa-solid fa-users" style="color:var(--purple);"></i>Registered Users
+            </div>
+            <div class="stat-num" id="cnt-leads">{{ $stats['registered_users'] ?? 0 }}</div>
+            <div class="stat-sub">Verified accounts</div>
+        </div>
+        <div class="stat-cell">
+            <div class="stat-label">
+                <i class="fa-solid fa-bell" style="color:var(--amber);"></i>Subscribers
+            </div>
+            <div class="stat-num" id="cnt-subs">{{ $stats['total_subscribers'] ?? 0 }}</div>
+            <div class="stat-sub">Newsletter</div>
+        </div>
+        <div class="stat-cell">
+            <div class="stat-label">
+                <i class="fa-solid fa-trophy" style="color:var(--amber);"></i>Top Asset
+            </div>
+            <div class="stat-num" style="font-size:13px;font-weight:600;font-family:var(--font-ui);" id="top-asset">{{ $stats['top_asset_title'] ?? '-' }}</div>
+            <div class="stat-sub" id="top-views">{{ $stats['top_asset_views'] ?? '-' }} views</div>
+        </div>
+    </div>
 
-        <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">
-                Top Performing
-            </h3>
-
-            <ul class="space-y-4">
-                @forelse($topAssets ?? [] as $index => $asset)
-                    <li class="flex items-center justify-between">
-                        <button type="button" 
+    <div class="mid-grid">
+        <div class="card">
+            <div class="card-hdr">
+                <div class="card-title"><i class="fa-solid fa-wave-square" style="color:var(--accent);font-size:11px;"></i>Asset Engagement</div>
+                <div class="chart-tabs">
+                    <button class="tab-btn active" onclick="switchChart(this,'views')">Views</button>
+                </div>
+            </div>
+            <div class="card-body"><div class="chart-wrap"><canvas id="assetChart"></canvas></div></div>
+        </div>
+        <div class="card">
+            <div class="card-hdr">
+                <div class="card-title">
+                    <i class="fa-solid fa-ranking-star" style="color:var(--amber);font-size:11px;"></i>Top Performing
+                </div>
+                <span class="card-meta">by views</span>
+            </div>
+            <div class="card-body" style="padding:10px 12px;">
+                <div class="performer-list" id="top-performers">
+                    @forelse($topAssets ?? [] as $index => $asset)
+                        <button 
                             data-url="{{ route('admin.asset.details', $asset->id) }}"
-                            class="asset-trigger w-full flex items-center justify-between group p-3 rounded-lg border border-transparent hover:bg-gray-50 hover:border-gray-200 transition-all duration-200 text-left">
-                        <div class="flex items-center gap-3">
-                            <span class="text-gray-300 font-bold">
-                                {{ $index + 1 }}
-                            </span>
-                            <span class="text-sm font-medium text-gray-800">
-                                {{ $asset->title }}
-                            </span>
+                            class="performer-item asset-trigger" onclick="openViewerLog({{ $asset->id }},this)">
+                            <span class="p-rank">{{ $index + 1 }}</span>
+                            <span class="p-title">{{ $asset->title }}</span>
+                            <!-- <div class="p-bar-wrap"><div class="p-bar" style="width:{{ $asset->views->count() > 0 ? min(100, ($asset->views->count() / ($topAssets->first()->views->count() ?? 1)) * 100) : 0 }}%"></div></div> -->
+                            <span class="p-views">{{ $asset->views_count }}</span>
+                        </button>
+                    @empty
+                        <div class="text-sm text-gray-400">No performance data available</div>
+                    @endforelse
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-8 text-center">
+        <div class="card-hdr">
+            <div class="card-title"><i class="fa-solid fa-list" style="color:var(--accent);font-size:11px;"></i>List Of Assets</div>
+        </div>
+        <div class="card-body">
+            <div class="flex flex-col md:flex-row md:items-center w-full gap-2">
+
+                <!-- SEARCH -->
+                <div class="relative flex-1 group w-full">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <i class="fa-solid fa-magnifying-glass text-[var(--text-3)] text-xs"></i>
+                    </div>
+                    <input type="text" 
+                        id="search"
+                        value="{{ request('search') }}"
+                        placeholder="Search asset title..." 
+                        class="block w-full pl-10 pr-3 py-2 text-sm rounded-lg transition
+                            border border-[var(--border)]
+                            bg-[var(--surface)] text-[var(--text-1)] placeholder-[var(--text-3)]
+                            focus:ring-0 focus:outline-none"
+                    >
+                </div>
+
+                <div class="hidden md:block w-px h-6 mx-1 bg-[var(--border)]"></div>
+
+                <div class="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
+                    
+                    <!-- CATEGORY -->
+                    <div class="relative min-w-[160px] group rounded-lg border border-[var(--border)] bg-[var(--surface)]">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <i class="fa-solid fa-layer-group text-[var(--text-3)] text-xs"></i>
                         </div>
-
-                        <span
-                            class="text-sm font-semibold text-teal-600 bg-teal-50 px-2 py-1 rounded">
-                            {{ $asset->views_count }}
-                        </span>
-                    </li>
-                @empty
-                    <li class="text-sm text-gray-400">
-                        No performance data available
-                    </li>
-                @endforelse
-            </ul>
-        </div>
-
-    </div>
-
-    <div class="bg-white rounded-xl border border-gray-100 p-6 shadow-sm mt-8">
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">
-            List Of Assets
-        </h3>
-
-        <!-- <div class="mb-4 flex flex-wrap gap-4">
-            <input type="text" id="search" placeholder="Search..." class="border border-gray-300 rounded px-3 py-2">
-            <select id="category" class="border border-gray-300 rounded px-3 py-2">
-                <option value="">All Categories</option>
-                <option value="case-study">Case Study</option>
-                <option value="webinar">Webinar</option>
-                <option value="white-paper">White Paper</option>
-                <option value="tool">Tool</option>
-            </select>
-            <select id="industry_id" class="border border-gray-300 rounded px-3 py-2">
-                <option value="">All Industries</option>
-                @foreach($industries ?? [] as $industry)
-                    <option value="{{ $industry->id }}">{{ $industry->title }}</option>
-                @endforeach
-            </select>
-        </div> -->
-
-        <div class="flex flex-col md:flex-row md:items-center w-full gap-2">
-
-            <div class="relative flex-1 group w-full">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <i class="fa-solid fa-magnifying-glass text-gray-400 group-focus-within:text-teal-600 transition"></i>
-                </div>
-                <input type="text" 
-                    id="search"
-                    value="{{ request('search') }}"
-                    placeholder="Search asset title..." 
-                    class="block w-full pl-10 pr-3 py-2 bg-transparent border-0 text-sm text-gray-900 placeholder-gray-400 focus:ring-0 focus:bg-white/50 rounded-lg transition"
-                >
-            </div>
-
-            <div class="hidden md:block w-px h-6 bg-gray-200 mx-1"></div>
-
-            <div class="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
-                
-                <div class="relative min-w-[160px] group bg-white md:bg-transparent rounded-lg md:rounded-none border md:border-0 border-gray-200">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <i class="fa-solid fa-layer-group text-gray-400 text-xs"></i>
+                        <select id="category" 
+                                onchange="this.form.submit()" 
+                                class="w-full pl-8 pr-8 py-2 text-sm font-medium rounded-lg appearance-none
+                                    bg-transparent text-[var(--text-1)]
+                                    focus:ring-0 focus:outline-none cursor-pointer">
+                            <option value="">All Categories</option>
+                            @foreach($categories as $row)
+                                <option value="{{ $row['value'] }}" {{ request('category') == $row['value'] ? 'selected' : '' }}>
+                                    {{ $row['text'] }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-[var(--text-3)]">
+                            <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                        </div>
                     </div>
-                    <select id="category" 
-                            onchange="this.form.submit()" 
-                            class="w-full pl-8 pr-8 py-2 bg-transparent border-0 text-sm text-gray-700 font-medium focus:ring-0 cursor-pointer hover:bg-gray-100/50 transition rounded-lg appearance-none">
-                        <option value="">All Categories</option>
-                        @foreach($categories as $row)
-                            <option value="{{ $row['value'] }}" {{ request('category') == $row['value'] ? 'selected' : '' }}>
-                                {{ $row['text'] }}
-                            </option>
-                        @endforeach
-                    </select>
-                    <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-400 group-hover:text-gray-600 transition">
-                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
-                    </div>
-                </div>
 
-                <div class="hidden sm:block w-px h-6 bg-gray-200 my-auto"></div>
+                    <div class="hidden sm:block w-px h-6 my-auto bg-[var(--border)]"></div>
 
-                <div class="relative min-w-[160px] group bg-white md:bg-transparent rounded-lg md:rounded-none border md:border-0 border-gray-200">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <i class="fa-solid fa-building text-gray-400 text-xs"></i>
-                    </div>
-                    <select id="industry_id" 
-                            onchange="this.form.submit()" 
-                            class="w-full pl-8 pr-8 py-2 bg-transparent border-0 text-sm text-gray-700 font-medium focus:ring-0 cursor-pointer hover:bg-gray-100/50 transition rounded-lg appearance-none">
-                        <option value="">All Industries</option>
-                        @foreach($industries as $industry)
-                            <option value="{{ $industry->id }}" {{ request('industry_id') == $industry->id ? 'selected' : '' }}>
-                                {{ $industry->title }}
-                            </option>
-                        @endforeach
-                    </select>
-                    <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-gray-400 group-hover:text-gray-600 transition">
-                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    <!-- INDUSTRY -->
+                    <div class="relative min-w-[160px] group rounded-lg border border-[var(--border)] bg-[var(--surface)]">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <i class="fa-solid fa-building text-[var(--text-3)] text-xs"></i>
+                        </div>
+                        <select id="industry_id" 
+                                onchange="this.form.submit()" 
+                                class="w-full pl-8 pr-8 py-2 text-sm font-medium rounded-lg appearance-none
+                                    bg-transparent text-[var(--text-1)]
+                                    focus:ring-0 focus:outline-none cursor-pointer">
+                            <option value="">All Industries</option>
+                            @foreach($industries as $industry)
+                                <option value="{{ $industry->id }}" {{ request('industry_id') == $industry->id ? 'selected' : '' }}>
+                                    {{ $industry->title }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none text-[var(--text-3)]">
+                            <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div id="assets-results">
-            <!-- Assets will be loaded here -->
+            <div id="assets-results">
+                <!-- Assets will be loaded here -->
+            </div>
         </div>
     </div>
 
-    <div id="detail-loader" class="hidden mt-8 text-center py-12">
+    <div id="detail-loader" class="hidden mt-8 text-center">
         <i class="fa-solid fa-circle-notch fa-spin text-3xl text-teal-500 mb-3"></i>
         <p class="text-gray-400 animate-pulse">Loading logs data...</p>
     </div>
 
-    <div id="asset-detail-container" class="mt-8" style="display: none;"></div>
+    <div id="asset-detail-container" class="viewer-panel" style="display:none;margin-bottom:18px;"></div>
 
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mt-8 p-6">
-        <div class="flex justify-between items-center mb-6">
-            <h3 class="font-bold text-gray-800 text-lg">Registered Leads</h3>
-            <button onclick="exportLeads()" class="text-sm text-teal-600 hover:text-teal-700 font-medium flex items-center gap-2 border border-teal-100 bg-teal-50 px-3 py-1.5 rounded-lg transition">
-                <i class="fa-solid fa-download"></i> Export CSV
+    <div class="card mt-8 text-center">
+        <div class="card-hdr">
+            <div class="card-title">
+                <i class="fa-solid fa-user-tie" style="color:var(--purple);font-size:11px;"></i>Recent Leads
+            </div>
+            <button class="btn btn-ghost" style="font-size:11px;" onclick="location.href='{{ route('admin.assets.index') }}'">
+                <i class="fa-solid fa-arrow-right" style="font-size:10px;"></i> View All
             </button>
         </div>
-
-        <div class="overflow-x-auto">
-            <table id="leadsTable" class="w-full text-left border-collapse">
-                <thead class="bg-gray-50 text-gray-500 text-xs uppercase font-semibold">
-                    <tr>
-                        <th class="p-4 rounded-tl-lg">Name</th>
-                        <th class="p-4">Company</th>
-                        <th class="p-4">Email</th>
-                        <th class="p-4 rounded-tr-lg">Registered Date</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-100 text-sm bg-white">
-                    @foreach($registeredUsers as $user)
-                        <tr class="hover:bg-gray-50 transition duration-150">
-                            <td class="px-4 py-3 font-bold text-gray-900">{{ $user->name }}</td>
-                            <td class="px-4 py-3 text-gray-600">{{ $user->company ?? '-' }}</td>
-                            <td class="px-4 py-3">
-                                <a href="mailto:{{ $user->email }}" class="text-teal-600 hover:underline">{{ $user->email }}</a>
-                            </td>
-                            <td class="px-4 py-3 text-gray-500">
-                                {{ $user->created_at->format('d M Y, H:i') }}
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+        <div class="card-body np"><div class="table-scroll"><table class="wst-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Company</th>
+                    <th>Email</th>
+                    <th class="r">Registered</th>
+                </tr>
+            </thead>
+            <tbody id="dash-leads">
+            @foreach($registeredUsers as $user)
+                <tr>
+                    <td class="primary">{{ $user->name }}</td>
+                    <td>{{ $user->company ?? '-' }}</td>
+                    <td><a href="mailto:{{ $user->email }}" style="color:var(--accent);font-family:var(--font-mono);font-size:11px;">{{ $user->email }}</a></td>
+                    <td class="r" style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">{{ $user->created_at->format('d M Y, H:i') }}</td>
+                </tr>
+            @endforeach
+        </tbody></table></div></div>
     </div>
 
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden mt-8 p-6">
-        <div class="flex justify-between items-center mb-6">
-            <div class="flex items-center">
-                <h3 class="font-bold text-gray-800 text-lg">Newsletter Subscribers</h3>
+    <div class="card mt-8 text-center">
+        <div class="card-hdr">
+            <div class="card-title">
+                <i class="fa-solid fa-bell" style="color:var(--amber);font-size:11px;"></i>Recent Subscribers
             </div>
-            <span class="text-xs font-semibold bg-gray-100 text-gray-600 px-3 py-1 rounded-full">
-                Total: {{ count($subscribers) }}
-            </span>
+            <span class="pill pill-dim" id="sub-count">{{ count($subscribers) }} total</span>
         </div>
-
-        <div class="overflow-x-auto">
-            <table id="subscribersTable" class="w-full text-left border-collapse">
-                <thead class="bg-gray-50 text-gray-500 text-xs uppercase font-semibold">
-                    <tr>
-                        <th class="p-4 rounded-tl-lg w-10">#</th>
-                        <th class="p-4">Email Address</th>
-                        <th class="p-4 rounded-tr-lg text-right">Subscribed At</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-100 text-sm bg-white">
-                    @foreach($subscribers as $index => $sub)
-                        <tr class="hover:bg-gray-50 transition duration-150 group">
-                            <td class="px-4 py-3 text-gray-400 text-xs">
-                                {{ $index + 1 }}
-                            </td>
-                            
-                            <td class="px-4 py-3 font-medium text-gray-800">
-                                <div class="flex items-center gap-2">
-                                    <i class="fa-regular fa-envelope text-gray-300 group-hover:text-indigo-400 transition"></i>
-                                    <a href="mailto:{{ $sub->email }}" class="hover:text-indigo-600 transition">
-                                        {{ $sub->email }}
-                                    </a>
-                                </div>
-                            </td>
-                            
-                            <td class="px-4 py-3 text-gray-500 text-right font-mono text-xs">
-                                {{ $sub->created_at->format('d M Y') }} 
-                                <span class="text-gray-300 mx-1">|</span> 
-                                {{ $sub->created_at->format('H:i') }}
-                            </td>
+        <div class="card-body np">
+            <div class="table-scroll">
+                <table class="wst-table">
+                    <thead>
+                        <tr>
+                            <th style="width:36px;">#</th>
+                            <th>Email</th>
+                            <th class="r">Subscribed</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody id="dash-subs">
+                        @foreach($subscribers as $index => $sub)
+                            <tr>
+                                <td style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</td>
+                                <td>
+                                    <div style="display:flex;align-items:center;gap:8px;">
+                                        <i class="fa-regular fa-envelope" style="font-size:10px;color:var(--text-3);"></i>
+                                        <a href="mailto:{{ $sub->email }}" style="color:var(--text-1);font-weight:500;">{{ $sub->email }}</a>
+                                    </div>
+                                </td>
+                                <td class="r" style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">{{ $sub->created_at->format('d M Y') }} - {{ $sub->created_at->format('H:i') }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -277,143 +243,213 @@
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
 <script>
-    const ctx = document.getElementById('assetChart');
+$(document).ready(function() {
+    // Menampilkan detail asset logs dengan AJAX ketika tombol dipilih
+    $(document).on('click', '.asset-trigger', function(e) {
+        e.preventDefault();
+        
+        let $this = $(this);
+        let url = $this.data('url');
+        let container = $('#asset-detail-container');
+        let loader = $('#detail-loader');
+        let allTriggers = $('.asset-trigger');
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: @json($chartLabels),
-            datasets: [{
-                label: 'Views',
-                data: @json($chartValues),
-                borderRadius: 8,
-                backgroundColor: '#0d9488'
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { display: false }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: { color: '#f1f5f9' }
-                },
-                x: {
-                    grid: { display: false }
-                }
-            }
+        // Cek jika button ini sudah active
+        if ($this.hasClass('bg-teal-50')) {
+            // Jika ya, un-active dan close container
+            $this.removeClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
+            container.slideUp(300);
+            return;
         }
+
+        // Jika tidak active, active dan load detail
+        allTriggers.removeClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
+        $this.addClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
+
+        // Animasi slide up container lama (jika ada)
+        container.slideUp(200, function() {
+            // Tampilkan loader
+            loader.removeClass('hidden').fadeIn(100);
+            
+            // Request AJAX
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(response) {
+                    loader.hide(); // Sembunyikan loader
+                    
+                    container.html(response).slideDown(400);
+
+                    $('html, body').animate({
+                        scrollTop: container.offset().top - 150
+                    }, 600);
+                },
+                error: function(xhr) {
+                    loader.hide();
+                    alert('Failed to load asset details.');
+                }
+            });
+        });
     });
 
+    $(document).on('click', '#close-detail-btn', function() {
+        $('#asset-detail-container').slideUp(300);
+        $('.asset-trigger').removeClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
+    });
+
+    function loadAssets() {
+        let search = $('#search').val();
+        let category = $('#category').val();
+        let industry_id = $('#industry_id').val();
+        $.ajax({
+            url: "{{ route('admin.dashboard.assets.ajax') }}",
+            type: 'GET',
+            data: { search, category, industry_id },
+            success: function(response) {
+                $('#assets-results').html(response);
+            }
+        });
+    }
+
+    $('#search, #category, #industry_id').on('change input', loadAssets);
+    loadAssets(); // initial load
+});
+
+    // Initialize chart
+    let assetChart;
+    const ctx = document.getElementById('assetChart');
+
+    function initChart(data, labels) {
+        if (assetChart) {
+            assetChart.destroy();
+        }
+        assetChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Views',
+                    data: data,
+                    borderRadius: 6,
+                    backgroundColor: 'var(--accent)',
+                    borderColor: 'var(--accent)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'var(--surface-2)' },
+                        ticks: { color: 'var(--text-3)', font: { size: 11 } }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: 'var(--text-3)', font: { size: 11 } }
+                    }
+                }
+            }
+        });
+    }
+
+    // Initialize with views data
+    initChart(@json($chartValues), @json($chartLabels));
+
+    // Chart switching function
+    function switchChart(button, type) {
+        // Update tab buttons
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Update chart based on type
+        if (type === 'views') {
+            initChart(@json($chartValues), @json($chartLabels));
+        } else if (type === 'leads') {
+            // For demo, using same data - in real app you'd fetch different data
+            initChart(@json($chartValues), @json($chartLabels));
+        } else if (type === 'subs') {
+            // For demo, using same data - in real app you'd fetch different data
+            initChart(@json($chartValues), @json($chartLabels));
+        }
+    }
+
+    // Viewer log functions
+    function openViewerLog(assetId, button) {
+        // Remove active state from all performer items
+        document.querySelectorAll('.performer-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        // Add active state to clicked item
+        button.classList.add('active');
+
+        // Show panel
+        const panel = document.getElementById('viewer-log-panel');
+        panel.style.display = 'block';
+
+        // Set asset info
+        document.getElementById('viewer-asset-title').textContent = button.querySelector('.p-title').textContent;
+        document.getElementById('viewer-asset-meta').textContent = `Asset ID ${assetId} • Total Views ${button.querySelector('.p-views').textContent}`;
+
+        // Load viewer data (mock data for now)
+        const tbody = document.getElementById('viewer-log-tbody');
+        tbody.innerHTML = `
+            <tr><td>John Doe</td><td>2024-01-15</td><td class="r">14:32</td></tr>
+            <tr><td>Jane Smith</td><td>2024-01-14</td><td class="r">09:15</td></tr>
+            <tr><td>Bob Johnson</td><td>2024-01-13</td><td class="r">16:45</td></tr>
+        `;
+    }
+
+    function closeViewerLog() {
+        document.getElementById('viewer-log-panel').style.display = 'none';
+        document.querySelectorAll('.performer-item').forEach(item => {
+            item.classList.remove('active');
+        });
+    }
+
+    function filterViewerLog() {
+        const searchTerm = document.getElementById('viewer-search').value.toLowerCase();
+        const rows = document.querySelectorAll('#viewer-log-tbody tr');
+
+        rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            row.style.display = text.includes(searchTerm) ? '' : 'none';
+        });
+    }
+
+    // Clock function
+    function updateClock() {
+        const now = new Date();
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        };
+        document.getElementById('date-label').textContent = now.toLocaleDateString('en-US', options);
+    }
+
+    // Update clock every second
+    setInterval(updateClock, 1000);
+    updateClock(); // Initial call
+
+    // Export function
     function exportLeads() {
         window.location.href = "{{ route('admin.users.export') }}";
     }
 
+    // Initialize on document ready
     $(document).ready(function() {
-        // Menampilkan detail asset logs dengan AJAX ketika tombol dipilih
-        $(document).on('click', '.asset-trigger', function(e) {
-            e.preventDefault();
-            
-            let $this = $(this);
-            let url = $this.data('url');
-            let container = $('#asset-detail-container');
-            let loader = $('#detail-loader');
-            let allTriggers = $('.asset-trigger');
-
-            // Cek jika button ini sudah active
-            if ($this.hasClass('bg-teal-50')) {
-                // Jika ya, un-active dan close container
-                $this.removeClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
-                container.slideUp(300);
-                return;
-            }
-
-            // Jika tidak active, active dan load detail
-            allTriggers.removeClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
-            $this.addClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
-
-            // Animasi slide up container lama (jika ada)
-            container.slideUp(200, function() {
-                // Tampilkan loader
-                loader.removeClass('hidden').fadeIn(100);
-                
-                // Request AJAX
-                $.ajax({
-                    url: url,
-                    type: 'GET',
-                    success: function(response) {
-                        loader.hide(); // Sembunyikan loader
-                        
-                        container.html(response).slideDown(400);
-
-                        $('html, body').animate({
-                            scrollTop: container.offset().top - 150
-                        }, 600);
-                    },
-                    error: function(xhr) {
-                        loader.hide();
-                        alert('Failed to load asset details.');
-                    }
-                });
-            });
-        });
-
-        $(document).on('click', '#close-detail-btn', function() {
-            $('#asset-detail-container').slideUp(300);
-            $('.asset-trigger').removeClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
-        });
-
-        const commonConfig = {
-            responsive: true,
-            language: {
-                search: "", 
-                searchPlaceholder: "Search records...",
-                lengthMenu: "Show _MENU_ entries",
-                paginate: {
-                    previous: '<i class="fa-solid fa-chevron-left"></i>',
-                    next: '<i class="fa-solid fa-chevron-right"></i>'
-                }
-            },
-            // Menghilangkan garis border default DataTables yg jelek
-            drawCallback: function () {
-                $('.dataTables_paginate > .paginate_button').addClass('px-3 py-1 border rounded hover:bg-gray-100 mx-1 text-sm');
-            }
-        };
-
-        $('#leadsTable').DataTable({
-            ...commonConfig,
-            pageLength: 10,
-            order: [[3, 'desc']] 
-        });
-
-        $('#subscribersTable').DataTable({
-            ...commonConfig,
-            pageLength: 10,
-            order: [[2, 'desc']]
-        });
-
-        // Assets filter AJAX
-        function loadAssets() {
-            let search = $('#search').val();
-            let category = $('#category').val();
-            let industry_id = $('#industry_id').val();
-            $.ajax({
-                url: "{{ route('admin.dashboard.assets.ajax') }}",
-                type: 'GET',
-                data: { search, category, industry_id },
-                success: function(response) {
-                    $('#assets-results').html(response);
-                }
-            });
-        }
-
-        $('#search, #category, #industry_id').on('change input', loadAssets);
-        loadAssets(); // initial load
+        // Any additional initialization can go here
     });
 </script>
 @endpush

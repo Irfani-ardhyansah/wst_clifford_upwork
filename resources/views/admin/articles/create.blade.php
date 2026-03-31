@@ -3,16 +3,47 @@
 @section('title', 'Create Article')
 @section('header_title', 'Create Article')
 
+@push('styles')
+<style>
+    /* wrapper editor */
+        .ck-editor__main {
+        background-color: var(--surface) !important;
+        }
+
+        /* area content */
+        .ck-content {
+        background-color: var(--surface) !important;
+        color: var(--text-1) !important;
+        }
+
+        /* toolbar */
+        .ck-toolbar {
+        background-color: var(--surface-2) !important;
+        border-color: var(--border) !important;
+        }
+
+        /* border editor */
+        .ck.ck-editor__main > .ck-editor__editable {
+        border-color: var(--border) !important;
+        }
+
+        /* placeholder */
+        .ck-content.ck-placeholder::before {
+        color: var(--text-3) !important;
+        }
+</style>
+@endpush
+
 @section('content')
 <div class="max-w-3xl mx-auto px-4">
     <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-bold"></h1>
-        <a href="{{ route('admin.dashboard') }}" class="text-gray-600 hover:text-gray-900">
+        <h1 class="text-2xl font-bold text-[var(--text-1)]"></h1>
+        <a href="{{ route('admin.articles.index') }}" class="text-gray-600 hover:text-gray-900">&larr; Back</a>
             &larr; Back
         </a>
     </div>
 
-    <div class="bg-white rounded-xl shadow p-6">
+    <div class="bg-[var(--surface)] rounded-xl shadow border border-[var(--border)] p-6">
         @if ($errors->any())
             <div class="mb-6 rounded-xl border border-red-200 bg-red-50 p-4">
                 <div class="flex items-start gap-3">
