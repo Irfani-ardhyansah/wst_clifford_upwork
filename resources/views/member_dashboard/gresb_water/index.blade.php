@@ -3,2121 +3,253 @@
 @section('title', 'GRESB Water')
 @section('header_title', 'GRESB Water Performance Tool')
 
-@push('styles')
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <style>
-        html { scroll-behavior: smooth; }
-
-body { 
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #1f2937; /* gray-800 */
-  background-color: #f8fafc; /* slate-50 */
-}
-
-/* Borders & Shadows */
-.premium-border {
-  border: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.premium-shadow {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-}
-
-.premium-shadow-hover {
-  transition: all 0.3s ease;
-}
-
-.premium-shadow-hover:hover {
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
-  transform: translateY(-2px);
-}
-
-/* Animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.fade-in { animation: fadeIn 0.6s ease-out; }
-
-/* Pie */
-.pie-segment {
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-.pie-segment:hover {
-  opacity: 0.9;
-  filter: brightness(1.05);
-}
-
-/* Text */
-.gradient-text {
-  background: linear-gradient(135deg, #1f2937 0%, #475569 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.metric-value {
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Range Input */
-input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent;
-  cursor: pointer;
-}
-
-input[type="range"]::-webkit-slider-track {
-  background: #e5e7eb;
-  height: 0.5rem;
-  border-radius: 0.25rem;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  background: #334155;
-  height: 1.25rem;
-  width: 1.25rem;
-  border-radius: 50%;
-  border: 3px solid white;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-
-/* CTA Primary */
-.cta-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 9999px;
-  background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
-  color: white;
-  padding: 0.75rem 1.5rem;
-  font-weight: 600;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-
-.cta-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 30px rgba(0,0,0,0.25);
-}
-
-.cta-primary .arrow-circle {
-  display: grid;
-  place-items: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 9999px;
-  background: rgba(255,255,255,0.2);
-  transition: transform 0.3s ease;
-}
-
-.cta-primary:hover .arrow-circle {
-  transform: rotate(45deg);
-}
-
-/* CTA Secondary */
-.cta-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 9999px;
-  background: white;
-  color: #1f2937;
-  padding: 0.75rem 1.5rem;
-  font-weight: 600;
-  border: 2px solid #e5e7eb;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
-  transition: all 0.3s ease;
-  width: 100%;
-}
-
-.cta-secondary:hover {
-  border-color: #1f2937;
-  transform: translateY(-3px);
-  box-shadow: 0 14px 24px rgba(0,0,0,0.12);
-}
-
-/* Modal */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background-color: rgba(15, 23, 42, 0.55);
-  backdrop-filter: blur(6px);
-  z-index: 1000;
-}
-
-.modal.active {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-content {
-  background: white;
-  color: #1f2937;
-  border-radius: 1rem;
-  max-width: 600px;
-  width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-}
-
-/* Menghilangkan gaya default browser */
-  input[type="range"] {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    cursor: pointer;
-    outline: none;
-    border-radius: 15px;
-    height: 8px;
-    background: #d3d3d3; /* Warna background abu-abu */
-  }
-
-  /* Gaya untuk 'Thumb' (bulatan penarik) - Chrome, Safari, Edge, Opera */
-  input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    height: 20px;
-    width: 20px;
-    background-color: #555;
-    border-radius: 50%;
-    border: none;
-    transition: .2s ease-in-out;
-  }
-
-  /* Gaya untuk 'Thumb' - Firefox */
-  input[type="range"]::-moz-range-thumb {
-    height: 20px;
-    width: 20px;
-    background-color: #555;
-    border-radius: 50%;
-    border: none;
-    transition: .2s ease-in-out;
-  }
-
-  /* Efek saat thumb ditekan atau di-hover */
-  input[type="range"]::-webkit-slider-thumb:hover {
-    box-shadow: 0 0 0 8px rgba(85, 85, 85, 0.1);
-    transform: scale(1.1);
-  }
-    </style>
-@endpush
-
 @section('content')
-
-    @if(session('success'))
-        <div class="px-6 pt-4">
-            <div id="flash-message" 
-                class="p-4 rounded-xl bg-teal-50 border border-teal-100 text-teal-800 flex items-center gap-3 transition-all duration-500">
-                <i class="fa-solid fa-circle-check text-teal-600"></i>
-                {{ session('success') }}
+  <div class="page-hdr"><div class="page-hdr-left"><h2>Cost Reduction Estimator</h2><p>Calculate projected water savings and ROI for your portfolio</p></div></div>
+  <div class="estimator-wrap">
+    <div>
+      <div class="card">
+        <div class="card-hdr"><div class="card-title"><i class="fa-solid fa-sliders" style="color:var(--accent);font-size:11px;"></i>Portfolio Inputs</div></div>
+        <div class="card-body">
+          <div class="form-group">
+            <label class="form-label">Number of Properties</label>
+            <input type="number" class="form-input" id="est-props" value="10" min="1" oninput="calcEstimate()">
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Annual Water Spend / Property ($)</label>
+              <input type="number" class="form-input" id="est-spend" value="250000" oninput="calcEstimate()">
             </div>
-        </div>
-    @endif
-
-<div id="bookingModal" class="modal">
-    <div class="modal-content">
-        <div class="p-8">
-        <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-light text-black">Schedule Your GRESB Consultation</h2>
-            <button onclick="closeModal()" class="text-black/40 hover:text-black/70 text-2xl">×</button>
-        </div>
-        
-        <p class="text-black/70 mb-8">
-            Our water performance specialists will analyze your portfolio and provide actionable strategies to maximize your GRESB score.
-        </p>
-        
-        <form id="bookingForm"action="{{ route('member-dashboard.gresb-water.store') }}" method="POST"   class="space-y-6">
-        @csrf
-            <div class="grid md:grid-cols-2 gap-6">
-            <div>
-                <label class="block text-xs font-medium text-black/60 uppercase tracking-wide mb-2">
-                First Name *
-                </label>
-                <input
-                type="text"
-                id="firstName"
-                name="first_name"
-                required
-                class="w-full px-4 py-3 bg-black/10 border border-black/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="John"
-                />
+            <div class="form-group">
+              <label class="form-label">Asset Type</label>
+              <select class="form-select" id="est-type" onchange="calcEstimate()">
+                <option value="0.25">Hospitality (avg 25% savings)</option>
+                <option value="0.18">Office Buildings (avg 18%)</option>
+                <option value="0.22">Manufacturing (avg 22%)</option>
+                <option value="0.15">Retail (avg 15%)</option>
+                <option value="0.20">Mixed Use (avg 20%)</option>
+              </select>
             </div>
-            
-            <div>
-                <label class="block text-xs font-medium text-black/60 uppercase tracking-wide mb-2">
-                Last Name *
-                </label>
-                <input
-                type="text"
-                id="lastName"
-                name="last_name"
-                required
-                class="w-full px-4 py-3 bg-black/10 border border-black/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Doe"
-                />
-            </div>
-            </div>
-            
-            <div>
-            <label class="block text-xs font-medium text-black/60 uppercase tracking-wide mb-2">
-                Work Email *
-            </label>
-            <input
-                type="email"
-                name="email"
-                id="email"
-                required
-                class="w-full px-4 py-3 bg-black/10 border border-black/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="john.doe@company.com"
-            />
-            </div>
-            
-            <div>
-            <label class="block text-xs font-medium text-black/60 uppercase tracking-wide mb-2">
-                Company *
-            </label>
-            <input
-                type="text"
-                name="company"
-                id="company"
-                required
-                class="w-full px-4 py-3 bg-black/10 border border-black/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="ABC Asset Management"
-            />
-            </div>
-            
-            <div>
-            <label class="block text-xs font-medium text-black/60 uppercase tracking-wide mb-2">
-                Phone Number
-            </label>
-            <input
-                type="tel"
-                name="phone"
-                id="phone"
-                class="w-full px-4 py-3 bg-black/10 border border-black/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="+1 (555) 123-4567"
-            />
-            </div>
-            
-            <div>
-            <label class="block text-xs font-medium text-black/60 uppercase tracking-wide mb-2">
-                Portfolio Size (# of Properties)
-            </label>
-            <input
-                type="number"
-                id="portfolioSize"
-                name="portfolio_size"
-                class="w-full px-4 py-3 bg-black/10 border border-black/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="e.g., 25"
-            />
-            </div>
-            
-            <div>
-            <label class="block text-xs font-medium text-black/60 uppercase tracking-wide mb-2">
-                Primary Interest
-            </label>
-            <select
-                id="interest"
-                name="interest" 
-                class="w-full px-4 py-3 bg-black/10 border border-black/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-                <option value="">Select your primary goal...</option>
-                <option value="gresb">Improve GRESB Score</option>
-                <option value="audit">Comprehensive Portfolio Audit</option>
-                <option value="monitoring">Smart Monitoring Implementation</option>
-                <option value="savings">Cost Reduction & Efficiency</option>
-                <option value="compliance">Regulatory Compliance</option>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Implementation Timeline</label>
+            <select class="form-select" id="est-timeline" onchange="calcEstimate()">
+              <option value="1">Phase 1 — Audit &amp; Bill Validation</option>
+              <option value="2">Phase 2 — Smart Monitoring Deploy</option>
+              <option value="3" selected>Phase 3 — Full Portfolio Programme</option>
             </select>
-            </div>
-            
-            <div>
-            <label class="block text-xs font-medium text-black/60 uppercase tracking-wide mb-2">
-                Preferred Meeting Time
-            </label>
-            <select
-                id="timePreference"
-                name="time_preference" 
-                class="w-full px-4 py-3 bg-black/10 border border-black/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-                <option value="">Select your availability...</option>
-                <option value="morning">Morning (8am - 12pm EST)</option>
-                <option value="afternoon">Afternoon (12pm - 5pm EST)</option>
-                <option value="flexible">Flexible</option>
-            </select>
-            </div>
-            
-            <div>
-            <label class="block text-xs font-medium text-black/60 uppercase tracking-wide mb-2">
-                Additional Notes
-            </label>
-            <textarea
-                id="notes"
-                name="notes"
-                rows="3"
-                class="w-full px-4 py-3 bg-black/10 border border-black/20 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Tell us about your specific challenges or goals..."
-            ></textarea>
-            </div>
-            
-            <div class="bg-white/5 p-4 border border-white/20 text-xs text-black/70">
-            <strong>What to expect:</strong> Our team will review your assessment and reach out within 24 hours to schedule a 30-minute consultation call.
-            </div>
-            
-            <button
-            type="submit"
-            class="cta-primary"
-            >
-            <span>Submit Consultation Request</span>
-            <span class="arrow-circle">
-                <i class="ri-send-plane-fill text-xl"></i>
-            </span>
-            </button>
-        </form>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-
-<div class="min-h-screen py-20 px-6">
-    <div class="max-w-7xl mx-auto">
-        
-        <!-- Header -->
-        <header class="text-center mb-16 fade-in">
-        <div class="flex items-center justify-center mb-8">
-            <span class="text-xs font-medium tracking-widest text-black/60 uppercase">
-            GRESB 2025 Water Assessment
-            </span>
+    <div>
+      <div class="result-panel">
+        <div>
+          <div style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(0,201,167,.5);margin-bottom:6px;">Projected Annual Savings</div>
+          <div class="result-big" id="est-result">$0</div>
+          <div style="font-size:12px;color:rgba(0,201,167,.5);margin-top:4px;" id="est-pct">0% reduction</div>
         </div>
-        <h1 class="text-4xl lg:text-5xl font-light text-black mb-6 leading-tight tracking-tight">
-            Calculate Your Water Performance Score
-        </h1>
-        <p class="text-xl text-black/70 max-w-3xl mx-auto font-light leading-relaxed">
-            Benchmark your portfolio against industry leaders and identify opportunities to maximize your GRESB water indicator points
-        </p>
-        </header>
-
-        <div class="grid lg:grid-cols-3 gap-8">
-        
-        <!-- Main Input Section -->
-        <div class="lg:col-span-2 space-y-8">
-            
-            <!-- Portfolio Composition -->
-            <section class="p-10 bg-white backdrop-blur-sm rounded-2xl border border-white/10 shadow-2xl fade-in">
-            <div class="flex items-center justify-between mb-8">
-                <div>
-                <h2 class="text-lg font-bold text-gray-900 mb-2 tracking-tight">Portfolio Composition</h2>
-                <p class="text-sm text-black/60">Select asset types and allocation by gross floor area</p>
-                </div>
-                <div id="total-percentage" class="text-3xl font-light text-black"></div>
-            </div>
-            
-            <!-- Property Type Grid -->
-            <div id="property-grid" class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8"></div>
-            
-            <!-- Percentage Allocation -->
-            <div id="percentage-inputs" class="space-y-3 mb-6"></div>
-            
-            <!-- Validation Message -->
-            <div id="validation-message"></div>
-            </section>
-            
-            <!-- Portfolio Details -->
-            <section id="details-section" class="p-10 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-2xl fade-in" style="display: none;">
-            <h2 class="text-2xl font-light text-black mb-8 tracking-tight">Portfolio Details</h2>
-            
-            <div class="grid md:grid-cols-2 gap-8 mb-8">
-                <div>
-                <label class="block text-xs font-medium text-black/60 uppercase tracking-wide mb-4">
-                    Total number of properties
-                </label>
-                <input
-                    type="number"
-                    id="property-count"
-                    value="10"
-                    min="1"
-                    oninput="updatePropertyCount(this.value)"
-                    class="w-full px-4 py-3 bg-black/10 border border-black/20 focus:outline-none focus:ring-1 focus:ring-blue-500 text-lg"
-                    placeholder="e.g., 25"
-                />
-                </div>
-                
-                <div>
-                <label class="block text-xs font-medium text-black/60 uppercase tracking-wide mb-4">
-                    Total gross floor area (m²)
-                </label>
-                <input
-                    type="number"
-                    id="floor-area"
-                    value="500000"
-                    min="10000"
-                    step="10000"
-                    oninput="updateFloorArea(this.value)"
-                    class="w-full px-4 py-3 bg-black/10 border border-black/20 focus:outline-none focus:ring-1 focus:ring-blue-500 text-lg"
-                    placeholder="e.g., 500,000"
-                />
-                </div>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-8 mb-8">
-                <div>
-                <label class="block text-xs font-medium text-black/60 uppercase tracking-wide mb-4">
-                    Current Overall GRESB Score (out of 100)
-                </label>
-                <input
-                    type="number"
-                    id="overall-gresb"
-                    value=""
-                    min="0"
-                    max="100"
-                    step="1"
-                    oninput="updateOverallGRESB(this.value)"
-                    class="w-full px-4 py-3 bg-black/10 border border-black/20 focus:outline-none focus:ring-1 focus:ring-blue-500 text-lg"
-                    placeholder="e.g., 68"
-                />
-                <div class="mt-2 text-xs text-black/60">
-                    Your most recent total GRESB assessment score
-                </div>
-                </div>
-                
-                <div id="star-rating-display" class="flex flex-col justify-center" style="display: none;">
-                <div class="text-xs font-medium text-black/60 uppercase tracking-wide mb-3">
-                    Current Rating
-                </div>
-                <div id="current-stars" class="text-3xl mb-2"></div>
-                <div id="rating-label" class="text-sm font-medium text-black/80"></div>
-                </div>
-            </div>
-            
-            <div class="mb-8">
-                <label class="block text-xs font-medium text-black/60 uppercase tracking-wide mb-4">
-                Estimated annual water & sewer costs (USD)
-                </label>
-                <div class="relative">
-                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-black/40 text-lg">$</span>
-                <input
-                    type="number"
-                    id="water-spend"
-                    value=""
-                    min="0"
-                    step="1000"
-                    oninput="updateWaterSpend(this.value)"
-                    class="w-full pl-10 pr-4 py-3 bg-black/10 border border-black/20 focus:outline-none focus:ring-1 focus:ring-blue-500 text-lg"
-                    placeholder="e.g., 150,000"
-                />
-                </div>
-                <div class="mt-2 text-xs text-black/60">
-                Include water consumption, sewer fees, and recurring maintenance costs
-                </div>
-            </div>
-            
-            <div class="p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
-                <div class="text-xs text-black/60 uppercase tracking-wide mb-2">Portfolio Overview</div>
-                <div id="portfolio-summary" class="text-sm text-black/80"></div>
-            </div>
-            </section>
-            
-            <!-- Certification Targets -->
-            <section id="cert-section" class="p-10 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-2xl fade-in" style="display: none;">
-            <div class="flex items-center justify-between mb-8">
-                <div>
-                <h2 class="text-2xl font-light text-black mb-2 tracking-tight">Certification Targets</h2>
-                <p class="text-sm text-black/60">Select sustainability certifications you're pursuing</p>
-                </div>
-            </div>
-            
-            <div class="space-y-3">
-                <label class="flex items-center gap-4 p-5 border border-white/20 hover:bg-white/5 cursor-pointer transition">
-                <input type="checkbox" onchange="updateCertifications()" class="w-5 h-5 cert-check" data-cert="GRESB" checked>
-                <div class="flex-1">
-                    <div class="font-medium text-black">GRESB</div>
-                    <div class="text-xs text-black/60">Global Real Estate Sustainability Benchmark</div>
-                </div>
-                <div class="px-3 py-1 bg-white-900 text-black text-xs font-medium tracking-wide">
-                    PRIMARY FOCUS
-                </div>
-                </label>
-                
-                <label class="flex items-center gap-4 p-5 border border-white/20 hover:bg-white/5 cursor-pointer transition">
-                <input type="checkbox" onchange="updateCertifications()" class="w-5 h-5 cert-check" data-cert="LEED">
-                <div class="flex-1">
-                    <div class="font-medium text-black">LEED</div>
-                    <div class="text-xs text-black/60">Leadership in Energy and Environmental Design</div>
-                </div>
-                </label>
-                
-                <label class="flex items-center gap-4 p-5 border border-white/20 hover:bg-white/5 cursor-pointer transition">
-                <input type="checkbox" onchange="updateCertifications()" class="w-5 h-5 cert-check" data-cert="BREEAM">
-                <div class="flex-1">
-                    <div class="font-medium text-black">BREEAM</div>
-                    <div class="text-xs text-black/60">Building Research Establishment Environmental Assessment</div>
-                </div>
-                </label>
-                
-                <label class="flex items-center gap-4 p-5 border border-white/20 hover:bg-white/5 cursor-pointer transition">
-                <input type="checkbox" onchange="updateCertifications()" class="w-5 h-5 cert-check" data-cert="Other">
-                <div class="flex-1">
-                    <div class="font-medium text-black">Other Certifications</div>
-                    <div class="text-xs text-black/60">WELL, Fitwel, Green Star, etc.</div>
-                </div>
-                </label>
-            </div>
-            </section>
-            
-            <!-- Data Management Assessment -->
-            <section id="data-section" class="p-10 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-2xl fade-in" style="display: none;">
-            <h2 class="text-2xl font-light text-black mb-8 tracking-tight">Water Data Management</h2>
-            
-            <!-- WT1: Data Coverage -->
-            <div class="mb-10 pb-10 border-b border-white/10">
-                <div class="flex items-center justify-between mb-6">
-                <div>
-                    <h3 class="text-lg font-medium text-black mb-2">Asset-Level Data Coverage</h3>
-                    <p class="text-sm text-black/60">Percentage of portfolio with verified consumption data (WT1)</p>
-                </div>
-                <div class="text-right">
-                    <div class="text-xs text-black/60 uppercase tracking-wide">up to 4.0 pts</div>
-                </div>
-                </div>
-                <div class="flex items-center gap-4">
-                <input
-                    type="range"
-                    id="data-coverage"
-                    min="0"
-                    max="100"
-                    value="50"
-                    oninput="updateDataCoverage(this.value)"
-                    class="flex-1 h-2 bg-black/10 rounded-lg appearance-none cursor-pointer"
-                />
-                <span id="coverage-display" class="text-2xl font-light text-black w-20 text-right">50%</span>
-                </div>
-                <div class="mt-4 text-sm text-black/70">
-                <span id="coverage-feedback"></span>
-                </div>
-            </div>
-            
-            <!-- Data Collection Method -->
-            <div class="mb-10 pb-10 border-b border-white/10">
-                <div class="flex items-center justify-between mb-6">
-                <div>
-                    <h3 class="text-lg font-medium text-black mb-2">Metering & Data Collection</h3>
-                    <p class="text-sm text-black/60">Primary method for capturing consumption data</p>
-                </div>
-                <div class="text-right">
-                    <div class="text-xs text-black/60 uppercase tracking-wide">sub-metering: +0.25 pts</div>
-                </div>
-                </div>
-                <div class="grid md:grid-cols-2 gap-3">
-                <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
-                    <input type="radio" name="metering" value="none" onchange="updateMetering(this.value)" class="w-4 h-4">
-                    <span class="text-sm text-black/80">No systematic metering</span>
-                </label>
-                <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
-                    <input type="radio" name="metering" value="main" onchange="updateMetering(this.value)" class="w-4 h-4" checked>
-                    <span class="text-sm text-black/80">Main meter only (utility bills)</span>
-                </label>
-                <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
-                    <input type="radio" name="metering" value="partial-sub" onchange="updateMetering(this.value)" class="w-4 h-4">
-                    <span class="text-sm text-black/80">Partial sub-metering (&lt;50% of assets)</span>
-                </label>
-                <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
-                    <input type="radio" name="metering" value="full-sub" onchange="updateMetering(this.value)" class="w-4 h-4">
-                    <span class="text-sm text-black/80">Comprehensive sub-metering (≥50%)</span>
-                </label>
-                </div>
-            </div>
-            
-            <!-- Data Management System -->
-            <div class="mb-10 pb-10 border-b border-white/10">
-                <div class="flex items-center justify-between mb-6">
-                <div>
-                    <h3 class="text-lg font-medium text-black mb-2">Data Management Platform</h3>
-                    <p class="text-sm text-black/60">System used for data aggregation and reporting</p>
-                </div>
-                <div class="text-right">
-                    <div class="text-xs text-black/60 uppercase tracking-wide">MR3: +0.42 pts</div>
-                </div>
-                </div>
-                <div class="space-y-2">
-                <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
-                    <input type="radio" name="platform" value="none" onchange="updatePlatform(this.value)" class="w-4 h-4">
-                    <span class="text-sm text-black/80">No centralized system</span>
-                </label>
-                <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
-                    <input type="radio" name="platform" value="spreadsheet" onchange="updatePlatform(this.value)" class="w-4 h-4" checked>
-                    <span class="text-sm text-black/80">Spreadsheet-based tracking</span>
-                </label>
-                <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
-                    <input type="radio" name="platform" value="software" onchange="updatePlatform(this.value)" class="w-4 h-4">
-                    <span class="text-sm text-black/80">Dedicated ESG/utility management software</span>
-                </label>
-                <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
-                    <input type="radio" name="platform" value="automated" onchange="updatePlatform(this.value)" class="w-4 h-4">
-                    <span class="text-sm text-black/80">Real-time monitoring with API integrations</span>
-                </label>
-                </div>
-            </div>
-            
-            <!-- External Review -->
-            <div class="mb-10 pb-10 border-b border-white/10">
-                <div class="flex items-center justify-between mb-6">
-                <div>
-                    <h3 class="text-lg font-medium text-black mb-2">Data Verification</h3>
-                    <p class="text-sm text-black/60">Third-party review or audit of water consumption data</p>
-                </div>
-                </div>
-                <div class="flex gap-3">
-                <button onclick="updateVerification('yes')" id="verify-yes" class="flex-1 px-6 py-3 hover:border-gray-900 hover:bg-white/5 transition text-sm font-medium text-black/80">
-                    Yes, independently verified
-                </button>
-                <button onclick="updateVerification('no')" id="verify-no" class="flex-1 px-6 py-3 border-2 border-gray-300 bg-gray-100 text-black transition text-sm font-medium hover:border-gray-900 hover:bg-white/5 transition text-sm font-medium text-black/80">
-                    Not currently verified
-                </button>
-                </div>
-            </div>
-            
-            <!-- Efficiency Measures -->
-            <div class="mb-10 pb-10 border-b border-white/10">
-                <div class="flex items-center justify-between mb-6">
-                <div>
-                    <h3 class="text-lg font-medium text-black mb-2">Water Efficiency Programs</h3>
-                    <p class="text-sm text-black/60">Active conservation initiatives with documented outcomes (RA4)</p>
-                </div>
-                <div class="text-right">
-                    <div class="text-xs text-black/60 uppercase tracking-wide">up to 0.5 pts</div>
-                </div>
-                </div>
-                <div class="space-y-2">
-                <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
-                    <input type="checkbox" onchange="updateEfficiency()" class="w-4 h-4 efficiency-check" data-value="fixtures">
-                    <span class="text-sm text-black/80">Low-flow fixtures & appliances</span>
-                </label>
-                <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
-                    <input type="checkbox" onchange="updateEfficiency()" class="w-4 h-4 efficiency-check" data-value="landscape">
-                    <span class="text-sm text-black/80">Smart irrigation / landscaping water reduction</span>
-                </label>
-                <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
-                    <input type="checkbox" onchange="updateEfficiency()" class="w-4 h-4 efficiency-check" data-value="cooling">
-                    <span class="text-sm text-black/80">Cooling tower optimization</span>
-                </label>
-                <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
-                    <input type="checkbox" onchange="updateEfficiency()" class="w-4 h-4 efficiency-check" data-value="leak">
-                    <span class="text-sm text-black/80">Leak detection & rapid response program</span>
-                </label>
-                <label class="flex items-center gap-3 p-4 border border-white/20 hover:bg-white/5 cursor-pointer transition">
-                    <input type="checkbox" onchange="updateEfficiency()" class="w-4 h-4 efficiency-check" data-value="reuse">
-                    <span class="text-sm text-black/80">Water reuse/recycling systems</span>
-                </label>
-                </div>
-            </div>
-            
-            <!-- Performance Tracking -->
-            <div class="mb-8">
-                <div class="flex items-center justify-between mb-6">
-                <div>
-                    <h3 class="text-lg font-medium text-black mb-2">Year-Over-Year Performance</h3>
-                    <p class="text-sm text-black/60">Like-for-like intensity tracking (RA1 + Performance Improvement)</p>
-                </div>
-                <div class="text-right">
-                    <div class="text-xs text-black/60 uppercase tracking-wide">up to 2.5 pts</div>
-                </div>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <button onclick="updateTracking('none')" id="track-none" class="px-4 py-3 border hover:border-gray-900 hover:bg-white/5 transition text-sm font-medium text-black/80">
-                    No tracking
-                </button>
-                <button onclick="updateTracking('1year')" id="track-1year" class="px-4 py-3 border hover:border-gray-900 hover:bg-white/5 transition text-sm font-medium text-black/80">
-                    1 year
-                </button>
-                <button onclick="updateTracking('2year')" id="track-2year" class="px-4 py-3 border-2 border-white-900 bg-white-900 text-black transition text-sm font-medium  hover:border-gray-900 hover:bg-white/5 transition text-sm font-medium text-black/80">
-                    2+ years
-                </button>
-                <button onclick="updateTracking('3year')" id="track-3year" class="px-4 py-3 border hover:border-gray-900 hover:bg-white/5 transition text-sm font-medium text-black/80">
-                    3+ years
-                </button>
-                </div>
-            </div>
-            
-            </section>
-            
+        <div>
+          <div class="result-row"><span class="result-k">Properties analysed</span><span class="result-v" id="r-props">10</span></div>
+          <div class="result-row"><span class="result-k">Current annual spend</span><span class="result-v" id="r-spend">$2,500,000</span></div>
+          <div class="result-row"><span class="result-k">Savings per property</span><span class="result-v" id="r-per">$62,500</span></div>
+          <div class="result-row"><span class="result-k">Est. payback period</span><span class="result-v" id="r-payback">11 months</span></div>
+          <div class="result-row"><span class="result-k">5-year NOI impact</span><span class="result-v" id="r-noi">$3,125,000</span></div>
         </div>
-        
-        <!-- Sidebar - Live Calculations -->
-        <div class="lg:col-span-1 space-y-6">
-            
-            <!-- Portfolio Visualization -->
-            <div id="portfolio-viz" class="p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-2xl fade-in">
-            <h3 class="text-lg font-medium text-black mb-6 tracking-tight">Portfolio Overview</h3>
-            <div id="pie-chart-container" class="flex items-center justify-center" style="min-height: 250px;">
-                <div class="text-center text-black/40">
-                <div class="text-5xl mb-3">🏢</div>
-                <div class="text-sm">Select asset types to<br/>visualize your portfolio</div>
-                </div>
-            </div>
-            <div id="portfolio-legend" class="mt-6 space-y-2"></div>
-            </div>
-            
-            <!-- GRESB Score Impact -->
-            <div id="gresb-impact" class="p-8 bg-white/5 premium-border premium-shadow fade-in" style="display: none;">
-            <div class="flex items-center gap-3 mb-4">
-                <div class="text-3xl">💧</div>
-                <h3 class="text-lg font-medium text-black tracking-tight">Water Indicator Score</h3>
-            </div>
-            <div class="flex items-baseline gap-2 mb-2">
-                <div id="gresb-points" class="text-5xl font-light text-black metric-value">0.0</div>
-                <div class="text-2xl text-black/40">/ 7.67</div>
-            </div>
-            <p class="text-xs text-black/60 uppercase tracking-wide mb-6">Current estimated GRESB water points</p>
-            <div class="space-y-2 text-xs">
-                <div class="flex items-center justify-between py-2 border-t border-white/10">
-                <span class="text-black/70">WT1: Data Coverage</span>
-                <span id="wt1-points" class="font-medium text-black">0.0</span>
-                </div>
-                <div class="flex items-center justify-between py-2 border-t border-white/10">
-                <span class="text-black/70">Sub-metering</span>
-                <span id="meter-points" class="font-medium text-black">0.0</span>
-                </div>
-                <div class="flex items-center justify-between py-2 border-t border-white/10">
-                <span class="text-black/70">MR3: External Review</span>
-                <span id="mr3-points" class="font-medium text-black">0.0</span>
-                </div>
-                <div class="flex items-center justify-between py-2 border-t border-white/10">
-                <span class="text-black/70">RA4: Efficiency Measures</span>
-                <span id="ra4-points" class="font-medium text-black">0.0</span>
-                </div>
-                <div class="flex items-center justify-between py-2 border-t border-white/10">
-                <span class="text-black/70">Performance Improvement</span>
-                <span id="perf-points" class="font-medium text-black">0.0</span>
-                </div>
-                <div class="flex items-center justify-between py-2 border-t border-white/10">
-                <span class="text-black/70">RA1: Risk Assessment</span>
-                <span id="ra1-points" class="font-medium text-black">0.0</span>
-                </div>
-            </div>
-            <div id="score-message" class="mt-6 p-4 text-xs"></div>
-            </div>
-            
-            <!-- Overall GRESB Impact Card -->
-            <div id="overall-impact-card" class="p-8 bg-gradient-to-br from-blue-50 to-indigo-50 premium-border premium-shadow fade-in" style="display: none;">
-            <div class="flex items-center gap-3 mb-6">
-                <div class="text-3xl">🏆</div>
-                <h3 class="text-lg font-medium text-black tracking-tight">Overall GRESB Impact</h3>
-            </div>
-            
-            <!-- Before/After Comparison -->
-            <div class="grid grid-cols-2 gap-4 mb-6">
-                <!-- Current -->
-                <div class="bg-white p-4 rounded-lg border border-white/20">
-                <div class="text-xs text-black/60 uppercase tracking-wide mb-2">Current</div>
-                <div id="current-overall-score" class="text-3xl font-light text-black mb-2">68</div>
-                <div id="current-overall-stars" class="text-lg mb-1">⭐⭐⭐</div>
-                <div id="current-overall-label" class="text-xs font-medium text-black/70">3-Star</div>
-                </div>
-                
-                <!-- Projected -->
-                <div class="bg-white p-4 rounded-lg border-2 border-green-500">
-                <div class="text-xs text-green-600 uppercase tracking-wide mb-2 font-medium">Projected</div>
-                <div id="projected-overall-score" class="text-3xl font-light text-green-600 mb-2">71.5</div>
-                <div id="projected-overall-stars" class="text-lg mb-1">⭐⭐⭐⭐</div>
-                <div id="projected-overall-label" class="text-xs font-medium text-green-600">4-Star</div>
-                </div>
-            </div>
-            
-            <!-- Improvement Summary -->
-            <div class="bg-white p-4 rounded-lg border border-white/20 mb-4">
-                <div class="flex items-center justify-between mb-3">
-                <span class="text-sm text-black/70">Total Score Gain</span>
-                <span id="score-gain" class="text-xl font-medium text-green-600">+3.5</span>
-                </div>
-                <div class="flex items-center justify-between">
-                <span class="text-sm text-black/70">Percentile Improvement</span>
-                <span id="percentile-change" class="text-sm font-medium text-black">↑ 15%</span>
-                </div>
-            </div>
-            
-            <!-- Investor Appeal -->
-            <div class="bg-gradient-to-r from-amber-500/10 to-orange-500/10 p-4 rounded-lg border border-amber-500/20">
-                <div class="text-xs font-medium text-amber-300 uppercase tracking-wide mb-2">Investor Appeal</div>
-                <div id="investor-message" class="text-sm text-amber-200 leading-relaxed"></div>
-            </div>
-            </div>
-            
-            <!-- Benchmark Comparison -->
-            <div id="benchmark-card" class="p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-2xl fade-in" style="display: none;">
-            <h3 class="text-lg font-medium text-black mb-6 tracking-tight">Industry Benchmarks</h3>
-            <div id="benchmark-content"></div>
-            </div>
-            
-            <!-- Educational Insight -->
-            <div class="p-8 bg-white-900 text-black premium-shadow">
-            <div class="text-xs font-medium text-black/40 uppercase tracking-wide mb-3">Top Performer Insight</div>
-            <div class="text-4xl font-light text-black mb-4">+15-25</div>
-            <p class="text-sm text-black/50 leading-relaxed mb-4">
-                Asset managers with comprehensive asset-level water data score 15-25 points higher in their <strong>overall GRESB assessment</strong> compared to portfolio-level reporting only.
-            </p>
-            <div class="pt-4 border-t border-gray-700">
-                <div class="text-xs text-black/40">
-                Water data quality impacts Management & Performance scores beyond the ~10-point Water indicator section
-                </div>
-            </div>
-            </div>
-            
-            <!-- CTA Card -->
-            <div id="cta-card" class="p-8 bg-white premium-border premium-shadow text-center" style="display: none;">
-            <h3 class="text-xl font-light text-black mb-3 tracking-tight">Maximize Your Water Score</h3>
-            <p class="text-sm text-black/70 mb-8 leading-relaxed">
-                Get your personalized 90-day roadmap to achieve optimal GRESB water performance.
-            </p>
-            <button
-                onclick="generatePDFReport()"
-                class="cta-primary premium-shadow-hover mb-3"
-            >
-                <span>Download PDF Report</span>
-                <span class="arrow-circle">
-                <i class="ri-arrow-right-up-line text-xl"></i>
-                </span>
-            </button>
-            <button
-                onclick="openModal()"
-                class="cta-secondary"
-            >
-                <span>Schedule Consultation</span>
-                <span class="arrow-circle">
-                <i class="ri-calendar-line text-xl"></i>
-                </span>
-            </button>
-            </div>
-            
-        </div>
-        
-        </div>
-        
+        <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="nav('schedule-new',null,'Schedule New Audit','Schedule')">
+        <a href="{{ route('member-dashboard.gresb-water.form') }}" class="btn btn-primary" style="width:100%;justify-content:center;" >
+          <i class="fa-solid fa-calendar-check"></i> Schedule Assessment
+        </a>
+      </div>
     </div>
-</div>
+  </div>
 @endsection
-
 
 @push('scripts')
 <script>
-// State management
-const state = {
-  propertyTypes: {},
-  propertyCount: 10,
-  floorArea: 500000,
-  waterSpend: 0,
-  overallGRESB: null,
-  certifications: ['GRESB'],
-  dataCoverage: 50,
-  metering: 'main',
-  platform: 'spreadsheet',
-  verification: 'no',
-  efficiencyMeasures: [],
-  performanceTracking: '2year'
-};
-
-// Property type definitions
-const propertyTypes = [
-  { id: 'office', name: 'Office Buildings', icon: '🏢', benchmark: 0.70, avgGresb: 72, color: '#06b6d4' },
-  { id: 'retail', name: 'Supermarkets', icon: '🛒', benchmark: 0.60, avgGresb: 68, color: '#ef4444' },
-  { id: 'residential', name: 'Condominiums', icon: '🏘️', benchmark: 1.00, avgGresb: 65, color: '#10b981' },
-  { id: 'hospitality', name: 'Hospitality', icon: '🏨', benchmark: 1.20, avgGresb: 70, color: '#8b5cf6' },
-  { id: 'healthcare', name: 'Health Care', icon: '🏥', benchmark: 0.90, avgGresb: 75, color: '#3b82f6' },
-  { id: 'industrial', name: 'Manufacturing', icon: '🏭', benchmark: 0.40, avgGresb: 63, color: '#64748b' },
-  { id: 'golf', name: 'Golf Courses', icon: '⛳', benchmark: 2.50, avgGresb: 58, color: '#22c55e' },
-  { id: 'restaurants', name: 'Restaurants', icon: '🍽️', benchmark: 0.85, avgGresb: 62, color: '#f59e0b' },
-  { id: 'education', name: 'Schools & Universities', icon: '🎓', benchmark: 0.65, avgGresb: 71, color: '#6366f1' },
-  { id: 'senior', name: 'Senior Living', icon: '🏡', benchmark: 1.10, avgGresb: 67, color: '#a855f7' },
-  { id: 'laundry', name: 'Commercial Laundries', icon: '🧺', benchmark: 3.00, avgGresb: 55, color: '#14b8a6' },
-  { id: 'carwash', name: 'Service Stations', icon: '🚗', benchmark: 1.50, avgGresb: 60, color: '#84cc16' },
-  { id: 'marina', name: 'Clubs & Marinas', icon: '⚓', benchmark: 0.80, avgGresb: 64, color: '#0ea5e9' },
-  { id: 'waterpark', name: 'Water Parks', icon: '🎢', benchmark: 4.00, avgGresb: 52, color: '#06b6d4' }
+const ASSETS = [
+  {id:1,title:'How Water Audits Reduce CRE Costs by 25%+',cat:'Case Study',ind:'Hospitality',views:2341,dl:312,status:'published'},
+  {id:2,title:'GRESB Water Reporting Guide 2025',cat:'White Paper',ind:'Office',views:1890,dl:287,status:'published'},
+  {id:3,title:'Kimpton Hotels — 11-Month Payback Case Study',cat:'Case Study',ind:'Hospitality',views:1654,dl:241,status:'published'},
+  {id:4,title:'Portfolio Water Consumption Calculator',cat:'Tool',ind:'Retail',views:1433,dl:0,status:'published'},
+  {id:5,title:'Section 179 Tax Strategy for Water Equipment',cat:'White Paper',ind:'Office',views:1210,dl:198,status:'published'},
+  {id:6,title:'Smart Monitoring IoT Deployment Webinar',cat:'Webinar',ind:'Manufacturing',views:987,dl:0,status:'published'},
+  {id:7,title:'DiamondRock Hospitality — 25.3% Reduction',cat:'Case Study',ind:'Hospitality',views:876,dl:154,status:'published'},
+  {id:8,title:'Cooling Tower Optimisation Technical Guide',cat:'White Paper',ind:'Manufacturing',views:743,dl:112,status:'published'},
+  {id:9,title:'ESG Water Peer Comparison Dashboard',cat:'Tool',ind:'Office',views:698,dl:0,status:'draft'},
+  {id:10,title:'Westin Fort Lauderdale Case Study',cat:'Case Study',ind:'Hospitality',views:612,dl:98,status:'published'},
 ];
+const VIEWER_LOGS={1:[{user:'James Whitmore',d:'12 Mar 2026',t:'09:14'},{user:'Sarah Okonkwo',d:'11 Mar 2026',t:'16:42'},{user:'Michael Chen',d:'10 Mar 2026',t:'11:05'},{user:'Laura Reyes',d:'09 Mar 2026',t:'08:30'},{user:'Admin',d:'05 Mar 2026',t:'13:22'}],2:[{user:'Admin',d:'20 Jan 2026',t:'16:36'},{user:'test',d:'31 Dec 2025',t:'23:31'},{user:'Admin',d:'25 Dec 2025',t:'01:52'},{user:'Even Hotels',d:'24 Dec 2025',t:'23:00'},{user:'Even Hotels',d:'23 Dec 2025',t:'21:16'}],3:[{user:'ABC',d:'20 Jan 2026',t:'16:36'},{user:'test',d:'31 Dec 2025',t:'23:31'},{user:'Admin',d:'25 Dec 2025',t:'01:52'},{user:'Even Hotels',d:'24 Dec 2025',t:'23:00'},{user:'Even Hotels',d:'23 Dec 2025',t:'21:16'},{user:'Admin',d:'22 Dec 2025',t:'03:41'},{user:'Kimpton Team',d:'20 Dec 2025',t:'14:22'}],4:[{user:'Sarah Okonkwo',d:'12 Mar 2026',t:'10:45'},{user:'James Whitmore',d:'10 Mar 2026',t:'09:32'}],5:[{user:'Admin',d:'15 Feb 2026',t:'11:00'},{user:'CFO Team',d:'12 Feb 2026',t:'16:45'}],6:[{user:'Even Hotels',d:'15 Mar 2026',t:'14:30'},{user:'Panna Mfg',d:'10 Mar 2026',t:'11:22'}],7:[{user:'James Whitmore',d:'20 Feb 2026',t:'09:00'},{user:'Admin',d:'18 Feb 2026',t:'16:00'}],8:[{user:'Panna Mfg',d:'01 Mar 2026',t:'13:00'},{user:'Admin',d:'28 Feb 2026',t:'10:15'}],9:[{user:'Admin',d:'10 Mar 2026',t:'08:00'}],10:[{user:'James Whitmore',d:'01 Mar 2026',t:'10:00'},{user:'Admin',d:'20 Feb 2026',t:'09:30'}]};
+const CONSULTATIONS=[
+  {name:'Irfan Testing',company:'Company',interest:'Improve GRESB Score',properties:1,meetDate:'Mar 29, 2026 \u2022 15:20',reqDate:'Requested: Mar 29, 2026 13:21',status:'approved',meetLink:'https://meet.google.com/abc-defg-hij'},
+  {name:'tom brady',company:'abc',interest:'General Inquiry',properties:24,meetDate:'Mar 06, 2026 \u2022 18:03',reqDate:'Requested: Mar 06, 2026 18:03',status:'approved',meetLink:''},
+  {name:'Admin irfan',company:'hogwarts',interest:'General Inquiry',properties:21,meetDate:'Feb 25, 2026 \u2022 12:55',reqDate:'Requested: Feb 25, 2026 00:56',status:'approved',meetLink:'https://meet.google.com/xyz-uvwx-yz'},
+  {name:'Sarah Okonkwo',company:'SL Green Realty',interest:'Portfolio Water Audit',properties:28,meetDate:'Apr 17, 2026 \u2022 14:00',reqDate:'Requested: Mar 15, 2026 09:42',status:'pending',meetLink:''},
+  {name:'Michael Chen',company:'Kimpton Hotels',interest:'GRESB WT1 Compliance',properties:14,meetDate:'Apr 22, 2026 \u2022 11:00',reqDate:'Requested: Mar 14, 2026 11:20',status:'review',meetLink:''},
+];
+const ARTICLES=[{title:'Why Water Is the Next ESG Frontier for CRE Portfolios',author:'WST Editorial',cat:'ESG',ind:'Office',views:1240,status:'published'},{title:'GRESB 2025: What the WT1 Changes Mean for Asset Managers',author:'C. Campbell',cat:'GRESB',ind:'Office',views:987,status:'published'},{title:'Section 179 and Water Equipment: A Guide for Fund Managers',author:'WST Advisory',cat:'Tax Strategy',ind:'Office',views:832,status:'published'},{title:'How DiamondRock Cut Water Costs Across 37 Properties',author:'WST Editorial',cat:'Case Study',ind:'Hospitality',views:741,status:'published'},{title:'Cooling Tower Water Waste: The $200K Problem No One Talks About',author:'C. Campbell',cat:'Operations',ind:'Manufacturing',views:623,status:'draft'}];
+const INDUSTRIES=[{name:'Hospitality',slug:'hospitality',assets:4,views:5483},{name:'Office Buildings',slug:'office',assets:3,views:3797},{name:'Manufacturing',slug:'manufacturing',assets:2,views:1730},{name:'Retail & Supermarkets',slug:'retail',assets:2,views:2131},{name:'Condominiums',slug:'condominiums',assets:1,views:612},{name:'Golf Courses',slug:'golf',assets:1,views:441},{name:'Healthcare',slug:'healthcare',assets:0,views:0},{name:'Senior Living',slug:'senior-living',assets:1,views:389}];
+const WHITE_PAPERS=[{title:'GRESB Water Reporting Guide 2025',ind:'Office',pages:28,dl:287,status:'published',views:287},{title:'Section 179 Tax Strategy for Water Equipment',ind:'Office',pages:14,dl:198,status:'published',views:198},{title:'Cooling Tower Optimisation Technical Guide',ind:'Manufacturing',pages:22,dl:112,status:'published',views:112},{title:'ESG Water Data Coverage Methodology',ind:'All',pages:18,dl:76,status:'draft',views:76}];
+const CASE_STUDIES=[{title:'How Water Audits Reduce CRE Costs by 25%+',client:'Portfolio Overview',ind:'Hospitality',savings:'$2.3M+',views:2341},{title:'Kimpton Hotels — 11-Month Payback',client:'Kimpton / IHG',ind:'Hospitality',savings:'$184K',views:1654},{title:'DiamondRock Hospitality — 25.3% Reduction',client:'DiamondRock',ind:'Hospitality',savings:'$2.3M',views:876},{title:'Westin Fort Lauderdale Case Study',client:'Westin / Marriott',ind:'Hospitality',savings:'$69K',views:612}];
+const WEBINARS=[{title:'Smart Monitoring IoT Deployment',date:'15 Mar 2026',dur:'58 min',views:987,status:'published',ind:'Manufacturing'},{title:'GRESB Water Reporting - 2025 Requirements',date:'01 Mar 2026',dur:'45 min',views:743,status:'published',ind:'Office'},{title:'Section 179 Water Equipment Tax Strategy',date:'18 Feb 2026',dur:'52 min',views:621,status:'published',ind:'Office'},{title:'Portfolio Water Audit - Live Walkthrough',date:'05 Feb 2026',dur:'70 min',views:489,status:'published',ind:'Hospitality'},{title:'ESG Water Data Coverage Best Practices',date:'20 Apr 2026',dur:'',views:0,status:'upcoming',ind:'Office'}];
+const TOOLS=[{name:'Portfolio Water Consumption Calculator',title:'Portfolio Water Consumption Calculator',type:'Calculator',uses:1433,status:'published',views:1433},{name:'ESG Water Peer Comparison Dashboard',title:'ESG Water Peer Comparison Dashboard',type:'Dashboard',uses:698,status:'draft',views:698},{name:'GRESB WT1 Score Estimator',title:'GRESB WT1 Score Estimator',type:'Calculator',uses:521,status:'published',views:521},{name:'Cooling Tower Savings Calculator',title:'Cooling Tower Savings Calculator',type:'Calculator',uses:412,status:'published',views:412},{name:'Section 179 ROI Calculator',title:'Section 179 ROI Calculator',type:'Calculator',uses:387,status:'published',views:387}];
+const LEADS=[{name:'James Whitmore',co:'DiamondRock Hospitality',email:'j.whitmore@diamondrock.com',date:'12 Mar 2026, 09:14'},{name:'Sarah Okonkwo',co:'SL Green Realty Corp',email:'sokonkwo@slgreen.com',date:'11 Mar 2026, 16:42'},{name:'Michael Chen',co:'Kimpton Hotels & Resorts',email:'m.chen@kimpton.com',date:'10 Mar 2026, 11:05'},{name:'Laura Reyes',co:'Sandals Resorts',email:'l.reyes@sandals.com',date:'09 Mar 2026, 08:30'},{name:'David Harrington',co:'Kroger Co.',email:'d.harrington@kroger.com',date:'07 Mar 2026, 14:55'},{name:'Amara Nwosu',co:'Brookfield Properties',email:'a.nwosu@brookfield.com',date:'05 Mar 2026, 13:22'}];
+const SUBS=[{email:'asset.mgr@blackstone.com',d:'15 Mar 2026',t:'10:22'},{email:'esg@brookfieldproperties.com',d:'14 Mar 2026',t:'09:15'},{email:'facilities@regus.com',d:'13 Mar 2026',t:'16:48'},{email:'sustainability@greystar.com',d:'12 Mar 2026',t:'11:03'},{email:'cre.ops@prologis.com',d:'11 Mar 2026',t:'08:37'},{email:'water@ventasreit.com',d:'10 Mar 2026',t:'14:20'}];
+const SCHEDULE=[{client:'DiamondRock Hospitality',contact:'James Whitmore',type:'Portfolio Water Audit',day:'14',month:'Apr',time:'10:00 AM EST',props:37,advisor:'Clifford Campbell',status:'confirmed'},{client:'SL Green Realty Corp',contact:'Sarah Okonkwo',type:'ESG Reporting Advisory',day:'17',month:'Apr',time:'2:00 PM EST',props:28,advisor:'WST Advisory Team',status:'confirmed'},{client:'Kimpton Hotels & Resorts',contact:'Michael Chen',type:'GRESB WT1 Compliance',day:'22',month:'Apr',time:'11:00 AM EST',props:14,advisor:'Clifford Campbell',status:'pending'},{client:'Kroger Co.',contact:'David Harrington',type:'Cost Reduction Assessment',day:'28',month:'Apr',time:'3:30 PM EST',props:8,advisor:'WST Advisory Team',status:'confirmed'},{client:'Brookfield Properties',contact:'Amara Nwosu',type:'Smart Monitoring Demo',day:'02',month:'May',time:'10:30 AM EST',props:22,advisor:'Clifford Campbell',status:'pending'}];
+const CHART_DATA={views:{labels:['Oct','Nov','Dec','Jan','Feb','Mar'],data:[4200,5800,7100,6400,8900,11300]},leads:{labels:['Oct','Nov','Dec','Jan','Feb','Mar'],data:[8,12,9,14,18,24]},subs:{labels:['Oct','Nov','Dec','Jan','Feb','Mar'],data:[22,31,28,35,41,56]}};
+const CAT_PILL={'Case Study':'pill-teal','White Paper':'pill-blue','Webinar':'pill-purple','Tool':'pill-amber','Article':'pill-blue'};
 
-// Modal Functions
-function openModal() {
-  document.getElementById('bookingModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
+function toggleTheme(){const body=document.body;const isDark=body.getAttribute('data-theme')==='dark';body.setAttribute('data-theme',isDark?'light':'dark');const icon=document.getElementById('theme-icon');if(icon)icon.className=isDark?'fa-solid fa-moon':'fa-solid fa-circle-half-stroke';if(chartInst&&rendered['dashboard'])buildChart(currentChartKey);}
 
-function closeModal() {
-  document.getElementById('bookingModal').classList.remove('active');
-  document.body.style.overflow = 'auto';
-}
+function nav(screenId,btn,title,section){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-link,.nav-child').forEach(l=>l.classList.remove('active'));const screen=document.getElementById('screen-'+screenId);if(screen){screen.classList.add('active');document.getElementById('main-content').scrollTop=0;}if(btn)btn.classList.add('active');document.getElementById('hdr-title').textContent=title||'Dashboard';document.getElementById('hdr-section').textContent=section||'Portal';closeMobile();lazyRender(screenId);}
+const rendered={};
+function lazyRender(id){if(rendered[id])return;rendered[id]=true;const fn=RENDERERS[id];if(fn)fn();}
 
-// Handle booking form submission
-// document.getElementById('bookingForm').addEventListener('submit', function(e) {
-//   e.preventDefault();
-  
-//   const formData = {
-//     firstName: document.getElementById('firstName').value,
-//     lastName: document.getElementById('lastName').value,
-//     email: document.getElementById('email').value,
-//     company: document.getElementById('company').value,
-//     phone: document.getElementById('phone').value,
-//     portfolioSize: document.getElementById('portfolioSize').value,
-//     interest: document.getElementById('interest').value,
-//     timePreference: document.getElementById('timePreference').value,
-//     notes: document.getElementById('notes').value,
-//     assessmentData: {
-//       waterScore: parseFloat(document.getElementById('gresb-points').textContent),
-//       overallGRESB: state.overallGRESB,
-//       properties: state.propertyCount,
-//       floorArea: state.floorArea,
-//       waterSpend: state.waterSpend
-//     }
-//   };
-  
-//   // Calculate projected score if overall GRESB provided
-//   let projectedInfo = '';
-//   if (state.overallGRESB) {
-//     const waterGain = 7.67 - formData.assessmentData.waterScore;
-//     const projectedScore = state.overallGRESB + waterGain;
-//     projectedInfo = `
-// Current Overall GRESB: ${state.overallGRESB}/100
-// Water Score Improvement: +${waterGain.toFixed(1)} points
-// Projected Overall GRESB: ${projectedScore.toFixed(1)}/100
-// `;
-//   }
-  
-//   // Create mailto with form data
-//   const subject = encodeURIComponent('GRESB Consultation Request - ' + formData.firstName + ' ' + formData.lastName);
-//   const body = encodeURIComponent(`
-// New GRESB Consultation Request
+function renderAdminTable(tbodyId,data,rowFn){const tb=document.getElementById(tbodyId);if(tb)tb.innerHTML=data.map(rowFn).join('');}
+function arArticleRow(a){return `<tr><td class="primary">${a.title}</td><td style="color:var(--text-3);">${a.author}</td><td><span class="pill ${CAT_PILL['Article']}">${a.cat}</span></td><td class="r" style="font-family:var(--font-mono);color:var(--accent);">${a.views.toLocaleString()}</td><td class="r"><span class="pill ${a.status==='published'?'pill-green':'pill-amber'}">${a.status}</span></td><td class="r"><button class="btn btn-ghost" style="font-size:10px;padding:4px 8px;" onclick="showToast('Editing…','fa-pencil')"><i class="fa-solid fa-pencil" style="font-size:9px;"></i> Edit</button></td></tr>`;}
+function arIndustryRow(a){return `<tr><td class="primary">${a.name}</td><td style="font-family:var(--font-mono);color:var(--text-3);font-size:11px;">${a.slug}</td><td class="r" style="font-family:var(--font-mono);">${a.assets}</td><td class="r" style="font-family:var(--font-mono);color:var(--accent);">${a.views.toLocaleString()}</td><td class="r"><button class="btn btn-ghost" style="font-size:10px;padding:4px 8px;" onclick="showToast('Editing…','fa-pencil')"><i class="fa-solid fa-pencil" style="font-size:9px;"></i> Edit</button></td></tr>`;}
+function arWPRow(a){return `<tr><td class="primary">${a.title}</td><td>${a.ind}</td><td class="r" style="font-family:var(--font-mono);">${a.pages}p</td><td class="r" style="font-family:var(--font-mono);color:var(--accent);">${a.dl.toLocaleString()}</td><td class="r"><span class="pill ${a.status==='published'?'pill-green':'pill-amber'}">${a.status}</span></td><td class="r"><button class="btn btn-ghost" style="font-size:10px;padding:4px 8px;" onclick="showToast('Editing…','fa-pencil')"><i class="fa-solid fa-pencil" style="font-size:9px;"></i> Edit</button></td></tr>`;}
+function arCSRow(a){return `<tr><td class="primary">${a.title}</td><td style="color:var(--text-3);">${a.client}</td><td>${a.ind}</td><td class="r" style="font-family:var(--font-mono);color:var(--accent);">${a.savings}</td><td class="r" style="font-family:var(--font-mono);">${a.views.toLocaleString()}</td><td class="r"><button class="btn btn-ghost" style="font-size:10px;padding:4px 8px;" onclick="showToast('Editing…','fa-pencil')"><i class="fa-solid fa-pencil" style="font-size:9px;"></i> Edit</button></td></tr>`;}
+function arWebRow(a){return `<tr><td class="primary">${a.title}</td><td style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">${a.date}</td><td class="r" style="font-family:var(--font-mono);">${a.dur}</td><td class="r" style="font-family:var(--font-mono);color:var(--accent);">${a.views>0?a.views.toLocaleString():'--'}</td><td class="r"><span class="pill ${a.status==='published'?'pill-green':a.status==='upcoming'?'pill-blue':'pill-amber'}">${a.status}</span></td><td class="r"><button class="btn btn-ghost" style="font-size:10px;padding:4px 8px;" onclick="showToast('Editing…','fa-pencil')"><i class="fa-solid fa-pencil" style="font-size:9px;"></i> Edit</button></td></tr>`;}
+function arToolRow(a){return `<tr><td class="primary">${a.name}</td><td><span class="pill pill-blue">${a.type}</span></td><td class="r" style="font-family:var(--font-mono);color:var(--accent);">${a.uses.toLocaleString()}</td><td class="r"><span class="pill ${a.status==='published'?'pill-green':'pill-amber'}">${a.status}</span></td><td class="r"><button class="btn btn-ghost" style="font-size:10px;padding:4px 8px;" onclick="showToast('Editing…','fa-pencil')"><i class="fa-solid fa-pencil" style="font-size:9px;"></i> Edit</button></td></tr>`;}
 
-// CONTACT INFORMATION:
-// Name: ${formData.firstName} ${formData.lastName}
-// Email: ${formData.email}
-// Company: ${formData.company}
-// Phone: ${formData.phone}
-
-// PORTFOLIO DETAILS:
-// Portfolio Size: ${formData.portfolioSize} properties
-// Total Floor Area: ${formData.assessmentData.floorArea.toLocaleString()} m²
-// Annual Water Spend: ${formData.assessmentData.waterSpend.toLocaleString()}
-
-// GRESB ASSESSMENT:
-// Water Indicator Score: ${formData.assessmentData.waterScore.toFixed(2)} / 7.67
-// ${projectedInfo}
-
-// CONSULTATION PREFERENCES:
-// Primary Interest: ${formData.interest}
-// Preferred Time: ${formData.timePreference}
-
-// ADDITIONAL NOTES:
-// ${formData.notes}
-
-// ---
-// This request was generated from the GRESB Water Performance Assessment Tool
-//   `);
-  
-//   // Open email client
-//   window.location.href = `mailto:acc@watersolutech.com?subject=${subject}&body=${body}`;
-  
-//   // Show success message
-//   alert('Opening your email client with pre-filled consultation request. Please review and send when ready!');
-//   closeModal();
-// });
-
-// Close modal when clicking outside
-document.getElementById('bookingModal').addEventListener('click', function(e) {
-  if (e.target === this) {
-    closeModal();
-  }
-});
-
-// Initialize
-function init() {
-  renderPropertyGrid();
-  updateUI();
-}
-
-function renderPropertyGrid() {
-  const grid = document.getElementById('property-grid');
-  grid.innerHTML = propertyTypes.map(type => `
-    <button
-      onclick="togglePropertyType('${type.id}')"
-      id="prop-${type.id}"
-      class="p-4 border border-black/20 bg-black-9000 hover:border-black-900 hover:bg-black/5 transition-all duration-300 text-center"
-    >
-      <div class="text-2xl mb-2">${type.icon}</div>
-      <div class="text-xs font-medium text-black/80 leading-tight">${type.name}</div>
-    </button>
-  `).join('');
-}
-
-function togglePropertyType(id) {
-  if (state.propertyTypes[id]) {
-    delete state.propertyTypes[id];
-  } else {
-    state.propertyTypes[id] = 10;
-  }
-  updateUI();
-}
-
-function updatePropertyPercentage(id, value) {
-  const numValue = parseFloat(value) || 0;
-  if (numValue > 0) {
-    state.propertyTypes[id] = Math.min(100, Math.max(0, numValue));
-  } else {
-    delete state.propertyTypes[id];
-  }
-  updateUI();
-}
-
-function updatePropertyCount(value) {
-  state.propertyCount = parseInt(value) || 1;
-  updatePortfolioSummary();
-}
-
-function updateFloorArea(value) {
-  state.floorArea = parseInt(value) || 10000;
-  updatePortfolioSummary();
-}
-
-function updateWaterSpend(value) {
-  state.waterSpend = parseInt(value) || 0;
-  updatePortfolioSummary();
-}
-
-function updateOverallGRESB(value) {
-  state.overallGRESB = value ? parseFloat(value) : null;
-  updateStarRating();
-  updatePortfolioSummary();
-  updateUI();
-}
-
-function updateStarRating() {
-  if (!state.overallGRESB) {
-    document.getElementById('star-rating-display').style.display = 'none';
-    return;
-  }
-  
-  document.getElementById('star-rating-display').style.display = 'flex';
-  
-  const score = state.overallGRESB;
-  let stars = '';
-  let rating = '';
-  let color = '';
-  
-  if (score >= 95) {
-    stars = '⭐⭐⭐⭐⭐';
-    rating = '5-Star Leader';
-    color = '#059669';
-  } else if (score >= 80) {
-    stars = '⭐⭐⭐⭐';
-    rating = '4-Star Performer';
-    color = '#10b981';
-  } else if (score >= 60) {
-    stars = '⭐⭐⭐';
-    rating = '3-Star Average';
-    color = '#f59e0b';
-  } else if (score >= 40) {
-    stars = '⭐⭐';
-    rating = '2-Star Below Average';
-    color = '#f97316';
-  } else {
-    stars = '⭐';
-    rating = '1-Star';
-    color = '#ef4444';
-  }
-  
-  document.getElementById('current-stars').textContent = stars;
-  document.getElementById('rating-label').innerHTML = `<span style="color: ${color}">${rating}</span>`;
-}
-
-function getStarRating(score) {
-  if (score >= 95) return { stars: '⭐⭐⭐⭐⭐', label: '5-Star Leader', color: '#059669' };
-  if (score >= 80) return { stars: '⭐⭐⭐⭐', label: '4-Star Performer', color: '#10b981' };
-  if (score >= 60) return { stars: '⭐⭐⭐', label: '3-Star Average', color: '#f59e0b' };
-  if (score >= 40) return { stars: '⭐⭐', label: '2-Star Below Average', color: '#f97316' };
-  return { stars: '⭐', label: '1-Star', color: '#ef4444' };
-}
-
-function updateCertifications() {
-  const checkboxes = document.querySelectorAll('.cert-check:checked');
-  state.certifications = Array.from(checkboxes).map(cb => cb.dataset.cert);
-}
-
-function updateDataCoverage(value) {
-  state.dataCoverage = parseFloat(value);
-  document.getElementById('coverage-display').textContent = `${value}%`;
-  
-  let feedback = '';
-  if (value < 50) feedback = '⚠️ Below minimum threshold - significant point loss';
-  else if (value < 70) feedback = '📊 Meets minimum - room for improvement';
-  else if (value < 90) feedback = '✓ Good coverage - competitive positioning';
-  else feedback = '🌟 Excellent coverage - top quartile performance';
-  document.getElementById('coverage-feedback').textContent = feedback;
-  
-  updateUI();
-}
-
-function updateMetering(method) {
-  state.metering = method;
-  updateUI();
-}
-
-function updatePlatform(platform) {
-  state.platform = platform;
-  updateUI();
-}
-
-function updateVerification(status) {
-  state.verification = status;
-  ['verify-yes', 'verify-no'].forEach(id => {
-    const btn = document.getElementById(id);
-    btn.classList.remove('border-2', 'border-gray-300', 'bg-gray-100', 'text-black');
-    btn.classList.add('border', 'border-white/10', 'text-black/80');
-  });
-  const btn = document.getElementById(`verify-${status}`);
-  btn.classList.add('border-2', 'border-gray-300', 'bg-gray-100', 'text-black');
-  btn.classList.remove('border', 'border-white/10', 'text-black/80');
-  updateUI();
-}
-
-function updateEfficiency() {
-  const checkboxes = document.querySelectorAll('.efficiency-check:checked');
-  state.efficiencyMeasures = Array.from(checkboxes).map(cb => cb.dataset.value);
-  updateUI();
-}
-
-function updateTracking(period) {
-  state.performanceTracking = period;
-  ['track-none', 'track-1year', 'track-2year', 'track-3year'].forEach(id => {
-    const btn = document.getElementById(id);
-    btn.classList.remove('border-2', 'border-gray-300', 'bg-gray-100', 'text-black');
-    btn.classList.add('border', 'border-white/10', 'text-black/80');
-  });
-  const btn = document.getElementById(`track-${period}`);
-  btn.classList.add('border-2', 'border-gray-300', 'bg-gray-100', 'text-black');
-  btn.classList.remove('border', 'border-white/10', 'text-black/80');
-  updateUI();
-}
-
-function updatePortfolioSummary() {
-  const avgSize = state.floorArea / state.propertyCount;
-  const spendPerSqm = state.waterSpend / state.floorArea;
-  
-  document.getElementById('portfolio-summary').innerHTML = `
-    ${state.propertyCount} properties averaging ${avgSize.toLocaleString()} m² each
-    ${state.waterSpend > 0 ? `<br/>$${spendPerSqm.toFixed(2)}/m² annual water costs` : ''}
-  `;
-}
-
-function updateUI() {
-  updatePropertyInputs();
-  updateTotalPercentage();
-  updatePieChart();
-  updatePortfolioLegend();
-  updateGRESBScore();
-  updateBenchmarks();
-  toggleSections();
-}
-
-function updatePropertyInputs() {
-  const container = document.getElementById('percentage-inputs');
-  const selectedTypes = Object.keys(state.propertyTypes);
-  
-  if (selectedTypes.length === 0) {
-    container.innerHTML = '';
-    return;
-  }
-  
-  container.innerHTML = selectedTypes.map(id => {
-    const type = propertyTypes.find(t => t.id === id);
-    return `
-      <div class="flex items-center gap-4 p-5 bg-black/5 border border-black/20">
-        <div class="flex items-center gap-3 flex-1">
-          <div class="text-xl">${type.icon}</div>
-          <div class="text-sm font-medium text-black">${type.name}</div>
-        </div>
-        <div class="flex items-center gap-2">
-          <input
-            type="number"
-            value="${state.propertyTypes[id]}"
-            onchange="updatePropertyPercentage('${id}', this.value)"
-            class="w-20 px-3 py-2 bg-black/10 border border-black/20 text-center focus:outline-none focus:ring-1 focus:ring-blue-500"
-            min="0"
-            max="100"
-            step="1"
-          />
-          <span class="text-black/60 w-6">%</span>
-        </div>
-      </div>
-    `;
+function renderAdminResources(){renderFilteredAdminResources(ASSETS);}
+function renderFilteredAdminResources(list){
+  const tb=document.getElementById('ar-tbody');if(!tb)return;
+  tb.innerHTML=list.map(a=>{
+    const m=CAT_PILL[a.cat]||'pill-dim';
+    return `<tr class="row-clickable" onclick="toggleARRow(${a.id},this)"><td style="padding-left:12px;width:24px;"><i class="fa-solid fa-chevron-right" id="ar-arrow-${a.id}" style="font-size:9px;color:var(--text-3);transition:transform .2s;"></i></td><td class="primary" style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${a.title}</td><td><span class="pill ${m}">${a.cat}</span></td><td>${a.ind}</td><td class="r" style="font-family:var(--font-mono);color:var(--accent);">${a.views.toLocaleString()}</td><td class="r"><span class="pill ${a.status==='published'?'pill-green':'pill-amber'}">${a.status}</span></td><td class="r"><button class="btn btn-ghost" style="font-size:10px;padding:4px 8px;" onclick="event.stopPropagation();showToast('Editing…','fa-pencil')"><i class="fa-solid fa-pencil" style="font-size:9px;"></i> Edit</button></td></tr><tr class="expand-row" id="ar-exp-${a.id}"><td colspan="7" id="ar-inner-${a.id}" style="padding:0;"></td></tr>`;
   }).join('');
 }
-
-function updateTotalPercentage() {
-  const total = Object.values(state.propertyTypes).reduce((sum, val) => sum + val, 0);
-  const display = document.getElementById('total-percentage');
-  const validation = document.getElementById('validation-message');
-  const isValid = Math.abs(total - 100) < 0.1;
-  
-  if (Object.keys(state.propertyTypes).length === 0) {
-    display.innerHTML = '';
-    validation.innerHTML = '';
-    return;
-  }
-  
-  display.innerHTML = `<span class="${isValid ? 'text-green-600' : 'text-orange-500'}">${total.toFixed(0)}%</span>`;
-  
-  if (!isValid) {
-    validation.innerHTML = `
-      <div class="p-5 bg-orange-50 border border-orange-200">
-        <div class="flex items-center gap-3 text-orange-800 text-sm">
-          <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-          </svg>
-          <span class="font-medium">Portfolio allocation must total 100% (currently ${total.toFixed(0)}%)</span>
-        </div>
-      </div>
-    `;
-  } else {
-    validation.innerHTML = `
-      <div class="p-5 bg-green-500/10 border border-green-500/20">
-        <div class="flex items-center gap-3 text-green-800 text-sm">
-          <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-          </svg>
-          <span class="font-medium">Portfolio composition ready</span>
-        </div>
-      </div>
-    `;
-  }
+function toggleARRow(id){
+  const exp=document.getElementById('ar-exp-'+id);const arrow=document.getElementById('ar-arrow-'+id);const inner=document.getElementById('ar-inner-'+id);
+  if(!exp)return;
+  const isOpen=exp.classList.contains('open');
+  document.querySelectorAll('.expand-row.open').forEach(r=>r.classList.remove('open'));
+  document.querySelectorAll('[id^="ar-arrow-"]').forEach(a=>{a.style.transform='';});
+  if(!isOpen){exp.classList.add('open');arrow.style.transform='rotate(90deg)';inner.innerHTML=buildViewerLogHTML(id);inner.style.padding='16px 20px 20px';}
+}
+function buildViewerLogHTML(id){
+  const a=ASSETS.find(x=>x.id===id);if(!a)return '';
+  const logs=VIEWER_LOGS[id]||[];
+  const rows=logs.map(l=>`<tr><td><div style="display:flex;align-items:center;gap:8px;"><div class="viewer-avatar">${l.user.charAt(0)}</div><span style="color:var(--text-1);font-weight:500;">${l.user}</span></div></td><td>${l.d}</td><td class="r" style="font-family:var(--font-mono);font-size:12px;color:var(--text-3);">${l.t}</td></tr>`).join('');
+  return `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:10px;"><div><div style="font-weight:700;color:var(--text-1);font-size:13px;">${a.title}</div><div style="font-size:10px;color:var(--text-3);margin-top:2px;font-family:var(--font-mono);">Asset ID: #${a.id} &nbsp;&bull;&nbsp; Total Views: <strong style="color:var(--accent);">${a.views}</strong></div></div><input type="search" class="viewer-search" id="ar-vs-${id}" placeholder="Search user or date..." oninput="filterInlineLog(${id},this.value)" style="min-width:180px;"></div><div class="table-scroll"><table class="wst-table"><thead><tr><th>Viewer</th><th>Date</th><th class="r">Time</th></tr></thead><tbody id="ar-vb-${id}">${rows}</tbody></table></div>`;
+}
+function filterInlineLog(id,q){
+  const tb=document.getElementById('ar-vb-'+id);if(!tb)return;
+  const logs=VIEWER_LOGS[id]||[];
+  const f=q?logs.filter(l=>l.user.toLowerCase().includes(q.toLowerCase())||l.d.toLowerCase().includes(q.toLowerCase())):logs;
+  tb.innerHTML=f.map(l=>`<tr><td><div style="display:flex;align-items:center;gap:8px;"><div class="viewer-avatar">${l.user.charAt(0)}</div><span style="color:var(--text-1);font-weight:500;">${l.user}</span></div></td><td>${l.d}</td><td class="r" style="font-family:var(--font-mono);font-size:12px;color:var(--text-3);">${l.t}</td></tr>`).join('');
 }
 
-function updatePieChart() {
-  const container = document.getElementById('pie-chart-container');
-  const data = Object.entries(state.propertyTypes)
-    .filter(([_, value]) => value > 0)
-    .map(([key, value]) => ({
-      type: propertyTypes.find(t => t.id === key),
-      value: value
-    }));
-  
-  if (data.length === 0) {
-    container.innerHTML = `
-      <div class="text-center text-black/40">
-        <div class="text-5xl mb-3">🏢</div>
-        <div class="text-sm">Select asset types to<br/>visualize your portfolio</div>
-      </div>
-    `;
-    return;
-  }
-  
-  let currentAngle = -90;
-  const segments = data.map(item => {
-    const angle = (item.value / 100) * 360;
-    const segment = {
-      ...item,
-      startAngle: currentAngle,
-      endAngle: currentAngle + angle
-    };
-    currentAngle += angle;
-    return segment;
-  });
-  
-  const svgContent = segments.map(seg => {
-    const x1 = 100 + 90 * Math.cos((seg.startAngle * Math.PI) / 180);
-    const y1 = 100 + 90 * Math.sin((seg.startAngle * Math.PI) / 180);
-    const x2 = 100 + 90 * Math.cos((seg.endAngle * Math.PI) / 180);
-    const y2 = 100 + 90 * Math.sin((seg.endAngle * Math.PI) / 180);
-    const largeArc = seg.value > 50 ? 1 : 0;
-    
-    const labelAngle = seg.startAngle + (seg.endAngle - seg.startAngle) / 2;
-    const labelX = 100 + 65 * Math.cos((labelAngle * Math.PI) / 180);
-    const labelY = 100 + 65 * Math.sin((labelAngle * Math.PI) / 180);
-    
-    return `
-      <g class="pie-segment">
-        <path
-          d="M 100 100 L ${x1} ${y1} A 90 90 0 ${largeArc} 1 ${x2} ${y2} Z"
-          fill="${seg.type.color}"
-          opacity="0.85"
-        />
-        ${seg.value > 8 ? `
-          <text x="${labelX}" y="${labelY}" 
-                text-anchor="middle" 
-                fill="black" 
-                font-size="13" 
-                font-weight="600">
-            ${seg.value.toFixed(0)}%
-          </text>
-        ` : ''}
-      </g>
-    `;
+function filterTable(prefix){
+  const q=(document.getElementById(prefix+'-search')||{value:''}).value.toLowerCase();
+  const cat=(document.getElementById(prefix+'-cat')||{value:''}).value.toLowerCase();
+  const ind=(document.getElementById(prefix+'-ind')||{value:''}).value.toLowerCase();
+  if(prefix==='ar'){renderFilteredAdminResources(ASSETS.filter(a=>(!q||a.title.toLowerCase().includes(q))&&(!cat||a.cat.toLowerCase().includes(cat))&&(!ind||a.ind.toLowerCase().includes(ind))));return;}
+  const tbody=document.getElementById(prefix+'-tbody');if(!tbody)return;
+  tbody.querySelectorAll('tr').forEach(r=>{const txt=r.textContent.toLowerCase();r.style.display=(!q||txt.includes(q))&&(!cat||txt.includes(cat))&&(!ind||txt.includes(ind))?'':'none';});
+}
+
+function filterCards(sid){
+  const q=(document.getElementById(sid+'-search')||document.getElementById('mr-search')||{value:''}).value.toLowerCase();
+  const cat=(document.getElementById(sid+'-cat')||{value:''}).value.toLowerCase();
+  const ind=(document.getElementById(sid+'-ind')||{value:''}).value.toLowerCase();
+  const gridMap={'mr':'mr-grid','articles':'ma-grid','whitepapers':'mwp-grid','casestudies':'mcs-grid','webinars':'mweb-grid','tools':'mt-grid'};
+  const grid=document.getElementById(gridMap[sid]||sid+'-grid');if(!grid)return;
+  grid.querySelectorAll('.resource-card').forEach(card=>{const txt=card.textContent.toLowerCase();card.style.display=(!q||txt.includes(q))&&(!cat||txt.includes(cat))&&(!ind||txt.includes(ind))?'':'none';});
+}
+
+function renderCards(gridId,data){
+  const grid=document.getElementById(gridId);if(!grid)return;
+  grid.innerHTML=data.map(a=>`<div class="resource-card" onclick="showToast('Opening resource...','fa-file')"><div class="rc-type"><span class="pill ${CAT_PILL[a.cat||'']||'pill-dim'}">${a.cat||'Resource'}</span>${a.ind?`<span style="color:var(--text-3);font-size:10px;">${a.ind}</span>`:''}</div><div class="rc-title">${a.title||a.name||'--'}</div><div class="rc-meta">${a.date||''} ${a.dur?'- '+a.dur:''} ${a.pages?'- '+a.pages+' pages':''}</div><div class="rc-footer"><span class="rc-views">${(a.views||a.uses||a.dl||0).toLocaleString()} ${a.cat==='Tool'?'uses':a.cat==='Webinar'?'views':'views'}</span><span class="rc-cta">${a.cat==='Tool'?'Use Tool ->':a.cat==='Webinar'?'Watch ->':'Read ->'}</span></div></div>`).join('');
+}
+
+function renderConsultations(){_renderConsultList(CONSULTATIONS);}
+function _renderConsultList(list){
+  const tb=document.getElementById('consult-tbody');if(!tb)return;
+  tb.innerHTML=list.map((c,i)=>{
+    const sp=c.status==='approved'?'<span class="status-pill-approved">APPROVED</span>':c.status==='pending'?'<span class="status-pill-pending">PENDING</span>':'<span class="status-pill-review">UNDER REVIEW</span>';
+    const mc=c.meetLink?`<a href="${c.meetLink}" target="_blank" class="meeting-link">Join Meeting</a>`:'<span class="meeting-inprog">Link in progress</span>';
+    return `<tr class="consult-row"><td><div style="display:flex;align-items:center;gap:10px;"><div class="client-avatar">${c.name.charAt(0).toUpperCase()}</div><div><div style="font-weight:600;color:var(--text-1);font-size:13px;">${c.name}</div><div style="font-size:11px;color:var(--text-3);">${c.company}</div></div></div></td><td><span class="pill pill-dim" style="margin-bottom:5px;display:inline-flex;">${c.interest}</span><br><span style="font-size:11px;color:var(--text-3);"><i class="fa-solid fa-building" style="font-size:9px;margin-right:4px;"></i>${c.properties} Propert${c.properties===1?'y':'ies'}</span></td><td><span class="timeline-badge"><i class="fa-solid fa-calendar" style="font-size:9px;"></i>${c.meetDate}</span><br><span style="font-size:10px;color:var(--text-3);margin-top:4px;display:block;">${c.reqDate}</span></td><td>${sp}</td><td>${mc}</td><td><select class="consult-select" onchange="updateConsultStatus(${i},this.value)"><option value="approved" ${c.status==='approved'?'selected':''}>Approve</option><option value="pending" ${c.status==='pending'?'selected':''}>Pending</option><option value="review" ${c.status==='review'?'selected':''}>Review</option></select><br><button class="btn btn-danger" style="font-size:10px;padding:3px 7px;margin-top:5px;" onclick="deleteConsult(${i})"><i class="fa-solid fa-trash" style="font-size:9px;"></i></button></td></tr>`;
   }).join('');
-  
-  container.innerHTML = `
-    <svg viewBox="0 0 200 200" class="w-full h-full max-w-xs">
-      ${svgContent}
-      <circle cx="100" cy="100" r="35" fill="#bdbdbd"/>
-      <text x="100" y="100" text-anchor="middle" fill="#6b7280" font-size="11" font-weight="400">Portfolio</text>
-      <text x="100" y="115" text-anchor="middle" fill="#1f2937" font-size="18" font-weight="600">${data.length}</text>
-    </svg>
-  `;
+}
+function updateConsultStatus(i,val){CONSULTATIONS[i].status=val;_renderConsultList(CONSULTATIONS);showToast('Status updated to '+val,'fa-check');}
+function deleteConsult(i){if(!confirm('Remove this request?'))return;CONSULTATIONS.splice(i,1);_renderConsultList(CONSULTATIONS);showToast('Removed','fa-trash');}
+function filterConsultations(){
+  const q=(document.getElementById('consult-search')||{value:''}).value.toLowerCase();
+  const st=(document.getElementById('consult-status-filter')||{value:''}).value.toLowerCase();
+  _renderConsultList(CONSULTATIONS.filter(c=>(!q||c.name.toLowerCase().includes(q)||c.company.toLowerCase().includes(q))&&(!st||c.status===st)));
 }
 
-function updatePortfolioLegend() {
-  const legend = document.getElementById('portfolio-legend');
-  const data = Object.entries(state.propertyTypes)
-    .filter(([_, value]) => value > 0)
-    .map(([key, value]) => ({
-      type: propertyTypes.find(t => t.id === key),
-      value: value
-    }))
-    .sort((a, b) => b.value - a.value);
-  
-  if (data.length === 0) {
-    legend.innerHTML = '';
-    return;
-  }
-  
-  legend.innerHTML = data.map(item => `
-    <div class="flex items-center justify-between text-sm py-2 border-t border-black/10">
-      <div class="flex items-center gap-2">
-        <div class="w-3 h-3 flex-shrink-0" style="background: ${item.type.color}"></div>
-        <span class="text-black/70 text-xs">${item.type.icon} ${item.type.name}</span>
-      </div>
-      <span class="font-medium text-black">${item.value.toFixed(0)}%</span>
-    </div>
-  `).join('');
+let chartInst=null,currentChartKey='views';
+function renderDashboard(){
+  const now=new Date();const el=document.getElementById('date-label');if(el)el.textContent=now.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' - Manage assets and track engagement';
+  const top=[...ASSETS].sort((a,b)=>b.views-a.views)[0];document.getElementById('top-asset').textContent=top.title;document.getElementById('top-views').textContent=top.views.toLocaleString()+' views';
+  [{id:'cnt-assets',val:ASSETS.length},{id:'cnt-views',val:ASSETS.reduce((a,x)=>a+x.views,0)},{id:'cnt-leads',val:LEADS.length},{id:'cnt-subs',val:SUBS.length}].forEach(({id,val})=>{const el=document.getElementById(id);if(!el)return;let cur=0;const start=performance.now();(function tick(now){const p=Math.min((now-start)/900,1);const e=1-Math.pow(1-p,3);el.textContent=Math.round(e*val).toLocaleString();if(p<1)requestAnimationFrame(tick);})(performance.now());});
+  setTimeout(()=>document.querySelectorAll('.stat-cell').forEach((el,i)=>setTimeout(()=>el.classList.add('loaded'),i*100)),400);
+  const top5=[...ASSETS].sort((a,b)=>b.views-a.views).slice(0,5);const max=top5[0].views;
+  document.getElementById('top-performers').innerHTML=top5.map((a,i)=>`<button class="performer-item" onclick="openViewerLog(${a.id},this)"><span class="p-rank">${i+1}</span><span class="p-title">${a.title}</span><div class="p-bar-wrap"><div class="p-bar" style="width:${(a.views/max*100).toFixed(0)}%"></div></div><span class="p-views">${(a.views/1000).toFixed(1)}k</span></button>`).join('');
+  document.getElementById('dash-leads').innerHTML=LEADS.map(l=>`<tr><td class="primary">${l.name}</td><td>${l.co}</td><td><a href="mailto:${l.email}" style="color:var(--accent);font-family:var(--font-mono);font-size:11px;">${l.email}</a></td><td class="r" style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">${l.date}</td></tr>`).join('');
+  document.getElementById('sub-count').textContent=SUBS.length+' total';
+  document.getElementById('dash-subs').innerHTML=SUBS.map((s,i)=>`<tr><td style="font-family:var(--font-mono);font-size:10px;color:var(--text-3);">${String(i+1).padStart(2,'0')}</td><td><div style="display:flex;align-items:center;gap:8px;"><i class="fa-regular fa-envelope" style="font-size:10px;color:var(--text-3);"></i><a href="mailto:${s.email}" style="color:var(--text-1);font-weight:500;">${s.email}</a></div></td><td class="r" style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);">${s.d} - ${s.t}</td></tr>`).join('');
+  buildChart('views');
 }
 
-function updateGRESBScore() {
-  let total = 0;
-  
-  const wt1 = (state.dataCoverage / 100) * 4;
-  total += wt1;
-  
-  let meterPts = 0;
-  if (state.metering === 'full-sub') meterPts = 0.25;
-  else if (state.metering === 'partial-sub') meterPts = 0.13;
-  total += meterPts;
-  
-  const mr3 = state.verification === 'yes' ? 0.4166 : 0;
-  total += mr3;
-  
-  const ra4 = Math.min(state.efficiencyMeasures.length * 0.1, 0.5);
-  total += ra4;
-  
-  let perfPts = 0;
-  if (state.performanceTracking === '3year') perfPts = 2.0;
-  else if (state.performanceTracking === '2year') perfPts = 1.5;
-  else if (state.performanceTracking === '1year') perfPts = 0.5;
-  total += perfPts;
-  
-  const ra1 = (state.efficiencyMeasures.length > 0 && state.performanceTracking !== 'none') ? 0.5 : 0;
-  total += ra1;
-  
-  document.getElementById('gresb-points').textContent = total.toFixed(2);
-  document.getElementById('wt1-points').textContent = wt1.toFixed(2);
-  document.getElementById('meter-points').textContent = meterPts.toFixed(2);
-  document.getElementById('mr3-points').textContent = mr3.toFixed(2);
-  document.getElementById('ra4-points').textContent = ra4.toFixed(2);
-  document.getElementById('perf-points').textContent = perfPts.toFixed(2);
-  document.getElementById('ra1-points').textContent = ra1.toFixed(2);
-  
-  const messageEl = document.getElementById('score-message');
-  const percentage = (total / 7.67) * 100;
-  
-  if (percentage >= 90) {
-    messageEl.className = 'mt-6 p-4 text-xs bg-green-500/10 border border-green-500/20 text-green-800';
-    messageEl.textContent = '🌟 Excellent! Top-tier GRESB water performance';
-  } else if (percentage >= 70) {
-    messageEl.className = 'mt-6 p-4 text-xs bg-blue-500/10 border border-blue-500/20 text-blue-800';
-    messageEl.textContent = '✓ Strong performance with room to optimize';
-  } else if (percentage >= 50) {
-    messageEl.className = 'mt-6 p-4 text-xs bg-yellow-50 border border-yellow-200 text-yellow-800';
-    messageEl.textContent = '📊 Competitive but significant upside available';
-  } else {
-    messageEl.className = 'mt-6 p-4 text-xs bg-orange-50 border border-orange-200 text-orange-800';
-    messageEl.textContent = '⚠️ Below target - priority improvements needed';
-  }
-  
-  // Update Overall Impact Card
-  updateOverallImpact(total);
+function openViewerLog(assetId,btn){
+  document.querySelectorAll('.performer-item').forEach(b=>b.classList.remove('selected'));if(btn)btn.classList.add('selected');
+  const a=ASSETS.find(x=>x.id===assetId);if(!a)return;
+  const panel=document.getElementById('viewer-log-panel');if(!panel)return;
+  document.getElementById('viewer-asset-title').textContent=a.title;
+  document.getElementById('viewer-asset-meta').textContent='Asset ID: #'+a.id+' - Total Views: '+a.views;
+  renderViewerLogBody(assetId,'');document.getElementById('viewer-search').value='';
+  panel.style.display='block';panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function renderViewerLogBody(assetId,q){
+  const logs=(VIEWER_LOGS[assetId]||[]).filter(l=>!q||l.user.toLowerCase().includes(q.toLowerCase())||l.d.toLowerCase().includes(q.toLowerCase()));
+  const tb=document.getElementById('viewer-log-tbody');if(!tb)return;
+  tb.innerHTML=logs.map(l=>`<tr><td><div style="display:flex;align-items:center;gap:9px;"><div class="viewer-avatar">${l.user.charAt(0)}</div><span style="color:var(--text-1);font-weight:500;">${l.user}</span></div></td><td style="font-family:var(--font-mono);font-size:12px;">${l.d}</td><td class="r" style="font-family:var(--font-mono);font-size:12px;color:var(--text-3);">${l.t}</td></tr>`).join('');
+}
+function filterViewerLog(){
+  const q=(document.getElementById('viewer-search')||{value:''}).value;
+  const sel=document.querySelector('.performer-item.selected');if(!sel)return;
+  const m=sel.getAttribute('onclick').match(/openViewerLog\((\d+)/);if(m)renderViewerLogBody(parseInt(m[1]),q);
+}
+function closeViewerLog(){const p=document.getElementById('viewer-log-panel');if(p)p.style.display='none';document.querySelectorAll('.performer-item').forEach(b=>b.classList.remove('selected'));}
+
+function buildChart(key){
+  currentChartKey=key;const d=CHART_DATA[key];const ctx=document.getElementById('mainChart');if(!ctx)return;if(chartInst)chartInst.destroy();
+  const isDark=document.body.getAttribute('data-theme')==='dark';
+  const gridColor=isDark?'rgba(255,255,255,0.04)':'rgba(0,0,0,0.05)';const tickColor=isDark?'#8b92a5':'#6b7280';const accentHex=isDark?'#00c9a7':'#007a64';
+  const grad=ctx.getContext('2d').createLinearGradient(0,0,0,200);grad.addColorStop(0,isDark?'rgba(0,201,167,0.22)':'rgba(0,122,100,0.15)');grad.addColorStop(1,'rgba(0,201,167,0)');
+  chartInst=new Chart(ctx,{type:'line',data:{labels:d.labels,datasets:[{data:d.data,borderColor:accentHex,borderWidth:2,backgroundColor:grad,fill:true,tension:.4,pointRadius:0,pointHoverRadius:5,pointHoverBackgroundColor:accentHex,pointHoverBorderColor:isDark?'#0c0d11':'#fff',pointHoverBorderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:isDark?'#141720':'#fff',borderColor:isDark?'rgba(255,255,255,0.08)':'rgba(0,0,0,0.10)',borderWidth:1,titleColor:isDark?'#ecedf2':'#0d0f1a',bodyColor:isDark?'#8b92a5':'#5a6278',padding:12,cornerRadius:8}},scales:{y:{grid:{color:gridColor,drawBorder:false},ticks:{color:tickColor,font:{family:'JetBrains Mono',size:10},callback:v=>v>=1000?(v/1000).toFixed(0)+'k':v},border:{display:false}},x:{grid:{display:false},ticks:{color:tickColor,font:{family:'JetBrains Mono',size:10}},border:{display:false}}}}});
+}
+function switchChart(btn,key){document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');buildChart(key);}
+
+function renderSchedule(){
+  const grid=document.getElementById('schedule-grid');if(!grid)return;
+  grid.innerHTML=SCHEDULE.map(s=>`<div class="appt-card"><div class="appt-date-badge"><div class="appt-month">${s.month}</div><div class="appt-day">${s.day}</div></div><div style="margin-bottom:12px;"><div style="font-size:14px;font-weight:600;color:var(--text-1);margin-bottom:4px;">${s.client}</div><div style="font-size:11px;color:var(--text-3);">${s.contact}</div></div><div style="display:flex;flex-direction:column;gap:7px;margin-bottom:14px;"><div style="display:flex;justify-content:space-between;"><span style="font-size:11px;color:var(--text-3);">Session</span><span style="font-size:11px;font-weight:600;color:var(--text-1);">${s.type}</span></div><div style="display:flex;justify-content:space-between;"><span style="font-size:11px;color:var(--text-3);">Time</span><span style="font-family:var(--font-mono);font-size:11px;color:var(--text-2);">${s.time}</span></div><div style="display:flex;justify-content:space-between;"><span style="font-size:11px;color:var(--text-3);">Properties</span><span style="font-family:var(--font-mono);font-size:11px;color:var(--text-2);">${s.props}</span></div></div><div style="display:flex;justify-content:space-between;align-items:center;"><span class="pill ${s.status==='confirmed'?'pill-green':'pill-amber'}">${s.status}</span><button class="btn btn-ghost" style="font-size:10px;padding:4px 8px;" onclick="showToast('Opening details...','fa-calendar')">Details</button></div></div>`).join('');
 }
 
-function updateOverallImpact(waterPoints) {
-  if (!state.overallGRESB) {
-    document.getElementById('overall-impact-card').style.display = 'none';
-    return;
-  }
-  
-  document.getElementById('overall-impact-card').style.display = 'block';
-  
-  const currentScore = parseFloat(state.overallGRESB);
-  const waterImprovement = 7.67 - waterPoints; // Points available to gain
-  const projectedScore = currentScore + waterImprovement;
-  
-  // Current rating
-  const currentRating = getStarRating(currentScore);
-  document.getElementById('current-overall-score').textContent = currentScore.toFixed(1);
-  document.getElementById('current-overall-stars').textContent = currentRating.stars;
-  document.getElementById('current-overall-label').innerHTML = `<span style="color: ${currentRating.color}">${currentRating.label}</span>`;
-  
-  // Projected rating
-  const projectedRating = getStarRating(projectedScore);
-  document.getElementById('projected-overall-score').textContent = projectedScore.toFixed(1);
-  document.getElementById('projected-overall-stars').textContent = projectedRating.stars;
-  document.getElementById('projected-overall-label').innerHTML = `<span style="color: ${projectedRating.color}">${projectedRating.label}</span>`;
-  
-  // Score gain
-  document.getElementById('score-gain').textContent = `+${waterImprovement.toFixed(1)}`;
-  
-  // Percentile calculation (rough estimate)
-  const percentileGain = Math.round(waterImprovement * 2);
-  document.getElementById('percentile-change').textContent = `↑ ${percentileGain}%`;
-  
-  // Investor appeal message
-  let investorMessage = '';
-  const ratingChange = projectedRating.label !== currentRating.label;
-  
-  if (ratingChange) {
-    if (projectedScore >= 80) {
-      investorMessage = `🚀 Moving to ${projectedRating.label} positions you in the <strong>top quartile</strong>. 78% of ESG-focused funds prioritize 4+ star assets.`;
-    } else if (projectedScore >= 60) {
-      investorMessage = `📈 Advancing to ${projectedRating.label} significantly improves access to sustainability-linked financing. Typical rate reduction: 15-25 bps.`;
-    } else {
-      investorMessage = `⚡ Improvement to ${projectedRating.label} demonstrates commitment to ESG excellence, attracting institutional capital.`;
-    }
-  } else {
-    investorMessage = `📊 +${waterImprovement.toFixed(1)} points strengthens your competitive position within ${currentRating.label} category.`;
-  }
-  
-  document.getElementById('investor-message').innerHTML = investorMessage;
+function calcEstimate(){
+  const props=parseInt(document.getElementById('est-props')?.value||10);const spend=parseInt(document.getElementById('est-spend')?.value||250000);const rate=parseFloat(document.getElementById('est-type')?.value||0.25);
+  const totalSpend=props*spend;const savings=totalSpend*rate;const perProp=savings/props;const months=Math.round((spend*0.15)/perProp*12);const r=v=>'$'+Math.round(v).toLocaleString();
+  document.getElementById('est-result')&&(document.getElementById('est-result').textContent=r(savings));document.getElementById('est-pct')&&(document.getElementById('est-pct').textContent=(rate*100).toFixed(0)+'% portfolio-wide reduction');document.getElementById('r-props')&&(document.getElementById('r-props').textContent=props);document.getElementById('r-spend')&&(document.getElementById('r-spend').textContent=r(totalSpend));document.getElementById('r-per')&&(document.getElementById('r-per').textContent=r(perProp));document.getElementById('r-payback')&&(document.getElementById('r-payback').textContent=months+' months');document.getElementById('r-noi')&&(document.getElementById('r-noi').textContent=r(savings*5));
 }
 
-function updateBenchmarks() {
-  const container = document.getElementById('benchmark-content');
-  const selectedTypes = Object.entries(state.propertyTypes)
-    .filter(([_, value]) => value > 0)
-    .map(([key]) => propertyTypes.find(t => t.id === key))
-    .slice(0, 3);
-  
-  if (selectedTypes.length === 0) return;
-  
-  container.innerHTML = selectedTypes.map(type => `
-    <div class="mb-6 pb-6 border-b border-white/10 last:border-0">
-      <div class="flex items-center justify-between mb-3">
-        <div class="flex items-center gap-2 text-sm">
-          <span>${type.icon}</span>
-          <span class="font-medium text-black">${type.name}</span>
-        </div>
-      </div>
-      <div class="space-y-2 text-xs">
-        <div class="flex justify-between text-black/70">
-          <span>Top performers:</span>
-          <span class="font-medium text-green-600">&lt;${(type.benchmark * 0.7).toFixed(2)} m³/m²/yr</span>
-        </div>
-        <div class="flex justify-between text-black/70">
-          <span>Average GRESB:</span>
-          <span class="font-medium text-blue-300">${type.avgGresb}/100</span>
-        </div>
-      </div>
-    </div>
-  `).join('');
-}
+const RENDERERS={'dashboard':renderDashboard,'admin-resources':renderAdminResources,'admin-articles':()=>renderAdminTable('articles-tbody',ARTICLES,arArticleRow),'admin-industries':()=>renderAdminTable('industries-tbody',INDUSTRIES,arIndustryRow),'admin-whitepapers':()=>renderAdminTable('wp-tbody',WHITE_PAPERS,arWPRow),'admin-casestudies':()=>renderAdminTable('cs-tbody',CASE_STUDIES,arCSRow),'admin-webinars':()=>renderAdminTable('webinars-tbody',WEBINARS,arWebRow),'admin-tools':()=>renderAdminTable('tools-tbody',TOOLS,arToolRow),'admin-consultation':renderConsultations,'member-resources':()=>renderCards('mr-grid',ASSETS),'member-articles':()=>renderCards('ma-grid',ARTICLES.map(a=>({...a,cat:'Article'}))),'member-whitepapers':()=>renderCards('mwp-grid',WHITE_PAPERS.filter(a=>a.status==='published')),'member-casestudies':()=>renderCards('mcs-grid',CASE_STUDIES.map(a=>({...a,cat:'Case Study'}))),'member-webinars':()=>renderCards('mweb-grid',WEBINARS.filter(a=>a.status==='published')),'member-tools':()=>renderCards('mt-grid',TOOLS.filter(a=>a.status==='published').map(a=>({...a,cat:'Tool'}))),'estimators':calcEstimate,'schedule-upcoming':renderSchedule};
 
-function toggleSections() {
-  const hasProperties = Object.keys(state.propertyTypes).length > 0;
-  const total = Object.values(state.propertyTypes).reduce((sum, val) => sum + val, 0);
-  const isValid = Math.abs(total - 100) < 0.1;
-  
-  document.getElementById('details-section').style.display = hasProperties && isValid ? 'block' : 'none';
-  document.getElementById('cert-section').style.display = hasProperties && isValid ? 'block' : 'none';
-  document.getElementById('data-section').style.display = hasProperties && isValid ? 'block' : 'none';
-  document.getElementById('gresb-impact').style.display = hasProperties && isValid ? 'block' : 'none';
-  
-  // Show overall impact card only if overall GRESB score is provided
-  if (hasProperties && isValid && state.overallGRESB) {
-    document.getElementById('overall-impact-card').style.display = 'block';
-  } else {
-    document.getElementById('overall-impact-card').style.display = 'none';
-  }
-  
-  document.getElementById('benchmark-card').style.display = hasProperties && isValid ? 'block' : 'none';
-  document.getElementById('cta-card').style.display = hasProperties && isValid ? 'block' : 'none';
-}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('collapsed');}
+function openMobile(){document.getElementById('sidebar').classList.add('mob-open');const ov=document.getElementById('mob-overlay');ov.style.opacity='1';ov.style.pointerEvents='auto';document.body.style.overflow='hidden';}
+function closeMobile(){document.getElementById('sidebar').classList.remove('mob-open');const ov=document.getElementById('mob-overlay');ov.style.opacity='0';ov.style.pointerEvents='none';document.body.style.overflow='';}
+function toggleAcc(btn){const ch=btn.nextElementSibling;const ar=btn.querySelector('.nav-acc-arrow');const open=ch.classList.toggle('open');if(ar)ar.classList.toggle('open',open);}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMobile();});
 
-// PDF Generation with ALL NEW CONTENT
-function generatePDFReport() {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-  
-  const score = parseFloat(document.getElementById('gresb-points').textContent);
-  const potential = (7.67 - score).toFixed(2);
-  const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-  
-  // Calculate ROI metrics
-  const potentialSavings = state.waterSpend * 0.18;
-  const implementationCost = state.floorArea * 0.50;
-  const simplePayback = implementationCost / (potentialSavings || 1);
-  const capitalAccessValue = parseFloat(potential) * 15000;
-  
-  // ========== PAGE 1 ==========
-  // Header
-  doc.setFillColor(31, 41, 55);
-  doc.rect(0, 0, 210, 35, 'F');
-  doc.setFillColor(75, 85, 99);
-  doc.rect(0, 35, 210, 1, 'F');
-  
-  doc.setTextColor(255, 255, 255);
-  doc.setFontSize(20);
-  doc.text('GRESB Water Performance Assessment', 20, 15);
-  doc.setFontSize(10);
-  doc.setTextColor(209, 213, 219);
-  doc.text('Portfolio Benchmarking Report - CONFIDENTIAL', 20, 22);
-  
-  doc.setFontSize(8);
-  doc.text(`Date: ${date}`, 160, 10);
-  doc.text(`ID: WST-${Date.now()}`, 160, 14);
-  
-  doc.setTextColor(107, 114, 128);
-  doc.setFontSize(7);
-  doc.text('200 S. Andrews Avenue', 160, 38);
-  doc.text('Fort Lauderdale, FL 33301', 160, 41);
-  doc.text('acc@watersolutech.com', 160, 44);
-  
-  // Executive Summary with ROI Teaser
-  doc.setDrawColor(229, 231, 235);
-  doc.setLineWidth(0.5);
-  doc.setFillColor(249, 250, 251);
-  doc.rect(15, 48, 180, 50, 'FD');
-  
-  doc.setFillColor(31, 41, 55);
-  doc.rect(15, 48, 3, 50, 'F');
-  
-  doc.setFontSize(13);
-  doc.setFont(undefined, 'bold');
-  doc.setTextColor(31, 41, 55);
-  doc.text('EXECUTIVE SUMMARY', 23, 56);
-  
-  doc.setFontSize(9);
-  doc.setFont(undefined, 'normal');
-  doc.setTextColor(75, 85, 99);
-  doc.text(`Current GRESB Water Score: ${score.toFixed(2)} / 7.67 points`, 23, 65);
-  doc.text(`Improvement Opportunity: +${potential} points available`, 23, 72);
-  doc.text(`Portfolio: ${state.propertyCount} properties | ${(state.floorArea/1000).toFixed(0)}K m² GFA`, 23, 79);
-  
-  // ROI Highlights - THE TEASER
-  doc.setFillColor(220, 252, 231);
-  doc.setDrawColor(134, 239, 172);
-  doc.rect(23, 85, 167, 10, 'FD');
-  doc.setFontSize(8);
-  doc.setFont(undefined, 'bold');
-  doc.setTextColor(21, 128, 61);
-  if (state.waterSpend > 0) {
-    doc.text(`💰 Est. Annual Savings: $${potentialSavings.toLocaleString()} | Payback: ${simplePayback.toFixed(1)} years`, 26, 91);
-  } else {
-    doc.text(`💰 Complete assessment to unlock detailed ROI analysis`, 26, 91);
-  }
-  
-  // Score Breakdown
-  let yPos = 108;
-  doc.setFontSize(11);
-  doc.setFont(undefined, 'bold');
-  doc.setTextColor(31, 41, 55);
-  doc.text('DETAILED SCORE BREAKDOWN', 20, yPos);
-  
-  yPos += 10;
-  doc.setFontSize(10);
-  doc.setFont(undefined, 'normal');
-  
-  const scoreItems = [
-    { label: 'WT1: Data Coverage', points: document.getElementById('wt1-points').textContent, max: '4.00' },
-    { label: 'Sub-metering', points: document.getElementById('meter-points').textContent, max: '0.25' },
-    { label: 'MR3: External Review', points: document.getElementById('mr3-points').textContent, max: '0.42' },
-    { label: 'RA4: Efficiency Programs', points: document.getElementById('ra4-points').textContent, max: '0.50' },
-    { label: 'Performance Improvement', points: document.getElementById('perf-points').textContent, max: '2.00' },
-    { label: 'RA1: Risk Assessment', points: document.getElementById('ra1-points').textContent, max: '0.50' }
-  ];
-  
-  scoreItems.forEach(item => {
-    doc.text(`${item.label}:`, 25, yPos);
-    doc.text(`${item.points} / ${item.max}`, 150, yPos);
-    yPos += 7;
-  });
-  
-  // Quick Wins - TEASER
-  yPos += 8;
-  doc.setFillColor(254, 243, 199);
-  doc.setDrawColor(251, 191, 36);
-  doc.rect(15, yPos - 5, 180, 30, 'FD');
-  
-  doc.setFontSize(11);
-  doc.setFont(undefined, 'bold');
-  doc.setTextColor(146, 64, 14);
-  doc.text('⚡ QUICK WIN OPPORTUNITIES (90-Day Impact)', 20, yPos);
-  
-  yPos += 8;
-  doc.setFontSize(9);
-  doc.setFont(undefined, 'normal');
-  doc.setTextColor(120, 53, 15);
-  
-  const quickWins = [];
-  if (state.dataCoverage < 95) quickWins.push(`• Data Coverage: +${((95-state.dataCoverage)/100*4).toFixed(1)} pts | 30 days`);
-  if (state.verification !== 'yes') quickWins.push('• Third-Party Verification: +0.42 pts | 45 days');
-  if (state.metering !== 'full-sub') quickWins.push('• Sub-metering: +0.13-0.25 pts | 60 days');
-  
-  if (quickWins.length === 0) {
-    doc.text('• Strong performance - focus on maintaining excellence', 20, yPos);
-  } else {
-    quickWins.slice(0, 3).forEach(win => {
-      doc.text(win, 20, yPos);
-      yPos += 6;
-    });
-  }
-  
-  // Portfolio Composition
-  yPos += 10;
-  doc.setFontSize(12);
-  doc.setFont(undefined, 'bold');
-  doc.setTextColor(31, 41, 55);
-  doc.text('Portfolio Composition', 20, yPos);
-  
-  yPos += 10;
-  doc.setFontSize(10);
-  doc.setFont(undefined, 'normal');
-  
-  Object.entries(state.propertyTypes).forEach(([id, percentage]) => {
-    const type = propertyTypes.find(t => t.id === id);
-    doc.text(`${type.icon} ${type.name}:`, 25, yPos);
-    doc.text(`${percentage}%`, 150, yPos);
-    yPos += 6;
-  });
-  
-  // ========== PAGE 2 - Implementation Roadmap ==========
-  doc.addPage();
-  
-  doc.setFillColor(31, 41, 55);
-  doc.rect(0, 0, 210, 25, 'F');
-  doc.setTextColor(255, 255, 255);
-  doc.setFontSize(16);
-  doc.text('90-Day Implementation Roadmap', 20, 15);
-  
-  // Phase 1
-  yPos = 40;
-  doc.setFillColor(31, 41, 55);
-  doc.rect(15, yPos - 5, 180, 10, 'F');
-  doc.setTextColor(255, 255, 255);
-  doc.setFontSize(11);
-  doc.setFont(undefined, 'bold');
-  doc.text('PHASE 1: Data Foundation (Days 1-30)', 20, yPos);
-  
-  yPos += 8;
-  doc.setFontSize(9);
-  doc.setFont(undefined, 'normal');
-  doc.setTextColor(60, 60, 60);
-  const phase1 = [
-    '• Complete portfolio water consumption audit',
-    '• Validate meter accuracy and coverage',
-    '• Document data collection methodologies',
-    '• Gather 3+ years of historical records',
-    '• Identify data gaps and establish baselines'
-  ];
-  phase1.forEach(item => {
-    doc.text(item, 20, yPos);
-    yPos += 6;
-  });
-  
-  // Phase 2
-  yPos += 8;
-  doc.setFillColor(75, 85, 99);
-  doc.rect(15, yPos - 5, 180, 10, 'F');
-  doc.setTextColor(255, 255, 255);
-  doc.setFontSize(11);
-  doc.setFont(undefined, 'bold');
-  doc.text('PHASE 2: Systems & Monitoring (Days 31-60)', 20, yPos);
-  
-  yPos += 8;
-  doc.setFontSize(9);
-  doc.setFont(undefined, 'normal');
-  doc.setTextColor(60, 60, 60);
-  const phase2 = [
-    '• Install automated data collection systems',
-    '• Establish real-time monitoring protocols',
-    '• Create asset-level reporting dashboards',
-    '• Develop water management policies',
-    '• Set asset-specific efficiency targets'
-  ];
-  phase2.forEach(item => {
-    doc.text(item, 20, yPos);
-    yPos += 6;
-  });
-  
-  // Phase 3
-  yPos += 8;
-  doc.setFillColor(107, 114, 128);
-  doc.rect(15, yPos - 5, 180, 10, 'F');
-  doc.setTextColor(255, 255, 255);
-  doc.setFontSize(11);
-  doc.setFont(undefined, 'bold');
-  doc.text('PHASE 3: GRESB Optimization (Days 61-90)', 20, yPos);
-  
-  yPos += 8;
-  doc.setFontSize(9);
-  doc.setFont(undefined, 'normal');
-  doc.setTextColor(60, 60, 60);
-  const phase3 = [
-    '• Format data for GRESB submission',
-    '• Engage third-party verification',
-    '• Prepare supporting documentation',
-    '• Validate calculations and benchmarks',
-    '• Submit enhanced GRESB assessment'
-  ];
-  phase3.forEach(item => {
-    doc.text(item, 20, yPos);
-    yPos += 6;
-  });
-  
-  // Expected Outcomes
-  yPos += 12;
-  doc.setFillColor(31, 41, 55);
-  doc.rect(15, yPos - 3, 180, 0.5, 'F');
-  
-  doc.setFontSize(12);
-  doc.setFont(undefined, 'bold');
-  doc.setTextColor(31, 41, 55);
-  doc.text('EXPECTED OUTCOMES', 20, yPos);
-  
-  yPos += 8;
-  doc.setFillColor(248, 248, 248);
-  doc.rect(15, yPos - 4, 180, 32, 'F');
-  
-  doc.setFontSize(9);
-  doc.setFont(undefined, 'normal');
-  doc.setTextColor(60, 60, 60);
-  doc.text('Target GRESB Water Score:', 20, yPos);
-  doc.setFont(undefined, 'bold');
-  doc.setTextColor(31, 41, 55);
-  doc.text('6.5+ / 7.67 points', 150, yPos);
-  
-  yPos += 7;
-  doc.setFont(undefined, 'normal');
-  doc.setTextColor(60, 60, 60);
-  doc.text('Data Coverage Target:', 20, yPos);
-  doc.setFont(undefined, 'bold');
-  doc.setTextColor(31, 41, 55);
-  doc.text('95%+ of portfolio', 150, yPos);
-  
-  yPos += 7;
-  doc.setFont(undefined, 'normal');
-  doc.setTextColor(60, 60, 60);
-  doc.text('Annual Water Cost Savings:', 20, yPos);
-  doc.setFont(undefined, 'bold');
-  doc.setTextColor(31, 41, 55);
-  if (state.waterSpend > 0) {
-    doc.text(`$${potentialSavings.toLocaleString()}`, 150, yPos);
-  } else {
-    doc.text('Calculate after intake', 150, yPos);
-  }
-  
-  yPos += 7;
-  doc.setFont(undefined, 'normal');
-  doc.setTextColor(60, 60, 60);
-  doc.text('Enhanced Capital Access Value:', 20, yPos);
-  doc.setFont(undefined, 'bold');
-  doc.setTextColor(31, 41, 55);
-  doc.text(`$${capitalAccessValue.toLocaleString()}`, 150, yPos);
-  
-  // Investment Overview - THE HOOK
-  yPos += 15;
-  doc.setFillColor(239, 246, 255);
-  doc.setDrawColor(59, 130, 246);
-  doc.setLineWidth(1);
-  doc.rect(15, yPos - 5, 180, 35, 'FD');
-  
-  doc.setFontSize(11);
-  doc.setFont(undefined, 'bold');
-  doc.setTextColor(30, 58, 138);
-  doc.text('💎 INVESTMENT OVERVIEW', 20, yPos);
-  
-  yPos += 8;
-  doc.setFontSize(9);
-  doc.setFont(undefined, 'normal');
-  doc.setTextColor(30, 64, 175);
-  
-  if (state.waterSpend > 0) {
-    doc.text(`Implementation Cost: $${implementationCost.toLocaleString()}`, 20, yPos);
-    yPos += 6;
-    doc.text(`Annual Savings: $${potentialSavings.toLocaleString()}`, 20, yPos);
-    yPos += 6;
-    doc.text(`Payback Period: ${simplePayback.toFixed(1)} years`, 20, yPos);
-    yPos += 6;
-    doc.text(`10-Year NPV (@ 5%): $${((potentialSavings * 7.72) - implementationCost).toLocaleString()}`, 20, yPos);
-  } else {
-    doc.text('Complete water spend data for detailed projections', 20, yPos);
-    yPos += 6;
-    doc.text('Schedule consultation for portfolio-specific ROI', 20, yPos);
-  }
-  
-  // Next Steps - THE HOOK
-  yPos += 15;
-  doc.setFillColor(254, 242, 242);
-  doc.setDrawColor(239, 68, 68);
-  doc.rect(15, yPos - 5, 180, 28, 'FD');
-  
-  doc.setFontSize(11);
-  doc.setFont(undefined, 'bold');
-  doc.setTextColor(153, 27, 27);
-  doc.text('🎯 IMMEDIATE NEXT STEPS', 20, yPos);
-  
-  yPos += 8;
-  doc.setFontSize(9);
-  doc.setFont(undefined, 'normal');
-  doc.setTextColor(127, 29, 29);
-  doc.text('1. Schedule 30-min strategy call to review findings', 20, yPos);
-  yPos += 6;
-  doc.text('2. Complimentary audit (qualified portfolios)', 20, yPos);
-  yPos += 6;
-  doc.text('3. Receive custom 90-day plan with guaranteed ROI', 20, yPos);
-  
-  // Footer
-  doc.setFontSize(8);
-  doc.setTextColor(128, 128, 128);
-  doc.text('Water Solutions Technology | Confidential', 20, 280);
-  doc.text('acc@watersolutech.com | 200 S. Andrews Ave, Fort Lauderdale, FL', 20, 285);
-  doc.setFont(undefined, 'bold');
-  doc.setTextColor(220, 38, 38);
-  doc.text('⏰ Q1 2025 slots filling fast', 20, 290);
-  
-  // ========== PAGE 3 - Institutional Investor Impact (if overall GRESB provided) ==========
-  if (state.overallGRESB) {
-    doc.addPage();
-    
-    const currentScore = parseFloat(state.overallGRESB);
-    const waterGain = 7.67 - score;
-    const projectedScore = currentScore + waterGain;
-    const currentRating = getStarRating(currentScore);
-    const projectedRating = getStarRating(projectedScore);
-    
-    // Header
-    doc.setFillColor(31, 41, 55);
-    doc.rect(0, 0, 210, 25, 'F');
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(16);
-    doc.text('Institutional Investor Impact Analysis', 20, 15);
-    
-    // Overall Score Comparison
-    yPos = 40;
-    doc.setFillColor(249, 250, 251);
-    doc.setDrawColor(229, 231, 235);
-    doc.rect(15, yPos - 5, 180, 50, 'FD');
-    
-    doc.setFontSize(12);
-    doc.setFont(undefined, 'bold');
-    doc.setTextColor(31, 41, 55);
-    doc.text('GRESB Score Projection', 20, yPos);
-    
-    // Current vs Projected
-    yPos += 10;
-    doc.setFontSize(10);
-    
-    // Current
-    doc.setFont(undefined, 'normal');
-    doc.setTextColor(107, 114, 128);
-    doc.text('Current Overall GRESB Score:', 20, yPos);
-    doc.setFont(undefined, 'bold');
-    doc.setTextColor(31, 41, 55);
-    doc.text(`${currentScore.toFixed(1)} / 100`, 80, yPos);
-    doc.setTextColor(currentRating.color.replace('#', '0x'));
-    doc.text(currentRating.stars + ' ' + currentRating.label, 120, yPos);
-    
-    yPos += 8;
-    doc.setFont(undefined, 'normal');
-    doc.setTextColor(107, 114, 128);
-    doc.text('Water Improvement Potential:', 20, yPos);
-    doc.setFont(undefined, 'bold');
-    doc.setTextColor(59, 130, 246);
-    doc.text(`+${waterGain.toFixed(1)} points`, 80, yPos);
-    
-    yPos += 8;
-    doc.setFont(undefined, 'normal');
-    doc.setTextColor(107, 114, 128);
-    doc.text('Projected Overall GRESB Score:', 20, yPos);
-    doc.setFont(undefined, 'bold');
-    doc.setTextColor(34, 197, 94);
-    doc.text(`${projectedScore.toFixed(1)} / 100`, 80, yPos);
-    doc.text(projectedRating.stars + ' ' + projectedRating.label, 120, yPos);
-    
-    // Rating Change Impact
-    if (currentRating.label !== projectedRating.label) {
-      yPos += 10;
-      doc.setFillColor(220, 252, 231);
-      doc.setDrawColor(134, 239, 172);
-      doc.rect(20, yPos - 3, 170, 8, 'FD');
-      doc.setFontSize(9);
-      doc.setFont(undefined, 'bold');
-      doc.setTextColor(21, 128, 61);
-      doc.text(`🎯 RATING UPGRADE: ${currentRating.label} → ${projectedRating.label}`, 23, yPos + 2);
-    }
-    
-    // Institutional Investor Preferences
-    yPos += 15;
-    doc.setFillColor(31, 41, 55);
-    doc.rect(15, yPos - 3, 180, 0.5, 'F');
-    
-    doc.setFontSize(12);
-    doc.setFont(undefined, 'bold');
-    doc.setTextColor(31, 41, 55);
-    doc.text('Institutional Investor Allocation Preferences', 20, yPos);
-    
-    yPos += 10;
-    doc.setFillColor(248, 248, 248);
-    doc.rect(15, yPos - 4, 180, 38, 'F');
-    
-    doc.setFontSize(9);
-    doc.setFont(undefined, 'normal');
-    doc.setTextColor(60, 60, 60);
-    
-    const investorStats = [
-      { label: '5-Star Assets (95+)', value: '78% of ESG funds prioritize', color: '5, 150, 105' },
-      { label: '4-Star Assets (80-94)', value: '62% receive premium pricing', color: '16, 185, 129' },
-      { label: '3-Star Assets (60-79)', value: '45% considered by ESG mandates', color: '245, 158, 11' },
-      { label: 'Below 3-Star (<60)', value: '23% institutional appetite', color: '239, 68, 68' }
-    ];
-    
-    investorStats.forEach(stat => {
-      doc.text(stat.label + ':', 20, yPos);
-      doc.setFont(undefined, 'bold');
-      const rgb = stat.color.split(',').map(c => parseInt(c.trim()));
-      doc.setTextColor(rgb[0], rgb[1], rgb[2]);
-      doc.text(stat.value, 80, yPos);
-      doc.setFont(undefined, 'normal');
-      doc.setTextColor(60, 60, 60);
-      yPos += 8;
-    });
-    
-    // Capital Markets Impact
-    yPos += 10;
-    doc.setFillColor(239, 246, 255);
-    doc.setDrawColor(59, 130, 246);
-    doc.setLineWidth(1);
-    doc.rect(15, yPos - 5, 180, 45, 'FD');
-    
-    doc.setFontSize(11);
-    doc.setFont(undefined, 'bold');
-    doc.setTextColor(30, 58, 138);
-    doc.text('💰 CAPITAL MARKETS ADVANTAGES', 20, yPos);
-    
-    yPos += 8;
-    doc.setFontSize(9);
-    doc.setFont(undefined, 'normal');
-    doc.setTextColor(30, 64, 175);
-    
-    let capitalAdvantages = [];
-    if (projectedScore >= 80) {
-      capitalAdvantages = [
-        '• Access to sustainability-linked loans at 15-35 basis points discount',
-        '• Preferred status with 78% of ESG-focused institutional investors',
-        '• Green bond eligibility with typical 20-40 bps yield advantage',
-        `• Enhanced portfolio value: Est. ${(waterGain * 18000).toLocaleString()} premium`,
-        '• Priority allocation in oversubscribed sustainability funds'
-      ];
-    } else if (projectedScore >= 60) {
-      capitalAdvantages = [
-        '• Qualification for sustainability-linked financing programs',
-        '• Improved standing with ESG-mandate institutional investors',
-        `• Enhanced portfolio value: Est. ${(waterGain * 15000).toLocaleString()} premium`,
-        '• Competitive positioning for green financing opportunities',
-        '• Reduced risk of ESG-driven divestment'
-      ];
-    } else {
-      capitalAdvantages = [
-        '• Foundation for future ESG financing qualification',
-        '• Demonstrates commitment to sustainability improvement',
-        `• Portfolio value enhancement: Est. ${(waterGain * 12000).toLocaleString()}`,
-        '• Risk mitigation against regulatory requirements',
-        '• Improved tenant and investor communications'
-      ];
-    }
-    
-    capitalAdvantages.forEach(adv => {
-      doc.text(adv, 20, yPos);
-      yPos += 6;
-    });
-    
-    // Competitive Positioning
-    yPos += 10;
-    doc.setFillColor(254, 252, 232);
-    doc.setDrawColor(250, 204, 21);
-    doc.rect(15, yPos - 5, 180, 35, 'FD');
-    
-    doc.setFontSize(11);
-    doc.setFont(undefined, 'bold');
-    doc.setTextColor(161, 98, 7);
-    doc.text('🎯 COMPETITIVE POSITIONING', 20, yPos);
-    
-    yPos += 8;
-    doc.setFontSize(9);
-    doc.setFont(undefined, 'normal');
-    doc.setTextColor(133, 77, 14);
-    
-    const percentileEstimate = Math.min(95, 30 + (projectedScore * 0.7));
-    
-    doc.text(`Projected Peer Ranking: Top ${(100 - percentileEstimate).toFixed(0)}% of global real estate portfolios`, 20, yPos);
-    yPos += 6;
-    doc.text(`Market Positioning: ${projectedRating.label} category (${projectedScore >= 80 ? 'Leadership' : projectedScore >= 60 ? 'Above Average' : 'Developing'} tier)`, 20, yPos);
-    yPos += 6;
-    doc.text(`Investor Appeal Index: ${projectedScore >= 80 ? 'Very High' : projectedScore >= 60 ? 'Moderate-High' : 'Building'} - ${Math.round(projectedScore * 0.8)}% match rate`, 20, yPos);
-    yPos += 6;
-    doc.text(`Financing Advantage: Est. ${projectedScore >= 80 ? '20-35' : projectedScore >= 60 ? '10-20' : '5-10'} bps rate improvement potential`, 20, yPos);
-    
-    // Strategic Recommendations
-    yPos += 15;
-    doc.setFillColor(254, 242, 242);
-    doc.setDrawColor(239, 68, 68);
-    doc.rect(15, yPos - 5, 180, 32, 'FD');
-    
-    doc.setFontSize(11);
-    doc.setFont(undefined, 'bold');
-    doc.setTextColor(153, 27, 27);
-    doc.text('📋 STRATEGIC RECOMMENDATIONS', 20, yPos);
-    
-    yPos += 8;
-    doc.setFontSize(9);
-    doc.setFont(undefined, 'normal');
-    doc.setTextColor(127, 29, 29);
-    
-    const recommendations = [
-      '1. Execute 90-day water optimization plan to capture +' + waterGain.toFixed(1) + ' GRESB points',
-      '2. Communicate improvement trajectory in investor relations materials',
-      '3. Leverage enhanced rating for sustainability-linked financing negotiations',
-      '4. Position portfolio for premium valuation in ESG-focused transactions'
-    ];
-    
-    recommendations.forEach(rec => {
-      doc.text(rec, 20, yPos);
-      yPos += 6;
-    });
-    
-    // Footer
-    doc.setFontSize(8);
-    doc.setTextColor(128, 128, 128);
-    doc.text('Water Solutions Technology | Confidential Analysis', 20, 280);
-    doc.text('This analysis is based on current market conditions and historical GRESB data', 20, 285);
-    doc.setFont(undefined, 'bold');
-    doc.setTextColor(220, 38, 38);
-    doc.text('Schedule consultation to discuss portfolio-specific strategy', 20, 290);
-  }
-  
-  doc.save(`GRESB-Water-Assessment-${Date.now()}.pdf`);
-}
+let toastTimer;
+function showToast(msg,icon='fa-check'){const t=document.getElementById('toast');const label=t.querySelector('div:last-child>div:first-child');const iconEl=t.querySelector('[class*="fa-"]');if(label)label.textContent=msg;if(iconEl)iconEl.className='fa-solid '+icon;t.style.opacity='1';t.style.transform='translateY(0)';t.style.pointerEvents='auto';clearTimeout(toastTimer);toastTimer=setTimeout(()=>{t.style.opacity='0';t.style.transform='translateY(10px)';},2500);}
+function dismissToast(){const t=document.getElementById('toast');setTimeout(()=>{t.style.opacity='0';t.style.transform='translateY(10px)';},3500);}
+function startClock(){function tick(){document.getElementById('hdr-clock').textContent=new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true});}tick();setInterval(tick,1000);}
 
-init();
+document.addEventListener('DOMContentLoaded',()=>{document.getElementById('toast-time').textContent=new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});startClock();lazyRender('dashboard');dismissToast();});
+const t=document.getElementById('toast');t.style.transition='all .4s var(--ease)';t.style.opacity='1';
 </script>
 @endpush

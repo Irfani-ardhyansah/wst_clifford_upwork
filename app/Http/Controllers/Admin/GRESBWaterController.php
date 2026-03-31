@@ -18,6 +18,17 @@ class GRESBWaterController extends Controller
         return view('member_dashboard.gresb_water.index');
     }
 
+    public function list(Request $request)
+    {
+        $user = Auth::user();
+        if($user->role === 'admin') {
+            $schedules = GresbConsultation::orderBy('created_at', 'desc')->get();
+        } else {
+            $schedules = GresbConsultation::where('email', $user->email)->orderBy('created_at', 'desc')->get();
+        }
+        return view('member_dashboard.gresb_water.list', compact('schedules'));
+    }
+
     public function form(Request $request)
     {
         $user = Auth::user();

@@ -5,133 +5,59 @@
 
 @section('content')
     <div class="flex-1 flex flex-col min-h-full">
-        
-        @if(isset($typeFunction) && $typeFunction == 'index')
-            <div class="bg-black text-white px-8 py-12 relative overflow-hidden">
-                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
-                
-                <div class="relative z-10 max-w-4xl">
-                    <h1 class="text-3xl md:text-4xl font-bold mb-3 tracking-tight">Welcome to the Resource Library</h1>
-                    <p class="text-gray-400 text-sm md:text-base max-w-2xl leading-relaxed">
-                        Access our premium collection of white papers, case studies, webinars, and industry tools for water management optimization.
-                    </p>
+
+        <div class="content">
+            <div class="page-hdr">
+                <div class="page-hdr-left">
+                    <h2>{{ $pageTitle }}</h2>
+                    <p>{{ $assets->total() }} resources available</p>
+                </div>
+                <div class="page-hdr-right" style="flex-wrap:wrap;gap:8px;">
+                    <form action="{{ route('member-dashboard.index') }}" method="GET" class="filter-bar" style="margin-bottom:0;border-radius:9px;overflow:hidden;">
+                        <div class="filter-item">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" name="search" value="{{ request('search') }}" placeholder="Search…" style="min-width:130px;" onkeyup="if(event.key === 'Enter') this.form.submit()">
+                        </div>
+                        <div class="filter-item" style="min-width:130px;">
+                            <i class="fa-solid fa-layer-group"></i>
+                            <select name="category" onchange="this.form.submit()" style="color:var(--text-3);">
+                                <option value="">All Categories</option>
+                                @foreach($categories as $row)
+                                    <option value="{{ $row['value'] }}" {{ request('category') == $row['value'] ? 'selected' : '' }}>
+                                        {{ $row['text'] }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <i class="fa-solid fa-chevron-down" style="color:var(--text-3);font-size:9px;flex-shrink:0;"></i>
+                        </div>
+                        <div class="filter-item" style="min-width:130px;">
+                            <i class="fa-solid fa-building"></i>
+                            <select name="industry_id" onchange="this.form.submit()" style="color:var(--text-3);">
+                                <option value="">All Industries</option>
+                                @foreach($industries as $industry)
+                                    <option value="{{ $industry->id }}" {{ request('industry_id') == $industry->id ? 'selected' : '' }}>
+                                        {{ $industry->title }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <i class="fa-solid fa-chevron-down" style="color:var(--text-3);font-size:9px;flex-shrink:0;"></i>
+                        </div>
+                        <button type="submit" style="display:none;"></button>
+                    </form>
                 </div>
             </div>
-        @endif
-
-        <div class="px-6 py-8 md:px-10">
-            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-8">
-                <div class="mb-2 lg:mb-0">
-                    <h2 class="text-xl font-bold text-gray-900">{{ $pageTitle }}</h2>
-                    <p class="text-sm text-gray-500 mt-1">{{ $assets->total() }} resources available</p>
-                </div>
-
-                <form action="{{ route('member-dashboard.index') }}" method="GET" 
-                    class="flex flex-col md:flex-row gap-3 w-full lg:w-auto">
-                    
-                    {{-- 1. Filter Industry --}}
-                    <div class="relative group min-w-[200px]">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <i class="fa-solid fa-building text-gray-400"></i>
-                        </div>
-                        <select name="industry_id" onchange="this.form.submit()"
-                            class="w-full pl-10 pr-8 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-gray-400 transition-all shadow-sm appearance-none cursor-pointer">
-                            <option value="">All Industries</option>
-                            @foreach($industries as $industry)
-                                <option value="{{ $industry->id }}" {{ request('industry_id') == $industry->id ? 'selected' : '' }}>
-                                    {{ $industry->title }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                            <i class="fa-solid fa-chevron-down text-xs text-gray-400"></i>
-                        </div>
-                    </div>
-
-                    <div class="relative group min-w-[180px]">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <i class="fa-solid fa-layer-group text-gray-400"></i>
-                        </div>
-                        <select name="category" onchange="this.form.submit()"
-                            class="w-full pl-10 pr-8 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-gray-400 transition-all shadow-sm appearance-none cursor-pointer">
-                            <option value="">All Categories</option>
-                            @foreach($categories as $row)
-                                <option value="{{ $row['value'] }}" {{ request('category') == $row['value'] ? 'selected' : '' }}>
-                                    {{ $row['text'] }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                            <i class="fa-solid fa-chevron-down text-xs text-gray-400"></i>
-                        </div>
-                    </div>
-
-                    {{-- 3. Search Input --}}
-                    <div class="relative group w-full md:w-64">
-                        <input type="text" name="search" value="{{ request('search') }}"
-                                placeholder="Search..." 
-                                class="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-gray-400 transition-all shadow-sm">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <i class="fa-solid fa-magnifying-glass text-gray-400 group-focus-within:text-teal-600 transition-colors"></i>
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+            <div class="resource-grid">
                 @forelse($assets as $asset)
-                    <div class="group bg-white rounded-xl border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full overflow-hidden relative">
-                        
-                        <div class="absolute top-4 right-4 z-10">
-                            <span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-[#FFF8E1] text-[#B7791F] text-[10px] font-bold uppercase tracking-wider border border-[#FEEBC8]">
-                                <i class="fa-solid fa-lock text-[9px]"></i> Premium
-                            </span>
+                    <div class="resource-card">
+                        <div class="rc-type">
+                            <i class="fa-solid fa-lock" style="font-size:9px;"></i> Premium
                         </div>
-
-                        <div class="p-6 flex-1 flex flex-col">
-                            @php
-                                $iconClass = match($asset->category) {
-                                    'webinar' => 'fa-video text-red-500 bg-red-50',
-                                    'case-study' => 'fa-briefcase text-teal-600 bg-teal-50',
-                                    'tool' => 'fa-calculator text-purple-600 bg-purple-50',
-                                    default => 'fa-file-lines text-blue-600 bg-blue-50', // White Paper
-                                };
-                            @endphp
-
-                            <div class="mb-4">
-                                <div class="w-12 h-12 rounded-xl flex items-center justify-center text-lg {{ explode(' ', $iconClass)[1] }} {{ explode(' ', $iconClass)[2] }}">
-                                    <i class="fa-solid {{ explode(' ', $iconClass)[0] }}"></i>
-                                </div>
-                            </div>
-
-                            <div class="mb-2">
-                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{{ $asset->category }}</span>
-                            </div>
-
-                            <h3 class="text-lg font-bold text-gray-900 mb-2 leading-snug group-hover:text-teal-700 transition-colors">
-                                <a href="#" class="focus:outline-none">
-                                    {{ $asset->title }}
-                                </a>
-                            </h3>
-
-                            <p class="text-sm text-gray-500 mb-6 line-clamp-3 leading-relaxed ">
-                                {{ Str::limit(strip_tags($asset->description), 80)}}
-                            </p>
-
-                            <div class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
-                                <span class="text-xs text-gray-400 font-medium bg-gray-50 px-2 py-1 rounded">
-                                    {{ $asset->industry->title ?? 'General' }}
-                                </span>
-                                
-                                <!-- <button onclick="openModal('{{ $asset->id }}', '{{ addslashes($asset->title) }}', '{{ $asset->category }}', '{{ $asset->industry->title ?? 'General' }}', '{{ $asset->created_at->format('M d, Y') }}')" -->
-                                <button id="openModalBtn" data-id="{{ $asset->id }}"
-                                    class="text-xs font-bold text-teal-600 hover:text-teal-800 flex items-center gap-1 group-hover:gap-2 transition-all uppercase tracking-wide focus:outline-none">
-                                    View Resource <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div>
+                        <h3 class="rc-title">{{ $asset->title }}</h3>
+                        <div class="rc-meta">{{ $asset->industry->title ?? 'General' }}</div>
+                        <div class="rc-footer">
+                            <span class="rc-views">{{ $asset->category }}</span>
+                            <button id="openModalBtn" data-id="{{ $asset->id }}" class="rc-cta">View Resource</button>
                         </div>
-
                     </div>
                 @empty
                     <div class="col-span-full py-16 text-center border-2 border-dashed border-gray-100 rounded-xl">
@@ -151,7 +77,6 @@
                     {{ $assets->links('pagination.custom') }} 
                 </div>
             @endif
-
         </div>
         
         <footer class="px-10 py-6 border-t border-gray-100 text-center text-xs text-gray-400 mt-auto">

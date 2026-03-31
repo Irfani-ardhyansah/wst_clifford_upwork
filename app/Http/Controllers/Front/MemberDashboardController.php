@@ -43,7 +43,7 @@ class MemberDashboardController extends Controller
             });
         }
 
-        $assets = $query->paginate(9)->withQueryString();
+        $assets = $query->paginate(12)->withQueryString();
 
         $pageTitle = $request->category ? Str::plural($request->category) : 'All Resources';
 
@@ -68,7 +68,7 @@ class MemberDashboardController extends Controller
             $query->where('title', 'like', "%{$s}%");
         }
 
-        $articles = $query->paginate(9)->withQueryString();
+        $articles = $query->paginate(12)->withQueryString();
 
         return view('member_dashboard.articles.index', compact('articles'));
     }

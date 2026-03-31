@@ -475,7 +475,7 @@ input,select,textarea{font-family:var(--font-ui);}
 
         <a href="{{ route('admin.gresb-water.index') }}"
             class="nav-link {{ request()->routeIs('admin.gresb-water.index') ? 'active' : '' }}">
-          <i class="fa-solid fa-droplet"></i><span class="lbl">Schedule Audit &amp; Water Management Advisory Call</span>
+          <i class="fa-solid fa-droplet"></i><span class="lbl">Schedule Audit &amp; Advisory</span>
         </a>
     <div class="nav-section">User Output</div>
     @endif 
@@ -516,7 +516,7 @@ input,select,textarea{font-family:var(--font-ui);}
         </a>
 
         @php
-            $isGresbActive = request()->routeIs('admin.gresb-water.index') 
+            $isGresbActive = request()->routeIs('member-dashboard.gresb-water.list') 
                 || request()->routeIs('member-dashboard.gresb-water.form');
         @endphp
         <div x-data="{ open: {{ $isGresbActive ? 'true' : 'false' }} }" class="mb-2">
@@ -525,12 +525,10 @@ input,select,textarea{font-family:var(--font-ui);}
           <button 
               @click="open = !open" 
               type="button"
-              class="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition
-              {{ $isGresbActive ? 'active' : 'text-gray-400 hover:text-white hover:bg-white/10' }}
-              focus:outline-none">
+              class="nav-link {{ $isGresbActive ? 'active' : '' }}">
 
             <i class="fa-solid fa-calendar-check w-5"></i>
-            <span>Schedule Audit & Water Management Advisory Call</span>
+            <span class="lbl">Schedule Audit &amp; Advisory</span>
 
             <svg :class="{'rotate-180': open}" 
                 class="ml-auto h-4 w-4 transition-transform" 
@@ -542,9 +540,9 @@ input,select,textarea{font-family:var(--font-ui);}
           <!-- Children -->
           <div x-show="open" x-cloak class="pl-8 mt-1 space-y-1">
 
-            <a href="{{ route('admin.gresb-water.index') }}"
+            <a href="{{ route('member-dashboard.gresb-water.list') }}"
             class="flex items-center gap-3 px-4 py-2 rounded-lg transition
-            {{ request()->routeIs('admin.gresb-water.index') 
+            {{ request()->routeIs('member-dashboard.gresb-water.list') 
                     ? 'text-teal-400 font-semibold bg-white/10' 
                     : 'text-gray-400 hover:text-white hover:bg-white/10' }}">
                 <i class="fa-solid fa-clock w-4"></i> Upcoming

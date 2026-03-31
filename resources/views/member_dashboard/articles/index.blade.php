@@ -6,120 +6,98 @@
 
 @section('content')
 <div class="flex-1 flex flex-col min-h-full">
-
-    {{-- CONTENT --}}
-    <div class="px-6 py-8 md:px-10">
-
-        {{-- HEADER + SEARCH --}}
-        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-8">
-            <div>
-                <h2 class="text-xl font-bold text-gray-900">All Articles</h2>
+    <div class="content">
+        <div class="page-hdr">
+            <div class="page-hdr-left">
+                <h2>Articles & Insights</h2>
+                <p>Editorial content from the WST advisory team</p>
                 <p class="text-sm text-gray-500 mt-1">{{ $articles->total() }} articles available</p>
             </div>
-
-            <form method="GET" class="relative group w-full md:w-72">
-                <input type="text" 
-                       name="search"
-                       value="{{ request('search') }}"
-                       placeholder="Search articles..."
-                       class="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-gray-400 transition-all shadow-sm">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <i class="fa-solid fa-magnifying-glass text-gray-400 group-focus-within:text-teal-600 transition-colors"></i>
-                </div>
-            </form>
+            <div class="page-hdr-right" style="flex-wrap:wrap;gap:8px;">
+                <form method="GET" class="filter-bar" style="margin-bottom:0;border-radius:9px;overflow:hidden;">
+                    <div class="filter-item">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Search…" style="min-width:130px;" onkeyup="if(event.key === 'Enter') this.form.submit()">
+                    </div>
+                    <button type="submit" style="display:none;"></button>
+                </form>
+            </div>
         </div>
 
-        {{-- GRID --}}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-
+        <div class="resource-grid">
             @forelse($articles as $article)
-
-                <div class="group bg-white rounded-xl border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full overflow-hidden relative">
-
-                    <div class="p-6 flex-1 flex flex-col">
-
-                        {{-- ICON --}}
-                        <div class="mb-4">
-                            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-lg bg-teal-50 text-teal-600">
-                                <i class="fa-solid fa-newspaper"></i>
-                            </div>
-                        </div>
-
-                        {{-- DATE --}}
-                        <div class="mb-2">
-                            <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                                {{ optional($article->published_at)->format('M d, Y') ?? 'Draft' }}
-                            </span>
-                        </div>
-
-                        {{-- TITLE --}}
-                        <h3 class="text-lg font-bold text-gray-900 mb-2 leading-snug group-hover:text-teal-700 transition-colors">
-                            {{ $article->title }}
-                        </h3>
-
-                        {{-- EXCERPT --}}
-                        <p class="text-sm text-gray-500 mb-6 line-clamp-3 leading-relaxed">
-                            {{ Str::limit(strip_tags($article->content), 120) }}
-                        </p>
-
-                        {{-- FOOTER --}}
-                        <div class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
-
-                            <span class="text-xs text-gray-400 font-medium bg-gray-50 px-2 py-1 rounded">
-                                {{ $article->author->name ?? 'Expert' }}
-                            </span>
-
-                            <button 
-                                class="open-article text-xs font-bold text-teal-600 hover:text-teal-800 flex items-center gap-1 group-hover:gap-2 transition-all uppercase tracking-wide focus:outline-none"
-                                data-id="{{ $article->id }}">
-                                Read Article 
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </button>
-
-                        </div>
+                <div class="resource-card">
+                    <div class="rc-type">
+                        <i class="fa-solid fa-newspaper"></i>
                     </div>
-
+                    <h3 class="rc-title">{{ $article->title }}</h3>
+                    <div class="rc-meta">{{ $article->content ? Str::limit(strip_tags($article->content), 120) : "No description available" }}</div>
+                    <div class="rc-footer">
+                        <span class="rc-views">{{ $article->category }}</span>
+                        <button 
+                            class="open-article text-xs font-bold text-teal-600 hover:text-teal-800 flex items-center gap-1 group-hover:gap-2 transition-all uppercase tracking-wide focus:outline-none"
+                            data-id="{{ $article->id }}">
+                            Read Article 
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
-
             @empty
-
                 <div class="col-span-full py-16 text-center border-2 border-dashed border-gray-100 rounded-xl">
                     <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-50 mb-4">
-                        <i class="fa-regular fa-newspaper text-3xl text-gray-300"></i>
+                        <i class="fa-regular fa-folder-open text-3xl text-gray-300"></i>
                     </div>
                     <h3 class="text-lg font-medium text-gray-900">No articles found</h3>
                     <p class="text-gray-500 text-sm mt-1 max-w-sm mx-auto">
                         Try adjusting your search terms.
                     </p>
                 </div>
-
             @endforelse
         </div>
-
-        {{-- PAGINATION --}}
         @if($articles->hasPages())
             <div class="flex items-center justify-center border-t border-gray-100 pt-8 pb-4">
-                {{ $articles->links('pagination.custom') }}
+                {{ $articles->links('pagination.custom') }} 
             </div>
         @endif
-
     </div>
-
+        
+    <footer class="px-10 py-6 border-t border-gray-100 text-center text-xs text-gray-400 mt-auto">
+        &copy; {{ date('Y') }} Water Solutions Tech. All rights reserved.
+    </footer>
 </div>
 
 
 {{-- MODAL --}}
 <div id="article-modal" class="fixed inset-0 z-[99] hidden">
-    <div class="fixed inset-0 bg-white w-screen h-screen flex flex-col">
+    
+    <!-- backdrop -->
+    <div class="fixed inset-0 bg-black/40 backdrop-blur-sm"></div>
 
+    <div class="fixed inset-0 w-screen h-screen flex flex-col bg-[var(--surface)]">
+
+        <!-- close button -->
         <button id="close-article-modal"
-            class="fixed top-6 right-6 z-[100] p-3 rounded-full bg-white/80 backdrop-blur-sm border border-gray-200 text-gray-500 shadow-lg hover:bg-gray-100 hover:text-gray-900 transition-all duration-200 group">
-            <svg class="h-6 w-6 group-hover:rotate-90 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            class="fixed top-6 right-6 z-[100] p-3 rounded-full 
+                   bg-[var(--surface-2)] backdrop-blur-sm 
+                   border border-[var(--border)] 
+                   text-[var(--text-3)] 
+                   shadow-lg 
+                   hover:bg-[var(--surface)] 
+                   hover:text-[var(--text-1)] 
+                   transition-all duration-200 group">
+
+            <svg class="h-6 w-6 group-hover:rotate-90 transition-transform duration-300"
+                 fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
         </button>
 
-        <div class="flex-1 overflow-auto w-full h-full bg-white p-10 flex flex-col" id="article-modal-content">
+        <!-- content -->
+        <div class="flex-1 overflow-auto w-full h-full 
+                    bg-[var(--surface)] 
+                    text-[var(--text-2)] 
+                    p-10 flex flex-col"
+             id="article-modal-content">
         </div>
 
     </div>

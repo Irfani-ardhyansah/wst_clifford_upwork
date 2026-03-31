@@ -118,6 +118,7 @@ Route::middleware('auth')->prefix('member-dashboard')->name('member-dashboard.')
     Route::get('/articles/{id}/content', [MemberDashboardController::class, 'articleContent'])->name('articles.content');
 
     ROUTE::get('/gresb-water', [GRESBWaterController::class, 'index'])->name('gresb-water.index');
+    ROUTE::get('/gresb-water/list', [GRESBWaterController::class, 'list'])->name('gresb-water.list');
     ROUTE::get('/gresb-water/form', [GRESBWaterController::class, 'form'])->name('gresb-water.form');
     Route::post('/gresb-consultation', [GRESBWaterController::class, 'store'])->name('gresb-water.store');
 });
