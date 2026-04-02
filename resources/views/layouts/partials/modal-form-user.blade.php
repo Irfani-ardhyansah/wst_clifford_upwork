@@ -10,89 +10,94 @@
     elseif (request()->is('resources/white-paper*')) {
         $destination = route('member-dashboard.index', ['category' => 'white-paper']);
     }
+    elseif (request()->is('resources/webinar*')) {
+        $destination = route('member-dashboard.index', ['category' => 'webinar']);
+    }
 @endphp
 
-<div id="auth-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 hidden opacity-0 transition-all duration-300">
-    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden transform transition-all scale-95" id="modal-content">
-        
-        <div class="bg-black text-white p-8 relative">
-            <button type="button" class="close-modal absolute top-4 right-4 text-white-400 hover:text-white transition">X</button>
-            <h3 class="text-2xl font-bold">Access Premium Content</h3>
-            <p class="text-gray-400 mt-2">Register once for unlimited access.</p>
+<div id="auth-modal" class="co hidden opacity-0 transition-all duration-300">
+    <div class="co-box scale-95" id="modal-content">
+        {{-- Header --}}
+        <div class="co-head">
+            <div>
+                <h3 class="co-title" id="co-title">Access Premium Content</h3>
+                <p class="co-sub">Register once for unlimited access.</p>
+            </div>
+            <button class="co-x close-modal" id="co-x" aria-label="Close form">&times;</button>
         </div>
 
-        <div class="p-8">
-            <div id="pending-asset-preview" class="bg-gray-50 rounded-lg p-4 mb-6 flex items-center gap-4 hidden">
-                <div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center">
-                    <i id="modal-icon" class="fa-solid fa-file-lines text-xl text-blue-600"></i>
-                    <img id="modal-image" src="" alt="Asset Preview" class="hidden w-full h-full object-cover rounded-lg">
-                </div>
-                <div class="flex-1 min-w-0">
-                    <p class="font-semibold truncate" id="modal-asset-title">Asset Title</p>
-                </div>
+        {{-- Feature Strips --}}
+        <div class="co-strips">
+            <div class="co-strip">
+                <div class="co-strip-lbl">Free Access</div>
+                <div class="co-strip-val">No subscription required</div>
             </div>
+            <div class="co-strip">
+                <div class="co-strip-lbl">Unlimited</div>
+                <div class="co-strip-val">All case studies & tools</div>
+            </div>
+            <div class="co-strip">
+                <div class="co-strip-lbl">Instant</div>
+                <div class="co-strip-val">One-time registration only</div>
+            </div>
+        </div>
 
+        <div class="co-body">
             @guest
-                <div id="auth-form-container">
+                {{-- Auth Form --}}
+                <div id="auth-form-container" class="auth-form-container">    
                     <form id="ajaxUserLoginForm" method="POST" action="{{ route('login.phone') }}" class="space-y-4">
                         @csrf
                         <input type="hidden" name="source_url" id="source_url_input">
                         <input type="hidden" name="case_study_id" id="modal-case-id">
 
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Full Name <span class="text-red-500">*</span></label>
-                            <input type="text" name="name" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-500">
+                        <div class="co-row">
+                            <div class="co-fw">
+                                <label class="co-lbl" for="name">Full Name <span class="co-req">*</span></label>
+                                <input type="text" name="name" id="name" required class="co-inp">
+                            </div>
+                            <div class="co-fw">
+                                <label class="co-lbl" for="company">Company <span class="co-req">*</span></label>
+                                <input type="text" name="company" id="company" required class="co-inp">
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Company <span class="text-red-500">*</span></label>
-                            <input type="text" name="company" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-500">
+
+                        <div class="co-row">
+                            <div class="co-fw">
+                                <label class="co-lbl" for="email">Work Email <span class="co-req">*</span></label>
+                                <input type="email" name="email" id="email" required class="co-inp">
+                            </div>
+                            <div class="co-fw">
+                                <label class="co-lbl" for="phone">Phone Number <span class="co-req">*</span></label>
+                                <input type="number" name="phone" id="phone" required class="co-inp">
+                            </div>
                         </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Work Email <span class="text-red-500">*</span></label>
-                            <input type="email" name="email" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-500">
+
+                        {{-- Footer area --}}
+                        <div class="co-foot">
+                            <p class="co-note">We'll follow up within 24 hours. Every submission reviewed personally.</p>
+                            <button type="submit" id="btn-submit-auth" class="co-btn">
+                                <i class="fa-solid fa-unlock text-xs"></i>
+                                <span>Get Instant Access</span>
+                            </button>
                         </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number <span class="text-red-500">*</span></label>
-                            <input type="number" name="phone" required class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-teal-500">
-                        </div>
-                        
-                        <button type="submit" id="btn-submit-auth" class="w-full bg-black hover:bg-teal-700 text-white font-bold py-3 rounded-lg mt-2 transition flex justify-center items-center gap-2">
-                            <span><i class="fa-solid fa-unlock"></i></span>
-                            <span>Get Instant Access</span>
-                        </button>
                     </form>
                 </div>
 
-                <div id="auth-success-container" class="hidden text-center space-y-4 animate-fade-in-up">
-                    
-                    <p class="text-lg font-semibold">
-                        Welcome back, <span id="success-user-name" class="text-teal-600">User</span>!
-                    </p>
-
-                    <p class="text-gray-500 text-sm">
-                        You have successfully registered. You can now access the premium content.
-                    </p>
-
-                    <a id="success-redirect-btn" href="{{ $destination }}" 
-                        class="block w-full bg-black hover:bg-gray-800 text-white font-bold py-3 rounded-lg transition">
-                        <i class="fa-solid fa-arrow-right mr-2"></i> View Content
+                {{-- Success State (guest) --}}
+                <div id="auth-success-container" class="co-ok hidden text-center py-4 space-y-4">
+                    <a id="success-redirect-btn" class="co-btn" href="{{ $destination }}"
+                        class="flex items-center justify-center gap-2 w-full bg-black hover:bg-gray-800 text-white text-sm font-semibold py-3 rounded-lg transition">
+                        <i class="fa-solid fa-arrow-right"></i> View Content
                     </a>
                 </div>
             @endguest
 
             @auth
-                <div class="text-center space-y-4 animate-fade-in-up">
-                    <p class="text-lg font-semibold">
-                        Welcome back, <span id="success-user-name" class="text-teal-600">User</span>!
-                    </p>
-
-                    <p class="text-gray-500 text-sm">
-                        You have successfully registered. You can now access the premium content.
-                    </p>
-
-                    <a id="success-redirect-btn" href="{{ $destination }}" 
-                        class="block w-full bg-black hover:bg-gray-800 text-white font-bold py-3 rounded-lg transition">
-                        <i class="fa-solid fa-arrow-right mr-2"></i> View Content
+                {{-- Welcome State (authenticated) --}}
+                <div class="co-ok show text-center py-4 space-y-4">
+                    <a id="success-redirect-btn" class="co-btn" href="{{ $destination }}">
+                        <i class="fa-solid fa-arrow-right"></i> View Content
                     </a>
                 </div>
             @endauth

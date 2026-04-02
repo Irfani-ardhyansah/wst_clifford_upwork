@@ -2,6 +2,10 @@
 
 @section('title', 'Water Solutions Technology')
 
+@push('styles')
+<script src="https://cdn.tailwindcss.com"></script>
+@endpush
+
 @section('content')
   <!-- Opportunity Snapshot Section -->
   <section class="bg-gray-800 py-16 px-6 text-center">

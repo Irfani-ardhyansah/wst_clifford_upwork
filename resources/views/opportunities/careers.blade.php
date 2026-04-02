@@ -2,6 +2,12 @@
 
 @section('title', 'Water Solutions Technology')
 
+@push('styles')
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+@endpush
+
 @section('content')
 <section id="careers" class="bg-white py-20">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -198,7 +204,6 @@
       </div>
 
       <div class="px-6 py-5">
-        <!-- Duties & Requirements -->
         <template x-if="!applying">
           <div class="space-y-6">
             <div>
@@ -216,7 +221,6 @@
           </div>
         </template>
 
-        <!-- Quick Apply Form -->
         <template x-if="applying">
           <form @submit.prevent="submitApplication()" class="space-y-4">
             <div>

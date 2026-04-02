@@ -2,6 +2,10 @@
 
 @section('title', 'Water Solutions Technology')
 
+@push('styles')
+<script src="https://cdn.tailwindcss.com"></script>
+@endpush
+
 @section('content')
   <!-- Hero -->
   <section class="relative overflow-hidden">

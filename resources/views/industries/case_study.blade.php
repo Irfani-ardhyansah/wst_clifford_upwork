@@ -4,223 +4,168 @@
 
 @section('content')
 
-@push('styles')
-  <style>
-    .case-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 40px;
-    }
+<!-- ─── CASE STUDY HEADER ─── -->
+<section class="industries-page-hero" style="background:#0d0d0d; padding: 80px 40px 60px; text-align:center;">
+  <div class="section-eyebrow">Case Studies</div>
+  <h1 class="hero-h1">{{ $industry->title }}</h1>
+  <p class="hero-body">{{ $industry->description }}</p>
+</section>
 
-    .case-card {
-      background-color: #f9f9f9;
-      width: 300px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      overflow: hidden;
-      text-align: left;
-    }
+<!-- ─── CASE STUDIES GRID ─── -->
+<section style="background:#111; padding: 40px;">
+  <div style="max-width:1280px; margin:0 auto;">
 
-    .case-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
+    <!-- Case Studies Cards Grid -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:24px;">
+      @forelse ($case_studies as $item)
+        <div class="tile"
+          style="background:#1a1a1a; overflow:hidden; display:flex; flex-direction:column;
+                 border:1px solid rgba(255,255,255,0.07); transition:transform 0.3s, box-shadow 0.3s;"
+          onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 12px 32px rgba(0,0,0,0.4)'"
+          onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
 
-    .case-card .content {
-      padding: 20px;
-    }
+          @if($item->image_path)
+            <img src="{{ asset('storage/' . $item->image_path) }}"
+                 alt="{{ $item->title }}"
+                 style="width:100%; height:192px; object-fit:cover;">
+          @else
+            <img src="https://via.placeholder.com/400x300?text=No+Image"
+                 alt="Placeholder"
+                 style="width:100%; height:192px; object-fit:cover;">
+          @endif
 
-    .case-card h3 {
-      margin: 0;
-      font-size: 1.1rem;
-    }
-
-    .case-card .subtitle {
-      font-size: 0.9rem;
-      color: #555;
-      margin-bottom: 10px;
-    }
-
-    .case-card .quote {
-      font-size: 0.95rem;
-      font-style: italic;
-      margin-bottom: 15px;
-      color: #444;
-    }
-
-    .btn {
-      display: inline-block;
-      background-color: #111;
-      color: white;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-size: 0.9rem;
-    }
-  </style>
-@endpush
-
-@section('content')
-  <section class="case-study-section pb-20 pt-5 px-4 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-      <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold text-gray-800">{{$industry->title}}</h2>
-        <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-          {{$industry->description}}
-        </p>
-      </div>
-    </div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        @forelse ($case_studies as $item)    
-          <div class="bg-gray-50 rounded-2xl shadow hover:shadow-lg transition duration-300">
-            <img
-              src="{{ asset('storage/' .$item->image_path) }}"
-              alt="{{ $item->title }}"
-              class="rounded-t-2xl w-full h-48 object-cover"
-            >
-
-            <div class="p-6">
-              <h3 class="text-xl font-semibold text-gray-800">
-                {{ $item->title }}
-              </h3>
-
-              <p class="mt-2 text-gray-600 text-sm line-clamp-2 min-h-[2.5rem]">
-                {{ $item->description }}
-              </p>
-
-              <div class="mt-4 flex items-center justify-between">
-                <button
-                    class="open-modal-btn w-full group inline-flex items-center justify-between rounded-full bg-gray-900 text-white px-6 py-3 font-semibold shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-gray-800"
-                    data-id="{{ $item->id }}" data-title="{{ $item->title }}" data-image="{{ asset('storage/' . $item->image_path) }}"
-                >
-                  <span>View Tools</span>
-                  <span class="ml-auto grid place-items-center w-9 h-9 rounded-full bg-white/10 text-white transition-transform duration-300 group-hover:rotate-45">
-                      <i class="ri-arrow-right-up-line"></i>
-                  </span>
-              </button>
-              </div>
-            </div>
+          <div style="padding:20px; flex:1;">
+            <div class="service-panel-tag" style="margin-bottom:8px;">{{ $item->title }}</div>
+            <p style="color:rgba(255,255,255,0.55); font-size:14px; font-weight:300; line-height:1.6; margin:0;">
+              {{ $item->description }}
+            </p>
           </div>
-        @empty
-          <p class="text-gray-500 col-span-3 text-center">
-            No white papers available at the moment.
-          </p>
-        @endforelse
-      </div>
-    </div>
-  </section>
 
-  <section class="bg-gray-50 py-16">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center px-4">
-      <!-- LEFT: Heading & Description -->
-      <div class="text-left">
-        <h2 class="text-3xl md:text-4xl font-serif  text-left tracking-tight font-semibold mb-5 text-gray-900 uppercase">
-          Let’s Assess Your Water Efficiency
-        </h2>
-        <p class="text-lg text-gray-700 font-light mb-8 max-w-md">
-          Request a confidential water audit to optimize your property’s health and profitability.
-        </p>
-        <a href="#"
-          class="group mt-8 inline-flex items-center justify-between rounded-full bg-zinc-100 text-zinc-900 px-6 py-3 font-semibold
-            shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:bg-white">
-          <span>Water Webinars on Demand</span>
-          <span class="ml-4 grid place-items-center w-9 h-9 rounded-full bg-zinc-900/10 text-zinc-900 transition-transform duration-300 group-hover:rotate-45">
-            <i class="ri-arrow-right-up-line"></i>
-          </span>
-        </a>
-      </div>
-      <!-- RIGHT: Premium Contact Form -->
-      <div>
-        <form id="contact-form" class="flex flex-col gap-4 max-w-lg w-full">
-          <div class="flex gap-4">
-            <input id="first-name" name="first-name" type="text" required
-              placeholder="First Name"
-              class="flex-1 border border-gray-300 px-3 py-2 bg-white text-gray-900 font-light rounded-none text-base placeholder-gray-400 focus:border-gray-900 focus:outline-none"/>
-            <input id="last-name" name="last-name" type="text" required
-              placeholder="Last Name"
-              class="flex-1 border border-gray-300 px-3 py-2 bg-white text-gray-900 font-light rounded-none text-base placeholder-gray-400 focus:border-gray-900 focus:outline-none"/>
-          </div>
-          <div class="flex gap-4">
-            <input id="company-name" name="company-name" type="text"
-              placeholder="Company Name"
-              class="flex-1 border border-gray-300 px-3 py-2 bg-white text-gray-900 font-light rounded-none text-base placeholder-gray-400 focus:border-gray-900 focus:outline-none"/>
-            <input id="company-role" name="company-role" type="text"
-              placeholder="Company Role"
-              class="flex-1 border border-gray-300 px-3 py-2 bg-white text-gray-900 font-light rounded-none text-base placeholder-gray-400 focus:border-gray-900 focus:outline-none"/>
-          </div>
-          <div class="flex gap-4">
-            <input id="contact-number" name="contact-number" type="tel"
-              placeholder="Contact Number"
-              class="flex-1 border border-gray-300 px-3 py-2 bg-white text-gray-900 font-light rounded-none text-base placeholder-gray-400 focus:border-gray-900 focus:outline-none"/>
-            <input id="email" name="email" type="email" required
-              placeholder="Email"
-              class="flex-1 border border-gray-300 px-3 py-2 bg-white text-gray-900 font-light rounded-none text-base placeholder-gray-400 focus:border-gray-900 focus:outline-none"/>
-          </div>
-          <select id="reason" name="reason"
-            class="border border-gray-300 px-3 py-2 bg-white text-gray-900 font-light rounded-none text-base placeholder-gray-400 focus:border-gray-900 focus:outline-none">
-            <option value="">Reason for Contact</option>
-            <option>Request a Water Audit</option>
-            <option>Billing or Invoice Question</option>
-            <option>Consultation on Smart Water Solutions</option>
-            <option>Technical Support</option>
-            <option>General Inquiry</option>
-          </select>
-          <textarea id="message" name="message" rows="3" required
-            placeholder="Message"
-            class="border border-gray-300 px-3 py-2 bg-white text-gray-900 font-light rounded-none text-base placeholder-gray-400 focus:border-gray-900 focus:outline-none resize-none"></textarea>
-          <button type="submit"
-            class="group inline-flex items-center justify-between rounded-full bg-zinc-100 text-zinc-900 px-6 py-3 font-semibold
-              shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:bg-white">
-            <span>Submit Request</span>
-            <span class="ml-4 grid place-items-center w-9 h-9 rounded-full bg-zinc-900/10 text-zinc-900 transition-transform duration-300 group-hover:rotate-45">
-              <i class="ri-arrow-right-up-line"></i>
-            </span>
+          <button class="open-modal-btn"
+             style="display:block; text-align:center; padding:14px;
+                    border-top:1px solid rgba(255,255,255,0.07);
+                    color:rgba(255,255,255,0.6); font-size:13px; font-weight:300;
+                    letter-spacing:0.05em; text-decoration:none; transition:background 0.2s, color 0.2s; cursor:pointer; background:none; border:none; width:100%;"
+             onmouseover="this.style.background='rgba(255,255,255,0.06)';this.style.color='#fff'"
+             onmouseout="this.style.background='transparent';this.style.color='rgba(255,255,255,0.6)'"
+             data-id="{{ $item->id }}" data-title="{{ $item->title }}" data-image="{{ asset('storage/' . $item->image_path) }}">
+            View Tools →
           </button>
-        </form>
+        </div>
+      @empty
+        <p style="color:rgba(255,255,255,0.6); text-align:center; grid-column:1/-1;">
+          No case studies available at the moment.
+        </p>
+      @endforelse
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── PROTECT YOUR ASSET PERFORMANCE ─── -->
+<section class="contact-section" style="padding:0;">
+  <div class="cc">
+    <div>
+      <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">Start Here</div>
+      <h2 class="contact-h">Protect Your<br>Asset Performance</h2>
+      <p class="contact-sub">
+        Request a confidential water audit to optimize your property's health and profitability.
+      </p>
+      <div class="cc-btns">
+        <a href="#contact-form" class="cc-btn-primary">Speak with an Auditor</a>
       </div>
-  </section>
+    </div>
 
+    <!-- Contact Form -->
+    <div>
+      <form id="contact-form" style="display:flex; flex-direction:column; gap:16px; max-width:480px; width:100%;">
+        <div style="display:flex; gap:12px;">
+          <input type="text" name="first-name" required placeholder="First Name"
+            style="flex:1; background:#1a1a1a; border:1px solid rgba(255,255,255,0.12);
+                   color:#fff; padding:10px 14px; font-size:14px; font-weight:300; outline:none;"
+            onfocus="this.style.borderColor='rgba(255,255,255,0.4)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.12)'"/>
+          <input type="text" name="last-name" required placeholder="Last Name"
+            style="flex:1; background:#1a1a1a; border:1px solid rgba(255,255,255,0.12);
+                   color:#fff; padding:10px 14px; font-size:14px; font-weight:300; outline:none;"
+            onfocus="this.style.borderColor='rgba(255,255,255,0.4)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.12)'"/>
+        </div>
+        <div style="display:flex; gap:12px;">
+          <input type="text" name="company-name" placeholder="Company Name"
+            style="flex:1; background:#1a1a1a; border:1px solid rgba(255,255,255,0.12);
+                   color:#fff; padding:10px 14px; font-size:14px; font-weight:300; outline:none;"
+            onfocus="this.style.borderColor='rgba(255,255,255,0.4)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.12)'"/>
+          <input type="text" name="company-role" placeholder="Company Role"
+            style="flex:1; background:#1a1a1a; border:1px solid rgba(255,255,255,0.12);
+                   color:#fff; padding:10px 14px; font-size:14px; font-weight:300; outline:none;"
+            onfocus="this.style.borderColor='rgba(255,255,255,0.4)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.12)'"/>
+        </div>
+        <div style="display:flex; gap:12px;">
+          <input type="tel" name="contact-number" placeholder="Contact Number"
+            style="flex:1; background:#1a1a1a; border:1px solid rgba(255,255,255,0.12);
+                   color:#fff; padding:10px 14px; font-size:14px; font-weight:300; outline:none;"
+            onfocus="this.style.borderColor='rgba(255,255,255,0.4)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.12)'"/>
+          <input type="email" name="email" required placeholder="Email"
+            style="flex:1; background:#1a1a1a; border:1px solid rgba(255,255,255,0.12);
+                   color:#fff; padding:10px 14px; font-size:14px; font-weight:300; outline:none;"
+            onfocus="this.style.borderColor='rgba(255,255,255,0.4)'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.12)'"/>
+        </div>
+        <select name="reason"
+          style="background:#1a1a1a; border:1px solid rgba(255,255,255,0.12);
+                 color:rgba(255,255,255,0.6); padding:10px 14px; font-size:14px; font-weight:300; outline:none;">
+          <option value="">Reason for Contact</option>
+          <option>Request a Water Audit</option>
+          <option>Billing or Invoice Question</option>
+          <option>Consultation on Smart Water Solutions</option>
+          <option>Technical Support</option>
+          <option>General Inquiry</option>
+        </select>
+        <textarea name="message" rows="3" required placeholder="Message"
+          style="background:#1a1a1a; border:1px solid rgba(255,255,255,0.12);
+                 color:#fff; padding:10px 14px; font-size:14px; font-weight:300;
+                 outline:none; resize:none;"
+          onfocus="this.style.borderColor='rgba(255,255,255,0.4)'"
+          onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
+        <button type="submit" class="cc-btn-primary" style="cursor:pointer;">
+          Submit Request
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
 
-@include('layouts.partials.modal-form-user')
+<!-- @include('layouts.partials.modal-form-user') -->
 
-</main>
 @endsection
 
 @push('scripts')
 <script>
-$(document).ready(function() {
-    
-    // Buka Modal
     $(document).on('click', '.open-modal-btn', function(e) {
         e.preventDefault();
+        console.log('Modal button clicked');
 
         const caseId = $(this).data('id');
         const caseTitle = $(this).data('title');
-        const image     = $(this).data('image');
-        
+        console.log('Case ID:', caseId, 'Title:', caseTitle);
+
         $('#modal-case-id').val(caseId);
         $('#modal-asset-title').text(caseTitle);
 
         $('#modal-image').addClass('hidden').attr('src', '');
         $('#modal-icon').removeClass('hidden');
 
-        if (image) {
-            $('#modal-image')
-                .attr('src', image)
-                .removeClass('hidden');
-
-            $('#modal-icon').addClass('hidden');
-        }
-
         $('#pending-asset-preview').removeClass('hidden').addClass('flex');
-        $('#auth-modal').removeClass('hidden opacity-0').addClass('flex');
+
+        $('#auth-modal').removeClass('hidden opacity-0').addClass('open');
+        console.log('Modal classes after:', $('#auth-modal').attr('class'));
         
         setTimeout(function() {
-          $('#modal-content').removeClass('scale-95').addClass('scale-100');
+            $('#modal-content').removeClass('scale-95').addClass('scale-100');
         }, 10);
     });
 
@@ -228,7 +173,7 @@ $(document).ready(function() {
         $('#modal-content').removeClass('scale-100').addClass('scale-95');
 
         setTimeout(function() {
-            $('#auth-modal').addClass('hidden opacity-0').removeClass('flex');
+            $('#auth-modal').addClass('hidden opacity-0').removeClass('open');
         }, 300); 
     });
 
@@ -236,8 +181,6 @@ $(document).ready(function() {
         const submitBtn = $(this).find('button[type="submit"]');
         submitBtn.prop('disabled', true).html('<i class="fa-solid fa-spinner fa-spin mr-2"></i> Processing...');
     });
-});
 </script>
 @endpush
-
 

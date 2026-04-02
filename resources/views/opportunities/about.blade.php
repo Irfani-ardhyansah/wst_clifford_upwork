@@ -1,641 +1,790 @@
 @extends('layouts.app')
 
-@section('title', 'Water Solutions Technology')
+@section('title', 'About — Water Solutions Technology')
 
 @section('content')
-<!-- === PAGE CONTENT (placeholder for now) === -->
-  <section class="hero-bg min-h-screen text-white pb-16">
-    <!-- Hero and sections go here -->
-  <!-- =========== HERO SECTION: Premium Black & White =========== -->
-<section class="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">
-  <!-- Background Image: Your actual hero/engineer image, b&w preferred -->
-  <img src="{{ asset('assets/img/about/about.png') }}" alt="Water Audit Engineer" class="absolute inset-0 w-full h-full object-cover object-center opacity-90" />
 
-  <!-- Solid black overlay for darkness -->
-  <div class="absolute inset-0 bg-black opacity-60"></div>
-
-  <!-- Content Centered -->
-  <div class="relative z-10 flex flex-col items-center text-center w-full px-6">
-    <h1 class="font-serif text-white text-4xl md:text-6xl font-semibold mb-6 leading-tight tracking-tight drop-shadow">
-      About Water Solutions Technology<br>
+{{-- ─── HERO ─── --}}
+<div class="about-hero">
+  <img src="{{ asset('assets/img/about/about.png') }}" alt="Water Audit Engineer" class="about-hero-img" />
+  <div class="about-hero-overlay"></div>
+  <div class="about-hero-content">
+    <div class="section-eyebrow" style="color:rgba(255,255,255,0.4);">Water Solutions Technology</div>
+    <h1 class="about-hero-h1">
+      Reimagining Water<br>
+      as a <em>Strategic Asset</em>
     </h1>
-    <p class="max-w-xl text-lg md:text-2xl text-gray-200 mb-8 font-light">
-      Reimagining Water as a Strategic Asset<br>
+    <p class="about-hero-sub">
+      Precision technology. Data-driven insights. Turnkey execution.
     </p>
-  
+    <div class="about-hero-actions">
+      <a href="/contact" class="btn-hero-primary">Start a Conversation</a>
+      <a href="#about-commitment" class="btn-hero-ghost">Our Story</a>
+    </div>
   </div>
-</section>
+</div>
 
-  </section>
-
-  
-
-
-
-  <main class="max-w-6xl mx-auto py-16 px-6 text-gray-700 text-[15px] tracking-wide space-y-16">
-
-    
-
-    <section>
-      <h2 class="text-2xl font-semibold mb-4 text-gray-900">Our commitment</h2>
-      <p>At Water Solutions Technology (WST), our commitment is to empower commercial property leaders to harness the full value of water. Through precision technology, data-driven insights, and turnkey execution, we help organizations reduce waste, lower operating costs, and lead in sustainability performance.</p>
-    </section>
-
-
-
-<section class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-16 text-center rounded-lg">
-  <div class="grid grid-cols-1 sm:grid-cols-4 gap-6 text-white font-bold text-2xl">
+{{-- ─── COMMITMENT ─── --}}
+<section class="about-commit-section" id="about-commitment">
+  <div class="about-commit-inner">
     <div>
-      <div id="gallonsSaved" class="count-up" data-target="500000">0</div>
-      <p class="text-lg font-light mt-2 text-gray-300">Gallons of Water Saved</p>
+      <div class="section-eyebrow">Our Commitment</div>
+      <h2 class="section-h2">
+        Empowering Commercial<br>
+        Leaders to <em>Harness Water</em>
+      </h2>
     </div>
-    <div>
-      <div id="projectsDelivered" class="count-up" data-target="250">0</div>
-      <p class="text-lg font-light mt-2 text-gray-300">Projects Delivered</p>
-    </div>
-    <div>
-      <div id="blueChipClients" class="count-up" data-target="50">0</div>
-      <p class="text-lg font-light mt-2 text-gray-300">Blue-Chip Clients Served</p>
-    </div>
-    <div>
-      <div id="co2Reduced" class="count-up" data-target="1000">0</div>
-      <p class="text-lg font-light mt-2 text-gray-300">Tons of CO₂ Avoided</p>
+    <div class="about-commit-body">
+      <p class="section-sub" style="max-width:560px;">
+        At Water Solutions Technology (WST), our commitment is to empower commercial property leaders to harness the full value of water. Through precision technology, data-driven insights, and turnkey execution, we help organizations reduce waste, lower operating costs, and lead in sustainability performance.
+      </p>
     </div>
   </div>
 </section>
 
+{{-- ─── STATS STRIP ─── --}}
+<div class="about-stats-strip">
+  <div class="about-stat">
+    <div class="about-stat-val count-up" data-target="500000" id="gallonsSaved">0</div>
+    <div class="about-stat-lbl">Gallons of Water Saved</div>
+  </div>
+  <div class="about-stat-sep"></div>
+  <div class="about-stat">
+    <div class="about-stat-val count-up" data-target="250" id="projectsDelivered">0</div>
+    <div class="about-stat-lbl">Projects Delivered</div>
+  </div>
+  <div class="about-stat-sep"></div>
+  <div class="about-stat">
+    <div class="about-stat-val count-up" data-target="50" id="blueChipClients">0</div>
+    <div class="about-stat-lbl">Blue-Chip Clients Served</div>
+  </div>
+  <div class="about-stat-sep"></div>
+  <div class="about-stat">
+    <div class="about-stat-val count-up" data-target="1000" id="co2Reduced">0</div>
+    <div class="about-stat-lbl">Tons of CO₂ Avoided</div>
+  </div>
+</div>
 
+{{-- ─── WHO WE SERVE / WHAT WE DO ─── --}}
+<section class="about-split-section">
+  <div class="about-split-inner">
 
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-2xl font-semibold mb-4 text-gray-900">Who We Serve</h2>
-        <p>Commercial Real Estate (CRE & REIT). We support asset managers, property managers, CFOs, engineering directors, and ESG professionals who demand measurable, portfolio-wide results. Our clients span hospitality, healthcare, commercial real estate, schools, and manufacturing — each facing unique water and sustainability challenges.</p>
+    <div class="about-split-item">
+      <div class="about-split-text">
+        <div class="section-eyebrow">Who We Serve</div>
+        <h2 class="section-h2" style="font-size:clamp(1.6rem,3vw,2.4rem);">
+          Commercial Real Estate<br><em>&amp; REIT Portfolios</em>
+        </h2>
+        <p class="section-sub">
+          We support asset managers, property managers, CFOs, engineering directors, and ESG professionals who demand measurable, portfolio-wide results. Our clients span hospitality, healthcare, commercial real estate, schools, and manufacturing — each facing unique water and sustainability challenges.
+        </p>
       </div>
-      <img src="/assets/img/about/reit_water_saving_sustianability_built_environment_meter.png" alt="Who We Serve" class="rounded shadow-md" />
-    </section>
-
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-      <img src="/assets/img/about/water_meter_water saving.png" alt="What We Do" class="rounded shadow-md" />
-      <div>
-        <h2 class="text-2xl font-semibold mb-4 text-gray-900">What We Do</h2>
-        <p>Innovate to simplifying the business of water. From audits and scope studies to monitoring systems and flow optimization, WST provides the full spectrum of water stewardship tools. We turn complex plumbing systems into opportunities for operational savings, compliance, and carbon reduction, water use reduction — all with zero disruption to your operations.</p>
+      <div class="about-split-img-wrap">
+        <img src="/assets/img/about/reit_water_saving_sustianability_built_environment_meter.png"
+             alt="Who We Serve" class="about-split-img" />
       </div>
-    </section>
+    </div>
 
+    <div class="about-split-item about-split-item--reverse">
+      <div class="about-split-img-wrap">
+        <img src="/assets/img/about/water_meter_water saving.png"
+             alt="What We Do" class="about-split-img" />
+      </div>
+      <div class="about-split-text">
+        <div class="section-eyebrow">What We Do</div>
+        <h2 class="section-h2" style="font-size:clamp(1.6rem,3vw,2.4rem);">
+          Simplifying the<br><em>Business of Water</em>
+        </h2>
+        <p class="section-sub">
+          From audits and scope studies to monitoring systems and flow optimization, WST provides the full spectrum of water stewardship tools. We turn complex plumbing systems into opportunities for operational savings, compliance, and carbon reduction — all with zero disruption to your operations.
+        </p>
+      </div>
+    </div>
 
+  </div>
+</section>
 
-
-<section class="py-20 bg-white text-gray-900">
-  <div class="max-w-6xl mx-auto px-6">
-    <!-- Header -->
-    <div class="mb-12">
-      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Leading Resources & Network</h2>
-      <p class="mt-3 text-gray-600 max-w-3xl">
+{{-- ─── LEADING RESOURCES & NETWORK ─── --}}
+<section class="about-resources-section">
+  <div class="about-resources-inner">
+    <div class="about-resources-header">
+      <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">Intelligence &amp; Access</div>
+      <h2 class="section-h2" style="color:#fff;">
+        Leading Resources<br>&amp; <em>Network</em>
+      </h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.5);max-width:480px;">
         We pair deep market intelligence with a high-trust industry network to deliver clarity, access, and measurable results.
       </p>
     </div>
 
-    <!-- Two premium columns (no bullets, no icons) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-      <!-- Column: Resources -->
-      <div class="rounded-2xl border border-gray-200 p-8 hover:shadow-xl transition-shadow">
-        <h3 class="text-xl font-semibold tracking-tight">Proprietary Resources & Intelligence</h3>
+    <div class="about-resources-grid">
 
-        <div class="mt-6 space-y-6 text-[15px] leading-relaxed text-gray-700">
-          <div>
-            <div class="text-sm uppercase tracking-wider text-gray-500">Research & Insights</div>
-            <p class="mt-1">
-              Proprietary research into segmentation, market trends, and competitive dynamics—translating signals into strategies.
-            </p>
+      <div class="about-res-card">
+        <h3 class="about-res-card-title">Proprietary Resources &amp; Intelligence</h3>
+        <div class="about-res-items">
+          <div class="about-res-item">
+            <div class="about-res-label">Research &amp; Insights</div>
+            <p>Proprietary research into segmentation, market trends, and competitive dynamics — translating signals into strategies.</p>
           </div>
-
-          <div class="border-t border-gray-200 pt-6">
-            <div class="text-sm uppercase tracking-wider text-gray-500">Technical Depth</div>
-            <p class="mt-1">
-              Broad technical, market, and regulatory perspectives that inform design choices and risk management.
-            </p>
+          <div class="about-res-item">
+            <div class="about-res-label">Technical Depth</div>
+            <p>Broad technical, market, and regulatory perspectives that inform design choices and risk management.</p>
           </div>
-
-          <div class="border-t border-gray-200 pt-6">
-            <div class="text-sm uppercase tracking-wider text-gray-500">Benchmarks & Data</div>
-            <p class="mt-1">
-              Exclusive 5,000+ company water-performance dataset powering realistic targets and portfolio benchmarking.
-            </p>
+          <div class="about-res-item">
+            <div class="about-res-label">Benchmarks &amp; Data</div>
+            <p>Exclusive 5,000+ company water-performance dataset powering realistic targets and portfolio benchmarking.</p>
           </div>
-
-          <div class="border-t border-gray-200 pt-6">
-            <div class="text-sm uppercase tracking-wider text-gray-500">Modeling & Economics</div>
-            <p class="mt-1">
-              Lifecycle modeling, cost analysis, and scenario planning to prioritize projects with the strongest ROI.
-            </p>
+          <div class="about-res-item">
+            <div class="about-res-label">Modeling &amp; Economics</div>
+            <p>Lifecycle modeling, cost analysis, and scenario planning to prioritize projects with the strongest ROI.</p>
           </div>
         </div>
       </div>
 
-      <!-- Column: Network -->
-      <div class="rounded-2xl border border-gray-200 p-8 hover:shadow-xl transition-shadow">
-        <h3 class="text-xl font-semibold tracking-tight">Strategic Network & Access</h3>
-
-        <div class="mt-6 space-y-6 text-[15px] leading-relaxed text-gray-700">
-          <div>
-            <div class="text-sm uppercase tracking-wider text-gray-500">Executive Access</div>
-            <p class="mt-1">
-              Direct lines to industry leaders (CEOs, COOs, CTOs, SVPs) for rapid alignment and decision-making.
-            </p>
+      <div class="about-res-card">
+        <h3 class="about-res-card-title">Strategic Network &amp; Access</h3>
+        <div class="about-res-items">
+          <div class="about-res-item">
+            <div class="about-res-label">Executive Access</div>
+            <p>Direct lines to industry leaders (CEOs, COOs, CTOs, SVPs) for rapid alignment and decision-making.</p>
           </div>
-
-          <div class="border-t border-gray-200 pt-6">
-            <div class="text-sm uppercase tracking-wider text-gray-500">Global Alliances</div>
-            <p class="mt-1">
-              Collaboration with international water organizations to share knowledge and accelerate adoption.
-            </p>
+          <div class="about-res-item">
+            <div class="about-res-label">Global Alliances</div>
+            <p>Collaboration with international water organizations to share knowledge and accelerate adoption.</p>
           </div>
-
-          <div class="border-t border-gray-200 pt-6">
-            <div class="text-sm uppercase tracking-wider text-gray-500">Utilities & Founders</div>
-            <p class="mt-1">
-              Connections with major utilities and founders—unlocking pilots, procurement, and scale.
-            </p>
+          <div class="about-res-item">
+            <div class="about-res-label">Utilities &amp; Founders</div>
+            <p>Connections with major utilities and founders — unlocking pilots, procurement, and scale.</p>
           </div>
-
-          <div class="border-t border-gray-200 pt-6">
-            <div class="text-sm uppercase tracking-wider text-gray-500">Capital Partners</div>
-            <p class="mt-1">
-              Backing from venture capital, private equity, and family offices to fund transformative projects.
-            </p>
+          <div class="about-res-item">
+            <div class="about-res-label">Capital Partners</div>
+            <p>Backing from venture capital, private equity, and family offices to fund transformative projects.</p>
           </div>
         </div>
       </div>
+
     </div>
 
-    <!-- Optional CTA bar (kept minimal/premium) -->
-    <div class="mt-12 rounded-xl bg-gray-50 border border-gray-200 p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+    <div class="about-res-cta">
       <div>
-        <p class="text-sm uppercase tracking-wider text-gray-500">Next Step</p>
-        <p class="text-gray-800">Let’s turn intelligence and access into results across your portfolio.</p>
+        <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">Next Step</div>
+        <p style="color:rgba(255,255,255,0.75);margin-top:4px;">Let's turn intelligence and access into results across your portfolio.</p>
       </div>
-      <a href="/contact" class="inline-block px-6 py-3 rounded-lg bg-gray-900 text-white text-sm font-medium hover:bg-gray-700 transition-colors">
-        Start a Conversation
-      </a>
+      <a href="/contact" class="btn-hero-primary">Start a Conversation</a>
     </div>
   </div>
 </section>
 
-
-
-<section x-data="{
+{{-- ─── OUR PEOPLE ─── --}}
+<section class="about-people-section" x-data="{
   activePerson: null,
   people: [
-    {
-      name: 'Benjamin Kinster',
-      role: 'Senior Auditor | Partner ',
-      image: '/assets/img/about/people/tb-ceo.png',
-      linkedin: '#',
-      url: '#',
-      x: '#',
-      bio: 'Dr. Clifford Latty is a pioneer in water management, bringing over 30 years of field and executive experience. He’s led groundbreaking projects in smart utility optimization and water sustainability.'
-    },
-    {
-      name: 'Alex Rivera',
-      role: 'Director of Engineering',
-      image: '/assets/img/about/people/ed.png',
-      linkedin: '#',
-      url: '#',
-      x: '#',
-      bio: 'Alex Rivera has a deep background in civil and mechanical engineering. He oversees all technical project execution across our commercial portfolios and turns theory into high-performance water systems.'
-    },
-    {
-      name: 'Naomi Johnson',
-      role: 'ESG & Sustainability Lead',
-      image: '/assets/img/about/people/mc.png',
-      linkedin: '#',
-      url: '#',
-      x: '#',
-      bio: 'Naomi Johnson is an ESG strategist with expertise in environmental reporting, sustainable development, and stakeholder engagement. She ensures our projects align with global sustainability standards.'
-    },
-    {
-      name: 'Jordan Ellis',
-      role: 'Operations Strategist',
-      image: '/assets/img/about/people/nd.png',
-      linkedin: '#',
-      url: '#',
-      x: '#',
-      bio: 'Jordan Ellis bridges fieldwork and business strategy to ensure flawless operational execution. With a logistics background and a sharp eye for process efficiency, he keeps timelines and teams aligned.'
-    },
-    {
-      name: 'Taylor Green',
-      role: 'Water Efficiency Analyst',
-      image: '/assets/img/about/people/dp.png',
-      linkedin: '#',
-      url: '#',
-      x: '#',
-      bio: 'Taylor Green leads our consumption and flow benchmarking division. With a data science background, Taylor finds actionable insights in water use patterns to deliver measurable efficiency gains.'
-    },
-    {
-      name: 'Morgan Lee',
-      role: 'Technical Project Manager',
-      image: '/assets/img/about/people/cl.png',
-      linkedin: '#',
-      url: '#',
-      x: '#',
-      bio: 'Morgan Lee is responsible for orchestrating technical delivery across engineering, installation, and monitoring. Her cross-disciplinary project management background ensures strong outcomes across all departments.'
-    },
-    {
-      name: 'Ranjith Kumar',
-      role: 'IT Team Lead',
-      image: '/assets/img/about/people/rk.jpeg',
-      linkedin: 'https://www.linkedin.com/in/ranjithkumar31',
-      url: '#',
-      x: '#',
-      bio: 'Ranjith leads our IT initiatives, driving innovation, strengthening system security, and ensuring technology aligns with business goals to keep Water Solution Technology ahead in a fast-changing digital landscape.'
-    }
+    { name: 'Benjamin Kinster', role: 'Senior Auditor | Partner', image: '/assets/img/about/people/tb-ceo.png', linkedin: '#', url: '#', x: '#', bio: 'Dr. Clifford Latty is a pioneer in water management, bringing over 30 years of field and executive experience. He\'s led groundbreaking projects in smart utility optimization and water sustainability.' },
+    { name: 'Alex Rivera', role: 'Director of Engineering', image: '/assets/img/about/people/ed.png', linkedin: '#', url: '#', x: '#', bio: 'Alex Rivera has a deep background in civil and mechanical engineering. He oversees all technical project execution across our commercial portfolios and turns theory into high-performance water systems.' },
+    { name: 'Naomi Johnson', role: 'ESG & Sustainability Lead', image: '/assets/img/about/people/mc.png', linkedin: '#', url: '#', x: '#', bio: 'Naomi Johnson is an ESG strategist with expertise in environmental reporting, sustainable development, and stakeholder engagement. She ensures our projects align with global sustainability standards.' },
+    { name: 'Jordan Ellis', role: 'Operations Strategist', image: '/assets/img/about/people/nd.png', linkedin: '#', url: '#', x: '#', bio: 'Jordan Ellis bridges fieldwork and business strategy to ensure flawless operational execution. With a logistics background and a sharp eye for process efficiency, he keeps timelines and teams aligned.' },
+    { name: 'Taylor Green', role: 'Water Efficiency Analyst', image: '/assets/img/about/people/dp.png', linkedin: '#', url: '#', x: '#', bio: 'Taylor Green leads our consumption and flow benchmarking division. With a data science background, Taylor finds actionable insights in water use patterns to deliver measurable efficiency gains.' },
+    { name: 'Morgan Lee', role: 'Technical Project Manager', image: '/assets/img/about/people/cl.png', linkedin: '#', url: '#', x: '#', bio: 'Morgan Lee is responsible for orchestrating technical delivery across engineering, installation, and monitoring. Her cross-disciplinary project management background ensures strong outcomes across all departments.' },
+    { name: 'Ranjith Kumar', role: 'IT Team Lead', image: '/assets/img/about/people/rk.jpeg', linkedin: 'https://www.linkedin.com/in/ranjithkumar31', url: '#', x: '#', bio: 'Ranjith leads our IT initiatives, driving innovation, strengthening system security, and ensuring technology aligns with business goals to keep Water Solution Technology ahead in a fast-changing digital landscape.' }
   ]
 }">
-  <h2 class="text-2xl font-semibold mb-4 text-gray-900">Our People</h2>
-  <p class="mb-6 text-center">
-    Our team combines engineering, sustainability, AI, and field operations. We bring utility expertise and ESG execution to every project.
-  </p>
-
-  <ul class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    <template x-for="(person, index) in people" :key="index">
-      <li class="text-center cursor-pointer" @click="activePerson = person">
-        <!-- Enlarged photo -->
-        <img
-          :src="person.image"
-          :alt="person.name"
-          class="rounded-full w-72 h-72 mx-auto mb-2 border border-gray-300 object-cover"
-        />
-        <!-- Name & role -->
-        <p class="font-semibold text-gray-900" x-text="person.name"></p>
-        <p class="text-sm text-gray-600" x-text="person.role"></p>
-        <!-- Icons below the role -->
-        <div class="flex justify-center space-x-3 mt-1">
-          <a :href="person.linkedin" target="_blank" aria-label="LinkedIn">
-            <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAABuklEQVR4nO2YsUsCURzH36lomIUlWQ4WJBRY3WrQIk1NRiT0J9TcUkFjo1BBY0XSXg0FDi6hjU4lUYYJFWjJgVl2pnfX0GKnCe+y9/Pg9xm/93s/fh/u3jt4HFk5I3rGAD3AX0EBaFAAGhSABgWgQQFoUAAaFIAGBaAx0S4QN2Ysph/ac4eJk2SudSPRofs3gALQ6F6Aw2sVYP7lGG1SE/D2L/Aun9vu6rZIsvJQEKOp/PZFJi2UNM1PL6CZ0b7OvSA/NdRTG3qdNq/TtjQ5uHh0dZB41NCWkYDPbd+dn3BYzQ2fmo2G/SCfLZYjty+0nRntgVW/57fpv+E4sjM7ZuA42s5ttIk9Duu0x0G7ip2AopDN+P1I6LxjPcJvxaJ3+foa/3AvbVt2AmuRm+XT61T+vVyVL7PFQDjx/Papqhkf6KJty0ggLZRCsXRt8lGR4hlBVdZ8nzSEkcBxMifJiip8ehVVic1spO3MSCCZK9aHpYqkSugPIVYCBbFaH0pyCzozEpAV9fdDCFEahbS00X9AGygADQpAgwLQ6F4AbyWgQQFoUAAaFIAGBaBBAWhQABoUgAYFoNG9wBfrTHdNRMi0AAAAAABJRU5ErkJggg=="
-              alt="LinkedIn"
-              class="w-5 h-5"
-            />
-          </a>
-          <a :href="person.url" target="_blank" aria-label="Website">
-            <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAzElEQVR4nO3ZwQ6EIAxFUTX+/y/r2gSxBdqHes92Ql/tgHHGZQEAAAAAAADwJ2vjuiOgpiTf22wtuLe2JN/apCe4NUOSvwWHT7/+aQC94b11wvNrAxgV3lovJd9yBD7tbgCjp++tm5a/BwW5mlAq7YCpGgxwuT7uAeoG1BiAugE1BqBuQK00gIzf80qX61M8CFkGnPYscncEonaBtW5aPveAymejvwVvvZT8px0wqonWOuH5liPQ28TU6/lXOKCRV70XAAAAAAAAAH7mBPdTHjEhiY6HAAAAAElFTkSuQmCC"
-              alt="Website"
-              class="w-5 h-5"
-            />
-          </a>
-          <a :href="person.x" target="_blank" aria-label="X">
-            <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABqklEQVR4nO3a204DMRRD0Q3//8/lqRKqyiQ5sZ0RPZYQLyWJ10yZiwKdTqfT6XQ6/yuP2Q9+Owc/lMfL78usAiwNfiCv6xqucwVgefBw/lrP5TpnAUqDB3O1jq+rP5wFuBrkNEK5PKx9Be6IsFUe1v8J3glhuzzULoN3QJCUhxrAaBI3gqw81AFGk7kQpOVhD2A0qRpBXh72AUaTqxAs5UEDMFrELoKtPOgAwINgLQ9aANAi2MuDHgA0CJHy4AGAPYRYefABQA0hWh68ALCGEC8PfgCYQzhS3j74SyqXQvv6EmfAM6tlIgcnCQDzpWJnZhoAxuWSX8sjADv3AfKkARR3gtIkAZTPArKkAKrXeTtCAmCm/DEEN8DKkT+C4ASonPZxBBfAzr19FMEBoHiwiSGoAZRPdREEJYDjkdaOoAJwPs9bERQAiZcZNoRdgOSbHAvCDsCJ11hyhCrAsXd4g/GXEdT7BFMvM2QI1X2C7xJ9kzOYz7JT9E7lZ+aV7hS9Y/mZ+WU7RStPb8mUEXb2Cd6l/DOxg3R6Z+goj18/H5uPLt/pdDqdzmR+ANVMXk7+0qmEAAAAAElFTQSuQmCC"
-              alt="X"
-              class="w-5 h-5"
-            />
-          </a>
-        </div>
-      </li>
-    </template>
-  </ul>
-
-  <!-- Modal -->
-  <div
-    x-show="activePerson"
-    x-transition
-    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-  >
-    <div
-      class="bg-white rounded-lg shadow-xl max-w-3xl w-full p-6 flex flex-col md:flex-row relative animate-fade-in"
-    >
-      <button
-        @click="activePerson = null"
-        class="absolute top-2 right-3 p-1"
-        aria-label="Close"
-      >
-        <img
-          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABqklEQVR4nO3a204DMRRD0Q3//8/lqRKqyiQ5sZ0RPZYQLyWJ10yZiwKdTqfT6XQ6/yuP2Q9+Owc/lMfL78usAiwNfiCv6xqucwVgefBw/lrP5TpnAUqDB3O1jq+rP5wFuBrkNEK5PKx9Be6IsFUe1v8J3glhuzzULoN3QJCUhxrAaBI3gqw81AFGk7kQpOVhD2A0qRpBXh72AUaTqxAs5UEDMFrELoKtPOgAwINgLQ9aANAi2MuDHgA0CJHy4AGAPYRYefABQA0hWh68ALCGEC8PfgCYQzhS3j74SyqXQvv6EmfAM6tlIgcnCQDzpWJnZhoAxuWSX8sjADv3AfKkARR3gtIkAZTPArKkAKrXeTtCAmCm/DEEN8DKkT+C4ASonPZxBBfAzr19FMEBoHiwiSGoAZRPdREEJYDjkdaOoAJwPs9bERQAiZcZNoRdgOSbHAvCDsCJ11hyhCrAsXd4g/GXEdT7BFMvM2QI1X2C7xJ9kzOYz7JT9E7lZ+aV7hS9Y/mZ+WU7RStPb8mUEXb2Cd6l/DOxg3R6Z+goj18/H5uPLt/pdDqdzmR+ANVMXk7+0qmEAAAAAElFTQSuQmCC"
-          alt="Close"
-          class="w-5 h-5"
-        />
-      </button>
-
-      <!-- Photo and social icons -->
-      <div class="flex-shrink-0 flex flex-col items-center">
-        <img
-          :src="activePerson.image"
-          :alt="activePerson.name"
-          class="w-72 h-72 rounded-full border border-gray-300 object-cover"
-        />
-        <div class="flex space-x-3 mt-2">
-          <a :href="activePerson.linkedin" target="_blank" aria-label="LinkedIn">
-            <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAABuklEQVR4nO2YsUsCURzH36lomIUlWQ4WJBRY3WrQIk1NRiT0J9TcUkFjo1BBY0XSXg0FDi6hjU4lUYYJFWjJgVl2pnfX0GKnCe+y9/Pg9xm/93s/fh/u3jt4HFk5I3rGAD3AX0EBaFAAGhSABgWgQQFoUAAaFIAGBaAx0S4QN2Ysph/ac4eJk2SudSPRofs3gALQ6F6Aw2sVYP7lGG1SE/D2L/Aun9vu6rZIsvJQEKOp/PZFJi2UNM1PL6CZ0b7OvSA/NdRTG3qdNq/TtjQ5uHh0dZB41NCWkYDPbd+dn3BYzQ2fmo2G/SCfLZYjty+0nRntgVW/57fpv+E4sjM7ZuA42s5ttIk9Duu0x0G7ip2AopDN+P1I6LxjPcJvxaJ3+foa/3AvbVt2AmuRm+XT61T+vVyVL7PFQDjx/Papqhkf6KJty0ggLZRCsXRt8lGR4hlBVdZ8nzSEkcBxMifJiip8ehVVic1spO3MSCCZK9aHpYqkSugPIVYCBbFaH0pyCzozEpAV9fdDCFEahbS00X9AGygADQpAgwLQ6F4AbyWgQQFoUAAaFIAGBaBBAWhQABoUgAYFoNG9wBfrTHdNRMi0AAAAAABJRU5ErkJggg=="
-              alt="LinkedIn"
-              class="w-5 h-5"
-            />
-          </a>
-          <a :href="activePerson.url" target="_blank" aria-label="Website">
-            <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAzElEQVR4nO3ZwQ6EIAxFUTX+/y/r2gSxBdqHes92Ql/tgHHGZQEAAAAAAADwJ2vjuiOgpiTf22wtuLe2JN/apCe4NUOSvwWHT7/+aQC94b11wvNrAxgV3lovJd9yBD7tbgCjp++tm5a/BwW5mlAq7YCpGgxwuT7uAeoG1BiAugE1BqBuQK00gIzf80qX61M8CFkGnPYscncEonaBtW5aPveAymejvwVvvZT8px0wqonWOuH5liPQ28TU6/lXOKCRV70XAAAAAAAAAH7mBPdTHjEhiY6HAAAAAElFTkSuQmCC"
-              alt="Website"
-              class="w-5 h-5"
-            />
-          </a>
-          <a :href="activePerson.x" target="_blank" aria-label="X">
-            <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABqklEQVR4nO3a204DMRRD0Q3//8/lqRKqyiQ5sZ0RPZYQLyWJ10yZiwKdTqfT6XQ6/yuP2Q9+Owc/lMfL78usAiwNfiCv6xqucwVgefBw/lrP5TpnAUqDB3O1jq+rP5wFuBrkNEK5PKx9Be6IsFUe1v8J3glhuzzULoN3QJCUhxrAaBI3gqw81AFGk7kQpOVhD2A0qRpBXh72AUaTqxAs5UEDMFrELoKtPOgAwINgLQ9aANAi2MuDHgA0CJHy4AGAPYRYefABQA0hWh68ALCGEC8PfgCYQzhS3j74SyqXQvv6EmfAM6tlIgcnCQDzpWJnZhoAxuWSX8sjADv3AfKkARR3gtIkAZTPArKkAKrXeTtCAmCm/DEEN8DKkT+C4ASonPZxBBfAzr19FMEBoHiwiSGoAZRPdREEJYDjkdaOoAJwPs9bERQAiZcZNoRdgOSbHAvCDsCJ11hyhCrAsXd4g/GXEdT7BFMvM2QI1X2C7xJ9kzOYz7JT9E7lZ+aV7hS9Y/mZ+WU7RStPb8mUEXb2Cd6l/DOxg3R6Z+goj18/H5uPLt/pdDqdzmR+ANVMXk7+0qmEAAAAAElFTQSuQmCC"
-              alt="X"
-              class="w-5 h-5"
-            />
-          </a>
-        </div>
-      </div>
-
-      <!-- Divider -->
-      <div class="hidden md:block border-l border-gray-300 h-24 mx-6 self-center"></div>
-
-      <!-- Content -->
-      <div class="text-gray-800 text-sm leading-relaxed font-extralight">
-        <h3 class="text-xl font-semibold text-gray-900" x-text="activePerson.name"></h3>
-        <p class="text-gray-600 mb-2 italic" x-text="activePerson.role"></p>
-        <p x-text="activePerson.bio"></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-<section x-data="{
-  activePerson: null,
-  people: [
-    {
-      name: 'Dr. Danuta Leszczynska ',
-      role: 'Professor, Jack State University',
-      image: '/assets/img/about/people/dl.png',
-      linkedin: '#',
-      url: '#',
-      x: '#',
-      bio: 'Dr. Leszczynska is a leading environmental engineer and researcher whose work spans the broad spectrum of water contamination and remediation. Her expertise encompasses the detection and treatment of contaminants in water, stormwater, wastewater, and soil, with a particular focus on the operational challenges posed by secondary contamination. Dr. Leszczynska develops advanced techniques and mechanisms to enhance the removal of organic and metallic pollutants, and they are a pioneer in emerging water and soil treatment technologies such as constructed wetlands, phytoremediation, and photodegradation. Beyond traditional remediation approaches, their research explores the applications of magnetic fields in bioscience and biotechnology, investigates quantum cluster processes involved in degrading explosive compounds on model clay surfaces, and assesses the impact of nanomaterials in drinking water. Through this multifaceted research portfolio, Dr. Leszczynska aims to advance sustainable treatment solutions and safeguard public health and environmental quality.'
-    },
-    {
-      name: 'Alex Rivera',
-      role: 'Director of Engineering',
-      image: '/assets/img/about/people/ed.png',
-      linkedin: '#',
-      url: '#',
-      x: '#',
-      bio: 'Alex Rivera has a deep background in civil and mechanical engineering. He oversees all technical project execution across our commercial portfolios and turns theory into high-performance water systems.'
-    },
-    {
-      name: 'Dr. Oliver Jones',
-      role: 'Source Energy Global',
-      image: '/assets/img/about/people/dr_o_j.jpg',
-      linkedin: '#',
-      url: '#',
-      x: '#',
-      bio: 'Dr. Oliver Jones is at the forefront of innovative energy solutions. His leadership in the development of the SourceEnergy Battery System, featuring graphene/graphite-based carbon nanotubes covered by gold, exemplifies his commitment to sustainable, high-performance energy technologies. This technology promises to revolutionize energy storage, distribution, and management, aligning with global sustainability goals.'
-    },
-    {
-      name: 'Jeff Chalfin',
-      role: 'Flow Dyanmics LLC',
-      image: '/assets/img/about/people/jc_fd.jpg',
-      linkedin: '#',
-      url: '#',
-      x: '#',
-      bio: 'Jordan Ellis bridges fieldwork and business strategy to ensure flawless operational execution. With a logistics background and a sharp eye for process efficiency, he keeps timelines and teams aligned.'
-    },
-    {
-      name: 'Marc Freedman',
-      role: 'Expense to Profit',
-      image: '/assets/img/about/people/m_f.png',
-      linkedin: '#',
-      url: '#',
-      x: '#',
-      bio: 'Marc Freedman leads our consumption and flow benchmarking division. With a data science background, Taylor finds actionable insights in water use patterns to deliver measurable efficiency gains.'
-    },
-    {
-      name: 'Ben Lapscher',
-      role: 'Expense Reduction Coaching (ERC)',
-      image: '/assets/img/about/people/bl_erc.jpg',
-      linkedin: '#',
-      url: '#',
-      x: '#',
-      bio: 'Morgan Lee is responsible for orchestrating technical delivery across engineering, installation, and monitoring. Her cross-disciplinary project management background ensures strong outcomes across all departments.'
-    }
-  ]
-}">
-  <h2 class="text-2xl font-semibold mb-4 text-gray-900">Backed by Proven Industry Leaders</h2>
-  </p> <span class="text-blue-600 font-semibold">Water Solutions Technology</span> is supported by a distinguished network of 
-      <a href="#" class="text-blue-500 underline hover:text-blue-700">strategic advisors</a> who bring decades of hands-on experience 
-      in engineering, finance, policy, and innovation. Their contributions help us remain ahead of the curve in delivering smart water and sustainability solutions.
-    </p>
-
-  <ul class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    <template x-for="(person, index) in people" :key="index">
-      <li class="text-center cursor-pointer" @click="activePerson = person">
-        <!-- Enlarged photo -->
-        <img
-          :src="person.image"
-          :alt="person.name"
-          class="rounded-full w-72 h-72 mx-auto mb-2 border border-gray-300 object-cover"
-        />
-        <!-- Name & role -->
-        <p class="font-semibold text-gray-900" x-text="person.name"></p>
-        <p class="text-sm text-gray-600" x-text="person.role"></p>
-        <!-- Icons below the role -->
-        <div class="flex justify-center space-x-3 mt-1">
-          <a :href="person.linkedin" target="_blank" aria-label="LinkedIn">
-            <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAABuklEQVR4nO2YsUsCURzH36lomIUlWQ4WJBRY3WrQIk1NRiT0J9TcUkFjo1BBY0XSXg0FDi6hjU4lUYYJFWjJgVl2pnfX0GKnCe+y9/Pg9xm/93s/fh/u3jt4HFk5I3rGAD3AX0EBaFAAGhSABgWgQQFoUAAaFIAGBaAx0S4QN2Ysph/ac4eJk2SudSPRofs3gALQ6F6Aw2sVYP7lGG1SE/D2L/Aun9vu6rZIsvJQEKOp/PZFJi2UNM1PL6CZ0b7OvSA/NdRTG3qdNq/TtjQ5uHh0dZB41NCWkYDPbd+dn3BYzQ2fmo2G/SCfLZYjty+0nRntgVW/57fpv+E4sjM7ZuA42s5ttIk9Duu0x0G7ip2AopDN+P1I6LxjPcJvxaJ3+foa/3AvbVt2AmuRm+XT61T+vVyVL7PFQDjx/Papqhkf6KJty0ggLZRCsXRt8lGR4hlBVdZ8nzSEkcBxMifJiip8ehVVic1spO3MSCCZK9aHpYqkSugPIVYCBbFaH0pyCzozEpAV9fdDCFEahbS00X9AGygADQpAgwLQ6F4AbyWgQQFoUAAaFIAGBaBBAWhQABoUgAYFoNG9wBfrTHdNRMi0AAAAAABJRU5ErkJggg=="
-              alt="LinkedIn"
-              class="w-5 h-5"
-            />
-          </a>
-          <a :href="person.url" target="_blank" aria-label="Website">
-            <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAzElEQVR4nO3ZwQ6EIAxFUTX+/y/r2gSxBdqHes92Ql/tgHHGZQEAAAAAAADwJ2vjuiOgpiTf22wtuLe2JN/apCe4NUOSvwWHT7/+aQC94b11wvNrAxgV3lovJd9yBD7tbgCjp++tm5a/BwW5mlAq7YCpGgxwuT7uAeoG1BiAugE1BqBuQK00gIzf80qX61M8CFkGnPYscncEonaBtW5aPveAymejvwVvvZT8px0wqonWOuH5liPQ28TU6/lXOKCRV70XAAAAAAAAAH7mBPdTHjEhiY6HAAAAAElFTkSuQmCC"
-              alt="Website"
-              class="w-5 h-5"
-            />
-          </a>
-          <a :href="person.x" target="_blank" aria-label="X">
-            <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABqklEQVR4nO3a204DMRRD0Q3//8/lqRKqyiQ5sZ0RPZYQLyWJ10yZiwKdTqfT6XQ6/yuP2Q9+Owc/lMfL78usAiwNfiCv6xqucwVgefBw/lrP5TpnAUqDB3O1jq+rP5wFuBrkNEK5PKx9Be6IsFUe1v8J3glhuzzULoN3QJCUhxrAaBI3gqw81AFGk7kQpOVhD2A0qRpBXh72AUaTqxAs5UEDMFrELoKtPOgAwINgLQ9aANAi2MuDHgA0CJHy4AGAPYRYefABQA0hWh68ALCGEC8PfgCYQzhS3j74SyqXQvv6EmfAM6tlIgcnCQDzpWJnZhoAxuWSX8sjADv3AfKkARR3gtIkAZTPArKkAKrXeTtCAmCm/DEEN8DKkT+C4ASonPZxBBfAzr19FMEBoHiwiSGoAZRPdREEJYDjkdaOoAJwPs9bERQAiZcZNoRdgOSbHAvCDsCJ11hyhCrAsXd4g/GXEdT7BFMvM2QI1X2C7xJ9kzOYz7JT9E7lZ+aV7hS9Y/mZ+WU7RStPb8mUEXb2Cd6l/DOxg3R6Z+goj18/H5uPLt/pdDqdzmR+ANVMXk7+0qmEAAAAAElFTQSuQmCC"
-              alt="X"
-              class="w-5 h-5"
-            />
-          </a>
-        </div>
-      </li>
-    </template>
-  </ul>
-
-  <!-- Modal -->
-  <div
-    x-show="activePerson"
-    x-transition
-    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-  >
-    <div
-      class="bg-white rounded-lg shadow-xl max-w-3xl w-full p-6 flex flex-col md:flex-row relative animate-fade-in"
-    >
-      <button
-        @click="activePerson = null"
-        class="absolute top-2 right-3 p-1"
-        aria-label="Close"
-      >
-        <img
-          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABqklEQVR4nO3a204DMRRD0Q3//8/lqRKqyiQ5sZ0RPZYQLyWJ10yZiwKdTqfT6XQ6/yuP2Q9+Owc/lMfL78usAiwNfiCv6xqucwVgefBw/lrP5TpnAUqDB3O1jq+rP5wFuBrkNEK5PKx9Be6IsFUe1v8J3glhuzzULoN3QJCUhxrAaBI3gqw81AFGk7kQpOVhD2A0qRpBXh72AUaTqxAs5UEDMFrELoKtPOgAwINgLQ9aANAi2MuDHgA0CJHy4AGAPYRYefABQA0hWh68ALCGEC8PfgCYQzhS3j74SyqXQvv6EmfAM6tlIgcnCQDzpWJnZhoAxuWSX8sjADv3AfKkARR3gtIkAZTPArKkAKrXeTtCAmCm/DEEN8DKkT+C4ASonPZxBBfAzr19FMEBoHiwiSGoAZRPdREEJYDjkdaOoAJwPs9bERQAiZcZNoRdgOSbHAvCDsCJ11hyhCrAsXd4g/GXEdT7BFMvM2QI1X2C7xJ9kzOYz7JT9E7lZ+aV7hS9Y/mZ+WU7RStPb8mUEXb2Cd6l/DOxg3R6Z+goj18/H5uPLt/pdDqdzmR+ANVMXk7+0qmEAAAAAElFTQSuQmCC"
-          alt="Close"
-          class="w-5 h-5"
-        />
-      </button>
-
-      <!-- Photo and social icons -->
-      <div class="flex-shrink-0 flex flex-col items-center">
-        <img
-          :src="activePerson.image"
-          :alt="activePerson.name"
-          class="w-72 h-72 rounded-full border border-gray-300 object-cover"
-        />
-        <div class="flex space-x-3 mt-2">
-          <a :href="activePerson.linkedin" target="_blank" aria-label="LinkedIn">
-            <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAABuklEQVR4nO2YsUsCURzH36lomIUlWQ4WJBRY3WrQIk1NRiT0J9TcUkFjo1BBY0XSXg0FDi6hjU4lUYYJFWjJgVl2pnfX0GKnCe+y9/Pg9xm/93s/fh/u3jt4HFk5I3rGAD3AX0EBaFAAGhSABgWgQQFoUAAaFIAGBaAx0S4QN2Ysph/ac4eJk2SudSPRofs3gALQ6F6Aw2sVYP7lGG1SE/D2L/Aun9vu6rZIsvJQEKOp/PZFJi2UNM1PL6CZ0b7OvSA/NdRTG3qdNq/TtjQ5uHh0dZB41NCWkYDPbd+dn3BYzQ2fmo2G/SCfLZYjty+0nRntgVW/57fpv+E4sjM7ZuA42s5ttIk9Duu0x0G7ip2AopDN+P1I6LxjPcJvxaJ3+foa/3AvbVt2AmuRm+XT61T+vVyVL7PFQDjx/Papqhkf6KJty0ggLZRCsXRt8lGR4hlBVdZ8nzSEkcBxMifJiip8ehVVic1spO3MSCCZK9aHpYqkSugPIVYCBbFaH0pyCzozEpAV9fdDCFEahbS00X9AGygADQpAgwLQ6F4AbyWgQQFoUAAaFIAGBaBBAWhQABoUgAYFoNG9wBfrTHdNRMi0AAAAAABJRU5ErkJggg=="
-              alt="LinkedIn"
-              class="w-5 h-5"
-            />
-          </a>
-          <a :href="activePerson.url" target="_blank" aria-label="Website">
-            <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAzElEQVR4nO3ZwQ6EIAxFUTX+/y/r2gSxBdqHes92Ql/tgHHGZQEAAAAAAADwJ2vjuiOgpiTf22wtuLe2JN/apCe4NUOSvwWHT7/+aQC94b11wvNrAxgV3lovJd9yBD7tbgCjp++tm5a/BwW5mlAq7YCpGgxwuT7uAeoG1BiAugE1BqBuQK00gIzf80qX61M8CFkGnPYscncEonaBtW5aPveAymejvwVvvZT8px0wqonWOuH5liPQ28TU6/lXOKCRV70XAAAAAAAAAH7mBPdTHjEhiY6HAAAAAElFTkSuQmCC"
-              alt="Website"
-              class="w-5 h-5"
-            />
-          </a>
-          <a :href="activePerson.x" target="_blank" aria-label="X">
-            <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABqklEQVR4nO3a204DMRRD0Q3//8/lqRKqyiQ5sZ0RPZYQLyWJ10yZiwKdTqfT6XQ6/yuP2Q9+Owc/lMfL78usAiwNfiCv6xqucwVgefBw/lrP5TpnAUqDB3O1jq+rP5wFuBrkNEK5PKx9Be6IsFUe1v8J3glhuzzULoN3QJCUhxrAaBI3gqw81AFGk7kQpOVhD2A0qRpBXh72AUaTqxAs5UEDMFrELoKtPOgAwINgLQ9aANAi2MuDHgA0CJHy4AGAPYRYefABQA0hWh68ALCGEC8PfgCYQzhS3j74SyqXQvv6EmfAM6tlIgcnCQDzpWJnZhoAxuWSX8sjADv3AfKkARR3gtIkAZTPArKkAKrXeTtCAmCm/DEEN8DKkT+C4ASonPZxBBfAzr19FMEBoHiwiSGoAZRPdREEJYDjkdaOoAJwPs9bERQAiZcZNoRdgOSbHAvCDsCJ11hyhCrAsXd4g/GXEdT7BFMvM2QI1X2C7xJ9kzOYz7JT9E7lZ+aV7hS9Y/mZ+WU7RStPb8mUEXb2Cd6l/DOxg3R6Z+goj18/H5uPLt/pdDqdzmR+ANVMXk7+0qmEAAAAAElFTQSuQmCC"
-              alt="X"
-              class="w-5 h-5"
-            />
-          </a>
-        </div>
-      </div>
-
-      <!-- Divider -->
-      <div class="hidden md:block border-l border-gray-300 h-24 mx-6 self-center"></div>
-
-      <!-- Content -->
-      <div class="text-gray-800 text-sm leading-relaxed font-extralight">
-        <h3 class="text-xl font-semibold text-gray-900" x-text="activePerson.name"></h3>
-        <p class="text-gray-600 mb-2 italic" x-text="activePerson.role"></p>
-        <p x-text="activePerson.bio"></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="bg-white py-20 text-gray-900">
-  <div class="max-w-6xl mx-auto px-6">
-    <!-- Header -->
-    <div class="mb-12">
-      <p class="text-xs tracking-[0.2em] text-gray-500 uppercase">Our Values</p>
-      <h2 class="mt-2 text-3xl md:text-4xl font-semibold tracking-tight">Some of Our Core Shared Values</h2>
-      <p class="mt-4 text-gray-600 max-w-3xl">
-        Principles that guide how we build, serve, and lead—inside our teams and with every client we support.
+  <div class="about-people-inner">
+    <div class="about-people-header">
+      <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">The Team</div>
+      <h2 class="section-h2" style="color:#fff;">Our <em>People</em></h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.5);">
+        Our team combines engineering, sustainability, AI, and field operations — bringing utility expertise and ESG execution to every project.
       </p>
     </div>
 
-    <!-- Premium grid (no bullets, no icons) -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Card -->
-      <article class="group relative rounded-2xl border border-gray-200 p-6 hover:shadow-xl transition-shadow">
-        <div class="h-1 w-12 bg-gray-900 rounded-full mb-5"></div>
-        <h3 class="text-lg md:text-xl font-semibold tracking-tight">We Believe in YHVH</h3>
-        <p class="mt-2 text-[15px] leading-relaxed text-gray-700">
-          We believe in the one true Almighty who designed you with purpose—and when you walk in His ways, success follows.
-        </p>
-      </article>
+    <ul class="about-people-grid">
+      <template x-for="(person, index) in people" :key="index">
+        <li class="about-person-card" @click="activePerson = person">
+          <div class="about-person-img-wrap">
+            <img :src="person.image" :alt="person.name" class="about-person-img" />
+            <div class="about-person-img-overlay"></div>
+          </div>
+          <div class="about-person-info">
+            <p class="about-person-name" x-text="person.name"></p>
+            <p class="about-person-role" x-text="person.role"></p>
+            <div class="about-person-socials">
+              <a :href="person.linkedin" target="_blank" @click.stop aria-label="LinkedIn" class="about-social-link">in</a>
+              <a :href="person.url" target="_blank" @click.stop aria-label="Website" class="about-social-link">↗</a>
+            </div>
+          </div>
+        </li>
+      </template>
+    </ul>
+  </div>
 
-      <article class="group relative rounded-2xl border border-gray-200 p-6 hover:shadow-xl transition-shadow">
-        <div class="h-1 w-12 bg-gray-900 rounded-full mb-5"></div>
-        <h3 class="text-lg md:text-xl font-semibold tracking-tight">Remember Others</h3>
-        <p class="mt-2 text-[15px] leading-relaxed text-gray-700">
-          We thrive best when we show kindness, empathy, and support for others.
-        </p>
-      </article>
+</section>
 
-      <article class="group relative rounded-2xl border border-gray-200 p-6 hover:shadow-xl transition-shadow">
-        <div class="h-1 w-12 bg-gray-900 rounded-full mb-5"></div>
-        <h3 class="text-lg md:text-xl font-semibold tracking-tight">Keep Growing</h3>
-        <p class="mt-2 text-[15px] leading-relaxed text-gray-700">
-          Be courageous. Make mistakes. Stay curious. Growth is an endless pursuit.
-        </p>
-      </article>
-
-      <article class="group relative rounded-2xl border border-gray-200 p-6 hover:shadow-xl transition-shadow">
-        <div class="h-1 w-12 bg-gray-900 rounded-full mb-5"></div>
-        <h3 class="text-lg md:text-xl font-semibold tracking-tight">Speak the Truth</h3>
-        <p class="mt-2 text-[15px] leading-relaxed text-gray-700">
-          Honesty, candor, and clarity help us improve, trust more, and grow together.
-        </p>
-      </article>
-
-      <article class="group relative rounded-2xl border border-gray-200 p-6 hover:shadow-xl transition-shadow">
-        <div class="h-1 w-12 bg-gray-900 rounded-full mb-5"></div>
-        <h3 class="text-lg md:text-xl font-semibold tracking-tight">Be a Team Player</h3>
-        <p class="mt-2 text-[15px] leading-relaxed text-gray-700">
-          Collaboration brings the most value—learning, solving, and achieving more together.
-        </p>
-      </article>
-
-      <article class="group relative rounded-2xl border border-gray-200 p-6 hover:shadow-xl transition-shadow">
-        <div class="h-1 w-12 bg-gray-900 rounded-full mb-5"></div>
-        <h3 class="text-lg md:text-xl font-semibold tracking-tight">Client Priority</h3>
-        <p class="mt-2 text-[15px] leading-relaxed text-gray-700">
-          Transparency and excellence in service are how we grow alongside our clients.
-        </p>
-      </article>
+{{-- ─── BACKED BY INDUSTRY LEADERS ─── --}}
+<section class="about-advisors-section" x-data="{
+  activePerson: null,
+  people: [
+    { name: 'Dr. Danuta Leszczynska', role: 'Professor, Jack State University', image: '/assets/img/about/people/dl.png', linkedin: '#', url: '#', bio: 'Dr. Leszczynska is a leading environmental engineer whose work spans water contamination and remediation. Her expertise encompasses the detection and treatment of contaminants in water, stormwater, wastewater, and soil, pioneering constructed wetlands, phytoremediation, and photodegradation technologies.' },
+    { name: 'Alex Rivera', role: 'Director of Engineering', image: '/assets/img/about/people/ed.png', linkedin: '#', url: '#', bio: 'Alex Rivera has a deep background in civil and mechanical engineering. He oversees all technical project execution across our commercial portfolios and turns theory into high-performance water systems.' },
+    { name: 'Dr. Oliver Jones', role: 'Source Energy Global', image: '/assets/img/about/people/dr_o_j.jpg', linkedin: '#', url: '#', bio: 'Dr. Oliver Jones is at the forefront of innovative energy solutions. His leadership in the SourceEnergy Battery System — featuring graphene/graphite-based carbon nanotubes covered by gold — exemplifies his commitment to sustainable, high-performance energy technologies.' },
+    { name: 'Jeff Chalfin', role: 'Flow Dynamics LLC', image: '/assets/img/about/people/jc_fd.jpg', linkedin: '#', url: '#', bio: 'Jeff bridges fieldwork and business strategy to ensure flawless operational execution. With a logistics background and a sharp eye for process efficiency, he keeps timelines and teams aligned.' },
+    { name: 'Marc Freedman', role: 'Expense to Profit', image: '/assets/img/about/people/m_f.png', linkedin: '#', url: '#', bio: 'Marc Freedman leads consumption and flow benchmarking with a data science background — finding actionable insights in water use patterns to deliver measurable efficiency gains.' },
+    { name: 'Ben Lapscher', role: 'Expense Reduction Coaching (ERC)', image: '/assets/img/about/people/bl_erc.jpg', linkedin: '#', url: '#', bio: 'Ben orchestrates technical delivery across engineering, installation, and monitoring. His cross-disciplinary project management background ensures strong outcomes across all departments.' }
+  ]
+}">
+  <div class="about-people-inner">
+    <div class="about-people-header">
+      <div class="section-eyebrow">Strategic Advisors</div>
+      <h2 class="section-h2">Backed by Proven<br><em>Industry Leaders</em></h2>
+      <p class="section-sub" style="max-width:560px;">
+        <span style="color:#1d4ed8;font-weight:500;">Water Solutions Technology</span> is supported by a distinguished network of
+        <a href="#" style="color:#2563eb;">strategic advisors</a> who bring decades of hands-on experience in engineering, finance, policy, and innovation.
+      </p>
     </div>
 
-    <!-- Optional subtle CTA -->
-    <div class="mt-12 rounded-xl bg-gray-50 border border-gray-200 p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-      <div>
-        <p class="text-xs tracking-[0.2em] text-gray-500 uppercase">How We Show Up</p>
-        <p class="text-gray-800 mt-1">These values shape decisions, partnerships, and outcomes across every engagement.</p>
+    <ul class="about-people-grid about-people-grid--light">
+      <template x-for="(person, index) in people" :key="index">
+        <li class="about-person-card about-person-card--light" @click="activePerson = person">
+          <div class="about-person-img-wrap">
+            <img :src="person.image" :alt="person.name" class="about-person-img" />
+            <div class="about-person-img-overlay"></div>
+          </div>
+          <div class="about-person-info">
+            <p class="about-person-name" style="color:#111;" x-text="person.name"></p>
+            <p class="about-person-role" style="color:#666;" x-text="person.role"></p>
+            <div class="about-person-socials">
+              <a :href="person.linkedin" target="_blank" @click.stop aria-label="LinkedIn" class="about-social-link about-social-link--dark">in</a>
+              <a :href="person.url" target="_blank" @click.stop aria-label="Website" class="about-social-link about-social-link--dark">↗</a>
+            </div>
+          </div>
+        </li>
+      </template>
+    </ul>
+  </div>
+
+</section>
+
+{{-- ─── VALUES ─── --}}
+<section class="about-values-section">
+  <div class="about-values-inner">
+    <div class="about-values-header">
+      <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">Our Values</div>
+      <h2 class="section-h2" style="color:#fff;">Core Shared <em>Values</em></h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.5);max-width:480px;">
+        Principles that guide how we build, serve, and lead — inside our teams and with every client we support.
+      </p>
+    </div>
+
+    <div class="about-values-grid">
+      <div class="about-value-card">
+        <div class="about-value-bar"></div>
+        <h3 class="about-value-title">We Believe in YHVH</h3>
+        <p class="about-value-body">We believe in the one true Almighty who designed you with purpose — and when you walk in His ways, success follows.</p>
       </div>
-      <a href="/about" class="inline-block px-6 py-3 rounded-lg bg-gray-900 text-white text-sm font-medium hover:bg-gray-700 transition-colors">
-        Learn More
-      </a>
+      <div class="about-value-card">
+        <div class="about-value-bar"></div>
+        <h3 class="about-value-title">Remember Others</h3>
+        <p class="about-value-body">We thrive best when we show kindness, empathy, and support for others.</p>
+      </div>
+      <div class="about-value-card">
+        <div class="about-value-bar"></div>
+        <h3 class="about-value-title">Keep Growing</h3>
+        <p class="about-value-body">Be courageous. Make mistakes. Stay curious. Growth is an endless pursuit.</p>
+      </div>
+      <div class="about-value-card">
+        <div class="about-value-bar"></div>
+        <h3 class="about-value-title">Speak the Truth</h3>
+        <p class="about-value-body">Honesty, candor, and clarity help us improve, trust more, and grow together.</p>
+      </div>
+      <div class="about-value-card">
+        <div class="about-value-bar"></div>
+        <h3 class="about-value-title">Be a Team Player</h3>
+        <p class="about-value-body">Collaboration brings the most value — learning, solving, and achieving more together.</p>
+      </div>
+      <div class="about-value-card">
+        <div class="about-value-bar"></div>
+        <h3 class="about-value-title">Client Priority</h3>
+        <p class="about-value-body">Transparency and excellence in service are how we grow alongside our clients.</p>
+      </div>
     </div>
   </div>
 </section>
 
-  <section class="bg-white py-20">
-  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-    
-    <!-- Left Column: Content -->
+{{-- ─── MANDATE / WHY IT MATTERS ─── --}}
+<div class="mandate-strip">
+  <div class="mandate-label">Why It Matters</div>
+  <div class="mandate-items">
+    <div class="mandate-item">Undervalued Resource<span>Water is the most mismanaged asset in the built environment</span></div>
+    <div class="mandate-item">Driver of NOI<span>The right strategy converts water into measurable financial gain</span></div>
+    <div class="mandate-item">ESG Performance<span>Verified data satisfies GRESB, LP disclosure, and ESG mandates</span></div>
+    <div class="mandate-item">Operational Resilience<span>Real-time monitoring protects against costly, undetected failures</span></div>
+  </div>
+</div>
+
+{{-- ─── FINAL CTA ─── --}}
+<section class="contact-section" style="padding:0;">
+  <div class="cc">
     <div>
-      <h2 class="text-3xl font-light mb-5 text-gray-900 tracking-wide">Why It Matters</h2>
-      <p class="text-gray-600 leading-relaxed text-[15px] font-light">
-        Water is one of the most undervalued and mismanaged resources in the built environment. 
-        With the right strategy, it becomes a key driver of NOI, ESG performance, and operational resilience. 
-        That’s why we exist.
-      </p>
+      <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">Get Started</div>
+      <h2 class="contact-h">Let's Talk<br>About Your Portfolio</h2>
+      <p class="contact-sub">Water is one of the most undervalued resources in the built environment. With the right strategy, it becomes a key driver of NOI, ESG performance, and operational resilience. That's why we exist.</p>
+      <div class="cc-btns">
+        <a href="/contact" class="cc-btn-primary">Start a Conversation</a>
+        <a href="/services" class="cc-btn-ghost">Our Services</a>
+      </div>
     </div>
-
-    <!-- Right Column: CTA -->
-    <div class="flex md:justify-end justify-center">
-      <a href="/contact" 
-         class="inline-block bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 rounded-md shadow-sm text-sm font-light tracking-wide transition-all duration-200">
-        Start a Conversation
-      </a>
+    <div class="cc-grid">
+      <div class="cc-card">
+        <div class="cc-card-lbl">Commitment</div>
+        <div class="cc-card-title">Precision technology, not guesswork</div>
+        <div class="cc-card-body">Every recommendation is backed by data, verified in the field, and documented for your investment committee.</div>
+      </div>
+      <div class="cc-card">
+        <div class="cc-card-lbl">Our Reach</div>
+        <div class="cc-card-title">Hospitality, CRE, Manufacturing</div>
+        <div class="cc-card-body">Across all asset classes, our team delivers portfolio-wide water stewardship with zero disruption to operations.</div>
+      </div>
+      <div class="cc-card">
+        <div class="cc-card-lbl">The Outcome</div>
+        <div class="cc-card-title">Measurable, reportable savings</div>
+        <div class="cc-card-body">25.3% average reduction. $2.3M documented savings. GRESB-verified. The outcomes are not estimated — they are measured.</div>
+      </div>
+      <div class="cc-card">
+        <div class="cc-card-lbl">Network</div>
+        <div class="cc-card-title">5,000+ company benchmark dataset</div>
+        <div class="cc-card-body">Exclusive proprietary data powering realistic targets and portfolio benchmarking across all commercial sectors.</div>
+      </div>
     </div>
-
   </div>
 </section>
-@endsection 
+
+@endsection
+
+@push('styles')
+<style>
+/* ═══════════════════════════════════════
+   ABOUT PAGE — Styles matching Home aesthetic
+   ═══════════════════════════════════════ */
+
+/* ─── HERO ─── */
+.about-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  overflow: hidden;
+}
+.about-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: .85;
+}
+.about-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,.75) 40%, rgba(0,0,0,.45) 100%);
+}
+.about-hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 24px;
+  max-width: 780px;
+}
+.about-hero-h1 {
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 16px 0 20px;
+}
+.about-hero-h1 em { font-style: italic; color: rgba(255,255,255,.65); }
+.about-hero-sub {
+  color: rgba(255,255,255,.55);
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: .04em;
+  margin-bottom: 32px;
+}
+.about-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+/* ─── COMMITMENT ─── */
+.about-commit-section {
+  background: #080808;
+  padding: 96px 24px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.about-commit-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+@media(max-width:768px){ .about-commit-inner{ grid-template-columns:1fr; gap:32px; } }
+.about-commit-body {}
+
+/* ─── STATS STRIP ─── */
+.about-stats-strip {
+  background: #0d0d0d;
+  border-top: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  padding: 40px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+  max-width: 100%;
+}
+.about-stat {
+  text-align: center;
+  padding: 16px 40px;
+}
+.about-stat-val {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 200;
+  color: #fff;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.about-stat-lbl {
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+  margin-top: 6px;
+}
+.about-stat-sep {
+  width: 1px;
+  height: 40px;
+  background: rgba(255,255,255,.1);
+}
+@media(max-width:640px){
+  .about-stat-sep{ display:none; }
+  .about-stat{ padding: 12px 20px; }
+}
+
+/* ─── SPLIT SECTIONS ─── */
+.about-split-section {
+  background: #fff;
+  padding: 96px 24px;
+}
+.about-split-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+.about-split-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.about-split-item--reverse { }
+@media(max-width:768px){
+  .about-split-item{ grid-template-columns:1fr; gap:32px; }
+  .about-split-item--reverse .about-split-img-wrap{ order:-1; }
+}
+.about-split-img-wrap { overflow: hidden; border-radius: 12px; }
+.about-split-img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(15%);
+  transition: filter .4s, transform .4s;
+}
+.about-split-img:hover { filter: grayscale(0%); transform: scale(1.02); }
+.about-split-text {}
+
+/* ─── RESOURCES SECTION ─── */
+.about-resources-section {
+  background: #080808;
+  padding: 96px 24px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.about-resources-inner { max-width: 1100px; margin: 0 auto; }
+.about-resources-header { margin-bottom: 56px; }
+.about-resources-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media(max-width:768px){ .about-resources-grid{ grid-template-columns:1fr; } }
+.about-res-card {
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+  padding: 36px;
+  background: rgba(255,255,255,.025);
+  transition: border-color .3s, background .3s;
+}
+.about-res-card:hover {
+  border-color: rgba(255,255,255,.15);
+  background: rgba(255,255,255,.04);
+}
+.about-res-card-title {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  margin-bottom: 28px;
+}
+.about-res-items { display: flex; flex-direction: column; gap: 0; }
+.about-res-item { padding: 20px 0; border-top: 1px solid rgba(255,255,255,.07); }
+.about-res-item:first-child { border-top: none; padding-top: 0; }
+.about-res-label {
+  font-size: .68rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  margin-bottom: 6px;
+}
+.about-res-item p {
+  color: rgba(255,255,255,.6);
+  font-size: .9rem;
+  line-height: 1.6;
+  font-weight: 300;
+  margin: 0;
+}
+.about-res-cta {
+  margin-top: 40px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
+  background: rgba(255,255,255,.025);
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* ─── PEOPLE / ADVISORS ─── */
+.about-people-section {
+  background: #080808;
+  padding: 96px 24px;
+  position: relative;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.about-advisors-section {
+  background: #f9f9f9;
+  padding: 96px 24px;
+  position: relative;
+}
+.about-people-inner { max-width: 1100px; margin: 0 auto; }
+.about-people-header { margin-bottom: 56px; }
+.about-people-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 32px;
+}
+.about-person-card {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  transition: transform .25s;
+}
+.about-person-card:hover { transform: translateY(-4px); }
+.about-person-img-wrap {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.1);
+}
+.about-person-card--light .about-person-img-wrap {
+  border-color: rgba(0,0,0,.1);
+}
+.about-person-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.about-person-img-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(0,0,0,0);
+  transition: background .3s;
+}
+.about-person-card:hover .about-person-img-overlay { background: rgba(0,0,0,.15); }
+.about-person-info {}
+.about-person-name {
+  font-size: .95rem;
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+}
+.about-person-role {
+  font-size: .8rem;
+  color: rgba(255,255,255,.4);
+  margin: 3px 0 0;
+}
+.about-person-socials {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+.about-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.15);
+  color: rgba(255,255,255,.5);
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color .2s, color .2s;
+}
+.about-social-link:hover { border-color: rgba(255,255,255,.5); color: #fff; }
+.about-social-link--dark {
+  border-color: rgba(0,0,0,.15);
+  color: rgba(0,0,0,.45);
+}
+.about-social-link--dark:hover { border-color: rgba(0,0,0,.4); color: #111; }
+
+/* ─── MODAL ─── */
+.about-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 24px;
+  backdrop-filter: blur(4px);
+}
+.about-modal {
+  background: #111;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 680px;
+  width: 100%;
+  display: flex;
+  gap: 32px;
+  position: relative;
+  align-items: flex-start;
+}
+@media(max-width:600px){ .about-modal{ flex-direction:column; } }
+.about-modal-close {
+  position: absolute;
+  top: 16px; right: 20px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,.4);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color .2s;
+  line-height: 1;
+  padding: 4px 8px;
+}
+.about-modal-close:hover { color: #fff; }
+.about-modal-photo { flex-shrink: 0; }
+.about-modal-img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,.1);
+}
+.about-modal-sep {
+  width: 1px;
+  background: rgba(255,255,255,.08);
+  align-self: stretch;
+  flex-shrink: 0;
+}
+.about-modal-content { flex: 1; }
+.about-modal-name {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #fff;
+  margin: 0 0 4px;
+}
+.about-modal-role {
+  font-size: .82rem;
+  color: rgba(255,255,255,.4);
+  font-style: italic;
+  margin: 0 0 16px;
+}
+.about-modal-bio {
+  font-size: .88rem;
+  color: rgba(255,255,255,.6);
+  line-height: 1.7;
+  font-weight: 300;
+  margin: 0;
+}
+
+/* ─── VALUES ─── */
+.about-values-section {
+  background: #050505;
+  padding: 96px 24px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.about-values-inner { max-width: 1100px; margin: 0 auto; }
+.about-values-header { margin-bottom: 56px; }
+.about-values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+.about-value-card {
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 16px;
+  padding: 28px 28px 32px;
+  background: rgba(255,255,255,.02);
+  transition: border-color .3s, background .3s;
+}
+.about-value-card:hover {
+  border-color: rgba(255,255,255,.14);
+  background: rgba(255,255,255,.035);
+}
+.about-value-bar {
+  width: 36px;
+  height: 3px;
+  background: rgba(255,255,255,.5);
+  border-radius: 99px;
+  margin-bottom: 18px;
+}
+.about-value-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -.01em;
+  margin: 0 0 10px;
+}
+.about-value-body {
+  font-size: .875rem;
+  color: rgba(255,255,255,.5);
+  line-height: 1.65;
+  font-weight: 300;
+  margin: 0;
+}
+
+/* ─── Advisors section light override ─── */
+.about-advisors-section .about-people-header .section-eyebrow { color: #888; }
+</style>
+@endpush
 
 @push('scripts')
   <script src="/assets/js/about.js"></script>

@@ -2,6 +2,11 @@
 
 @section('title', 'Water Solutions Technology')
 
+@push('styles')
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+@endpush
+
 @section('content')
   <section class="relative overflow-hidden bg-gray-50">
     <div class="absolute inset-0 opacity-20"

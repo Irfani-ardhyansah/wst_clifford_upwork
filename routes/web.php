@@ -20,14 +20,19 @@ use App\Http\Controllers\Front\AssetController;
 use App\Http\Controllers\Front\ToolController;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\Admin\GRESBWaterController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\Front\WebinarController;
+use App\Http\Controllers\Front\ArticleController;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login.custom');
 Route::post('/login-by-phone', [AuthController::class, 'loginByPhone'])->name('login.phone');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+// Route::get('/', function () {
+//     return view('index');
+// })->name('index');
+
+Route::get('/', [MemberController::class, 'index'])->name('index');
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -49,6 +54,10 @@ Route::prefix('new-design')->group(function() {
     Route::get('/wst_portal', function () {
         return view('new_design.wst_portal');
     })->name('new-design.wst_portal');
+
+    Route::get('/wst_index', function () {
+        return view('new_design.wst_V12_index');
+    })->name('new-design.wst_V12_index');
 });
 
 Route::middleware(['auth', 'role:admin'])
@@ -115,13 +124,15 @@ Route::middleware('auth')->prefix('member-dashboard')->name('member-dashboard.')
     Route::get('/{id}/content', [AssetController::class, 'show'])->name('show');
 
     Route::get('/articles', [MemberDashboardController::class, 'articles'])->name('articles.index');
-    Route::get('/articles/{id}/content', [MemberDashboardController::class, 'articleContent'])->name('articles.content');
 
     ROUTE::get('/gresb-water', [GRESBWaterController::class, 'index'])->name('gresb-water.index');
     ROUTE::get('/gresb-water/list', [GRESBWaterController::class, 'list'])->name('gresb-water.list');
     ROUTE::get('/gresb-water/form', [GRESBWaterController::class, 'form'])->name('gresb-water.form');
-    Route::post('/gresb-consultation', [GRESBWaterController::class, 'store'])->name('gresb-water.store');
 });
+
+// Public route for consultation submission
+Route::get('/member-dashboard/articles/{id}/content', [MemberDashboardController::class, 'articleContent'])->name('member-dashboard.articles.content');
+Route::post('/member-dashboard/gresb-consultation', [GRESBWaterController::class, 'store'])->name('member-dashboard.gresb-water.store');
 
 Route::prefix('services')->name('services.')->group(function () {
     Route::get('/audit', function () {
@@ -200,6 +211,8 @@ Route::prefix('resources')->name('resources.')->group(function () {
     Route::get('/white-paper', [WhitePaperController::class, 'index'])->name('white-papers');
     Route::get('/assets/{slug}', [AssetController::class, 'show']);
     Route::get('/tool', [ToolController::class, 'index'])->name('tools.selection_tool');
+    Route::get('/webinar', [WebinarController::class, 'index'])->name('webinar');
+    Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
 
     Route::get('/my_city_rebates', function () {
         return view('resources.my_city_rebates');

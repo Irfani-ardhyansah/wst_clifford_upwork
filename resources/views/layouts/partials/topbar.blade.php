@@ -32,15 +32,6 @@
         <a href="#" class="block hover:bg-gray-50 rounded px-2 py-1">Smart Monitoring</a>
         <a href="#" class="block hover:bg-gray-50 rounded px-2 py-1">Project Progress</a>
         <a href="#" class="block hover:bg-gray-50 rounded px-2 py-1">Elara AI Assistant</a>
-        <!-- @guest
-            <a
-                href="{{ route('login') }}"
-                class="block hover:bg-gray-50 rounded px-2 py-1"
-                title="Login"
-            >
-                Login
-            </a>
-        @endguest -->
         <a
             id="nav-login-link"
             href="{{ route('login') }}"

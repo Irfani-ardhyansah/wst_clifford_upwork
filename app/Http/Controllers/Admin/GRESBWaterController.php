@@ -61,6 +61,12 @@ class GRESBWaterController extends Controller
         ]);
 
         if ($validator->fails()) {
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'errors' => $validator->errors()
+                ], 422);
+            }
             return redirect()
                 ->back()
                 ->withErrors($validator)
@@ -80,6 +86,13 @@ class GRESBWaterController extends Controller
         // if (app()->environment('production')) {
         //     $this->sendConsultationEmail($consultation);
         // }
+
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Consultation request submitted successfully!'
+            ]);
+        }
 
         return redirect()
             ->back()

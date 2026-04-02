@@ -3,6 +3,11 @@
 @section('title', 'Water Solutions Technology')
 
 @push('styles')
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+@endpush
+
+@push('styles')
 <style>
     .device {
       border-radius: 36px;

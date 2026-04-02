@@ -1,374 +1,706 @@
 @extends('layouts.app')
 
-@section('title', 'Water Solutions Technology')
+@section('title', 'Elara AI Digital Billing Assistants — Water Solutions Technology')
 
 @push('styles')
 <style>
-  /* initial state for animated rule */
-  .rule {
-    opacity: 0;
-    transform: translateY(1rem);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+/* ═══════════════════════════════════════
+   ELARA AI PAGE — Style matching Audit page
+   ═══════════════════════════════════════ */
+
+/* ─── HERO ─── */
+.elara-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  overflow: hidden;
+}
+.elara-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: .55;
+  filter: grayscale(15%);
+}
+.elara-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,.75) 40%, rgba(0,0,0,.45) 100%);
+}
+.elara-hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: 0 24px;
+  max-width: 780px;
+}
+.elara-hero-h1 {
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 16px 0 20px;
+}
+.elara-hero-h1 em { font-style: italic; color: rgba(255,255,255,.65); }
+.elara-hero-sub {
+  color: rgba(255,255,255,.55);
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: .04em;
+  margin-bottom: 32px;
+  max-width: 480px;
+}
+.elara-hero-sub strong { color: #fff; font-weight: 500; }
+.elara-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.elara-hero-stats {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  background: rgba(0,0,0,.9);
+  padding: 24px;
+  border-radius: 12px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+.elara-stat { text-align: center; }
+.elara-stat-val {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.elara-stat-lbl {
+  font-size: .75rem;
+  color: rgba(255,255,255,.6);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.elara-stat-sep {
+  width: 1px;
+  height: 40px;
+  background: rgba(255,255,255,.2);
+}
+@media(max-width:768px){
+  .elara-hero-stats {
+    position: relative;
+    bottom: 0; right: 0;
+    margin: 40px auto 0;
+    max-width: 320px;
   }
-  /* when it scrolls into view */
-  .rule.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .loader {
-    border:4px solid #f3f3f3;
-    border-top:4px solid #071016;
-    border-radius:50%;
-    width:24px; height:24px;
-    animation:spin 1s linear infinite;
-  }
-  @keyframes spin {
-    to{transform:rotate(360deg)}
-  }
-  .transform-content { opacity:0; transition:opacity .5s ease; }
-  .transform-content.visible { opacity:1; }
+}
+
+/* ─── WELCOME SECTION ─── */
+.elara-welcome-section {
+  background: #080808;
+  padding: 96px 24px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.elara-welcome-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+@media(max-width:768px){ .elara-welcome-inner{ grid-template-columns:1fr; gap:40px; } }
+
+.elara-rule-wrap {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  margin: 28px 0 32px;
+}
+.elara-rule {
+  flex-shrink: 0;
+  width: 3px;
+  height: 120px;
+  background: linear-gradient(to bottom, rgba(255,255,255,.5), rgba(255,255,255,.05));
+  border-radius: 2px;
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.elara-rule.visible { opacity: 1; transform: translateY(0); }
+
+.elara-welcome-img-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.elara-welcome-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  filter: grayscale(10%);
+}
+.elara-welcome-img-caption {
+  font-size: .8rem;
+  color: rgba(255,255,255,.35);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  text-align: center;
+}
+
+/* ─── FEATURES SECTION ─── */
+.elara-features-section {
+  background: #080808;
+  padding: 96px 24px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.elara-features-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 64px;
+  align-items: stretch;
+}
+@media(max-width:768px){ .elara-features-inner{ grid-template-columns:1fr; gap:40px; } }
+
+.elara-features-nav {}
+.elara-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.elara-features-list li {}
+.elara-features-list button {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  padding: 16px 0;
+  font-size: .95rem;
+  font-weight: 300;
+  color: rgba(255,255,255,.4);
+  cursor: pointer;
+  transition: color .2s;
+  letter-spacing: -.01em;
+}
+.elara-features-list button:hover { color: rgba(255,255,255,.7); }
+.elara-features-list button.active {
+  color: #fff;
+  font-weight: 500;
+}
+
+.elara-feature-display {
+  position: relative;
+  min-height: 360px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.elara-feature-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.elara-feature-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.65);
+}
+.elara-feature-content {
+  position: relative;
+  z-index: 10;
+  padding: 40px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.elara-feature-title {
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: -.02em;
+  margin-bottom: 12px;
+}
+.elara-feature-desc {
+  font-size: .95rem;
+  color: rgba(255,255,255,.65);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 24px;
+  max-width: 480px;
+}
+.elara-feature-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,.5);
+  font-size: .85rem;
+  font-weight: 400;
+  text-decoration: none;
+  transition: color .2s;
+  letter-spacing: .04em;
+}
+.elara-feature-link:hover { color: #fff; }
+.elara-feature-link svg { width: 14px; height: 14px; }
+
+/* ─── ADVISORY SECTION ─── */
+.elara-advisory-section {
+  background: #fff;
+  padding: 96px 24px;
+}
+.elara-advisory-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+@media(max-width:900px){ .elara-advisory-inner{ grid-template-columns:1fr; gap:40px; } }
+
+.elara-advisory-ai {}
+.elara-advisory-textarea {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: .9rem;
+  color: #111;
+  background: #fafafa;
+  outline: none;
+  resize: vertical;
+  transition: border-color .2s;
+  box-sizing: border-box;
+}
+.elara-advisory-textarea:focus { border-color: #111; background: #fff; }
+.elara-advisory-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #111;
+  color: #fff;
+  font-size: .875rem;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 100px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: background .2s, transform .2s;
+}
+.elara-advisory-btn:hover { background: #222; transform: translateY(-1px); }
+.elara-advisory-error {
+  color: #ef4444;
+  font-size: .8rem;
+  margin-top: 8px;
+  display: none;
+}
+
+.elara-advisory-chat {}
+.elara-advisory-img-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.elara-advisory-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(10%);
+}
+.elara-advisory-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #fff;
+}
+.elara-advisory-img-overlay h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: -.01em;
+}
+.elara-advisory-img-overlay p {
+  font-size: .85rem;
+  color: rgba(255,255,255,.7);
+  font-weight: 300;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.elara-advisory-img-overlay a {
+  font-size: .85rem;
+  color: rgba(255,255,255,.6);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color .2s;
+}
+.elara-advisory-img-overlay a:hover { color: #fff; }
+
+/* ─── FINAL FORM SECTION ─── */
+.elara-form-section {
+  background: #000;
+  padding: 96px 24px;
+}
+.elara-form-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+@media(max-width:768px){ .elara-form-inner{ grid-template-columns:1fr; gap:40px; } }
+
+.elara-form-h {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.2;
+  margin: 16px 0 20px;
+}
+.elara-form-sub {
+  color: rgba(255,255,255,.55);
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 32px;
+  max-width: 400px;
+}
+.elara-form-ghost-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255,255,255,.25);
+  color: rgba(255,255,255,.7);
+  font-size: .875rem;
+  font-weight: 400;
+  padding: 12px 24px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: border-color .2s, color .2s;
+}
+.elara-form-ghost-btn:hover { border-color: rgba(255,255,255,.5); color: #fff; }
+
+.elara-form-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 36px;
+}
+.elara-form-card-header {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+  letter-spacing: -.01em;
+}
+.elara-form-fields { display: flex; flex-direction: column; gap: 16px; }
+.elara-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media(max-width:480px){ .elara-form-row{ grid-template-columns:1fr; } }
+.elara-input-group { display: flex; flex-direction: column; gap: 6px; }
+.elara-input-group label {
+  font-size: .8rem;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.elara-input {
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: .9rem;
+  color: #111;
+  background: #fafafa;
+  outline: none;
+  transition: border-color .2s, background .2s;
+  box-sizing: border-box;
+}
+.elara-input:focus { border-color: #111; background: #fff; }
+.elara-textarea { resize: vertical; }
+.elara-submit-btn {
+  width: 100%;
+  background: #111;
+  color: #fff;
+  font-size: .9rem;
+  font-weight: 500;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.elara-submit-btn:hover { background: #222; transform: translateY(-1px); }
+
+/* ─── LOADER ─── */
+.elara-loader {
+  display: none;
+  width: 20px; height: 20px;
+  border: 3px solid rgba(255,255,255,.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: elara-spin 0.8s linear infinite;
+  margin-left: 8px;
+}
+@keyframes elara-spin { to { transform: rotate(360deg); } }
 </style>
 @endpush
 
 @section('content')
-  <section class="relative min-h-[520px] flex items-center justify-start overflow-hidden bg-black">
-    <img 
-      src="/assets/img/services/elara_ai_hero.png"
-      alt="Modern hotel or commercial building"
-      class="absolute inset-0 w-full h-full object-cover grayscale opacity-55 z-0" />
-    <div class="absolute inset-0 bg-black bg-opacity-20 z-10"></div>
-  
-    <div class="relative z-20 max-w-2xl pl-6 md:pl-16 py-16">
-      <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight drop-shadow">
-        Elara AI Digital Billing Assistants 
-      </h1>
-      <p class="text-lg md:text-xl text-gray-100 font-light mb-7 max-w-xl">
-        <span class="block"> <span class="font-bold text-white">Now every property has an AI water analyst</span> </span> 
-        <span class="text-gray-300 block mt-2">
-          Built on the world’s premier real estate water management, AI platform: Your water is now intelligent, and will speak to you!
-        </span>
-      </p>
-        <a href="#"
-          class="group inline-flex items-center justify-between rounded-full bg-white text-zinc-900 px-6 py-3 font-semibold
-            shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:bg-white">
-          <span>Request a Confidential Demo</span>
-          <span class="ml-4 grid place-items-center w-9 h-9 rounded-full bg-zinc-900/10 text-zinc-900 transition-transform duration-300 group-hover:rotate-45">
-            <i class="ri-arrow-right-up-line"></i>
-          </span>
-        </a>
-    </div>
-  
-    <div class="absolute bottom-8 right-8 bg-black bg-opacity-50 text-white p-6 w-80 shadow-2xl rounded-none z-30 flex flex-col items-start
-                max-md:relative max-md:bottom-0 max-md:right-0 max-md:mx-auto max-md:w-11/12 max-md:mt-10">
-      <div class="text-base mb-2 font-semibold">
-        Audit uncovered <br />
-        <span class="text-xl font-bold">180,000 gal/month</span> savings
-      </div>
-      <div class="flex items-end space-x-1 mb-2 mt-2">
-        <svg width="150" height="68" viewBox="0 0 80 32" fill="none">
-          <rect x="5" y="16" width="8" height="12" fill="#888"/>
-          <rect x="20" y="8" width="8" height="20" fill="#bbb"/>
-          <rect x="35" y="12" width="8" height="16" fill="#ccc"/>
-          <rect x="50" y="4" width="8" height="24" fill="#fff"/>
-        </svg>
-      </div>
-      <div class="text-sm text-gray-200">
-        Payback in <span class="font-bold">6.3</span> months<br>
-        <span class="text-xs">verified savings by WST</span>
-      </div>
-    </div>
-  </section>
-  
-  <section class="bg-gray-50 py-20">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-start">
-      
-      <div class="space-y-8">
-        <h2 class="text-4xl font-extrabold text-gray-900 leading-snug">
-          Welcome to Elara AI
-        </h2>
-  
-        <div class="flex items-start space-x-6" data-aos="fade-right">
-          <div class="rule w-1 h-40 bg-gradient-to-b from-blue-600 to-blue-300"></div>
-          <p class="flex-1 text-lg text-gray-700 leading-relaxed">
-            Elara AI empowers real-estate professionals (property managers &amp; asset managers)
-            with instant, accurate billing insights while eliminating manual data entry. From
-            portfolio-wide benchmarking to ESG-ready reports and predictive alerts, Elara is
-            your partner in utility optimization.
-          </p>
-        </div>
-  
-        <a href="#contact"
-           class="inline-block bg-black text-white font-semibold px-8 py-3 text-base hover:bg-gray-900 transition">
-          Speak with an Auditor
-        </a>
-      </div>
-  
-      <div class="space-y-1">
-        <h3 class="text-xl font-extrabold text-gray-900 leading-snug">
-          A Better Way to Manage Portfolio and Property Water Utilities
-        </h3>
-        <img 
-          src="/assets/img/services/elara_ai_dashboard.png" 
-          alt="Water Utilities Illustration"
-          class="w-full h-auto object-cover rounded-lg"
-        />  
-        <h3 class="text-xl font-extrabold text-gray-900 leading-snug">
-          Elara AI | Know More. React Faster. Save Smarter.
-        </h3>
-      </div>
-  
-    </div>
-  </section>
-  
-  <section class="bg-white py-20">
-    <div
-      x-data="{
-        selected: 0,
-        features: [
-          {
-            label: 'Smart Utility Data Extraction',
-            header: 'Smart Utility Data Extraction',
-            desc: 'Extracts data from water utility bills (PDF, scan, image, or Excel) instantly and with zero manual entry. From 7 manual hours – 30 seconds.'
-          },
-          {
-            label: 'Integrated with Smart Technology Systems',
-            header: 'Integrated with Smart Technology Systems',
-            desc: 'Connects data insights directly to building-level monitoring systems to track real-time improvements and savings.'
-          },
-          {
-            label: 'Benchmarking & ESG Reporting',
-            header: 'Benchmarking & ESG Reporting',
-            desc: 'Automatically compares water usage across properties and generates ESG, LEED, or GRESB-ready reports.'
-          },
-          {
-            label: 'Real-Time Anomaly Detection',
-            header: 'Real-Time Anomaly Detection',
-            desc: 'Instantly detects billing errors, leaks, and inefficient consumption across your portfolio.'
-          },
-          {
-            label: 'Built-in Chatbot Support',
-            header: 'Built-in Chatbot Support',
-            desc: 'Ask Elara anything — from utility trends and usage summaries to projected savings. Get instant answers and recommendations.'
-          },
-          {
-            label: 'Chat with Elara',
-            header: 'Chat with Elara',
-            desc: 'Elara’s chatbot is available 24/7. Ask questions, review summaries, or run quick savings estimates in a conversational interface.'
-          }
-        ]
-      }"
-      class="max-w-7xl mx-auto px-4 grid md:grid-cols-5 gap-10 items-stretch"
-    >
-      <div class="col-span-full md:col-span-2 flex flex-col">
-        <h3 class="text-3xl font-bold text-gray-900 mb-8 text-left">
-          What Makes Elara AI the Industry Standard?
-        </h3>
-        <ul class="space-y-3">
-          <template x-for="(item, idx) in features" :key="idx">
-            <li>
-              <button
-                @click="selected = idx"
-                :class="selected === idx
-                  ? 'text-blue-700 font-bold'
-                  : 'text-gray-600 font-normal'"
-                class="text-lg px-2 py-1 w-full text-left transition hover:text-blue-500 focus:outline-none"
-              >
-                <span x-text="item.label"></span>
-              </button>
-            </li>
-          </template>
-        </ul>
-      </div>
-      
-      <div class="col-span-full md:col-span-3 relative min-h-[330px] flex items-center mt-8 md:mt-0">
-        <video
-          class="absolute inset-0 w-full h-full object-cover z-0"
-          autoplay
-          loop
-          muted
-          playsinline
-        >
-          <source
-            src="/assets/img/services/elara_ai_video.mp4"
-            type="video/mp4"
-          />
-        </video>
-        <div class="absolute inset-0 bg-black bg-opacity-60 z-10"></div>
-        <div class="relative z-20 p-10 w-full text-left">
-          <h4
-            class="text-3xl font-semibold text-white mb-3"
-            x-text="features[selected].header"
-          ></h4>
-          <p
-            class="text-lg font-light text-gray-100 mb-6"
-            x-text="features[selected].desc"
-          ></p>
-          <a
-            href="#"
-            class="inline-flex items-center text-blue-200 font-medium hover:underline gap-2"
-          >
-            More about our approach
-            <svg
-              class="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M5 12h14m-7-7l7 7-7 7"
-              />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-    
-  </section>
 
-  <section class="bg-white py-12">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
-        <div class="space-y-12 mt-8 lg:mt-0">
-          <h2 class="text-4xl font-bold text-gray-900">
-            Advisory Services
-          </h2>
-          <p class="text-lg text-gray-600">
-            Our core services to get you started.
-          </p>
-  
-          <div class="mt-8 pt-6 border-t">
-            <label for="ai-challenge-input" class="font-semibold text-lg">
-              Describe your challenge:
-            </label>
-            <textarea
-              id="ai-challenge-input"
-              rows="3"
-              class="w-full mt-2 p-2 border rounded-md"
-              placeholder="e.g., 'My hotel's water bills have increased by 30% this year...'">
-            </textarea>
-            <a href="#" 
-              class="group inline-flex items-center rounded-full px-6 py-3 bg-gray-900 text-white font-semibold shadow-md 
-                hover:shadow-lg hover:-translate-y-0.5 transition-all">
-              <span>✨ Get Elara AI-Powered Advice</span>
-              <span class="ml-4 grid place-items-center w-9 h-9 rounded-full">
-                <i class="ri-arrow-right-up-line ml-3"></i>
-              </span>
-            </a>
-            <p id="ai-error-msg" class="text-red-500 text-sm mt-2 hidden"></p>
-          </div>
-        </div>
-  
-        <div class="flex flex-col justify-center space-y-4">
-          <h2 class="text-2xl font-bold text-gray-900">Chat with Elara</h2>
-          <p class="text-lg text-gray-600">
-            Sample Elara before scheduling a demo.
-          </p>
-        </div>
-  
-        <div class="relative mt-8 lg:mt-0">
-          <img
-            src="/assets/img/services/elara_ai_hero.png"
-            alt="Advisory Service Image"
-            class="shadow-lg w-full h-96 object-cover"
-          />
-          <div
-            class="absolute inset-0 bg-black/60 px-6 pt-6 pb-20 flex flex-col justify-end text-white transform-content visible"
-          >
-            <h3 class="text-2xl font-bold">
-              Comprehensive Water Audits
-            </h3>
-            <p class="mt-2 text-sm">
-              We begin with a thorough audit of your property's water usage to identify key areas for improvement and savings.
-            </p>
-            <a
-              href="#"
-              class="mt-4 font-semibold hover:underline"
-            >
-              More about Audits →
-            </a>
-          </div>
-        </div>
-      </div>
+{{-- ─── HERO ─── --}}
+<div class="elara-hero">
+  <img
+    src="/assets/img/services/elara_ai_hero.png"
+    alt="Elara AI Digital Billing Assistant"
+    class="elara-hero-img" />
+  <div class="elara-hero-overlay"></div>
+  <div class="elara-hero-content">
+    <div class="section-eyebrow" style="color:rgba(255,255,255,0.4);">Elara AI</div>
+    <h1 class="elara-hero-h1">
+      Now Every Property Has<br>
+      <em>an AI Water Analyst</em>
+    </h1>
+    <p class="elara-hero-sub">
+      <strong>Digital Billing Assistants</strong> built on the world's premier real estate water management AI platform. Your water is now intelligent — and it will speak to you.
+    </p>
+    <div class="elara-hero-actions">
+      <a href="#elara-form" class="btn-hero-primary">Request a Confidential Demo</a>
+      <a href="#elara-features" class="btn-hero-ghost">Explore Features</a>
     </div>
-</section>
-  
-  <section class="bg-gray-50 py-16">
-    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12">
-      <div class="flex flex-col justify-center space-y-6">
-        <h2 class="text-3xl md:text-4xl font-serif font-semibold uppercase text-gray-900 leading-tight">
-          Protect Your Asset Performance
-        </h2>
-        <p class="text-lg text-gray-700 max-w-md">
-          Request a confidential water audit to optimize your property’s health and profitability.
+  </div>
+  <div class="elara-hero-stats">
+    <div class="elara-stat">
+      <div class="elara-stat-val">180,000 gal/month</div>
+      <div class="elara-stat-lbl">Audit uncovered savings</div>
+    </div>
+    <div class="elara-stat-sep"></div>
+    <div class="elara-stat">
+      <div class="elara-stat-val">6.3 months</div>
+      <div class="elara-stat-lbl">Payback period</div>
+    </div>
+  </div>
+</div>
+
+{{-- ─── WELCOME ─── --}}
+<section class="elara-welcome-section">
+  <div class="elara-welcome-inner">
+    <div>
+      <div class="section-eyebrow">Welcome to Elara AI</div>
+      <h2 class="section-h2">
+        A Better Way to Manage<br><em>Portfolio Water Utilities</em>
+      </h2>
+      <div class="elara-rule-wrap">
+        <div class="elara-rule" id="introRule"></div>
+        <p class="section-sub" style="max-width:480px;">
+          Elara AI empowers real-estate professionals — property managers and asset managers — with instant, accurate billing insights while eliminating manual data entry. From portfolio-wide benchmarking to ESG-ready reports and predictive alerts, Elara is your partner in utility optimization.
         </p>
-        <a href="#"
-          class="group mt-8 inline-flex items-center justify-between rounded-full bg-zinc-100 text-zinc-900 px-6 py-3 font-semibold
-            shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:bg-white">
-          <span>Schedule a Demo</span>
-          <span class="ml-4 grid place-items-center w-9 h-9 rounded-full bg-zinc-900/10 text-zinc-900 transition-transform duration-300 group-hover:rotate-45">
-            <i class="ri-arrow-right-up-line"></i>
-          </span>
+      </div>
+      <a href="#elara-features" class="elara-advisory-btn" style="display:inline-flex;">Speak with an Auditor</a>
+    </div>
+
+    <div class="elara-welcome-img-wrap">
+      <img
+        src="/assets/img/services/elara_ai_dashboard.png"
+        alt="Elara AI Dashboard"
+        class="elara-welcome-img" />
+      <div class="elara-welcome-img-caption">Elara AI &nbsp;|&nbsp; Know More. React Faster. Save Smarter.</div>
+    </div>
+  </div>
+</section>
+
+{{-- ─── FEATURES ─── --}}
+<section class="elara-features-section" id="elara-features">
+  <div class="elara-features-inner"
+    x-data="{
+      selected: 0,
+      features: [
+        { label: 'Smart Utility Data Extraction', title: 'Smart Utility Data Extraction', desc: 'Extracts data from water utility bills (PDF, scan, image, or Excel) instantly and with zero manual entry. From 7 manual hours – 30 seconds.' },
+        { label: 'Integrated with Smart Technology Systems', title: 'Integrated with Smart Technology Systems', desc: 'Connects data insights directly to building-level monitoring systems to track real-time improvements and savings.' },
+        { label: 'Benchmarking & ESG Reporting', title: 'Benchmarking & ESG Reporting', desc: 'Automatically compares water usage across properties and generates ESG, LEED, or GRESB-ready reports.' },
+        { label: 'Real-Time Anomaly Detection', title: 'Real-Time Anomaly Detection', desc: 'Instantly detects billing errors, leaks, and inefficient consumption across your portfolio.' },
+        { label: 'Built-in Chatbot Support', title: 'Built-in Chatbot Support', desc: 'Ask Elara anything — from utility trends and usage summaries to projected savings. Get instant answers and recommendations.' },
+        { label: 'Chat with Elara', title: 'Chat with Elara', desc: 'Elara\'s chatbot is available 24/7. Ask questions, review summaries, or run quick savings estimates in a conversational interface.' }
+      ]
+    }"
+  >
+    <div class="elara-features-nav">
+      <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">Capabilities</div>
+      <h2 class="section-h2" style="color:#fff;">What Makes Elara AI<br><em>the Industry Standard?</em></h2>
+      <ul class="elara-features-list">
+        <template x-for="(item, idx) in features" :key="idx">
+          <li>
+            <button
+              @click="selected = idx"
+              :class="selected === idx ? 'active' : ''"
+              x-text="item.label">
+            </button>
+          </li>
+        </template>
+      </ul>
+    </div>
+
+    <div class="elara-feature-display">
+      <video class="elara-feature-video" autoplay loop muted playsinline>
+        <source src="/assets/img/services/elara_ai_video.mp4" type="video/mp4" />
+      </video>
+      <div class="elara-feature-overlay"></div>
+      <div class="elara-feature-content">
+        <h4 class="elara-feature-title" x-text="features[selected].title"></h4>
+        <p class="elara-feature-desc" x-text="features[selected].desc"></p>
+        <a href="#" class="elara-feature-link">
+          More about our approach
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7l7 7-7 7"/>
+          </svg>
         </a>
       </div>
-  
-      <div id="schedule-demo">
-        <form class="bg-white p-6 rounded-md shadow-md space-y-4">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <input type="text" placeholder="First Name" required
-                   class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-            <input type="text" placeholder="Last Name" required
-                   class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <input type="text" placeholder="Company Name" required
-                   class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-            <input type="text" placeholder="Company Role" required
-                   class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <input type="tel" placeholder="Contact Number" required
-                   class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-            <input type="email" placeholder="Email" required
-                   class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="flex flex-col">
-              <label for="demo-date" class="mb-1 text-gray-600 font-medium">Preferred Date</label>
-              <input id="demo-date" type="date" required
-                     class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-            </div>
-            <div class="flex flex-col">
-              <label for="demo-time" class="mb-1 text-gray-600 font-medium">Preferred Time</label>
-              <input id="demo-time" type="time" required
-                     class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-            </div>
-          </div>
-          <div>
-            <textarea placeholder="Additional Message (optional)" rows="4"
-                      class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-          </div>
-          <div>
-            <a href="#" 
-              class="w-full group inline-flex items-center rounded-full px-6 py-3 bg-gray-900 text-white font-semibold shadow-md 
-                hover:shadow-lg hover:-translate-y-0.5 transition-all">
-              <span>Submit Request</span>
-              <span class="ml-auto grid place-items-center w-9 h-9 rounded-full">
-                <i class="ri-arrow-right-up-line ml-3"></i>
-              </span>
-            </a>
-          </div>
-        </form>
+    </div>
+  </div>
+</section>
+
+{{-- ─── ADVISORY ─── --}}
+<section class="elara-advisory-section">
+  <div class="elara-advisory-inner">
+
+    <div class="elara-advisory-ai">
+      <div class="section-eyebrow">Advisory Services</div>
+      <h2 class="section-h2" style="font-size:clamp(1.6rem,3vw,2.4rem);">
+        Core Services<br><em>to Get You Started</em>
+      </h2>
+      <p class="section-sub">Our experts are ready to address your specific water management challenges.</p>
+      <div style="margin-top:28px;">
+        <label for="ai-challenge-input" style="font-size:.85rem;font-weight:600;color:#374151;text-transform:uppercase;letter-spacing:.05em;">
+          Describe your challenge
+        </label>
+        <textarea
+          id="ai-challenge-input"
+          rows="3"
+          class="elara-advisory-textarea"
+          placeholder="e.g., 'My hotel's water bills have increased by 30% this year...'">
+        </textarea>
+        <button id="get-ai-advice-btn" class="elara-advisory-btn">
+          ✨ Get Elara AI-Powered Advice
+          <span class="elara-loader" id="ai-loader"></span>
+        </button>
+        <p id="ai-error-msg" class="elara-advisory-error"></p>
       </div>
     </div>
-  </section>
+
+    <div class="elara-advisory-chat">
+      <div class="section-eyebrow">Chat with Elara</div>
+      <h2 class="section-h2" style="font-size:clamp(1.6rem,3vw,2.4rem);">
+        Sample Elara<br><em>Before Your Demo</em>
+      </h2>
+      <p class="section-sub">Available 24/7 to answer questions, review summaries, and run savings estimates.</p>
+    </div>
+
+    <div>
+      <div class="section-eyebrow">Audit Services</div>
+      <div class="elara-advisory-img-wrap" style="margin-top:16px;">
+        <img
+          src="/assets/img/services/elara_ai_hero.png"
+          alt="Comprehensive Water Audits"
+          class="elara-advisory-img" />
+        <div class="elara-advisory-img-overlay">
+          <h3>Comprehensive Water Audits</h3>
+          <p>We begin with a thorough audit of your property's water usage to identify key areas for improvement and savings.</p>
+          <a href="#">More about Audits →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{{-- ─── FINAL FORM ─── --}}
+<section class="elara-form-section" id="elara-form">
+  <div class="elara-form-inner">
+
+    <div>
+      <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">Get Started</div>
+      <h2 class="elara-form-h">Protect Your<br>Asset <em>Performance</em></h2>
+      <p class="elara-form-sub">
+        Request a confidential water audit to optimize your property's health and profitability.
+      </p>
+      <a href="#elara-form" class="elara-form-ghost-btn">Schedule a Demo</a>
+    </div>
+
+    <div class="elara-form-card" id="schedule-demo">
+      <div class="elara-form-card-header">Confidential Demo Request</div>
+      <form class="elara-form-fields">
+        <div class="elara-form-row">
+          <input type="text" placeholder="First Name" required class="elara-input" />
+          <input type="text" placeholder="Last Name" required class="elara-input" />
+        </div>
+        <div class="elara-form-row">
+          <input type="text" placeholder="Company Name" required class="elara-input" />
+          <input type="text" placeholder="Company Role" required class="elara-input" />
+        </div>
+        <div class="elara-form-row">
+          <input type="tel" placeholder="Contact Number" required class="elara-input" />
+          <input type="email" placeholder="Email" required class="elara-input" />
+        </div>
+        <div class="elara-form-row">
+          <div class="elara-input-group">
+            <label>Preferred Date</label>
+            <input type="date" required class="elara-input" />
+          </div>
+          <div class="elara-input-group">
+            <label>Preferred Time</label>
+            <input type="time" required class="elara-input" />
+          </div>
+        </div>
+        <textarea placeholder="Additional Message (optional)" rows="4" class="elara-input elara-textarea"></textarea>
+        <button type="submit" class="elara-submit-btn">Submit Request</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
 @endsection
 
-  @push('scripts')
+@push('scripts')
 <script>
+  // Intro rule scroll animation
+  document.addEventListener('DOMContentLoaded', () => {
+    const rule = document.getElementById('introRule');
+    if (!rule) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          rule.classList.add('visible');
+          observer.unobserve(rule);
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(rule);
+  });
 
+  // AI advice button
   document.addEventListener('DOMContentLoaded', () => {
     const btn = document.getElementById('get-ai-advice-btn');
     const input = document.getElementById('ai-challenge-input');
@@ -379,11 +711,11 @@
       const challenge = input.value.trim();
       if (!challenge) {
         err.textContent = 'Please describe your challenge first.';
-        err.classList.remove('hidden');
+        err.style.display = 'block';
         return;
       }
-      loader.classList.remove('hidden');
-      err.classList.add('hidden');
+      loader.style.display = 'inline-block';
+      err.style.display = 'none';
       btn.disabled = true;
 
       const prompt = `You are a water-management expert. Client says: "${challenge}". Reply with JSON: { title, subtitle, overlayTitle, overlayText }.`;
@@ -409,7 +741,7 @@
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
         const res = await fetch(url, {
           method: 'POST',
-          headers: {'Content-Type':'application/json'},
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         });
         if (!res.ok) throw new Error(res.statusText);
@@ -421,32 +753,18 @@
         document.getElementById('transform-subtitle').textContent = data.subtitle;
         document.getElementById('transform-overlay-title').textContent = data.overlayTitle;
         document.getElementById('transform-overlay-text').textContent = data.overlayText;
-        document.getElementById('transform-overlay-link').href = data.overlayLink||'#';
+        if (document.getElementById('transform-overlay-link')) {
+          document.getElementById('transform-overlay-link').href = data.overlayLink || '#';
+        }
       } catch (e) {
         err.textContent = "Could not generate advice. Try again later.";
-        err.classList.remove('hidden');
+        err.style.display = 'block';
         console.error(e);
       } finally {
-        loader.classList.add('hidden');
+        loader.style.display = 'none';
         btn.disabled = false;
       }
     });
   });
-
-
-  document.addEventListener('DOMContentLoaded', () => {
-      const rule = document.getElementById('introRule');
-      if (!rule) return;
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            rule.classList.add('visible');
-            observer.unobserve(rule);
-          }
-        },
-        { threshold: 0.2 }
-      );
-      observer.observe(rule);
-    });
-  </script>
+</script>
 @endpush

@@ -1,102 +1,76 @@
-
-
-      <!-- =============== FOOTER SECTION (PREMIUM, MATCHES HEADER) =============== -->
-       <footer class="relative bg-black text-white pt-16 pb-0 shadow-xl px-0">
-      <div class="max-w-12xl mx-auto flex flex-col md:flex-row md:justify-between px-10">
-        <div class="mb-12 md:mb-0 flex-1 min-w-[270px]">
-          <div class="flex items-center mb-3">
-            <img src="{{ asset('assets/img/logo.png') }}" alt="Water Solutions Technology Logo" class="h-12 w-auto mr-4" />
-            <span class="text-2xl tracking-wider font-light" style="font-family:'Avenir', Arial, sans-serif; letter-spacing:0.09em;">Water Solutions Technology</span>
-          </div>
-          
-          <p class="text-gray-300 text-sm mb-1">
-            1200 S. Andrews Ave, <br>
-            Suite 504, <br>
-            Fort Lauderdale, FL 33301
-          </p>
-          <div class="text-gray-300 text-sm mb-4">+1 (954) 508-3877</div>
-          
-          <div class="flex space-x-2 mt-3">
-            <a href="https://www.linkedin.com/yourcompany" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="hover:text-blue-400 transition">
-              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5A2.48 2.48 0 002.5 6c0 1.38 1.12 2.5 2.48 2.5A2.48 2.48 0 007.5 6c0-1.38-1.12-2.5-2.52-2.5zm.02 5.75H2.5v12.75h2.5V9.25zm7.2 0h-2.45v12.75h2.45v-6.3c0-1.84 2.38-2 2.38 0v6.3h2.45v-7.14c0-4.06-4.91-3.91-4.91 0V9.25z"/></svg>
-            </a>
-            <a href="https://twitter.com/yourcompany" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" class="hover:text-blue-400 transition">
-              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 1200 1227"><path d="M1119.77 0h-207.08L599.84 495.92 285.31 0H67.39l430.47 633.57L55.29 1227h207.08l312.37-388.56L914.6 1227h217.92l-450.06-666.22L1119.77 0z"/></svg>
-            </a>
-            <a href="https://www.youtube.com/yourcompany" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="hover:text-blue-400 transition">
-              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 576 512"><path d="M549.7 124.1c-6.3-24-25-42.6-48.9-48.7C468.4 64 288 64 288 64s-180.4 0-212.8 11.4c-23.9 6.1-42.6 24.7-48.9 48.7C16 162.6 16 256 16 256s0 93.4 10.3 131.9c6.3 24 25 42.6 48.9 48.7C107.6 448 288 448 288 448s180.4 0 212.8-11.4c23.9-6.1 42.6-24.7 48.9-48.7C560 349.4 560 256 560 256s0-93.4-10.3-131.9zM232 336V176l142.7 80-142.7 80z"/></svg>
-            </a>
-          </div>
-          <div class="flex space-x-3 mt-6">
-            <a href="https://play.google.com/store/apps/details?id=your.app.id" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Download on Google Play" class="h-8"/>
-            </a>
-            <a href="https://apps.apple.com/us/app/your-app-name/idYOURAPPID" target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store">
-              <img src="https://developer.apple.com//assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" class="h-8"/>
-            </a>
-          </div>
-        </div>
-        
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 flex-1 min-w-[320px]">
-          <div>
-            <div class="font-semibold uppercase text-gray-300 text-xs mb-2 tracking-widest">About</div>
-            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Our Story</a>
-            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Team</a>
-            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Careers</a>
-            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Contact</a>
-          </div>
-          <div>
-            <div class="font-semibold uppercase text-gray-300 text-xs mb-2 tracking-widest">Portfolio</div>
-            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Projects</a>
-            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Case Studies</a>
-            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Industries</a>
-          </div>
-          <div>
-            <div class="font-semibold uppercase text-gray-300 text-xs mb-2 tracking-widest">Resources</div>
-            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Blog</a>
-            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">FAQs</a>
-            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Water Consumption Tool</a>
-            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Financing Application</a>
-          </div>
-          <div>
-            <div class="font-semibold uppercase text-gray-300 text-xs mb-2 tracking-widest">Legal</div>
-            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Terms of Service</a>
-            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">Privacy Policy</a>
-            <a href="#" class="block text-sm text-gray-100 hover:text-blue-400 mb-2 transition">User Agreement</a>
-          </div>
-        </div>
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-main">
+    <div>
+      <a href="/" class="footer-brand-name">Water Solutions Technology</a>
+      <p class="footer-tagline">We translate water performance into financial and investment outcomes — for institutional real estate portfolios across the US.</p>
+      <div class="footer-address">
+        1200 S. Andrews Avenue, Suite 504<br>
+        Fort Lauderdale, FL 33301<br>
+        <a href="tel:+19545083877">+1 (954) 508-3877</a><br>
+        <a href="/cdn-cgi/l/email-protection#3f5e5c5c7f485e4b5a4d4c50534a4b5a5c57115c5052"><span class="__cf_email__" data-cfemail="28494b4b685f495c4d5a5b47445d5c4d4b40064b4745">[email&#160;protected]</span></a>
       </div>
-      
-      <div class="max-w-7xl mx-auto flex justify-end px-6 pt-6">
-        <a href="#" class="text-sm text-gray-300 hover:text-blue-400 mx-3">Webinars & Events</a>
-        <a href="#" class="text-sm text-gray-300 hover:text-blue-400 mx-3">Login</a>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/company/water-solutions-technology" class="footer-social" aria-label="LinkedIn" target="_blank" rel="noopener">in</a>
+        <a href="https://twitter.com/watersolutech" class="footer-social" aria-label="X / Twitter" target="_blank" rel="noopener">𝕏</a>
+        <a href="https://www.youtube.com/@watersolutionstech" class="footer-social" aria-label="YouTube" target="_blank" rel="noopener">▷</a>
       </div>
-      
-      <div class="bg-black w-full mt-6 border-t border-gray-800">
-        <div class="max-w-12xl mx-auto flex flex-col md:flex-row items-center justify-between py-3 px-12">
-          <div class="text-xs text-gray-400">&copy; 2025 Water Solutions Technology. All rights reserved.</div>
-          <div class="flex-1 flex justify-center space-x-6">
-            <a href="#" class="text-xs text-gray-400 hover:text-blue-400">Privacy Policy</a>
-            <span class="text-xs text-gray-400">|</span>
-            <a href="#" class="text-xs text-gray-400 hover:text-blue-400">User Agreement</a>
-            <span id="admin-links-container">
-                @guest
-                    <span class="text-xs text-gray-400">|</span>
-                    <a href="{{ route('login') }}" class="admin-login-link text-xs text-gray-400 hover:text-blue-400">
-                        Admin Access
-                    </a>
-                @endguest
-            </span>
-          </div>
-          <div class="flex items-center">
-            <span class="text-xs text-gray-200 mr-2 tracking-wide">Stay Connected:</span>
-            <a href="#" class="bg-white hover:bg-gray-300 text-black px-4 py-1 rounded uppercase text-xs tracking-wider ml-2 font-bold shadow transition">CHOOSE YOUR PORTFOLIO</a>
-          </div>
-        </div>
+    </div>
+    <div>
+      <div class="footer-col-title">About</div>
+      <ul class="footer-links">
+        <li><a href="/about">Our Story</a></li>
+        <li><a href="/about/team">Team</a></li>
+        <li><a href="/investors">Investors</a></li>
+        <li><a href="/opportunities/mep">Careers &amp; Partners</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Portfolio</div>
+      <ul class="footer-links">
+        <li><a href="/resources/case-studies">Case Studies</a></li>
+        <li><a href="/industries">Industries</a></li>
+        <li><a href="/services">All Services</a></li>
+        <li><a href="/resources/tools">Water Tools</a></li>
+      </ul>
+      <div class="footer-col-title" style="margin-top:24px;">Portals</div>
+      <ul class="footer-links">
+        <li><a href="https://member.watersolutech.com">Member Portal</a></li>
+        <li><a href="https://monitor.watersolutech.com">Smart Monitor</a></li>
+        <li><a href="https://ara.watersolutech.com">Ara AI Assistant</a></li>
+        <li><a href="https://clientportal.watersolutech.com">Project Tracking</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Resources</div>
+      <ul class="footer-links">
+        <li><a href="/resources/white-papers">White Papers</a></li>
+        <li><a href="/resources/webinars">Webinars On Demand</a></li>
+        <li><a href="/resources/tools">GRESB Peer Tool</a></li>
+        <li><a href="/resources/tax-strategy">Tax Strategy</a></li>
+        <li><a href="/resources/city-rebates">Water Consumption Tool</a></li>
+        <li><a href="/resources/events">Events &amp; Conferences</a></li>
+        <li><a href="/resources/tax-strategy">Financing Application</a></li>
+      </ul>
+      <div class="footer-col-title" style="margin-top:24px;">Legal</div>
+      <ul class="footer-links">
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+        <li><a href="/user-agreement">User Agreement</a></li>
+        <li><a href="/terms">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">
+      <span class="footer-copy">© <span id="footer-yr"></span> Water Solutions Technology, LLC. All rights reserved.</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:20px;">
+      <div class="footer-bottom-links">
+        <a href="/resources/webinars">Webinars &amp; Events</a>
+        <a href="https://member.watersolutech.com">Login</a>
       </div>
-       </footer>
-       
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-            crossorigin="anonymous"></script>
-   <script src="{{ asset('assets/js/script.js')}}"></script>
+      <a href="/contact" class="footer-portfolio-cta">Choose Your Portfolio</a>
+    </div>
+  </div>
+</footer>

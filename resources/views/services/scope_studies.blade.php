@@ -1,321 +1,719 @@
 @extends('layouts.app')
 
-@section('title', 'Water Solutions Technology')
+@section('title', 'Scoping Studies — Water Solutions Technology')
 
 @section('content')
-      <section class="relative min-h-[520px] flex items-center justify-start overflow-hidden bg-black">
-      <img 
-        src="/assets/img/services/scope_studies.png"
-        alt="Modern hotel or commercial building"
-        class="absolute inset-0 w-full h-full object-cover grayscale opacity-25 z-0" />
-      <div class="absolute inset-0 bg-black bg-opacity-5 z-10"></div>
-    
-      <div class="relative z-20 max-w-2xl pl-6 md:pl-16 py-16">
-        <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight drop-shadow">
-          The Gold Standard in Water Stewardship for Asset Owners & Managers <br class="hidden md:block"> 
-        </h1> 
-        <p class="text-lg md:text-xl text-gray-100 font-light mb-7 max-w-xl">
-          <span class="block"> Delivering <span class="font-bold text-white">proven returns</span> and transparency for owners, asset managers, and property teams.</span>
-          <span class="text-gray-300 block mt-2"> 
-          A trusted, science driven process for quantifiable savings, compliance, and true operational resilience. <br><br>
-          
-          </span>
-        </p>
-        <a href="#"
-          class="group inline-flex items-center justify-between rounded-full bg-white text-zinc-900 px-6 py-3 font-semibold
-            shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:bg-white">
-          <span>Request a Flow Assessment</span>
-          <span class="ml-4 grid place-items-center w-9 h-9 rounded-full bg-zinc-900/10 text-zinc-900 transition-transform duration-300 group-hover:rotate-45">
-            <i class="ri-arrow-right-up-line"></i>
-          </span>
-        </a>
-      </div>
-    
-      <div class="absolute bottom-8 right-8 bg-black bg-opacity-90 text-white p-6 w-80 shadow-2xl rounded-none z-30 flex flex-col items-start
-                  max-md:relative max-md:bottom-0 max-md:right-0 max-md:mx-auto max-md:w-11/12 max-md:mt-10">
-        <div class="text-base mb-2 font-semibold">
-          Audit uncovered <br />
-          <span class="text-xl font-bold">180,000 gal/month</span> savings
-        </div>
-        <div class="flex items-end space-x-1 mb-2 mt-2">
-          <svg width="150" height="68" viewBox="0 0 80 32" fill="none">
-            <rect x="5" y="16" width="8" height="12" fill="#888"/>
-            <rect x="20" y="8" width="8" height="20" fill="#bbb"/>
-            <rect x="35" y="12" width="8" height="16" fill="#ccc"/>
-            <rect x="50" y="4" width="8" height="24" fill="#fff"/>
-          </svg>
-        </div>
-        <div class="text-sm text-gray-200">
-          Payback in <span class="font-bold">6.3</span> months<br>
-          <span class="text-xs">verified savings by WST</span>
-        </div>
-      </div>
-    </section>
-    
-    
-    <div class="bg-white w-full py-14">
-      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 px-6 items-start">
-        <div>
-          <h2 class="text-3xl font-bold mb-8 text-gray-900">Our Proven Approach</h2>
-          <div class="relative pl-10">
-            <div class="absolute top-8 left-5 h-[320px] w-1 bg-yellow-700/60 rounded"></div>
-            <div class="flex items-center mb-12 relative z-10">
-              <div class="flex-shrink-0 bg-white z-10">
-                <svg class="w-8 h-8 text-yellow-700" fill="none" stroke="currentColor" stroke-width="2"
-                    viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="9" stroke="currentColor"/>
-                  <path d="M12 7v5l3 3" stroke="currentColor" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div class="ml-5">
-                <span class="block text-xl font-semibold text-gray-900">Phase I</span>
-                <span class="block text-lg text-gray-800">Scoping Studies:</span>
-                <span class="block text-lg text-gray-800"> Pointing you into the right technical and economic decisions </span>
-    
-                
-              </div>
-            </div>
-            <div class="flex items-center mb-12 relative z-10">
-              <div class="flex-shrink-0 bg-white z-10">
-                <svg class="w-8 h-8 text-yellow-700" fill="none" stroke="currentColor" stroke-width="2"
-                    viewBox="0 0 24 24">
-                  <rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor"/>
-                  <path d="M8 12l2 2l4-4" stroke="currentColor" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div class="ml-5">
-                <span class="block text-xl font-semibold text-gray-900">Phase II</span>
-                <span class="block text-lg text-gray-800">Implementation:</span>
-    <span class="block text-lg text-gray-800">Delivering the highest quality workmanship and finish: exceeding ISO Standards meeting localized building codes </span>
-              </div>
-            </div>
-            <div class="flex items-center mb-12 relative z-10">
-              <div class="flex-shrink-0 bg-white z-10">
-                <svg class="w-8 h-8 text-yellow-700" fill="none" stroke="currentColor" stroke-width="2"
-                    viewBox="0 0 24 24">
-                  <rect x="6" y="4" width="12" height="16" rx="2" stroke="currentColor"/>
-                  <path d="M9 8h6M9 12h6M9 16h3" stroke="currentColor" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div class="ml-5">
-                <span class="block text-xl font-semibold text-gray-900">Phase III</span>
-                <span class="block text-lg text-gray-800">Benchmarking:</span>
-                <span class="block text-lg text-gray-800">Providing data-driven insights to maximize savings and efficiency</span>
-              </div>
-    
-            </div>
-            <div class="flex items-center relative z-10">
-              <div class="flex-shrink-0 bg-white z-10">
-                <svg class="w-8 h-8 text-yellow-700" fill="none" stroke="currentColor" stroke-width="2"
-                    viewBox="0 0 24 24">
-                  <circle cx="12" cy="10" r="4" stroke="currentColor"/>
-                  <path d="M4 20v-1a6 6 0 0112 0v1" stroke="currentColor" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div class="ml-5">
-                <span class="block text-xl font-semibold text-gray-900">Phase IV</span>
-                <span class="block text-lg text-gray-800">24/7 Ongoing Support:</span>
-                <span class="block text-lg text-gray-800"> Continuous adjustments and optimizations to ensure that the original goals are met </span>
-              </div>
-            </div>
+
+{{-- ─── HERO ─── --}}
+<div class="scope-hero">
+  <img
+    src="/assets/img/services/scope_studies.png"
+    alt="Modern hotel or commercial building"
+    class="scope-hero-img" />
+  <div class="scope-hero-overlay"></div>
+  <div class="scope-hero-content">
+    <div class="section-eyebrow" style="color:rgba(255,255,255,0.4);">Scoping Studies</div>
+    <h1 class="scope-hero-h1">
+      The Gold Standard in<br>
+      <em>Water Stewardship</em>
+    </h1>
+    <p class="scope-hero-sub">
+      Delivering proven returns and transparency for owners, asset managers, and property teams.
+    </p>
+    <div class="scope-hero-actions">
+      <a href="#scope-form" class="btn-hero-primary">Request a Flow Assessment</a>
+      <a href="#scope-approach" class="btn-hero-ghost">Learn More</a>
+    </div>
+  </div>
+  <div class="scope-hero-stats">
+    <div class="scope-stat">
+      <div class="scope-stat-val">180,000 gal/month</div>
+      <div class="scope-stat-lbl">Audit uncovered savings</div>
+    </div>
+    <div class="scope-stat-sep"></div>
+    <div class="scope-stat">
+      <div class="scope-stat-val">6.3 months</div>
+      <div class="scope-stat-lbl">Payback period</div>
+    </div>
+  </div>
+</div>
+
+{{-- ─── PROVEN APPROACH ─── --}}
+<section class="scope-approach-section" id="scope-approach">
+  <div class="scope-approach-inner">
+
+    <div class="scope-approach-phases">
+      <div class="section-eyebrow">Our Proven Approach</div>
+      <h2 class="section-h2">A Science-Driven<br><em>Four-Phase Process</em></h2>
+
+      <div class="scope-phases">
+        <div class="scope-phase">
+          <div class="scope-phase-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="scope-phase-body">
+            <div class="scope-phase-label">Phase I</div>
+            <div class="scope-phase-title">Scoping Studies</div>
+            <p class="scope-phase-desc">Pointing you into the right technical and economic decisions</p>
           </div>
         </div>
-    
-        <div>
-          <div class="bg-gray-900 text-white p-8 shadow-xl min-w-[320px]">
-            <h3 class="text-xl font-bold mb-6">Water Metering <span class="font-normal">Industry Insights</span></h3>
-            <div class="grid grid-cols-2 gap-6 mb-6">
-              <div>
-                <div class="text-3xl font-extrabold mb-1">30% +</div>
-                <div class="text-base text-gray-200 leading-tight">
-                  non-revenue water is lost in distribution systems.
-                </div>
-              </div>
-              <div>
-                <div class="text-3xl font-extrabold mb-1">10-23%</div>
-                <div class="text-base text-gray-200 leading-tight">
-                  typical savings from our clients
-                </div>
-              </div>
-              <div>
-                <div class="text-3xl font-extrabold mb-1">15-25%</div>
-                <div class="text-base text-gray-200 leading-tight">
-                  billing discrepancy from manual readings and aging meters. 
-                </div>
-              </div>
-              <div>
-                <div class="text-3xl font-extrabold mb-1">ROI &lt; 2y</div>
-                <div class="text-base text-gray-200 leading-tight">
-                  payback for most commercial properties projects
-                </div>
-              </div>
-            </div>
-            <div class="mt-4 pt-4 border-t border-gray-700 text-gray-300 italic text-base">
-              “Accurate, real-time water metering is not just a compliance or billing issue—
-              It’s a strategic advantage for cost control, sustainability, and asset value.”
-              <br>See how your property stacks up vs. industry benchmarks
-            </div>
+
+        <div class="scope-phase">
+          <div class="scope-phase-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12l2 2l4-4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="scope-phase-body">
+            <div class="scope-phase-label">Phase II</div>
+            <div class="scope-phase-title">Implementation</div>
+            <p class="scope-phase-desc">Delivering highest quality workmanship exceeding ISO Standards and localized building codes</p>
+          </div>
+        </div>
+
+        <div class="scope-phase">
+          <div class="scope-phase-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <rect x="6" y="4" width="12" height="16" rx="2"/><path d="M9 8h6M9 12h6M9 16h3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="scope-phase-body">
+            <div class="scope-phase-label">Phase III</div>
+            <div class="scope-phase-title">Benchmarking</div>
+            <p class="scope-phase-desc">Providing data-driven insights to maximize savings and efficiency</p>
+          </div>
+        </div>
+
+        <div class="scope-phase">
+          <div class="scope-phase-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <circle cx="12" cy="10" r="4"/><path d="M4 20v-1a6 6 0 0112 0v1" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="scope-phase-body">
+            <div class="scope-phase-label">Phase IV</div>
+            <div class="scope-phase-title">24/7 Ongoing Support</div>
+            <p class="scope-phase-desc">Continuous adjustments and optimizations to ensure that the original goals are met</p>
           </div>
         </div>
       </div>
     </div>
-    
-    <div class="bg-white w-full py-14">
-      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 px-6 items-start">
-        <div>
-          <h2 class="text-3xl font-bold mb-8 text-gray-900">Why It Works for Leaders Like You</h2>
-          <div class="space-y-6 mb-8">
-            <div class="flex items-center space-x-6 mb-4"> <div>
-                <svg class="w-8 h-8 text-yellow-700" fill="none" stroke="currentColor" stroke-width="2"
-                  viewBox="0 0 24 24">
-                  <rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor"/>
-                  <path d="M8 13l3 3l5-5" stroke="currentColor" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div>
-                <span class="block font-semibold text-lg text-gray-900">Strategic ROI</span>
-                <span class="block text-base text-gray-700">ESG-Grade Reporting</span>
-              </div>
-            </div>
-            <div class="flex items-center space-x-6">
-              <div>
-                <svg class="w-8 h-8 text-yellow-700" fill="none" stroke="currentColor" stroke-width="2"
-                  viewBox="0 0 24 24">
-                  <rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor"/>
-                  <path d="M8 11h8M8 15h6" stroke="currentColor" stroke-linecap="round"/>
-                  <circle cx="9" cy="9" r="1" fill="currentColor"/>
-                </svg>
-              </div>
-              <span class="block font-semibold text-lg text-gray-900">White-Glove Service</span>
+
+    <div class="scope-approach-insights">
+      <div class="scope-insights-card">
+        <h3 class="scope-insights-title">Water Metering <span>Industry Insights</span></h3>
+        <div class="scope-insights-grid">
+          <div class="scope-insight-item">
+            <div class="scope-insight-val">30%+</div>
+            <div class="scope-insight-lbl">Non-revenue water lost in distribution systems</div>
+          </div>
+          <div class="scope-insight-item">
+            <div class="scope-insight-val">10–23%</div>
+            <div class="scope-insight-lbl">Typical savings from our clients</div>
+          </div>
+          <div class="scope-insight-item">
+            <div class="scope-insight-val">15–25%</div>
+            <div class="scope-insight-lbl">Billing discrepancy from manual readings and aging meters</div>
+          </div>
+          <div class="scope-insight-item">
+            <div class="scope-insight-val">ROI &lt;2y</div>
+            <div class="scope-insight-lbl">Payback for most commercial property projects</div>
+          </div>
+        </div>
+        <div class="scope-insights-quote">
+          "Accurate, real-time water metering is not just a compliance or billing issue — it's a strategic advantage for cost control, sustainability, and asset value."
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{{-- ─── WHY IT WORKS ─── --}}
+<section class="scope-split-section">
+  <div class="scope-split-inner">
+
+    <div class="scope-split-item">
+      <div class="scope-split-text">
+        <div class="section-eyebrow">Why It Works for Leaders Like You</div>
+        <h2 class="section-h2" style="font-size:clamp(1.6rem,3vw,2.4rem);">
+          Strategic ROI &amp;<br><em>ESG-Grade Reporting</em>
+        </h2>
+        <div class="scope-why-list">
+          <div class="scope-why-item">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 13l3 3l5-5" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <div class="scope-why-title">Strategic ROI</div>
+              <div class="scope-why-sub">ESG-Grade Reporting aligned to your sustainability strategy</div>
             </div>
           </div>
-          <a href="#" 
-            class="group inline-flex items-center rounded-full px-6 py-3 bg-gray-900 text-white font-semibold shadow-md 
-              hover:shadow-lg hover:-translate-y-0.5 transition-all">
-            <span>Download Playbook</span>
-            <span class="ml-4 grid place-items-center w-9 h-9 rounded-full">
-              <i class="ri-arrow-right-up-line ml-3"></i>
-            </span>
-          </a>
+          <div class="scope-why-item">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 11h8M8 15h6" stroke-linecap="round"/><circle cx="9" cy="9" r="1" fill="currentColor"/>
+            </svg>
+            <div>
+              <div class="scope-why-title">White-Glove Service</div>
+              <div class="scope-why-sub">Dedicated specialists from scoping through ongoing optimization</div>
+            </div>
+          </div>
         </div>
-        <div>
-          <h2 class="text-3xl font-bold mb-8 text-gray-900">See how your property stacks up vs. industry benchmarks</h2>
-          <span class="block text-xl font-semibold text-gray-900">What Is Your Water Use Intensity?</span>
-          <span class="block text-lg text-gray-800"> Trusted by leaders at AD1 Global, DiamondRock Hospitality</span> <br>
+        <a href="/resources" class="scope-dl-btn">Download Playbook</a>
+      </div>
+
+      <div class="scope-split-right">
+        <div class="section-eyebrow">Water Use Intensity Benchmarking</div>
+        <p class="section-sub" style="max-width:440px;">
+          See how your property stacks up vs. industry benchmarks. Trusted by leaders at AD1 Global and DiamondRock Hospitality.
+        </p>
+        <div class="scope-split-img-wrap">
           <img
             src="/assets/img/services/scope_study_water_use_intensity_5.png"
-            alt="Water Savings Over Hours Chart"
-            class="w-full h-auto rounded-lg mb-8"
-          />
+            alt="Water Use Intensity Chart"
+            class="scope-split-img" />
         </div>
       </div>
     </div>
-    
-    <div class="bg-white w-full py-16">
-      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-6">
-        <div class="flex-1 md:pr-12">
-          <h3 class="text-4xl md:text-5xl font-extrabold leading-tight mb-5 text-gray-900">
-            Trusted by leaders <br>
-          </h3>
-          <p class="text-lg text-gray-700 mb-7">
-            in Hospitality, Manufacturing Industries, Commercial Real Estate, Health Centers, Schools and Universities, Multifamily Communities, Condominiums - just to name a few.<br><br>
-          </p>
-          <blockquote class="italic text-lg text-gray-700 font-light mb-6 leading-relaxed border-l-4 border-blue-700 pl-4">
-            “Their expertise in transformational water management led to impeccable results, - both in cost savings and sustainability at the - site and portfolio levels. .”
-            <div class="text-sm text-gray-500 mt-2"> Asset Manager, Hilton South Tower</div>
-          </blockquote>
-          <a href="#" 
-            class="group inline-flex items-center rounded-full px-6 py-3 bg-gray-900 text-white font-semibold shadow-md 
-              hover:shadow-lg hover:-translate-y-0.5 transition-all">
-            <span>Request a Confidential Consultation</span>
-            <span class="ml-4 grid place-items-center w-9 h-9 rounded-full">
-              <i class="ri-arrow-right-up-line ml-3"></i>
-            </span>
-          </a>
-          <div class="flex flex-wrap gap-x-8 gap-y-4 mt-4 md:mt-8 opacity-80">
-            <span class="text-3xl font-bold text-gray-300">Sandals</span>
-            <span class="text-3xl font-bold text-gray-300">AD1</span>
-            <span class="text-3xl font-bold text-gray-300">DiamondRock</span>
-            <span class="text-3xl font-bold text-gray-300">Even Hotels</span>
+
+  </div>
+</section>
+
+{{-- ─── TRUSTED BY ─── --}}
+<section class="scope-trust-section">
+  <div class="scope-trust-inner">
+
+    <div class="scope-trust-text">
+      <div class="section-eyebrow">Trusted By</div>
+      <h2 class="section-h2" style="font-size:clamp(1.8rem,4vw,3rem);">
+        Industry Leaders<br><em>Across Every Sector</em>
+      </h2>
+      <p class="section-sub">
+        Hospitality, Manufacturing, Commercial Real Estate, Health Centers, Schools &amp; Universities, Multifamily Communities, Condominiums — and many more.
+      </p>
+      <blockquote class="scope-quote">
+        <p>"Their expertise in transformational water management led to impeccable results — both in cost savings and sustainability at the site and portfolio levels."</p>
+        <cite>Asset Manager, Hilton South Tower</cite>
+      </blockquote>
+      <a href="/contact" class="scope-cta-btn">Request a Confidential Consultation</a>
+      <div class="scope-logos">
+        <span>Sandals</span>
+        <span>AD1</span>
+        <span>DiamondRock</span>
+        <span>Even Hotels</span>
+      </div>
+    </div>
+
+    <div class="scope-trust-img-wrap">
+      <img
+        src="/assets/img/services/scope_study_water_use_intensity_client_results_1.png"
+        alt="Client Results Chart"
+        class="scope-trust-img" />
+    </div>
+
+  </div>
+</section>
+
+{{-- ─── FINAL CTA + FORM ─── --}}
+<section class="scope-form-section" id="scope-form">
+  <div class="scope-form-inner">
+
+    <div class="scope-form-text">
+      <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">Get Started</div>
+      <h2 class="scope-form-h">Transform Hidden Water<br>Challenges to <em>Opportunities</em></h2>
+      <p class="scope-form-sub">
+        Request a confidential flow management audit to optimize your property's profitability.
+      </p>
+      <a href="#scope-form" class="scope-form-ghost-btn">Schedule a Confidential Consultation</a>
+    </div>
+
+    <div class="scope-form-card" id="schedule-demo">
+      <div class="scope-form-card-header">Confidential Flow Assessment</div>
+      <form class="scope-form-fields">
+        <div class="scope-form-row">
+          <input type="text" placeholder="First Name" required class="scope-input" />
+          <input type="text" placeholder="Last Name" required class="scope-input" />
+        </div>
+        <div class="scope-form-row">
+          <input type="text" placeholder="Company Name" required class="scope-input" />
+          <input type="text" placeholder="Company Role" required class="scope-input" />
+        </div>
+        <div class="scope-form-row">
+          <input type="tel" placeholder="Contact Number" required class="scope-input" />
+          <input type="email" placeholder="Email" required class="scope-input" />
+        </div>
+        <div class="scope-form-row">
+          <div class="scope-input-group">
+            <label>Preferred Date</label>
+            <input type="date" required class="scope-input" />
+          </div>
+          <div class="scope-input-group">
+            <label>Preferred Time</label>
+            <input type="time" required class="scope-input" />
           </div>
         </div>
-        <div class="flex-1 flex justify-center mt-12 md:mt-0">
-          <img
-            src="/assets/img/services/scope_study_water_use_intensity_client_results_1.png"
-            alt="Water Savings Over Hours Chart"
-            class="w-full h-auto rounded-lg mb-8"
-          />
-        </div>
-      </div>
+        <textarea placeholder="Additional Message (optional)" rows="4" class="scope-input scope-textarea"></textarea>
+        <button type="submit" class="scope-submit-btn">Submit Request</button>
+      </form>
     </div>
-    
-    <section class="bg-gray-50 py-16">
-      <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div class="flex flex-col justify-center space-y-6">
-          <h2 class="text-3xl md:text-4xl font-serif font-semibold uppercase text-gray-900 leading-tight">
-            Transform Hidden Water Challenges to Opportunities 
-          </h2>
-          <p class="text-lg text-gray-700 max-w-md">
-            Request a confidential flow management audit to optimize your property’s profitability.
-          </p>
-          <a href="#"
-            class="group mt-8 inline-flex items-center justify-between rounded-full bg-zinc-100 text-zinc-900 px-6 py-3 font-semibold
-              shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:bg-white">
-            <span>Schedule a Confidential Consultation</span>
-            <span class="ml-4 grid place-items-center w-9 h-9 rounded-full bg-zinc-900/10 text-zinc-900 transition-transform duration-300 group-hover:rotate-45">
-              <i class="ri-arrow-right-up-line"></i>
-            </span>
-          </a>
-        </div>
-    
-        <div id="schedule-demo">
-          <form class="bg-white p-6 rounded-md shadow-md space-y-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input type="text" placeholder="First Name" required
-                     class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-              <input type="text" placeholder="Last Name" required
-                     class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input type="text" placeholder="Company Name" required
-                     class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-              <input type="text" placeholder="Company Role" required
-                     class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input type="tel" placeholder="Contact Number" required
-                     class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-              <input type="email" placeholder="Email" required
-                     class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div class="flex flex-col">
-                <label for="demo-date" class="mb-1 text-gray-600 font-medium">Preferred Date</label>
-                <input id="demo-date" type="date" required
-                       class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-              </div>
-              <div class="flex flex-col">
-                <label for="demo-time" class="mb-1 text-gray-600 font-medium">Preferred Time</label>
-                <input id="demo-time" type="time" required
-                       class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-              </div>
-            </div>
-            <div>
-              <textarea placeholder="Additional Message (optional)" rows="4"
-                        class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-            </div>
-            <div>
-              <a href="#" 
-                class="w-full group inline-flex items-center rounded-full px-6 py-3 bg-gray-900 text-white font-semibold shadow-md 
-                  hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                <span>Submit Request</span>
-                <span class="ml-auto grid place-items-center w-9 h-9 rounded-full">
-                  <i class="ri-arrow-right-up-line ml-3"></i>
-                </span>
-              </a>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
-    @endsection
+
+  </div>
+</section>
+
+@endsection
+
+@push('styles')
+<style>
+/* ═══════════════════════════════════════
+   SCOPE STUDIES PAGE — Style matching Audit page
+   ═══════════════════════════════════════ */
+
+/* ─── HERO ─── */
+.scope-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  overflow: hidden;
+}
+.scope-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: .25;
+  filter: grayscale(15%);
+}
+.scope-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,.75) 40%, rgba(0,0,0,.45) 100%);
+}
+.scope-hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: 0 24px;
+  max-width: 780px;
+}
+.scope-hero-h1 {
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 16px 0 20px;
+}
+.scope-hero-h1 em { font-style: italic; color: rgba(255,255,255,.65); }
+.scope-hero-sub {
+  color: rgba(255,255,255,.55);
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: .04em;
+  margin-bottom: 32px;
+  max-width: 480px;
+}
+.scope-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.scope-hero-stats {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  background: rgba(0,0,0,.9);
+  padding: 24px;
+  border-radius: 12px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+.scope-stat { text-align: center; }
+.scope-stat-val {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.scope-stat-lbl {
+  font-size: .75rem;
+  color: rgba(255,255,255,.6);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.scope-stat-sep {
+  width: 1px;
+  height: 40px;
+  background: rgba(255,255,255,.2);
+}
+@media(max-width:768px){
+  .scope-hero-stats {
+    position: relative;
+    bottom: 0; right: 0;
+    margin: 40px auto 0;
+    max-width: 320px;
+  }
+}
+
+/* ─── APPROACH ─── */
+.scope-approach-section {
+  background: #080808;
+  padding: 96px 24px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.scope-approach-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+@media(max-width:768px){ .scope-approach-inner{ grid-template-columns:1fr; gap:40px; } }
+
+.scope-phases {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-left: 1px solid rgba(255,255,255,.1);
+  padding-left: 28px;
+}
+.scope-phase {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.scope-phase:last-child { border-bottom: none; }
+.scope-phase-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.5);
+}
+.scope-phase-body {}
+.scope-phase-label {
+  font-size: .72rem;
+  font-weight: 500;
+  color: rgba(255,255,255,.35);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: 4px;
+}
+.scope-phase-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.scope-phase-desc {
+  font-size: .875rem;
+  color: rgba(255,255,255,.5);
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ─── INSIGHTS CARD ─── */
+.scope-insights-card {
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+  padding: 36px;
+  background: rgba(255,255,255,.025);
+}
+.scope-insights-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 28px;
+  letter-spacing: -.01em;
+}
+.scope-insights-title span { font-weight: 300; color: rgba(255,255,255,.5); }
+.scope-insights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.scope-insight-item {}
+.scope-insight-val {
+  font-size: 2rem;
+  font-weight: 200;
+  color: #fff;
+  letter-spacing: -.02em;
+  margin-bottom: 6px;
+}
+.scope-insight-lbl {
+  font-size: .8rem;
+  color: rgba(255,255,255,.5);
+  font-weight: 300;
+  line-height: 1.5;
+}
+.scope-insights-quote {
+  border-top: 1px solid rgba(255,255,255,.07);
+  padding-top: 20px;
+  font-size: .875rem;
+  color: rgba(255,255,255,.45);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* ─── SPLIT SECTION ─── */
+.scope-split-section {
+  background: #fff;
+  padding: 96px 24px;
+}
+.scope-split-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.scope-split-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+@media(max-width:768px){ .scope-split-item{ grid-template-columns:1fr; gap:40px; } }
+
+.scope-why-list {
+  margin: 28px 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.scope-why-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 20px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.scope-why-item svg { flex-shrink: 0; color: #374151; margin-top: 2px; }
+.scope-why-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 4px;
+}
+.scope-why-sub {
+  font-size: .875rem;
+  color: #6b7280;
+  font-weight: 300;
+  line-height: 1.6;
+}
+.scope-dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #111;
+  color: #fff;
+  font-size: .875rem;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: background .2s, transform .2s;
+}
+.scope-dl-btn:hover { background: #222; transform: translateY(-1px); }
+
+.scope-split-right {}
+.scope-split-img-wrap {
+  margin-top: 24px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.scope-split-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: grayscale(10%);
+  transition: filter .4s, transform .4s;
+}
+.scope-split-img:hover { filter: grayscale(0%); transform: scale(1.02); }
+
+/* ─── TRUSTED BY ─── */
+.scope-trust-section {
+  background: #f9f9f9;
+  padding: 96px 24px;
+}
+.scope-trust-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+@media(max-width:768px){ .scope-trust-inner{ grid-template-columns:1fr; gap:40px; } }
+
+.scope-quote {
+  border-left: 3px solid #111;
+  padding-left: 20px;
+  margin: 28px 0 32px;
+}
+.scope-quote p {
+  font-size: 1rem;
+  font-style: italic;
+  color: #374151;
+  font-weight: 300;
+  line-height: 1.7;
+  margin: 0 0 8px;
+}
+.scope-quote cite {
+  font-size: .8rem;
+  color: #9ca3af;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.scope-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #111;
+  color: #fff;
+  font-size: .875rem;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: background .2s, transform .2s;
+}
+.scope-cta-btn:hover { background: #222; transform: translateY(-1px); }
+.scope-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 32px;
+}
+.scope-logos span {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #d1d5db;
+  letter-spacing: -.01em;
+}
+
+.scope-trust-img-wrap { overflow: hidden; border-radius: 12px; }
+.scope-trust-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: grayscale(10%);
+  transition: filter .4s, transform .4s;
+}
+.scope-trust-img:hover { filter: grayscale(0%); transform: scale(1.01); }
+
+/* ─── FORM SECTION ─── */
+.scope-form-section {
+  background: #000;
+  padding: 96px 24px;
+}
+.scope-form-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+@media(max-width:768px){ .scope-form-inner{ grid-template-columns:1fr; gap:40px; } }
+
+.scope-form-h {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.2;
+  margin: 16px 0 20px;
+}
+.scope-form-h em { font-style: italic; color: rgba(255,255,255,.65); }
+.scope-form-sub {
+  color: rgba(255,255,255,.55);
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 32px;
+  max-width: 400px;
+}
+.scope-form-ghost-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255,255,255,.25);
+  color: rgba(255,255,255,.7);
+  font-size: .875rem;
+  font-weight: 400;
+  padding: 12px 24px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: border-color .2s, color .2s;
+}
+.scope-form-ghost-btn:hover { border-color: rgba(255,255,255,.5); color: #fff; }
+
+.scope-form-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 36px;
+}
+.scope-form-card-header {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+  letter-spacing: -.01em;
+}
+.scope-form-fields { display: flex; flex-direction: column; gap: 16px; }
+.scope-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media(max-width:480px){ .scope-form-row{ grid-template-columns:1fr; } }
+
+.scope-input-group { display: flex; flex-direction: column; gap: 6px; }
+.scope-input-group label {
+  font-size: .8rem;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.scope-input {
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: .9rem;
+  color: #111;
+  background: #fafafa;
+  outline: none;
+  transition: border-color .2s, background .2s;
+  box-sizing: border-box;
+}
+.scope-input:focus { border-color: #111; background: #fff; }
+.scope-textarea { resize: vertical; }
+.scope-submit-btn {
+  width: 100%;
+  background: #111;
+  color: #fff;
+  font-size: .9rem;
+  font-weight: 500;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.scope-submit-btn:hover { background: #222; transform: translateY(-1px); }
+</style>
+@endpush

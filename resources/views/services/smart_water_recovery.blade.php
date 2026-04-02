@@ -1,525 +1,802 @@
 @extends('layouts.app')
 
-@section('title', 'Smart Water Treatment & Recovery Services')
+@section('title', 'Smart Water Treatment & Recovery Services — Water Solutions Technology')
 
 @push('styles')
 <style>
-  /* initial state for animated rule */
-  .rule {
-    opacity: 0;
-    transform: translateY(1rem);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
-  /* when it scrolls into view */
-  .rule.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  /* Pulsing marker animation */
-  @keyframes pulse {
-    0%   { transform: scale(1); opacity: 0.8; }
-    70%  { transform: scale(3); opacity: 0; }
-    100% { transform: scale(3); opacity: 0; }
-  }
-  .pulse-marker {
+/* ═══════════════════════════════════════
+   WATER TREATMENT PAGE — Style matching Elara AI page
+   ═══════════════════════════════════════ */
+
+/* ─── HERO ─── */
+.wt-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  overflow: hidden;
+}
+.wt-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: .55;
+  filter: grayscale(15%);
+}
+.wt-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,.75) 40%, rgba(0,0,0,.45) 100%);
+}
+.wt-hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: 0 24px;
+  max-width: 780px;
+}
+.wt-hero-h1 {
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 16px 0 20px;
+}
+.wt-hero-h1 em { font-style: italic; color: rgba(255,255,255,.65); }
+.wt-hero-sub {
+  color: rgba(255,255,255,.55);
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: .04em;
+  margin-bottom: 32px;
+  max-width: 480px;
+}
+.wt-hero-sub strong { color: #fff; font-weight: 500; }
+.wt-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.wt-hero-stats {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  background: rgba(0,0,0,.9);
+  padding: 24px;
+  border-radius: 12px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+.wt-stat { text-align: center; }
+.wt-stat-val {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.wt-stat-lbl {
+  font-size: .75rem;
+  color: rgba(255,255,255,.6);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.wt-stat-sep {
+  width: 1px;
+  height: 40px;
+  background: rgba(255,255,255,.2);
+}
+@media(max-width:768px){
+  .wt-hero-stats {
     position: relative;
-    width: 8px; height: 8px;
-    background: #3B82F6;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    box-shadow: 0 0 6px rgba(59,130,246,0.8);
+    bottom: 0; right: 0;
+    margin: 40px auto 0;
+    max-width: 320px;
   }
-  .pulse-marker::after {
-    content: '';
-    position: absolute;
-    top: -8px; left: -8px;
-    width: 24px; height: 24px;
-    border-radius: 50%;
-    background: rgba(59,130,246,0.4);
-    animation: pulse 2s infinite;
-  }
-  /* Dark tooltip */
-  .leaflet-tooltip.dark-tooltip {
-    background: rgba(31,41,55,0.9) !important;
-    color: #fff !important;
-    border-radius: 0.5rem !important;
-    padding: 0.5rem 0.75rem !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.5) !important;
-    font-size: 0.875rem !important;
-  }
-  .loader {
-  border:4px solid #f3f3f3;
-  border-top:4px solid #071016;
-  border-radius:50%;
-  width:24px; height:24px;
-  animation:spin 1s linear infinite;
 }
-@keyframes spin {
-  to{transform:rotate(360deg)}
+
+/* ─── PROBLEM SECTION ─── */
+.wt-problem-section {
+  background: #080808;
+  padding: 96px 24px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
 }
-.transform-content { opacity:0; transition:opacity .5s ease; }
-.transform-content.visible { opacity:1; }
+.wt-problem-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+@media(max-width:768px){ .wt-problem-inner{ grid-template-columns:1fr; gap:40px; } }
+
+.wt-rule-wrap {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  margin: 28px 0 32px;
+}
+.wt-rule {
+  flex-shrink: 0;
+  width: 3px;
+  height: 120px;
+  background: linear-gradient(to bottom, rgba(255,255,255,.5), rgba(255,255,255,.05));
+  border-radius: 2px;
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.wt-rule.visible { opacity: 1; transform: translateY(0); }
+
+.wt-problem-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  filter: grayscale(10%);
+}
+
+/* ─── HARDNESS SECTION ─── */
+.wt-hardness-section {
+  background: #080808;
+  padding: 96px 24px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.wt-hardness-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+@media(max-width:768px){ .wt-hardness-inner{ grid-template-columns:1fr; gap:40px; } }
+
+.wt-check-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.wt-check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: rgba(255,255,255,.65);
+  font-size: .95rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+.wt-check-list li svg {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
+  color: rgba(255,255,255,.5);
+}
+.wt-check-list li strong { color: #fff; font-weight: 500; }
+
+.wt-map-wrap {
+  width: 100%;
+  height: 380px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ─── RECOVERY SECTION ─── */
+.wt-recovery-section {
+  background: #000;
+  padding: 96px 24px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.wt-recovery-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+@media(max-width:900px){ .wt-recovery-inner{ grid-template-columns:1fr; gap:32px; } }
+
+.wt-recovery-body {
+  color: rgba(255,255,255,.65);
+  font-size: .95rem;
+  font-weight: 300;
+  line-height: 1.7;
+  margin: 16px 0 24px;
+}
+.wt-recovery-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.wt-recovery-list li {
+  color: rgba(255,255,255,.65);
+  font-size: .9rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+.wt-recovery-list li strong { color: #fff; font-weight: 500; }
+
+.wt-recovery-img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  filter: grayscale(10%);
+}
+
+/* ─── FEATURES SECTION ─── */
+.wt-features-section {
+  background: #080808;
+  padding: 96px 24px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.wt-features-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 64px;
+  align-items: stretch;
+}
+@media(max-width:768px){ .wt-features-inner{ grid-template-columns:1fr; gap:40px; } }
+
+.wt-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.wt-features-list button {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  padding: 16px 0;
+  font-size: .95rem;
+  font-weight: 300;
+  color: rgba(255,255,255,.4);
+  cursor: pointer;
+  transition: color .2s;
+  letter-spacing: -.01em;
+}
+.wt-features-list button:hover { color: rgba(255,255,255,.7); }
+.wt-features-list button.active { color: #fff; font-weight: 500; }
+
+.wt-feature-display {
+  position: relative;
+  min-height: 360px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.wt-feature-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.wt-feature-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.65);
+}
+.wt-feature-content {
+  position: relative;
+  z-index: 10;
+  padding: 40px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.wt-feature-title {
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: -.02em;
+  margin-bottom: 12px;
+}
+.wt-feature-desc {
+  font-size: .95rem;
+  color: rgba(255,255,255,.65);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 24px;
+  max-width: 480px;
+}
+.wt-feature-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,.5);
+  font-size: .85rem;
+  font-weight: 400;
+  text-decoration: none;
+  transition: color .2s;
+  letter-spacing: .04em;
+}
+.wt-feature-link:hover { color: #fff; }
+.wt-feature-link svg { width: 14px; height: 14px; }
+
+/* ─── PERFORMANCE SECTION ─── */
+.wt-perf-section {
+  background: #fff;
+  padding: 96px 24px;
+}
+.wt-perf-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+@media(max-width:768px){ .wt-perf-inner{ grid-template-columns:1fr; gap:40px; } }
+
+.wt-blockquote {
+  border-left: 3px solid #111;
+  padding-left: 24px;
+  margin: 28px 0 32px;
+}
+.wt-blockquote p {
+  font-size: 1.05rem;
+  color: #374151;
+  font-weight: 300;
+  line-height: 1.7;
+  font-style: italic;
+}
+.wt-blockquote strong { color: #111; font-weight: 600; }
+.wt-blockquote footer {
+  font-size: .85rem;
+  color: #6b7280;
+  font-weight: 500;
+  margin-top: 12px;
+  font-style: normal;
+}
+
+.wt-stats-card {
+  background: #111;
+  border-radius: 12px;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.wt-stats-card-item {
+  padding: 32px 24px;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.wt-stats-card-item:nth-child(2n) { border-right: none; }
+.wt-stats-card-item:nth-last-child(-n+2) { border-bottom: none; }
+.wt-stats-val {
+  font-size: 2.8rem;
+  font-weight: 200;
+  color: #fff;
+  letter-spacing: -.02em;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.wt-stats-lbl {
+  font-size: .72rem;
+  color: rgba(255,255,255,.45);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 500;
+}
+
+/* ─── FINAL FORM SECTION ─── */
+.wt-form-section {
+  background: #000;
+  padding: 96px 24px;
+}
+.wt-form-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+@media(max-width:768px){ .wt-form-inner{ grid-template-columns:1fr; gap:40px; } }
+
+.wt-form-h {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.2;
+  margin: 16px 0 20px;
+}
+.wt-form-sub {
+  color: rgba(255,255,255,.55);
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 32px;
+  max-width: 400px;
+}
+.wt-form-ghost-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255,255,255,.25);
+  color: rgba(255,255,255,.7);
+  font-size: .875rem;
+  font-weight: 400;
+  padding: 12px 24px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: border-color .2s, color .2s;
+}
+.wt-form-ghost-btn:hover { border-color: rgba(255,255,255,.5); color: #fff; }
+
+.wt-form-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 36px;
+}
+.wt-form-card-header {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+  letter-spacing: -.01em;
+}
+.wt-form-fields { display: flex; flex-direction: column; gap: 16px; }
+.wt-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media(max-width:480px){ .wt-form-row{ grid-template-columns:1fr; } }
+.wt-input-group { display: flex; flex-direction: column; gap: 6px; }
+.wt-input-group label {
+  font-size: .8rem;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.wt-input {
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: .9rem;
+  color: #111;
+  background: #fafafa;
+  outline: none;
+  transition: border-color .2s, background .2s;
+  box-sizing: border-box;
+}
+.wt-input:focus { border-color: #111; background: #fff; }
+.wt-textarea { resize: vertical; }
+.wt-submit-btn {
+  width: 100%;
+  background: #111;
+  color: #fff;
+  font-size: .9rem;
+  font-weight: 500;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.wt-submit-btn:hover { background: #222; transform: translateY(-1px); }
+
+/* ─── MAP TOOLTIP ─── */
+@keyframes wt-pulse {
+  0%   { transform: scale(1); opacity: 0.8; }
+  70%  { transform: scale(3); opacity: 0; }
+  100% { transform: scale(3); opacity: 0; }
+}
+.pulse-marker {
+  position: relative;
+  width: 8px; height: 8px;
+  background: rgba(255,255,255,.8);
+  border: 2px solid rgba(255,255,255,.4);
+  border-radius: 50%;
+}
+.pulse-marker::after {
+  content: '';
+  position: absolute;
+  top: -8px; left: -8px;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  animation: wt-pulse 2s infinite;
+}
+.leaflet-tooltip.dark-tooltip {
+  background: rgba(10,10,10,.92) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,.5) !important;
+  font-size: .85rem !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+}
 </style>
 @endpush
 
 @section('content')
-        <section class="relative min-h-[520px] flex items-center justify-start overflow-hidden bg-black">
-          <img 
-            src="/assets/img/services/water_treatment_recovery_1.png"
-            alt="Modern hotel or commercial building"
-            class="absolute inset-0 w-full h-full object-cover grayscale opacity-55 z-0" />
-          <div class="absolute inset-0 bg-black bg-opacity-15 z-10"></div>
-        
-          <div class="relative z-20 max-w-2xl pl-6 md:pl-16 py-16">
-            <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight drop-shadow">
-              Modern Water Treatment & Recovery 
-            </h1>
-            <p class="text-lg md:text-xl text-gray-100 font-light mb-7 max-w-xl">
-              <span class="block"> <span class="font-bold text-white">When water itself becomes the problem: we use the same water as the solution
-              </span> </span>
-              <span class="text-gray-300 block mt-2">
-                Using advanced electro-hydrodynamic 
-                technology to protect your infrastructure, 
-                reduce scale, and reclaim water—without 
-                chemicals, power, or moving parts
-              </span>
-            </p>
-            <a href="#"
-              class="group inline-flex items-center justify-between rounded-full bg-white text-zinc-900 px-6 py-3 font-semibold
-                shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:bg-white">
-              <span>Request a Tower Audit</span>
-              <span class="ml-4 grid place-items-center w-9 h-9 rounded-full bg-zinc-900/10 text-zinc-900 transition-transform duration-300 group-hover:rotate-45">
-                <i class="ri-arrow-right-up-line"></i>
-              </span>
-            </a>
+
+{{-- ─── HERO ─── --}}
+<div class="wt-hero">
+  <img
+    src="/assets/img/services/water_treatment_recovery_1.png"
+    alt="Modern Water Treatment & Recovery"
+    class="wt-hero-img" />
+  <div class="wt-hero-overlay"></div>
+  <div class="wt-hero-content">
+    <div class="section-eyebrow" style="color:rgba(255,255,255,0.4);">Water Treatment</div>
+    <h1 class="wt-hero-h1">
+      Modern Water Treatment<br>
+      <em>&amp; Recovery Services</em>
+    </h1>
+    <p class="wt-hero-sub">
+      <strong>When water itself becomes the problem — we use the same water as the solution.</strong>
+      Advanced electro-hydrodynamic technology to protect your infrastructure, reduce scale, and reclaim water — without chemicals, power, or moving parts.
+    </p>
+    <div class="wt-hero-actions">
+      <a href="#wt-form" class="btn-hero-primary">Request a Tower Audit</a>
+      <a href="#wt-features" class="btn-hero-ghost">Explore Features</a>
+    </div>
+  </div>
+  <div class="wt-hero-stats">
+    <div class="wt-stat">
+      <div class="wt-stat-val">180,000 gal/month</div>
+      <div class="wt-stat-lbl">Audit uncovered savings</div>
+    </div>
+    <div class="wt-stat-sep"></div>
+    <div class="wt-stat">
+      <div class="wt-stat-val">6.3 months</div>
+      <div class="wt-stat-lbl">Payback period</div>
+    </div>
+  </div>
+</div>
+
+{{-- ─── PROBLEM ─── --}}
+<section class="wt-problem-section" id="treatment-problem">
+  <div class="wt-problem-inner">
+    <div>
+      <div class="section-eyebrow">The Challenge</div>
+      <h2 class="section-h2">
+        The Challenge of<br><em>Scale &amp; Corrosion</em>
+      </h2>
+      <div class="wt-rule-wrap">
+        <div class="wt-rule" id="wtIntroRule"></div>
+        <p class="section-sub" style="max-width:480px;">
+          Mineral deposits (calcium &amp; magnesium) constrict flow and add up to a 15% energy penalty across pipes, chillers and domestic equipment — driving up utility bills and maintenance costs. Our non-chemical electrostatic treatment restores peak efficiency, extends asset lifecycles and typically pays for itself in under 12 months.
+        </p>
+      </div>
+      <a href="#wt-form" class="btn-hero-primary" style="display:inline-flex;">Request a Tower Audit</a>
+    </div>
+    <div>
+      <img
+        src="/assets/img/services/scaling_in_pipes_1.png"
+        alt="Cross-section of pipe with scale"
+        class="wt-problem-img" />
+    </div>
+  </div>
+</section>
+
+{{-- ─── HARDNESS MAP ─── --}}
+<section class="wt-hardness-section" id="treatment-hardness">
+  <div class="wt-hardness-inner">
+    <div>
+      <div class="section-eyebrow">Water Hardness Insights</div>
+      <h2 class="section-h2">
+        Smart Treatment &amp;<br><em>Hardness Mapping</em>
+      </h2>
+      <ul class="wt-check-list">
+        <li>
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span><strong>Flow Restoration</strong> — Clears mineral blockages and normalizes system pressure.</span>
+        </li>
+        <li>
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span><strong>Energy Savings</strong> — Reduces blowdowns and lowers thermal-transfer losses.</span>
+        </li>
+        <li>
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span><strong>Asset Longevity</strong> — Slows corrosion and extends pump, chiller &amp; boiler lifecycles.</span>
+        </li>
+      </ul>
+      <p class="section-sub">Ideal for whole-building piping, boilers, chillers — and cooling towers.</p>
+    </div>
+    <div>
+      <div id="hardnessMap" class="wt-map-wrap"></div>
+    </div>
+  </div>
+</section>
+
+{{-- ─── RECOVERY ─── --}}
+<section class="wt-recovery-section" id="treatment-recovery">
+  <div class="wt-recovery-inner">
+    <div>
+      <div class="section-eyebrow">Technology</div>
+      <h2 class="section-h2" style="color:#fff;">
+        Non-Invasive Treatment<br><em>&amp; Recovery</em>
+      </h2>
+      <p class="wt-recovery-body">
+        Our proprietary electrostatic technology induces crystal precipitation in-flow — preventing scale before it starts. No chemicals. No added power draw. No moving parts.
+      </p>
+      <ul class="wt-recovery-list">
+        <li><strong>Scale Inhibition</strong> — Magnetically aligns dissolved minerals to precipitate downstream, keeping pipes and towers clean.</li>
+        <li><strong>Water Reclamation</strong> — Capture and reuse blowdown for non-potable applications, cutting makeup water costs by up to 60%.</li>
+        <li><strong>Plug-and-Play</strong> — Install inline on any pipe material, from ½″ sub-meters to 42″ mains with no downtime.</li>
+      </ul>
+      <a href="#wt-features" class="wt-feature-link" style="font-size:.9rem;">
+        Read more about the technology
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+    <img src="/assets/img/services/scale_remover_1.png" alt="Electrostatic treatment unit installed inline" class="wt-recovery-img" />
+    <img src="/assets/img/services/scale_in_pipes_1.png" alt="Blowdown water reclamation" class="wt-recovery-img" />
+  </div>
+</section>
+
+{{-- ─── FEATURES ─── --}}
+<section class="wt-features-section" id="wt-features">
+  <div class="wt-features-inner"
+    x-data="{
+      selected: 0,
+      features: [
+        { label: '97% Scale Reduction', title: '97% Scale Reduction', desc: '97% scale reduction across all asset classes — increasing asset health and extending equipment lifecycles significantly.' },
+        { label: '25% Energy Reduction Across Portfolio', title: '25% Energy Reduction', desc: 'Reduce energy expenses across your portfolio through normalized heat transfer and restored system efficiency.' },
+        { label: '95% Savings Replacing Chemical Cost', title: '95% Chemical Cost Savings', desc: 'No chemicals or additional power draw. Unlike harsh chemical systems that dissolve scale and contribute toxic pollutants, our technology works cleanly.' },
+        { label: 'Reduces Water Use by up to 40%', title: 'Up to 40% Water Use Reduction', desc: 'In non-volumetric applications, water consumption has been reduced by up to 40% — directly impacting operating costs and ESG targets.' }
+      ]
+    }"
+  >
+    <div class="elara-features-nav">
+      <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">Financial Impact</div>
+      <h2 class="section-h2" style="color:#fff;">Financial Implications<br><em>&amp; Asset Protection</em></h2>
+      <ul class="wt-features-list">
+        <template x-for="(item, idx) in features" :key="idx">
+          <li>
+            <button
+              @click="selected = idx"
+              :class="selected === idx ? 'active' : ''"
+              x-text="item.label">
+            </button>
+          </li>
+        </template>
+      </ul>
+    </div>
+
+    <div class="wt-feature-display">
+      <video class="wt-feature-video" autoplay loop muted playsinline>
+        <source src="/assets/img/services/elara_ai_video_3.mp4" type="video/mp4" />
+      </video>
+      <div class="wt-feature-overlay"></div>
+      <div class="wt-feature-content">
+        <h4 class="wt-feature-title" x-text="features[selected].title"></h4>
+        <p class="wt-feature-desc" x-text="features[selected].desc"></p>
+        <a href="#" class="wt-feature-link">
+          More about our approach
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{-- ─── PERFORMANCE ─── --}}
+<section class="wt-perf-section" id="featured-performance">
+  <div class="wt-perf-inner">
+    <div>
+      <div class="section-eyebrow">Featured Performance</div>
+      <h2 class="section-h2" style="color:#111;">Proven Results<br><em>Across Every Portfolio</em></h2>
+      <div class="wt-blockquote">
+        <p>
+          "Since rolling out treatment across our 15-building portfolio, we've cut energy costs by <strong>28%</strong> and avoided <strong>$350K</strong> in unplanned outages."
+        </p>
+        <footer>— Director of Engineering, Crestline Properties</footer>
+      </div>
+      <a href="#wt-form" class="btn-hero-primary" style="display:inline-flex;">Request a Demo</a>
+    </div>
+
+    <div class="wt-stats-card">
+      <div class="wt-stats-card-item">
+        <div class="wt-stats-val">120</div>
+        <div class="wt-stats-lbl">Sites Deployed</div>
+      </div>
+      <div class="wt-stats-card-item">
+        <div class="wt-stats-val">18M</div>
+        <div class="wt-stats-lbl">Gallons Saved / yr</div>
+      </div>
+      <div class="wt-stats-card-item">
+        <div class="wt-stats-val">3.8x</div>
+        <div class="wt-stats-lbl">Avg. Energy ROI</div>
+      </div>
+      <div class="wt-stats-card-item">
+        <div class="wt-stats-val">45</div>
+        <div class="wt-stats-lbl">Avg. Alerts / Site</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{-- ─── FINAL FORM ─── --}}
+<section class="wt-form-section" id="wt-form">
+  <div class="wt-form-inner">
+
+    <div>
+      <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">Get Started</div>
+      <h2 class="wt-form-h">Protect Your<br>Asset <em>Performance</em></h2>
+      <p class="wt-form-sub">
+        Request a confidential water audit to optimize your property's health and profitability.
+      </p>
+      <a href="#wt-form" class="wt-form-ghost-btn">Schedule a Demo</a>
+    </div>
+
+    <div class="wt-form-card" id="schedule-demo">
+      <div class="wt-form-card-header">Confidential Demo Request</div>
+      <form class="wt-form-fields">
+        <div class="wt-form-row">
+          <input type="text" placeholder="First Name" required class="wt-input" />
+          <input type="text" placeholder="Last Name" required class="wt-input" />
+        </div>
+        <div class="wt-form-row">
+          <input type="text" placeholder="Company Name" required class="wt-input" />
+          <input type="text" placeholder="Company Role" required class="wt-input" />
+        </div>
+        <div class="wt-form-row">
+          <input type="tel" placeholder="Contact Number" required class="wt-input" />
+          <input type="email" placeholder="Email" required class="wt-input" />
+        </div>
+        <div class="wt-form-row">
+          <div class="wt-input-group">
+            <label>Preferred Date</label>
+            <input type="date" required class="wt-input" />
           </div>
-        
-          <div class="absolute bottom-8 right-8 bg-black bg-opacity-90 text-white p-6 w-80 shadow-2xl rounded-none z-30 flex flex-col items-start
-                      max-md:relative max-md:bottom-0 max-md:right-0 max-md:mx-auto max-md:w-11/12 max-md:mt-10">
-            <div class="text-base mb-2 font-semibold">
-              Audit uncovered <br />
-              <span class="text-xl font-bold">180,000 gal/month</span> savings
-            </div>
-            <div class="flex items-end space-x-1 mb-2 mt-2">
-              <svg width="150" height="68" viewBox="0 0 80 32" fill="none">
-                <rect x="5" y="16" width="8" height="12" fill="#888"/>
-                <rect x="20" y="8" width="8" height="20" fill="#bbb"/>
-                <rect x="35" y="12" width="8" height="16" fill="#ccc"/>
-                <rect x="50" y="4" width="8" height="24" fill="#fff"/>
-              </svg>
-            </div>
-            <div class="text-sm text-gray-200">
-              Payback in <span class="font-bold">6.3</span> months<br>
-              <span class="text-xs">verified savings by WST</span>
-            </div>
+          <div class="wt-input-group">
+            <label>Preferred Time</label>
+            <input type="time" required class="wt-input" />
           </div>
-        </section>
-        
-        <section id="treatment-problem" class="bg-gray-50 py-20">
-          <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6">
-              <h2 class="text-4xl font-extrabold text-gray-900">
-                The Challenge of Scale &amp; Corrosion
-              </h2>
-              <h3 class="text-xl font-semibold text-blue-600">
-                When water itself becomes the problem…
-              </h3>
-              <p class="text-gray-700 leading-relaxed">
-                Mineral deposits (calcium & magnesium) constrict flow and add up to a 15% energy 
-                penalty across pipes, chillers and domestic equipment—driving up utility bills 
-                and maintenance costs. In chillers, even a thin scale film acts like insulation, 
-                forcing compressors to run longer and shortening equipment life. 
-                Our non-chemical electrostatic treatment restores peak efficiency, 
-                extends asset lifecycles and typically pays for itself in under 
-                12 months—cooling towers included.
-              </p>
-              <p class="text-gray-700 leading-relaxed">
-                In industrial chillers, scale acts as an insulator—chillers work harder, energy bills climb, and maintenance cycles shorten. Tackling the root cause is critical to safeguarding your assets.
-              </p>
-              <a href="#cooling-impacts" class="inline-block font-medium text-blue-600 hover:underline">
-                Read more on Cooling Tower Impacts →
-              </a>
-            </div>
-            <div class="flex justify-center">
-              <img src="/assets/img/services/scaling_in_pipes_1.png" alt="Cross-section of pipe with scale" class="rounded shadow-lg w-full object-cover" />
-            </div>
-          </div>
-        </section>
-        
-        <section id="treatment-hardness" class="bg-gray-50 py-16">
-          <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div class="space-y-6">
-              <h2 class="text-4xl font-extrabold text-gray-900">
-                Smart Water Treatment & Hardness Insights
-              </h2>
-              <p class="text-lg text-gray-700">
-                Mineral scale (calcium & magnesium) builds in pipes and cooling towers—restricting flow, spiking energy, accelerating corrosion, and risking unplanned downtime.
-              </p>
-              <ul class="space-y-3 text-gray-700">
-                <li class="flex items-start">
-                  <svg class="w-5 h-5 flex-shrink-0 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/>
-                  </svg>
-                  <span><strong>Flow Restoration:</strong> Clears mineral blockages and normalizes system pressure.</span>
-                </li>
-                <li class="flex items-start">
-                  <svg class="w-5 h-5 flex-shrink-0 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/>
-                  </svg>
-                  <span><strong>Energy Savings:</strong> Reduces blowdowns and lowers thermal-transfer losses.</span>
-                </li>
-                <li class="flex items-start">
-                  <svg class="w-5 h-5 flex-shrink-0 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"/>
-                  </svg>
-                  <span><strong>Asset Longevity:</strong> Slows corrosion and extends pump, chiller & boiler lifecycles.</span>
-                </li>
-              </ul>
-              <p class="text-gray-700">
-                Ideal for whole-building piping, boilers, chillers—and yes, even cooling towers.
-              </p>
-              <a href="#" 
-                class="group mt-8 inline-flex items-center rounded-full px-6 py-3 bg-gray-900 text-white font-semibold shadow-md 
-                  hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                <span>Request a Demo</span>
-                <span class="ml-4 grid place-items-center w-9 h-9 rounded-full">
-                  <i class="ri-arrow-right-up-line ml-3"></i>
-                </span>
-              </a>
-            </div>
-        
-            <div>
-              <div id="hardnessMap" class="w-full h-96 rounded-lg shadow-xl overflow-hidden"></div>
-            </div>
-          </div>
-        </section>
-        
-        <section id="treatment-recovery" class="bg-white py-16">
-          <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-            
-            <div class="space-y-6">
-              <h2 class="text-3xl font-extrabold text-gray-900">
-                Non-Invasive Treatment & Recovery
-              </h2>
-              <p class="text-lg text-gray-700 leading-relaxed">
-                Our proprietary electrostatic technology induces crystal precipitation in-flow—preventing scale before it starts. No chemicals. No added power draw. No moving parts.
-              </p>
-              <ul class="space-y-4 text-gray-700">
-                <li>
-                  <strong>Scale Inhibition</strong> — magnetically aline dissolved minerals to precipitate downstream, keeping pipes and towers clean.
-                </li>
-                <li>
-                  <strong>Water Reclamation</strong> — capture and reuse blowdown for non-potable applications, cutting makeup water costs by up to 60%.
-                </li>
-                <li>
-                  <strong>Plug-and-Play</strong> — install inline on any pipe material, from ½″ sub-meters to 42″ mains with no downtime.
-                </li>
-              </ul>
-              <a href="#technology-details" class="inline-flex items-center text-blue-600 font-semibold hover:underline">
-                Read more about the technology →
-              </a>
-            </div>
-            
-            <div class="h-64 md:h-100 bg-gray-100 rounded-lg overflow-hidden shadow-lg">
-              <img
-                src="/assets/img/services/scale_remover_1.png"
-                alt="Electrostatic treatment unit installed inline"
-                class="w-full h-full object-cover"
-              />
-            </div>
-            
-            <div class="h-64 md:h-100 bg-gray-100 rounded-lg overflow-hidden shadow-lg">
-              <img
-                src="/assets/img/services/scale_in_pipes_1.png"
-                alt="Blowdown water reclamation and reuse diagram"
-                class="w-full h-full object-cover"
-              />
-            </div>
-        
-          </div>
-        </section>
-        
-        <section class="bg-white py-20">
-          <div
-            x-data="{
-              selected: 0,
-              features: [
-                {
-                  label: '97% Scale Reduction',
-                  header: '97% Scale Reduction',
-                  desc: '97% scale reduction across all asset classes. Increasing asses health'
-                },
-                {
-                  label: '25% reduction in energy across portfolio',
-                  header: '25% reduction in energy across portfolio',
-                  desc: ' Reduce expenses in energy spend from normalized heat transfer'
-                },
-                {
-                  label: '95% Savings Replacing Chemical Cost',
-                  header: '95% Savings Replacing Chemical Cost',
-                  desc: 'No chemicals, or additional power draw. Unlike systems that use harsh chemicals to dissolve scale and corrosion and contribute toxic pollutants to groundwater, the systems works without chemicals. '
-                },
-                {
-                  label: 'Reduces WATER use by up to 40% ',
-                  header: 'Reduces WATER use by up to 40% ',
-                  desc: 'In non volumetric uses, water use have been reduced to 40%'
-                },
-                
-              ]
-            }"
-            class="max-w-7xl mx-auto px-4 grid md:grid-cols-5 gap-10 items-stretch"
-          >
-            <div class="col-span-2 flex flex-col">
-              <h3 class="text-3xl font-bold text-gray-900 mb-8 text-left">
-                Financial Implications & Asset Protection
-              </h3>
-              <ul class="space-y-3">
-                <template x-for="(item, idx) in features" :key="idx">
-                  <li>
-                    <button
-                      @click="selected = idx"
-                      :class="selected === idx
-                        ? 'text-blue-700 font-bold'
-                        : 'text-gray-600 font-normal'"
-                      class="text-lg px-2 py-1 w-full text-left transition hover:text-blue-500 focus:outline-none"
-                    >
-                      <span x-text="item.label"></span>
-                    </button>
-                  </li>
-                </template>
-              </ul> 
-            </div>
-            
-            <div class="col-span-3 relative min-h-[330px] flex items-center">
-              <video
-                class="absolute inset-0 w-full h-full object-cover z-0"
-                autoplay
-                loop
-                muted
-                playsinline
-                poster="https://images.unsplash.com/photo-1465101162946-4377e57745c3?auto=format&fit=crop&w=1200&q=80"
-              >
-                <source
-                  src="/assets/img/services/elara_ai_video_3.mp4"
-                  type="video/mp4"
-                />
-              </video>
-              <div class="absolute inset-0 bg-black bg-opacity-60 z-10"></div>
-              <div class="relative z-20 p-10 w-full text-left">
-                <h4
-                  class="text-3xl font-semibold text-white mb-3"
-                  x-text="features[selected].header"
-                ></h4>
-                <p
-                  class="text-lg font-light text-gray-100 mb-6"
-                  x-text="features[selected].desc"
-                ></p>
-                <a
-                  href="#"
-                  class="inline-flex items-center text-blue-200 font-medium hover:underline gap-2"
-                >
-                  More about our approach
-                  <svg
-                    class="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M5 12h14m-7-7l7 7-7 7"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-          
-        </section>
-        
-        <section id="featured-performance" class="py-20 bg-white">
-          <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-            <div class="space-y-8">
-              <h2 class="text-4xl font-extrabold text-gray-900">
-                Featured Performance
-              </h2>
-              <blockquote class="border-l-4 border-blue-600 pl-6 italic text-gray-800 space-y-4">
-                <p class="text-lg">
-                  “Since rolling out treatment across our 15-building portfolio, we’ve cut energy costs by <strong>28%</strong> and avoided <strong>$350K</strong> in unplanned outages.”
-                </p>
-                <footer class="text-base font-semibold not-italic">
-                  — Director of Engineering, Crestline Properties
-                </footer>
-              </blockquote>
-              <a href="#" 
-                class="group mt-8 inline-flex items-center rounded-full px-6 py-3 bg-gray-900 text-white font-semibold shadow-md 
-                  hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                <span>Request a Demo</span>
-                <span class="ml-4 grid place-items-center w-9 h-9 rounded-full">
-                  <i class="ri-arrow-right-up-line ml-3"></i>
-                </span>
-              </a>
-            </div>
-        
-            <div class="bg-gray-900 text-white p-6 shadow-lg rounded-none">
-              <div class="grid grid-cols-2 divide-x divide-gray-700">
-                <div class="py-6 text-center">
-                  <p class="text-5xl font-light">120</p>
-                  <p class="mt-1 uppercase tracking-wide font-medium text-gray-400 text-sm">Sites Deployed</p>
-                </div>
-                <div class="py-6 text-center">
-                  <p class="text-5xl font-light">18M</p>
-                  <p class="mt-1 uppercase tracking-wide font-medium text-gray-400 text-sm">Gallons Saved / yr</p>
-                </div>
-                <div class="py-6 text-center">
-                  <p class="text-5xl font-light">3.8x</p>
-                  <p class="mt-1 uppercase tracking-wide font-medium text-gray-400 text-sm">Avg. Energy ROI</p>
-                </div>
-                <div class="py-6 text-center">
-                  <p class="text-5xl font-light">45</p>
-                  <p class="mt-1 uppercase tracking-wide font-medium text-gray-400 text-sm">Avg. Alerts / Site</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        
-        
-        <section class="bg-gray-50 py-16">
-          <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div class="flex flex-col justify-center space-y-6">
-              <h2 class="text-3xl md:text-4xl font-serif font-semibold uppercase text-gray-900 leading-tight">
-                Protect Your Asset Performance
-              </h2>
-              <p class="text-lg text-gray-700 max-w-md">
-                Request a confidential water audit to optimize your property’s health and profitability.
-              </p>
-              <a href="#"
-                class="group mt-8 inline-flex items-center justify-between rounded-full bg-zinc-100 text-zinc-900 px-6 py-3 font-semibold
-                  shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:bg-white">
-                <span>Schedule a Demo</span>
-                <span class="ml-4 grid place-items-center w-9 h-9 rounded-full bg-zinc-900/10 text-zinc-900 transition-transform duration-300 group-hover:rotate-45">
-                  <i class="ri-arrow-right-up-line"></i>
-                </span>
-              </a>
-            </div>
-        
-            <div id="schedule-demo">
-              <form class="bg-white p-6 rounded-md shadow-md space-y-4">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <input type="text" placeholder="First Name" required
-                         class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-                  <input type="text" placeholder="Last Name" required
-                         class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <input type="text" placeholder="Company Name" required
-                         class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-                  <input type="text" placeholder="Company Role" required
-                         class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <input type="tel" placeholder="Contact Number" required
-                         class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-                  <input type="email" placeholder="Email" required
-                         class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div class="flex flex-col">
-                    <label for="demo-date" class="mb-1 text-gray-600 font-medium">Preferred Date</label>
-                    <input id="demo-date" type="date" required
-                           class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-                  </div>
-                  <div class="flex flex-col">
-                    <label for="demo-time" class="mb-1 text-gray-600 font-medium">Preferred Time</label>
-                    <input id="demo-time" type="time" required
-                           class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-                  </div>
-                </div>
-                <div>
-                  <textarea placeholder="Additional Message (optional)" rows="4"
-                            class="w-full border border-gray-300 p-3 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                </div>
-                <div>
-                  <a href="#" 
-                    class="w-full group inline-flex items-center rounded-full px-6 py-3 bg-gray-900 text-white font-semibold shadow-md 
-                      hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                    <span>Submit Request</span>
-                    <span class="ml-auto grid place-items-center w-9 h-9 rounded-full">
-                      <i class="ri-arrow-right-up-line ml-3"></i>
-                    </span>
-                  </a>
-                </div>
-              </form>
-            </div>
-          </div>
-        </section>
+        </div>
+        <textarea placeholder="Additional Message (optional)" rows="4" class="wt-input wt-textarea"></textarea>
+        <button type="submit" class="wt-submit-btn">Submit Request</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
 @endsection
+
 @push('scripts')
-     <script>
-       document.addEventListener('DOMContentLoaded', () => {
-    // 1) initialize map
-    const map = L.map('hardnessMap', {
-      center: [39.5, -98.35],
-      zoom: 4,
-      zoomControl: false,
-      attributionControl: false
-    });
-
-    // 2) dark basemap
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
-      maxZoom: 19
-    }).addTo(map);
-
-    // 3) sample 40 site data (city, [lat,lng], gpg)
-    const sites = [
-      ["Phoenix, AZ",[33.45,-112.07],12],
-      ["Denver, CO",[39.74,-104.99],8],
-      ["Miami, FL",[25.77,-80.19],15],
-      ["Minneapolis, MN",[44.98,-93.27],3],
-      ["New York, NY",[40.71,-74.00],7],
-      ["Los Angeles, CA",[34.05,-118.24],10],
-      ["Houston, TX",[29.76,-95.37],14],
-      ["Chicago, IL",[41.88,-87.63],9],
-      // …add 32 more entries here to total 40…
-    ];
-
-    // label helper
-    function gradeLabel(g){
-      if(g <= 3 ) return "Slightly Hard";
-      if(g <= 7 ) return "Moderate Hard";
-      if(g <= 10) return "Hard";
-      if(g <= 14) return "Very Hard";
-      return "Extreme Hard";
-    }
-
-    // 4) drop 40 pulsing markers
-    sites.forEach(([city,latlng,g]) => {
-      const icon = L.divIcon({
-        className: 'pulse-marker',
-        iconSize: [8,8],
-        iconAnchor: [4,4]
-      });
-      const m = L.marker(latlng, { icon }).addTo(map);
-
-      // tooltip
-      const html = `
-        <strong>${city}</strong><br>
-        Hardness: ${g} gpg (${gradeLabel(g)})
-      `;
-      m.bindTooltip(html, {
-        direction:'top', offset:[0,-10], className:'dark-tooltip'
-      });
-      m.on('mouseover', ()=>m.openTooltip());
-      m.on('mouseout', ()=>m.closeTooltip());
-    });
-  });
-
-
+<script>
+  // Intro rule scroll animation
   document.addEventListener('DOMContentLoaded', () => {
-    const rule = document.getElementById('introRule');
+    const rule = document.getElementById('wtIntroRule');
     if (!rule) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -533,68 +810,58 @@
     observer.observe(rule);
   });
 
+  // Hardness map
   document.addEventListener('DOMContentLoaded', () => {
-  const btn = document.getElementById('get-ai-advice-btn');
-  const input = document.getElementById('ai-challenge-input');
-  const loader = document.getElementById('ai-loader');
-  const err = document.getElementById('ai-error-msg');
+    const map = L.map('hardnessMap', {
+      center: [39.5, -98.35],
+      zoom: 4,
+      zoomControl: false,
+      attributionControl: false
+    });
 
-  btn.addEventListener('click', async () => {
-    const challenge = input.value.trim();
-    if (!challenge) {
-      err.textContent = 'Please describe your challenge first.';
-      err.classList.remove('hidden');
-      return;
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      maxZoom: 19
+    }).addTo(map);
+
+    const sites = [
+      ["Phoenix, AZ",    [33.45,-112.07], 12],
+      ["Denver, CO",     [39.74,-104.99],  8],
+      ["Miami, FL",      [25.77, -80.19], 15],
+      ["Minneapolis, MN",[44.98, -93.27],  3],
+      ["New York, NY",   [40.71, -74.00],  7],
+      ["Los Angeles, CA",[34.05,-118.24], 10],
+      ["Houston, TX",    [29.76, -95.37], 14],
+      ["Chicago, IL",    [41.88, -87.63],  9],
+      ["Dallas, TX",     [32.78, -96.80], 13],
+      ["Atlanta, GA",    [33.75, -84.39],  6],
+      ["Seattle, WA",    [47.60,-122.33],  2],
+      ["Las Vegas, NV",  [36.17,-115.14], 16],
+      ["Salt Lake City, UT",[40.76,-111.89],11],
+      ["San Antonio, TX",[29.42, -98.49], 14],
+      ["Portland, OR",   [45.52,-122.68],  3],
+      ["Nashville, TN",  [36.16, -86.78],  8],
+    ];
+
+    function gradeLabel(g) {
+      if (g <= 3)  return "Slightly Hard";
+      if (g <= 7)  return "Moderately Hard";
+      if (g <= 10) return "Hard";
+      if (g <= 14) return "Very Hard";
+      return "Extremely Hard";
     }
-    loader.classList.remove('hidden');
-    err.classList.add('hidden');
-    btn.disabled = true;
 
-    const prompt = `You are a water-management expert. Client says: "${challenge}". Reply with JSON: { title, subtitle, overlayTitle, overlayText }.`;
-    const payload = {
-      contents: [{ role: "user", parts: [{ text: prompt }] }],
-      generationConfig: {
-        responseMimeType: "application/json",
-        responseSchema: {
-          type: "OBJECT",
-          properties: {
-            title: { type: "STRING" },
-            subtitle: { type: "STRING" },
-            overlayTitle: { type: "STRING" },
-            overlayText: { type: "STRING" }
-          },
-          required: ["title","subtitle","overlayTitle","overlayText"]
-        }
-      }
-    };
-
-    try {
-      const apiKey = "AIzaSyA3IlhRLqoVXo9IllNKGezYkyy2Va8X8Jc";
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify(payload),
+    sites.forEach(([city, latlng, g]) => {
+      const icon = L.divIcon({
+        className: 'pulse-marker',
+        iconSize: [8, 8],
+        iconAnchor: [4, 4]
       });
-      if (!res.ok) throw new Error(res.statusText);
-      const json = await res.json();
-      const aiText = json.candidates[0].content.parts[0].text;
-      const data = JSON.parse(aiText);
-
-      document.getElementById('transform-title').textContent = data.title;
-      document.getElementById('transform-subtitle').textContent = data.subtitle;
-      document.getElementById('transform-overlay-title').textContent = data.overlayTitle;
-      document.getElementById('transform-overlay-text').textContent = data.overlayText;
-      document.getElementById('transform-overlay-link').href = data.overlayLink||'#';
-    } catch (e) {
-      err.textContent = "Could not generate advice. Try again later.";
-      err.classList.remove('hidden');
-      console.error(e);
-    } finally {
-      loader.classList.add('hidden');
-      btn.disabled = false;
-    }
+      const m = L.marker(latlng, { icon }).addTo(map);
+      const html = `<strong>${city}</strong><br>Hardness: ${g} gpg — ${gradeLabel(g)}`;
+      m.bindTooltip(html, { direction: 'top', offset: [0, -10], className: 'dark-tooltip' });
+      m.on('mouseover', () => m.openTooltip());
+      m.on('mouseout',  () => m.closeTooltip());
+    });
   });
-});
-     </script>
+</script>
 @endpush

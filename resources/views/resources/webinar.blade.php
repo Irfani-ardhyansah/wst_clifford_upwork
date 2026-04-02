@@ -8,7 +8,7 @@
 <section class="industries-page-hero" style="background:#0d0d0d; padding: 80px 40px 60px; text-align:center;">
   <div class="section-eyebrow">Resources</div>
   <div class="text-center">
-    <h1 class="hero-h1">Tools & Calculators</h1>
+    <h1 class="hero-h1">Webinars On Demand</h1>
     <p class="hero-body" style="text-align:center;">Access our comprehensive suite of water efficiency tools and calculators designed to help you optimize your water management strategies.</p>
   </div>
 </section>
@@ -19,7 +19,7 @@
 
     <!-- Tools Cards Grid -->
     <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px,1fr)); gap:24px;">
-      @forelse ($tools as $item)
+      @forelse ($webinars as $item)
         <div class="tile"
           style="background:#1a1a1a; overflow:hidden; display:flex; flex-direction:column;
                  border:1px solid rgba(255,255,255,0.07); transition:transform 0.3s, box-shadow 0.3s;"
