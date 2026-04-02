@@ -40,7 +40,7 @@
   <div class="audit-commit-inner">
     <div>
       <div class="section-eyebrow">Putting the External Water Audit Advisors to Work</div>
-      <h2 class="section-h2">
+      <h2 class="section-h2" style="color:#fff;">
         Precision-engineered water audits that<br><em>reduce OpEx and improve NOI</em>
       </h2>
     </div>

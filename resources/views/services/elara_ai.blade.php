@@ -508,7 +508,7 @@
   <div class="elara-welcome-inner">
     <div>
       <div class="section-eyebrow">Welcome to Elara AI</div>
-      <h2 class="section-h2">
+      <h2 class="section-h2" style="color:#fff;">
         A Better Way to Manage<br><em>Portfolio Water Utilities</em>
       </h2>
       <div class="elara-rule-wrap">

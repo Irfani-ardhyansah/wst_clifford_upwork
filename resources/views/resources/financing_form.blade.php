@@ -2,9 +2,15 @@
 
 @section('title', 'Water Solutions Technology')
 
+@push('styles')
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+@endpush
+
 @section('content')
-<br><br><br>
-<section class="max-w-6xl mx-auto px-6 pt-4">
+<br><br>
+<section class="max-w-6xl mx-auto px-6 pt-4" style="padding: 0 !important">
   <div class="flex justify-end">
     <a href="/pdfs/financing-application.pdf" target="_blank" 
        class="bg-black text-white font-light tracking-wide text-sm py-2 px-5 rounded-md border border-black hover:bg-white hover:text-black transition-all duration-200">
@@ -13,7 +19,7 @@
   </div>
 </section>
 
-<section class="max-w-6xl mx-auto px-4 py-10 space-y-12">
+<section class="max-w-6xl mx-auto px-4 py-10 space-y-7">
   <!-- Business Entity Information -->
   <div class="border rounded shadow">
     <div class="bg-blue-100 px-6 py-3 font-semibold text-lg border-l-4 border-blue-800">Business Entity Information</div>

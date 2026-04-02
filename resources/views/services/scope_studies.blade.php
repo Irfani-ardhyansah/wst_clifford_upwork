@@ -44,7 +44,7 @@
 
     <div class="scope-approach-phases">
       <div class="section-eyebrow">Our Proven Approach</div>
-      <h2 class="section-h2">A Science-Driven<br><em>Four-Phase Process</em></h2>
+      <h2 class="section-h2" style="color:#fff;">A Science-Driven<br><em>Four-Phase Process</em></h2>
 
       <div class="scope-phases">
         <div class="scope-phase">

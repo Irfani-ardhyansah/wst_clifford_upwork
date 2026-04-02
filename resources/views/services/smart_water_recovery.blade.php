@@ -576,7 +576,7 @@
   <div class="wt-problem-inner">
     <div>
       <div class="section-eyebrow">The Challenge</div>
-      <h2 class="section-h2">
+      <h2 class="section-h2" style="color:#fff;">
         The Challenge of<br><em>Scale &amp; Corrosion</em>
       </h2>
       <div class="wt-rule-wrap">
@@ -601,7 +601,7 @@
   <div class="wt-hardness-inner">
     <div>
       <div class="section-eyebrow">Water Hardness Insights</div>
-      <h2 class="section-h2">
+      <h2 class="section-h2" style="color:#fff;">
         Smart Treatment &amp;<br><em>Hardness Mapping</em>
       </h2>
       <ul class="wt-check-list">
@@ -793,6 +793,8 @@
 @endsection
 
 @push('scripts')
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
   // Intro rule scroll animation
   document.addEventListener('DOMContentLoaded', () => {
