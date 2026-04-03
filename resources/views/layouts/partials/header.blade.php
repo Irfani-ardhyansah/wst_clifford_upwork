@@ -68,7 +68,7 @@
 
     <!-- SERVICES — dropdown -->
     <li>
-      <a href="/services">Services <svg viewBox="0 0 10 6" fill="currentColor"><path d="M0 0l5 6 5-6z"/></svg></a>
+      <a href="#">Services <svg viewBox="0 0 10 6" fill="currentColor"><path d="M0 0l5 6 5-6z"/></svg></a>
       <div class="dropdown">
         <div class="dropdown-section-label" style="padding:10px 16px 4px;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#999;">Services</div>
         <a href="{{ route('services.audit') }}">Efficiency Audits</a>
@@ -89,7 +89,7 @@
 
     <!-- RESOURCES — dropdown -->
     <li>
-      <a href="/resources">Resources <svg viewBox="0 0 10 6" fill="currentColor"><path d="M0 0l5 6 5-6z"/></svg></a>
+      <a href="#">Resources <svg viewBox="0 0 10 6" fill="currentColor"><path d="M0 0l5 6 5-6z"/></svg></a>
       <div class="dropdown">
         <div class="dropdown-section-label" style="padding:10px 16px 4px;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#999;">Resources</div>
         <a href="{{ route('resources.articles') }}">Articles</a>

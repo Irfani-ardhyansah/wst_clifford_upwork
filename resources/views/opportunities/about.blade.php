@@ -29,7 +29,7 @@
   <div class="about-commit-inner">
     <div>
       <div class="section-eyebrow">Our Commitment</div>
-      <h2 class="section-h2">
+      <h2 class="section-h2" style="color:#fff">
         Empowering Commercial<br>
         Leaders to <em>Harness Water</em>
       </h2>
