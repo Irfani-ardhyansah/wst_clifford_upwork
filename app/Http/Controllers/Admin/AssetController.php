@@ -19,7 +19,7 @@ class AssetController extends Controller
     
     public function index(Request $request)
     {
-        $query = Asset::with('industry')->latest();
+        $query = Asset::withCount('views')->with('industry')->latest();
         if ($request->filled('industry_id')) {
             $query->where('industry_id', $request->industry_id);
         }

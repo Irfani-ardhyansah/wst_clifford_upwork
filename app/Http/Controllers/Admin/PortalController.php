@@ -11,7 +11,8 @@ use App\Models\Subscriber;
 use App\Models\Industry;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use Illuminate\Support\Str;
+use Illuminate\Support\Str; 
+use Illuminate\Support\Facades\DB;
 
 class PortalController extends Controller
 {
@@ -75,10 +76,44 @@ class PortalController extends Controller
             ->limit(5)
             ->get(['id', 'title']);
 
-        $chartLabels = $topAssets->map(function ($asset) {
-            return Str::limit($asset->title, 18);
-        });
-        $chartValues = $topAssets->pluck('views_count');
+        $months = collect(range(0, 5))->map(fn($i) => now()->subMonths($i))
+            ->reverse()->values();
+
+        $startDate = now()->subMonths(5)->startOfMonth();
+
+        $viewsByMonth = AssetView::selectRaw('YEAR(view_date) as year, MONTH(view_date) as month, COUNT(*) as total')
+            ->where('view_date', '>=', $startDate)
+            ->groupByRaw('YEAR(view_date), MONTH(view_date)')
+            ->get()
+            ->keyBy(fn($row) => $row->year . '-' . str_pad($row->month, 2, '0', STR_PAD_LEFT));
+
+        $chartLabels = $months->map(fn($m) => $m->format('M Y'));
+
+        $chartValues = $months->map(fn($m) => 
+            $viewsByMonth[$m->format('Y-m')]->total ?? 0
+        );
+
+        $leadsByMonth = User::selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as total')
+            ->where('created_at', '>=', $startDate)
+            ->where('role', 'user')
+            ->groupByRaw('YEAR(created_at), MONTH(created_at)')
+            ->get()
+            ->keyBy(fn($row) => $row->year . '-' . str_pad($row->month, 2, '0', STR_PAD_LEFT));
+
+        $leadsValues = $months->map(fn($m) =>
+            $leadsByMonth[$m->format('Y-m')]->total ?? 0
+        );
+
+        // Subscribers per month
+        $subsByMonth = Subscriber::selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as total')
+            ->where('created_at', '>=', $startDate)
+            ->groupByRaw('YEAR(created_at), MONTH(created_at)')
+            ->get()
+            ->keyBy(fn($row) => $row->year . '-' . str_pad($row->month, 2, '0', STR_PAD_LEFT));
+
+        $subsValues = $months->map(fn($m) =>
+            $subsByMonth[$m->format('Y-m')]->total ?? 0
+        );
 
         $industries = Industry::orderBy('title')->get();
 
@@ -90,6 +125,8 @@ class PortalController extends Controller
             'topAssets',
             'chartLabels',
             'chartValues',
+            'leadsValues',
+            'subsValues',
             'subscribers',
             'industries',
             'categories'

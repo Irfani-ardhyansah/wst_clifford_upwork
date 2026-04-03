@@ -10,7 +10,7 @@ class WhitePaperController extends Controller
 {
     public function index(Request $request)
     { 
-        $query = Asset::where('category', 'white-paper')->latest();
+        $query = Asset::with('industry')->where('category', 'white-paper')->latest();
         if ($request->filled('industry_id')) {
             $query->where('industry_id', $request->industry_id);
         }

@@ -8,6 +8,7 @@ class AssetView extends Model
 {
     protected $fillable = [
         'asset_id',
+        'article_id',
         'user_id',
         'view_date',
     ];

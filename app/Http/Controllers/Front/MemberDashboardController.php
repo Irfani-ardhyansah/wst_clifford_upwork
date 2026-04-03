@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\Asset;
 use App\Models\Industry;
 use App\Models\Article;
+use App\Models\AssetView;
+use Carbon\Carbon;
 
 class MemberDashboardController extends Controller
 {
@@ -76,6 +78,14 @@ class MemberDashboardController extends Controller
     public function articleContent($id)
     {
         $article = Article::findOrFail($id);
+        $user = auth()->user();
+        if ($user->role !== 'admin') {
+            AssetView::firstOrCreate([
+                'article_id' => $article->id,
+                'user_id'  => $user->id,
+                'view_date'=> Carbon::today(),
+            ]);
+        }
         return view('member_dashboard.articles._modal', compact('article'));
     }
 }

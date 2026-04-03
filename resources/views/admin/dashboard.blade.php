@@ -56,6 +56,8 @@
                 <div class="card-title"><i class="fa-solid fa-wave-square" style="color:var(--accent);font-size:11px;"></i>Asset Engagement</div>
                 <div class="chart-tabs">
                     <button class="tab-btn active" onclick="switchChart(this,'views')">Views</button>
+                    <button class="tab-btn" onclick="switchChart(this,'leads')">Leads</button>
+                    <button class="tab-btn" onclick="switchChart(this,'subs')">Subscribers</button>
                 </div>
             </div>
             <div class="card-body"><div class="chart-wrap"><canvas id="assetChart"></canvas></div></div>
@@ -86,7 +88,13 @@
         </div>
     </div>
 
-    <div class="card mt-8 text-center">
+    <div id="detail-loader" class="hidden mt-8 text-center">
+        <i class="fa-solid fa-circle-notch fa-spin text-3xl text-teal-500 mb-3"></i>
+        <p class="text-gray-400 animate-pulse">Loading logs data...</p>
+    </div>
+    <div id="asset-detail-container" class="viewer-panel" style="display:none;margin-bottom:18px;"></div>
+
+    <div class="card mt-8 text-center" id="list-assets-card">
         <div class="card-hdr">
             <div class="card-title"><i class="fa-solid fa-list" style="color:var(--accent);font-size:11px;"></i>List Of Assets</div>
         </div>
@@ -166,13 +174,6 @@
         </div>
     </div>
 
-    <div id="detail-loader" class="hidden mt-8 text-center">
-        <i class="fa-solid fa-circle-notch fa-spin text-3xl text-teal-500 mb-3"></i>
-        <p class="text-gray-400 animate-pulse">Loading logs data...</p>
-    </div>
-
-    <div id="asset-detail-container" class="viewer-panel" style="display:none;margin-bottom:18px;"></div>
-
     <div class="card mt-8 text-center">
         <div class="card-hdr">
             <div class="card-title">
@@ -247,57 +248,76 @@
 <script>
 $(document).ready(function() {
     // Menampilkan detail asset logs dengan AJAX ketika tombol dipilih
-    $(document).on('click', '.asset-trigger', function(e) {
-        e.preventDefault();
-        
-        let $this = $(this);
-        let url = $this.data('url');
-        let container = $('#asset-detail-container');
-        let loader = $('#detail-loader');
-        let allTriggers = $('.asset-trigger');
+$(document).on('click', '.asset-trigger', function(e) {
+    e.preventDefault();
+    let $this = $(this);
+    let url = $this.data('url');
+    let container = $('#asset-detail-container');
+    let loader = $('#detail-loader');
+    let listCard = $('#list-assets-card');
+    let allTriggers = $('.asset-trigger');
 
-        // Cek jika button ini sudah active
-        if ($this.hasClass('bg-teal-50')) {
-            // Jika ya, un-active dan close container
-            $this.removeClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
-            container.slideUp(300);
-            return;
-        }
+    // Jika sudah active, close dan tampilkan list card kembali
+    if ($this.hasClass('bg-teal-50')) {
+        $this.removeClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
+        container.slideUp(300);
+        listCard.slideDown(300);
+        return;
+    }
 
-        // Jika tidak active, active dan load detail
-        allTriggers.removeClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
-        $this.addClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
+    allTriggers.removeClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
+    $this.addClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
 
-        // Animasi slide up container lama (jika ada)
-        container.slideUp(200, function() {
-            // Tampilkan loader
-            loader.removeClass('hidden').fadeIn(100);
-            
-            // Request AJAX
-            $.ajax({
-                url: url,
-                type: 'GET',
-                success: function(response) {
-                    loader.hide(); // Sembunyikan loader
-                    
-                    container.html(response).slideDown(400);
+    // Jika container sudah terbuka, flash content tanpa animasi buka/tutup
+    if (container.is(':visible')) {
+        container.css('opacity', 0.4);
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function(response) {
+                container.html(response).animate({ opacity: 1 }, 200);
+            },
+            error: function() {
+                container.animate({ opacity: 1 }, 200);
+                alert('Failed to load asset details.');
+            }
+        });
+        return;
+    }
 
-                    $('html, body').animate({
-                        scrollTop: container.offset().top - 150
-                    }, 600);
-                },
-                error: function(xhr) {
-                    loader.hide();
-                    alert('Failed to load asset details.');
-                }
-            });
+    // Container belum terbuka — sembunyikan list card dulu, lalu load
+    listCard.slideUp(200, function() {
+        loader.removeClass('hidden').fadeIn(100);
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function(response) {
+                loader.hide();
+                container.html(response).slideDown(400);
+                $('html, body').animate({
+                    scrollTop: container.offset().top - 150
+                }, 600);
+            },
+            error: function() {
+                loader.hide();
+                listCard.slideDown(300);
+                alert('Failed to load asset details.');
+            }
         });
     });
+});
 
-    $(document).on('click', '#close-detail-btn', function() {
-        $('#asset-detail-container').slideUp(300);
-        $('.asset-trigger').removeClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
+// Close button
+$(document).on('click', '#close-detail-btn', function() {
+    let container = $('#asset-detail-container');
+    let listCard = $('#list-assets-card');
+    let allTriggers = $('.asset-trigger');
+
+    allTriggers.removeClass('bg-teal-50 border-teal-200 shadow-sm ring-1 ring-teal-200');
+    container.slideUp(300, function() {
+        listCard.slideDown(300);
     });
+});
 
     function loadAssets() {
         let search = $('#search').val();
@@ -325,34 +345,69 @@ $(document).ready(function() {
         if (assetChart) {
             assetChart.destroy();
         }
+
+        const isDark = document.body.getAttribute('data-theme') === 'dark';
+        const gridColor = isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.05)';
+        const tickColor = isDark ? '#8b92a5' : '#6b7280';
+        const accentHex = isDark ? '#00c9a7' : '#007a64';
+
+        const gradient = ctx.getContext('2d').createLinearGradient(0, 0, 0, ctx.offsetHeight);
+        gradient.addColorStop(0, isDark ? 'rgba(0,201,167,0.20)' : 'rgba(0,122,100,0.15)');
+        gradient.addColorStop(1, 'rgba(0,201,167,0)');
+
         assetChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Views',
                     data: data,
-                    borderRadius: 6,
-                    backgroundColor: 'var(--accent)',
-                    borderColor: 'var(--accent)',
-                    borderWidth: 1
+                    borderColor: accentHex,
+                    borderWidth: 2,
+                    backgroundColor: gradient,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: accentHex,
+                    pointHoverBorderColor: isDark ? '#0c0d11' : '#fff',
+                    pointHoverBorderWidth: 2
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { display: false }
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: isDark ? '#141720' : '#fff',
+                        borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.10)',
+                        borderWidth: 1,
+                        titleColor: isDark ? '#ecedf2' : '#0d0f1a',
+                        bodyColor: isDark ? '#8b92a5' : '#5a6278',
+                        padding: 12,
+                        cornerRadius: 8
+                    }
                 },
                 scales: {
                     y: {
-                        beginAtZero: true,
-                        grid: { color: 'var(--surface-2)' },
-                        ticks: { color: 'var(--text-3)', font: { size: 11 } }
+                        grid: {
+                            color: gridColor,
+                            drawBorder: false
+                        },
+                        ticks: {
+                            color: tickColor,
+                            font: { family: 'JetBrains Mono', size: 10 },
+                            callback: v => v >= 1000 ? (v / 1000).toFixed(0) + 'k' : v
+                        },
+                        border: { display: false }
                     },
                     x: {
                         grid: { display: false },
-                        ticks: { color: 'var(--text-3)', font: { size: 11 } }
+                        ticks: {
+                            color: tickColor,
+                            font: { family: 'JetBrains Mono', size: 10 }
+                        },
+                        border: { display: false }
                     }
                 }
             }
@@ -372,11 +427,9 @@ $(document).ready(function() {
         if (type === 'views') {
             initChart(@json($chartValues), @json($chartLabels));
         } else if (type === 'leads') {
-            // For demo, using same data - in real app you'd fetch different data
-            initChart(@json($chartValues), @json($chartLabels));
+            initChart(@json($leadsValues), @json($chartLabels));
         } else if (type === 'subs') {
-            // For demo, using same data - in real app you'd fetch different data
-            initChart(@json($chartValues), @json($chartLabels));
+            initChart(@json($subsValues), @json($chartLabels));
         }
     }
 

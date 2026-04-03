@@ -1,4 +1,3 @@
-<div class="card">
     <div class="card-hdr">
         <div class="card-title">
             <i class="fa-solid fa-eye" style="color:var(--accent);font-size:11px;"></i>{{ $asset->title }}
@@ -30,7 +29,11 @@
                         <tr>
                             <td class="primary">
                                 <div style="display:flex;align-items:center;gap:8px;">
-                                    <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-dim));display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;">
+                                    <div style="  width:26px; height:26px; border-radius:50%; flex-shrink:0;
+                                        background:var(--accent-dim); border:1px solid rgba(0,201,167,.2);
+                                        display:flex; align-items:center; justify-content:center;
+                                        font-size:10px; font-weight:700; color:var(--accent);
+                                        text-transform:uppercase;">
                                         {{ substr($view->user->name ?? 'G', 0, 1) }}
                                     </div>
                                     <span>{{ $view->user->name ?? 'Guest/Unknown' }}</span>
@@ -55,7 +58,6 @@
             </table>
         </div>
     </div>
-</div>
 
 <script>
     // Fitur Search Table Sederhana

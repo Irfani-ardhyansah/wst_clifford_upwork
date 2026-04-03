@@ -20,7 +20,7 @@
         
         <div class="p-6 border-b border-[var(--border)] bg-[var(--surface)] relative z-20">
 
-            <div class="bg-[var(--surface-2)] rounded-xl p-1.5 mb-6 border border-[var(--border)]">
+            <div class="bg-[var(--surface-2)] rounded-xl p-1.5 border border-[var(--border)]">
                 <form action="{{ route('admin.assets.index') }}" method="GET" class="flex flex-col md:flex-row md:items-center w-full gap-2">
                     
                     <div class="relative flex-1 group">
@@ -97,120 +97,94 @@
         @endif
 
         <div class="relative z-10 overflow-x-auto">
-            <table class="w-full text-left border-collapse">
+            <table class="wst-table">
                 <thead>
-                    <tr class="bg-[var(--surface-2)] border-b border-[var(--border)] text-xs uppercase tracking-wider text-[var(--text-3)] font-semibold">
-                        <th class="px-6 py-4 first:pl-8">Project Info</th>
-                        <th class="px-6 py-4">Industry</th>
-                        <th class="px-6 py-4">Status</th>
-                        <th class="px-6 py-4 text-right last:pr-8">Actions</th>
+                    <tr>
+                        <th>Project Info</th>
+                        <th>Industry</th>
+                        <th>Status</th>
+                        <th>Views</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-[var(--border)]">
+                <tbody>
                     @forelse($caseStudies as $item)
-                        <tr class="group transition-all duration-200 
-                            hover:bg-[var(--surface-2)] 
-                            hover:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.1)] 
-                            hover:-translate-y-[2px] relative hover:z-20">
-                            
-                            <td class="px-6 py-5 first:pl-8">
-                                <div class="flex items-center gap-5">
-                                    <div class="relative h-16 w-24 flex-shrink-0 rounded-xl overflow-hidden border border-[var(--border)] shadow-sm bg-[var(--surface-2)]">
+                        <tr>
+                            <td class="primary">
+                                <div style="display:flex;align-items:center;gap:10px;max-width:300px;">
+                                    <div style="width:48px;height:32px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid var(--border);background:var(--surface-2);">
                                         @if($item->image_path)
-                                            <img src="{{ Storage::url($item->image_path) }}" 
-                                                 class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500" 
-                                                 alt="{{ $item->title }}">
+                                            <img src="{{ Storage::url($item->image_path) }}"
+                                                style="width:100%;height:100%;object-fit:cover;"
+                                                alt="{{ $item->title }}">
                                         @else
-                                            <div class="h-full w-full flex items-center justify-center text-[var(--text-3)] bg-[var(--surface-2)]">
-                                                <i class="fa-regular fa-image text-2xl opacity-50"></i>
+                                            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+                                                <i class="fa-regular fa-image" style="font-size:12px;color:var(--text-3);opacity:.5;"></i>
                                             </div>
                                         @endif
                                     </div>
                                     <div>
-                                        <div class="font-bold text-base text-[var(--text-1)] group-hover:text-[var(--primary)] transition-colors">
-                                            {{ $item->title }}
-                                        </div>
-                                        <div class="text-sm text-[var(--text-3)] mt-1 font-medium">
-                                            {{ $item->category ?? 'General' }}
-                                        </div>
+                                        <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ $item->title }}</span>
                                     </div>
                                 </div>
                             </td>
 
-                            <td class="px-6 py-5">
+                            <td>
                                 @if($item->industry)
-                                    <span class="inline-flex items-center px-3 py-1 rounded-lg text-xs font-semibold bg-[var(--surface-2)] text-[var(--text-3)] border border-[var(--border)]">
+                                    <span class="pill" style="background:var(--surface-2);color:var(--text-3);border:1px solid var(--border);">
                                         {{ $item->industry->title }}
                                     </span>
                                 @else
-                                    <span class="text-[var(--text-3)] text-sm italic">Global / All</span>
+                                    <span style="color:var(--text-3);font-size:12px;font-style:italic;">Global / All</span>
                                 @endif
                             </td>
 
-                            <td class="px-6 py-5">
-                                <div class="flex flex-col items-start gap-2">
-                                    <span class="inline-flex items-center gap-1.5 pl-2 pr-3 py-0.5 rounded-full text-xs font-bold uppercase tracking-wide {{ $item->is_active ? 'bg-green-50 text-green-700 border border-green-200/60' : 'bg-[var(--surface-2)] text-[var(--text-3)] border border-[var(--border)]' }}">
-                                        <span class="w-1.5 h-1.5 rounded-full {{ $item->is_active ? 'bg-green-500' : 'bg-[var(--text-3)]' }}"></span>
+                            <td>
+                                <div style="display:flex;flex-direction:column;gap:4px;">
+                                    <span class="pill {{ $item->is_active ? 'pill-green' : 'pill-amber' }}">
                                         {{ $item->is_active ? 'Published' : 'Draft' }}
                                     </span>
                                     @if($item->is_featured)
-                                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[10px] font-black tracking-wider bg-amber-50 text-amber-700 border border-amber-200/60 uppercase">
-                                        <i class="fa-solid fa-star text-[9px]"></i> Featured
-                                    </span>
+                                        <span class="pill pill-yellow">
+                                            <i class="fa-solid fa-star" style="font-size:9px;"></i> Featured
+                                        </span>
                                     @endif
                                 </div>
                             </td>
 
-                            <td class="px-6 py-5 text-right last:pr-8">
-                                <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-all duration-200 transform group-hover:translate-x-0 translate-x-4">
-                                    <a href="{{ route('admin.assets.edit', $item) }}" 
-                                       class="p-2 bg-[var(--surface)] border border-[var(--border)] 
-                                        rounded-lg text-[var(--text-3)] 
-                                        hover:text-blue-600 hover:border-blue-300 hover:bg-blue-50 transition"
-                                       title="Edit">
-                                        <i class="fa-regular fa-pen-to-square"></i>
-                                    </a>
+                            <td style="font-family:var(--font-mono);color:var(--accent);">
+                                {{ number_format($item->views_count ?? 0) }}
+                            </td>
 
-                                    <form action="{{ route('admin.assets.destroy', $item) }}" method="POST" 
-                                          onsubmit="return confirm('Are you sure you want to delete this case study? This will delete associated files too.');">
+                            <td class="r">
+                                <div style="display:flex;align-items:center;justify-content:flex-start;gap:6px;">
+                                    <a href="{{ route('admin.assets.edit', $item) }}"
+                                    class="btn btn-ghost"
+                                    style="font-size:10px;padding:4px 8px;">
+                                        <i class="fa-solid fa-pencil" style="font-size:9px;"></i> Edit
+                                    </a>
+                                    <form action="{{ route('admin.assets.destroy', $item) }}" method="POST"
+                                        onsubmit="return confirm('Are you sure you want to delete this case study? This will delete associated files too.');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" 
-                                                class="p-2 bg-[var(--surface)] border border-[var(--border)] 
-                                                rounded-lg text-[var(--text-3)] 
-                                                hover:text-red-600 hover:border-red-300 hover:bg-red-50 transition"
-                                                title="Delete">
-                                            <i class="fa-regular fa-trash-can"></i>
+                                        <button type="submit" class="btn btn-ghost"
+                                                style="font-size:10px;padding:4px 8px;color:var(--red, #ef4444);">
+                                            <i class="fa-solid fa-trash-can" style="font-size:9px;"></i> Delete
                                         </button>
                                     </form>
                                 </div>
-                                {{-- Mobile/Fallback Menu Indicator --}}
-                                <div class="block group-hover:hidden text-[var(--text-3)]">
-                                    <i class="fa-solid fa-ellipsis text-xl"></i>
-                                </div>
                             </td>
                         </tr>
+
                     @empty
                         <tr>
-                            <td colspan="4" class="px-6 py-16 text-center">
-                                <div class="flex flex-col items-center justify-center 
-                                    bg-[var(--surface-2)] rounded-2xl p-8 
-                                    border border-dashed border-[var(--border)]">
-                                    <div class="w-20 h-20 bg-[var(--surface)] rounded-full flex items-center justify-center mb-4 shadow-sm border border-[var(--border)]">
-                                        <i class="fa-solid fa-folder-plus text-3xl text-teal-600/80"></i>
-                                    </div>
-                                    <h3 class="text-xl font-bold text-[var(--text-1)] mb-2">No Case Studies Found</h3>
-                                    <p class="text-[var(--text-3)] mb-6 max-w-md mx-auto">
-                                        @if(request('search'))
-                                            We couldn't find any case studies matching your search.
-                                        @else
-                                            Get started by adding your first project showcase to the portfolio.
-                                        @endif
-                                    </p>
-                                    <a href="{{ route('admin.assets.create') }}" class="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-xl font-medium transition shadow-md shadow-teal-600/20 hover:shadow-lg hover:-translate-y-0.5">
-                                        <i class="fa-solid fa-plus"></i> Create New Project
-                                    </a>
-                                </div>
+                            <td colspan="4" style="text-align:center;padding:40px 20px;color:var(--text-3);">
+                                <i class="fa-solid fa-folder-plus" style="font-size:24px;margin-bottom:8px;display:block;color:var(--accent);opacity:.5;"></i>
+                                @if(request('search'))
+                                    No case studies matching your search.
+                                @else
+                                    No case studies found. Get started by creating your first project.
+                                @endif
                             </td>
                         </tr>
                     @endforelse

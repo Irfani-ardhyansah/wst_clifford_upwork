@@ -12,7 +12,10 @@ class ArticleController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Article::query()->latest();
+        $query = Article::query()
+            ->with('author')
+            ->withCount('views')
+            ->latest();
         if ($request->filled('search')) {
             $s = $request->search;
             $query->where('title', 'like', "%{$s}%")->orWhere('slug', 'like', "%{$s}%");

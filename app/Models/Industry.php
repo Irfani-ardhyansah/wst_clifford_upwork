@@ -24,4 +24,9 @@ class Industry extends Model
     {
         return $this->hasMany(CaseStudy::class);
     }
+
+    public function assets(): HasMany
+    {
+        return $this->hasMany(Asset::class);
+    }
 }

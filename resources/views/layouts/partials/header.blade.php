@@ -16,44 +16,32 @@
       <a href="{{ route('opportunities.agents') }}">Agents</a>
     </div>
   </div>
-  @if(Auth::check())
-    <a href="{{ route('logout') }}"
-      onclick="event.preventDefault(); document.getElementById('nav-logout-form').submit();"
-      style="color:rgba(255,255,255,0.45); cursor:pointer; text-decoration:none; display: flex; align-items: center;">
+@if(Auth::check())
+    <a href="#" 
+       onclick="event.preventDefault(); document.getElementById('nav-logout-form').submit();" 
+       style="color:rgba(255,255,255,0.45); cursor:pointer; text-decoration:none; display:flex; align-items:center;">
         
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"
-            style="vertical-align:middle;margin-right:4px;opacity:0.5">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" style="margin-right:4px;opacity:0.5">
             <circle cx="6" cy="4" r="2.5"/>
             <path d="M1 11c0-2.76 2.24-5 5-5s5 2.24 5 5"/>
         </svg>
         LOGOUT
     </a>
 
-    <form method="POST" action="{{ route('logout') }}" style="display:none;">
+    <form id="nav-logout-form" method="POST" action="{{ route('logout') }}" style="display:none;">
         @csrf
     </form>
-  @else
-    <a id="nav-login-link" href="{{ route('login') }}">
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" style="vertical-align:middle;margin-right:4px;opacity:0.5"><circle cx="6" cy="4" r="2.5"/><path d="M1 11c0-2.76 2.24-5 5-5s5 2.24 5 5"/></svg>
-      LOGIN
-    </a>
-
-    <a id="nav-logout-form" href="{{ route('logout') }}"
-      onclick="event.preventDefault(); document.getElementById('nav-logout-form').submit();"
-      style="color:rgba(255,255,255,0.45); cursor:pointer; text-decoration:none; display: flex; align-items: center; display: none;">
+@else
+    <a href="{{ route('login') }}" 
+       style="color:rgba(255,255,255,0.45); text-decoration:none; display:flex; align-items:center;">
         
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"
-            style="vertical-align:middle;margin-right:4px;opacity:0.5">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" style="margin-right:4px;opacity:0.5">
             <circle cx="6" cy="4" r="2.5"/>
             <path d="M1 11c0-2.76 2.24-5 5-5s5 2.24 5 5"/>
         </svg>
-        LOGOUT
+        LOGIN
     </a>
-
-    <for smethod="POST" action="{{ route('logout') }}" style="display:none;">
-        @csrf
-    </form>
-  @endif
+@endif
 </div>
 
 <!-- NAV -->

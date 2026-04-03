@@ -24,4 +24,14 @@ class Article extends Model
     protected $casts = [
         'published_at' => 'datetime',
     ];
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'author_id');
+    }
+
+    public function views()
+    {
+        return $this->hasMany(AssetView::class);
+    }
 }

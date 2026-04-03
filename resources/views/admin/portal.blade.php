@@ -368,7 +368,7 @@ input,select,textarea{font-family:var(--font-ui);}
 /* ── Viewer log panel ── */
 .viewer-panel {
   background:var(--surface-hi); border:1px solid var(--border);
-  border-radius:var(--radius); padding:20px; margin-top:16px;
+  border-radius:var(--radius); padding:5px; margin-top:16px;
 }
 .viewer-panel-hdr {
   display:flex; align-items:center; justify-content:space-between;
@@ -568,6 +568,14 @@ input,select,textarea{font-family:var(--font-ui);}
         <a href="mailto:{{ config('mail.support_address') }}" class="nav-link">
           <i class="fa-solid fa-envelope"></i><span class="lbl">Contact Support</span>
         </a>
+
+    <form method="POST" action="{{ route('logout') }}">
+      @csrf
+      <button type="submit" class="nav-link w-full text-left text-red-400 hover:text-red-600">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span class="lbl">Logout</span>
+      </button>
+    </form>
   </nav>
 
   <div class="sb-footer">

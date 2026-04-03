@@ -12,7 +12,8 @@ class IndustryController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Industry::orderBy('sort_order', 'asc');
+        $query = Industry::withCount('assets')
+            ->orderBy('sort_order', 'asc');
 
         if ($request->filled('search')) {
             $search = $request->search;
