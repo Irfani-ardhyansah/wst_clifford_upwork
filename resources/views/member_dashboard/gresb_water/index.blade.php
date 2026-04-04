@@ -42,23 +42,24 @@
       </div>
     </div>
     <div>
-      <div class="result-panel">
-        <div>
-          <div style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(0,201,167,.5);margin-bottom:6px;">Projected Annual Savings</div>
-          <div class="result-big" id="est-result">$0</div>
-          <div style="font-size:12px;color:rgba(0,201,167,.5);margin-top:4px;" id="est-pct">0% reduction</div>
-        </div>
-        <div>
-          <div class="result-row"><span class="result-k">Properties analysed</span><span class="result-v" id="r-props">10</span></div>
-          <div class="result-row"><span class="result-k">Current annual spend</span><span class="result-v" id="r-spend">$2,500,000</span></div>
-          <div class="result-row"><span class="result-k">Savings per property</span><span class="result-v" id="r-per">$62,500</span></div>
-          <div class="result-row"><span class="result-k">Est. payback period</span><span class="result-v" id="r-payback">11 months</span></div>
-          <div class="result-row"><span class="result-k">5-year NOI impact</span><span class="result-v" id="r-noi">$3,125,000</span></div>
-        </div>
-        <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="nav('schedule-new',null,'Schedule New Audit','Schedule')">
-        <a href="{{ route('member-dashboard.gresb-water.form') }}" class="btn btn-primary" style="width:100%;justify-content:center;" >
-          <i class="fa-solid fa-calendar-check"></i> Schedule Assessment
-        </a>
+      <div class="result-panel" style="background:#1a2420;border-color:#2a3d35;">
+          <div>
+              <div style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8a9e96;margin-bottom:6px;">Projected Annual Savings</div>
+              <div class="result-big" id="est-result" style="color:#f0ece4;">$0</div>
+              <div style="font-size:12px;color:#8a9e96;margin-top:4px;" id="est-pct">0% reduction</div>
+          </div>
+          <div>
+              <div class="result-row"><span class="result-k" style="color:#6b7d75;">Properties analysed</span><span class="result-v" id="r-props" style="color:#f0ece4;">10</span></div>
+              <div class="result-row"><span class="result-k" style="color:#6b7d75;">Current annual spend</span><span class="result-v" id="r-spend" style="color:#f0ece4;">$2,500,000</span></div>
+              <div class="result-row"><span class="result-k" style="color:#6b7d75;">Savings per property</span><span class="result-v" id="r-per" style="color:#f0ece4;">$62,500</span></div>
+              <div class="result-row"><span class="result-k" style="color:#6b7d75;">Est. payback period</span><span class="result-v" id="r-payback" style="color:#f0ece4;">11 months</span></div>
+              <div class="result-row"><span class="result-k" style="color:#6b7d75;">5-year NOI impact</span><span class="result-v" id="r-noi" style="color:#f0ece4;">$3,125,000</span></div>
+          </div>
+          <a href="{{ route('member-dashboard.gresb-water.form') }}" 
+            class="btn btn-primary" 
+            style="width:100%;justify-content:center;background:#2d4a3e;border-color:#3d5e50;color:#f0ece4;">
+              <i class="fa-solid fa-calendar-check"></i> Schedule Assessment
+          </a>
       </div>
     </div>
   </div>

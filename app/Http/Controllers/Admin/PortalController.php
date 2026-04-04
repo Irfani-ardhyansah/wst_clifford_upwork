@@ -186,8 +186,28 @@ class PortalController extends Controller
         $asset = Asset::with(['views' => function ($query) {
             $query->orderBy('view_date', 'desc')->with('user');
         }])->findOrFail($id);
-
         $views_count = AssetView::where('asset_id', $id)->count(); 
+
+        if ($request->ajax()) {
+            
+            $search = $request->get('search');
+            $top5 = $asset->views->take(5);
+            // return response()->json($top5);
+            return response()->json([
+                'success' => true,
+                'data' => [
+                    'asset' => $asset,
+                    'views_count' => $views_count,
+                    'logs' => $top5->map(function($view) {
+                        return [
+                            'user' => $view->user ? $view->user->name : 'Unknown',
+                            'date' => $view->created_at->format('d M Y'),
+                            'time' => $view->created_at->format('H:i:s'),
+                        ];
+                    })
+                ]
+            ]);
+        }
 
         return view('admin.components.asset-log-detail-card', compact('asset', 'views_count'));
     }

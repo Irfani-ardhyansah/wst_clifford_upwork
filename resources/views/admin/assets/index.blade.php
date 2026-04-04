@@ -228,3 +228,211 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script>
+        // ─── State ────────────────────────────────────────────────────────────────────
+        const _arCache   = {};   // cache hasil fetch per id
+        let   _arOpen    = null; // id yang sedang terbuka
+        const routeAssetDetails = "{{ route('admin.asset.details', ['id' => '__ID__']) }}";
+
+        // ─── Toggle ───────────────────────────────────────────────────────────────────
+        async function toggleARRow(id, rowEl) {
+            const exp   = document.getElementById('ar-exp-'   + id);
+            const arrow = document.getElementById('ar-arrow-' + id);
+            const inner = document.getElementById('ar-inner-' + id);
+            if (!exp) return;
+
+            const isOpen = exp.classList.contains('open');
+
+            // Tutup semua yang terbuka
+            document.querySelectorAll('.expand-row.open').forEach(r => r.classList.remove('open'));
+            document.querySelectorAll('[id^="ar-arrow-"]').forEach(a => { a.style.transform = ''; });
+
+            if (isOpen) { _arOpen = null; return; }
+
+            // Buka baris ini
+            exp.classList.add('open');
+            arrow.style.transform = 'rotate(90deg)';
+            inner.style.padding   = '0';
+            _arOpen = id;
+
+            // Tampilkan skeleton dulu
+            inner.innerHTML = buildSkeletonHTML();
+
+            // Fetch data
+            await loadViewerLog(id, inner);
+        }
+
+        // ─── Fetch ────────────────────────────────────────────────────────────────────
+        async function loadViewerLog(id, inner, search = '') {
+            // Pakai cache kalau tidak ada search
+            if (!search && _arCache[id]) {
+                inner.innerHTML = buildViewerLogHTML(_arCache[id], []);
+                return;
+            }
+
+            inner.innerHTML = buildSkeletonHTML();
+
+            try {
+                const base = routeAssetDetails.replace('__ID__', id);
+                const url  = base + (search ? `?search=${encodeURIComponent(search)}` : '');
+
+                const res  = await fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } });
+                if (!res.ok) throw new Error('Network error');
+                const data = await res.json();
+
+                if (!search) _arCache[id] = data; // simpan cache
+                inner.innerHTML = buildViewerLogHTML(data, search);
+            } catch (e) {
+                inner.innerHTML = buildErrorHTML();
+            }
+        }
+
+        // ─── Search (debounced) ───────────────────────────────────────────────────────
+        let _arSearchTimer = null;
+        function onARSearch(id, val) {
+            clearTimeout(_arSearchTimer);
+            _arSearchTimer = setTimeout(() => {
+                const inner = document.getElementById('ar-inner-' + id);
+                if (inner) loadViewerLog(id, inner, val);
+            }, 350);
+        }
+
+        // ─── HTML Builders ────────────────────────────────────────────────────────────
+        function buildViewerLogHTML(data, search) {
+            // const { asset, logs } = data;
+            console.log('data', data);
+            const asset = data.data.asset || {};
+            const logs = data.data.logs || [];
+
+            const rows = logs.length
+                ? logs.map(l => {
+                    const initials = l.user.split(' ').map(w => w[0]).slice(0,2).join('').toUpperCase();
+                    return `
+                    <tr>
+                        <td>
+                            <div style="display:flex;align-items:center;gap:10px;">
+                                <div class="ar-avatar">${initials}</div>
+                                <span style="color:var(--text-1);font-weight:500;font-size:13px;">${escHtml(l.user)}</span>
+                            </div>
+                        </td>
+                        <td style="color:var(--text-2);font-size:13px;">${escHtml(l.date)}</td>
+                        <td class="r" style="font-family:var(--font-mono);font-size:12px;color:var(--text-3);">${escHtml(l.time)}</td>
+                    </tr>`;
+                }).join('')
+                : `<tr><td colspan="3">
+                        <div style="text-align:center;padding:28px 0;color:var(--text-3);font-size:12px;">
+                            <i class="fa-regular fa-face-meh" style="font-size:20px;margin-bottom:6px;display:block;opacity:.4;"></i>
+                            No viewer logs found
+                        </div>
+                </td></tr>`;
+
+            return `
+            <div style="padding:16px 20px 20px;">
+                <!-- Header -->
+                <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px;">
+                    <div>
+                        <div style="font-weight:700;color:var(--text-1);font-size:13px;line-height:1.3;">
+                            ${escHtml(asset.title)}
+                        </div>
+                        <div style="font-size:10px;color:var(--text-3);margin-top:3px;font-family:var(--font-mono);">
+                            Asset ID: #${asset.id}
+                            &nbsp;&bull;&nbsp;
+                            Total Views: <strong style="color:var(--accent);">${Number(data.data.views_count).toLocaleString()}</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="table-scroll" style="border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+                    <table class="wst-table" style="margin:0;">
+                        <thead>
+                            <tr>
+                                <th style="font-size:10px;text-transform:uppercase;letter-spacing:.06em;padding:8px 14px;color:var(--text-3);">Viewer</th>
+                                <th style="font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);">Date</th>
+                                <th class="r" style="font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);padding-right:14px;">Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ar-vb-${asset.id}">${rows}</tbody>
+                    </table>
+                </div>
+            </div>`;
+        }
+
+        function buildSkeletonHTML() {
+            const lines = [80, 60, 70, 55, 65];
+            const rows = lines.map(w => `
+                <tr>
+                    <td>
+                        <div style="display:flex;align-items:center;gap:10px;">
+                            <div class="ar-skel" style="width:30px;height:30px;border-radius:50%;flex-shrink:0;"></div>
+                            <div class="ar-skel" style="width:${w}%;height:13px;border-radius:4px;"></div>
+                        </div>
+                    </td>
+                    <td><div class="ar-skel" style="width:90px;height:13px;border-radius:4px;"></div></td>
+                    <td class="r"><div class="ar-skel" style="width:44px;height:13px;border-radius:4px;margin-left:auto;"></div></td>
+                </tr>`).join('');
+
+            return `
+            <div style="padding:16px 20px 20px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+                    <div>
+                        <div class="ar-skel" style="width:240px;height:14px;border-radius:4px;margin-bottom:6px;"></div>
+                        <div class="ar-skel" style="width:160px;height:10px;border-radius:4px;"></div>
+                    </div>
+                    <div class="ar-skel" style="width:190px;height:30px;border-radius:6px;"></div>
+                </div>
+                <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+                    <table class="wst-table" style="margin:0;"><tbody>${rows}</tbody></table>
+                </div>
+            </div>`;
+        }
+
+        function buildErrorHTML() {
+            return `
+            <div style="padding:28px 20px;text-align:center;color:var(--text-3);font-size:12px;">
+                <i class="fa-solid fa-triangle-exclamation" style="font-size:18px;color:var(--red,#ef4444);margin-bottom:8px;display:block;opacity:.7;"></i>
+                Failed to load viewer logs. Please try again.
+            </div>`;
+        }
+
+        // ─── Helpers ──────────────────────────────────────────────────────────────────
+        function escHtml(str) {
+            return String(str ?? '')
+                .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+                .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        }
+    </script>
+
+    <style>
+    /* Avatar */
+        .ar-avatar {
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            background: var(--accent, #10b981);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            letter-spacing: .02em;
+        }
+
+        /* Skeleton shimmer */
+        .ar-skel {
+            background: linear-gradient(90deg, var(--surface-2, #1e2533) 25%, var(--border, #2a3244) 50%, var(--surface-2, #1e2533) 75%);
+            background-size: 200% 100%;
+            animation: ar-shimmer 1.4s infinite;
+        }
+        @keyframes ar-shimmer {
+            0%   { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Expand row transition */
+        .expand-row td { transition: padding .15s ease; }
+        .expand-row:not(.open) td { padding: 0 !important; }
+        .expand-row:not(.open) > td > div { display: none; }
+    </style>
+@endpush
