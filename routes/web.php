@@ -28,19 +28,11 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.custom');
 Route::post('/login-by-phone', [AuthController::class, 'loginByPhone'])->name('login.phone');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Route::get('/', function () {
-//     return view('index');
-// })->name('index');
-
 Route::get('/', [MemberController::class, 'index'])->name('index');
 
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
-
-// Route::get('/new-design', function () {
-//     return view('new-design');
-// })->name('new-design');
 
 Route::prefix('new-design')->group(function() {
     Route::get('/dashboard', function () {
@@ -58,6 +50,14 @@ Route::prefix('new-design')->group(function() {
     Route::get('/wst_index', function () {
         return view('new_design.wst_V12_index');
     })->name('new-design.wst_V12_index');
+
+    Route::get('/smart_water_monitoring', function () {
+        return view('new_design.smart-water-monitoring-new');
+    })->name('new-design.smart_water_monitoring');
+
+    Route::get('/audit', function () {
+        return view('new_design.water-audit-efficiency');
+    })->name('new-design.audit');
 });
 
 Route::middleware(['auth', 'role:admin'])

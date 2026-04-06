@@ -49,8 +49,8 @@
   <!-- To use a PNG logo: replace the SVG below with
        <img src="/assets/img/wst-logo.png" alt="Water Solutions Technology" style="height:44px;width:auto;"/>
        inside the .nav-logo-wrap anchor tag. -->
-  <a href="{{route('index')}}"><img src="{{ asset('assets/images/logo_fix.png') }}" alt="Water Solutions Technology Logo"
-  style="height:100px; width:auto; display:block;"/></a>
+  <a href="{{route('index')}}"><img src="{{ asset('assets/images/logo_fix.svg') }}" alt="Water Solutions Technology Logo"
+  style="height:70px; width:auto; display:block;"/></a>
 
   <ul class="nav-links">
 

@@ -3,30 +3,40 @@
 @section('title', 'GRESB Water')
 @section('header_title', 'GRESB Water Performance Tool')
 
-@section('content')
-      <div class="page-hdr"><div class="page-hdr-left"><h2>Schedule Audit &amp; Advisory Call</h2><p>Book a session with a WST water performance advisor</p></div></div>
-      <div style="display:grid;grid-template-columns:1fr 360px;gap:20px;">
+@push('styles')
+    <style>
+        .form-select,
+        .form-textarea {
+            background: var(--surface-hi) !important;
+            color: var(--text-1) !important;
+            border-color: var(--border) !important;
+        }
+    </style>
+@endpush
 
-@if(session('success'))
-    <div class="px-6 pt-4">
+@section('content')
+    <div clasQs="page-hdr"><div class="page-hdr-left"><h2>Schedule Audit &amp; Advisory Call</h2><p>Book a session with a WST water performance advisor</p></div></div>
+
+    @if(session('success'))
+    <div style="grid-column:1/-1; margin-top:5px;">
         <div id="flash-message" 
-            class="p-4 rounded-xl bg-teal-50 border border-teal-100 text-teal-800 flex items-center gap-3 transition-all duration-500">
-            <i class="fa-solid fa-circle-check text-teal-600"></i>
+            style="padding:12px 16px;border-radius:8px;background:rgba(0,201,167,.08);border:1px solid rgba(0,201,167,.2);color:var(--accent);display:flex;align-items:center;gap:10px;font-size:13px;">
+            <i class="fa-solid fa-circle-check"></i>
             {{ session('success') }}
         </div>
     </div>
-@endif
+    @endif
 
-@if(session('error') || $errors->any())
-    <div class="px-6 pt-4">
-        <div 
-            class="p-4 rounded-xl bg-red-50 border border-red-100 text-red-800 flex items-center gap-3 transition-all duration-500">
-            <i class="fa-solid fa-circle-exclamation text-red-600"></i>
+    @if(session('error') || $errors->any())
+    <div style="grid-column:1/-1;">
+        <div style="padding:12px 16px;border-radius:8px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);color:#ef4444;display:flex;align-items:center;gap:10px;font-size:13px;">
+            <i class="fa-solid fa-circle-exclamation"></i>
             {{ session('error') ?? 'Please fix the errors in the form.' }}
         </div>
     </div>
-@endif
+    @endif
 
+    <div style="display:grid;grid-template-columns:1fr 360px;gap:20px;margin-top: 10px;">
         <div class="card">
             <div class="card-hdr"><div class="card-title"><i class="fa-solid fa-calendar-plus" style="color:var(--accent);font-size:11px;"></i>Session Details</div></div>
             <div class="card-body">
