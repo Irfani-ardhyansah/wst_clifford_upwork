@@ -80,14 +80,19 @@
     .tb-dropdown a:hover { color: var(--black); background: var(--off-white); padding-left: 22px; }
 
     nav {
-      position: sticky; top: 0; z-index: 200;
-      background: var(--white);
-      border-bottom: 1px solid var(--border-l);
-      display: flex; align-items: center;
-      padding: 0 48px; height: 68px; gap: 0;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-      position: relative;
+        position: sticky; top: 0; z-index: 200;
+        background: var(--white);
+        border-bottom: 1px solid var(--border-l);
+        display: flex; align-items: center;
+        padding: 0 48px; height: 68px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
     }
+          /* logo kiri — flex: 1 */
+      nav > a:first-child {
+          flex: 1;
+          display: flex;
+          align-items: center;
+      }
     .nav-logo-wrap {
       display: flex; align-items: center; gap: 10px;
       text-decoration: none; margin-right: 0; flex-shrink: 0;
@@ -119,9 +124,31 @@
     }
 
     .nav-links {
-      display: flex; list-style: none; gap: 0;
-      position: absolute; left: 50%; transform: translateX(-50%);
+        display: flex;
+        list-style: none;
+        gap: 0;
+        /* hapus position, left, transform */
     }
+    .nav-portfolio {
+      align-items: center;
+      justify-content: center;
+      min-width: 500px;
+      display: flex;
+    }
+    .nav-portfolio-link {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--black);
+        text-decoration: none;
+        padding: 0 16px;
+        height: 68px;
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        border-left: 1px solid var(--border-l);
+        transition: color 0.2s;
+    }
+    .nav-portfolio-link:hover { color: var(--green-lt); }
     /* Ensure nav is position:relative for absolute child */
     .nav-links > li { position: relative; }
     .nav-links > li > a {
@@ -157,7 +184,14 @@
     .dropdown a:last-child { border-bottom: none; }
     .dropdown a:hover { color: var(--black); background: var(--off-white); padding-left: 24px; }
 
-    .nav-right { display: flex; gap: 0; align-items: center; margin-left: auto; }
+    .nav-right {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0;
+        margin-left: 0;
+    }
+
     .nav-icon-btn {
       width: 38px; height: 38px; display: flex; align-items: center;
       justify-content: center; border: 1px solid var(--border-l);

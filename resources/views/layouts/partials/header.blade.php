@@ -90,13 +90,12 @@
         <a href="{{ route('resources.tools.selection_tool') }}">Water Target Tools (&amp; Cost Reduction)</a>
       </div>
     </li>
-
-    <!-- ABOUT — plain link, no dropdown -->
-    <li>
-      <a href="{{ route('opportunities.about') }}">About</a>
-    </li>
-
   </ul>
+
+  <div class="nav-portfolio">
+    <a href="#" class="nav-portfolio-link">Portfolio Intelligence</a>
+  </div>
+
 
   <div class="nav-right">
     <button id="nav-search-btn" class="nav-icon-btn" aria-label="Search" type="button">
