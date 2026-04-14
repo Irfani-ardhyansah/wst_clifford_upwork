@@ -8,7 +8,7 @@
         1200 S. Andrews Avenue, Suite 504<br>
         Fort Lauderdale, FL 33301<br>
         <a href="tel:+19545083877">+1 (954) 508-3877</a><br>
-        <a href="/cdn-cgi/l/email-protection#3f5e5c5c7f485e4b5a4d4c50534a4b5a5c57115c5052"><span class="__cf_email__" data-cfemail="28494b4b685f495c4d5a5b47445d5c4d4b40064b4745">[email&#160;protected]</span></a>
+        <!-- <a href="/cdn-cgi/l/email-protection#3f5e5c5c7f485e4b5a4d4c50534a4b5a5c57115c5052"><span class="__cf_email__" data-cfemail="28494b4b685f495c4d5a5b47445d5c4d4b40064b4745">[email&#160;protected]</span></a> -->
       </div>
       <div class="footer-socials">
         <a href="https://www.linkedin.com/company/water-solutions-technology" class="footer-social" aria-label="LinkedIn" target="_blank" rel="noopener">in</a>
@@ -17,17 +17,17 @@
       </div>
     </div>
     <div>
-      <div class="footer-col-title">About</div>
+      <!-- <div class="footer-col-title">About</div>
       <ul class="footer-links">
         <li><a href="/about">Our Story</a></li>
         <li><a href="/about/team">Team</a></li>
         <li><a href="/investors">Investors</a></li>
         <li><a href="/opportunities/mep">Careers &amp; Partners</a></li>
         <li><a href="/contact">Contact</a></li>
-      </ul>
+      </ul> -->
     </div>
     <div>
-      <div class="footer-col-title">Portfolio</div>
+      <!-- <div class="footer-col-title">Portfolio</div>
       <ul class="footer-links">
         <li><a href="/resources/case-studies">Case Studies</a></li>
         <li><a href="/industries">Industries</a></li>
@@ -40,10 +40,10 @@
         <li><a href="https://monitor.watersolutech.com">Smart Monitor</a></li>
         <li><a href="https://ara.watersolutech.com">Ara AI Assistant</a></li>
         <li><a href="https://clientportal.watersolutech.com">Project Tracking</a></li>
-      </ul>
+      </ul> -->
     </div>
     <div>
-      <div class="footer-col-title">Resources</div>
+      <!-- <div class="footer-col-title">Resources</div>
       <ul class="footer-links">
         <li><a href="/resources/white-papers">White Papers</a></li>
         <li><a href="/resources/webinars">Webinars On Demand</a></li>
@@ -59,18 +59,18 @@
         <li><a href="/user-agreement">User Agreement</a></li>
         <li><a href="/terms">Terms of Service</a></li>
       </ul>
-    </div>
+    </div> -->
   </div>
   <div class="footer-bottom">
     <div class="footer-bottom-left">
       <span class="footer-copy">© <span id="footer-yr"></span> Water Solutions Technology, LLC. All rights reserved.</span>
     </div>
-    <div style="display:flex;align-items:center;gap:20px;">
+    <!-- <div style="display:flex;align-items:center;gap:20px;">
       <div class="footer-bottom-links">
         <a href="/resources/webinars">Webinars &amp; Events</a>
         <a href="https://member.watersolutech.com">Login</a>
       </div>
       <a href="/contact" class="footer-portfolio-cta">Choose Your Portfolio</a>
-    </div>
+    </div> -->
   </div>
 </footer>

@@ -1,7 +1,7 @@
 
 <!-- TOP BAR -->
 <div class="top-bar">
-  <a href="{{ route('opportunities.investor') }}">Investors</a>
+  <!-- <a href="{{ route('opportunities.investor') }}">Investors</a>
   <a href="{{ route('opportunities.about') }}">About</a>
   <div class="tb-dropdown-wrap">
     <a href="#">Opportunities
@@ -15,7 +15,7 @@
       <a href="{{ route('opportunities.careers') }}">Careers</a>
       <a href="{{ route('opportunities.agents') }}">Agents</a>
     </div>
-  </div>
+  </div> -->
 @if(Auth::check())
     <a href="#" 
        onclick="event.preventDefault(); document.getElementById('nav-logout-form').submit();" 
@@ -52,10 +52,9 @@
   <a href="{{route('index')}}"><img src="{{ asset('assets/images/logo_fix.svg') }}" alt="Water Solutions Technology Logo"
   style="height:70px; width:auto; display:block;"/></a>
 
-  <ul class="nav-links">
+  <!-- <ul class="nav-links"> -->
 
-    <!-- SERVICES — dropdown -->
-    <li>
+    <!-- <li>
       <a href="#">Services <svg viewBox="0 0 10 6" fill="currentColor"><path d="M0 0l5 6 5-6z"/></svg></a>
       <div class="dropdown">
         <div class="dropdown-section-label" style="padding:10px 16px 4px;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#999;">Services</div>
@@ -70,12 +69,10 @@
       </div>
     </li>
 
-    <!-- INDUSTRIES — plain link, no dropdown -->
     <li>
       <a href="{{ url('/industries') }}">Industries</a>
     </li>
 
-    <!-- RESOURCES — dropdown -->
     <li>
       <a href="#">Resources <svg viewBox="0 0 10 6" fill="currentColor"><path d="M0 0l5 6 5-6z"/></svg></a>
       <div class="dropdown">
@@ -106,5 +103,5 @@
     <button class="ham-btn" id="ham-btn" type="button" aria-label="Daily &mdash; date, joke &amp; scripture">
       <span></span><span></span><span></span>
     </button>
-  </div>
+  </div> -->
 </nav>
