@@ -781,7 +781,7 @@
     .logo-cell:nth-child(6n) { border-right: none; }
     .logo-cell:nth-last-child(-n+6) { border-bottom: none; }
     .logo-cell img {
-      max-height: 32px; max-width: 110px;
+      max-height: 64px; max-width: 110px;
       width: auto; object-fit: contain;
       filter: grayscale(100%) opacity(0.55);
       transition: filter 0.2s;
@@ -1331,6 +1331,152 @@
     }
   </style> 
 
+ <!-- style modal  -->
+  <style>
+ .modal {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 0.5px solid rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 640px;
+  overflow: hidden;
+}
+.modal-head {
+  padding: 20px 24px 16px;
+  border-bottom: 0.5px solid rgba(0,0,0,0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.modal-head h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #111111;
+  line-height: 1.4;
+}
+.modal-head p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #666666;
+  line-height: 1.5;
+}
+.close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666666;
+  font-size: 18px;
+  line-height: 1;
+  padding: 2px 4px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.close-btn:hover { color: #111111; }
+.strips {
+  display: flex;
+  border-bottom: 0.5px solid rgba(0,0,0,0.15);
+}
+.strip {
+  flex: 1;
+  padding: 10px 14px;
+  border-right: 0.5px solid rgba(0,0,0,0.15);
+}
+.strip:last-child { border-right: none; }
+.strip-lbl {
+  font-size: 11px;
+  font-weight: 500;
+  color: #888888;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 2px;
+}
+.strip-val {
+  font-size: 12px;
+  color: #111111;
+  line-height: 1.4;
+}
+.modal-body { padding: 20px 24px; }
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.row-full { margin-bottom: 12px; }
+.field label {
+  display: block;
+  font-size: 12px;
+  color: #555555;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.field label .req { color: #c0392b; }
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 7px 10px;
+  font-size: 13px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 8px;
+  background: #ffffff;
+  color: #111111;
+  outline: none;
+  font-family: inherit;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: rgba(0,0,0,0.4);
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.06);
+}
+.field textarea {
+  resize: vertical;
+  min-height: 72px;
+  padding-top: 7px;
+}
+.modal-foot {
+  padding: 14px 24px 18px;
+  border-top: 0.5px solid rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.foot-note {
+  font-size: 12px;
+  color: #666666;
+  line-height: 1.4;
+  max-width: 320px;
+}
+.submit-btn {
+  background: #111111;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+}
+.submit-btn:hover { opacity: 0.85; }
+
+@media (max-width: 520px) {
+  .row { grid-template-columns: 1fr; }
+  .strips { flex-direction: column; }
+  .strip { border-right: none; border-bottom: 0.5px solid rgba(0,0,0,0.15); }
+  .strip:last-child { border-bottom: none; }
+  .modal-foot { flex-direction: column; align-items: stretch; }
+  .submit-btn { width: 100%; text-align: center; }
+}
+</style>
+<!-- end style  -->
+
   @stack('styles')
 
 </head>
@@ -1379,136 +1525,127 @@
 
 <!-- ═══ Modal CONSULTATION POPUP ═══ -->
 <div class="co" id="co" role="dialog" aria-modal="true" aria-labelledby="co-title">
-  <div class="co-box">
-    <div id="co-form-wrap">
-        <div class="co-head">
-            <div>
-                <h2 class="co-title" id="co-title">Schedule Your ESG Water Consultation</h2>
-                <p class="co-sub">Our water performance advisors will analyse your portfolio — identifying infrastructure cost exposure, ESG data gaps, and the verified financial impact of a structured water programme.</p>
-            </div>
-            <button class="co-x" id="co-x" aria-label="Close form">&times;</button>
-        </div>
-        <div class="co-strips">
-            <div class="co-strip">
-            <div class="co-strip-lbl">Risk Mitigation</div>
-            <div class="co-strip-val">Identify hidden cost exposure before it compounds</div>
-            </div>
-            <div class="co-strip">
-            <div class="co-strip-lbl">Financial Impact</div>
-            <div class="co-strip-val">Average 15&ndash;30% reduction in annual water spend</div>
-            </div>
-            <div class="co-strip">
-            <div class="co-strip-lbl">ESG Performance</div>
-            <div class="co-strip-val">Verified data for LP reporting &amp; investor disclosure</div>
-            </div>
-        </div>
-        <div class="co-body">
-            <form action="{{ route('member-dashboard.gresb-water.store') }}" method="POST">
-                @csrf
-                <!-- Honeypot — bots fill this in, humans never see it -->
-                    <div style="position:absolute;left:-9999px;height:0;overflow:hidden;" aria-hidden="true">
-                        <input type="text" name="co_hp" id="co-hp" tabindex="-1" autocomplete="off">
-                    </div>
-                    <div class="co-row">
-                        <div class="co-fw">
-                            <label class="co-lbl" for="co-fn">First Name <span class="co-req">*</span></label>
-                            <input type="text" class="co-inp" id="co-fn" name="first_name" value="{{ old('first_name', auth()->check() ? auth()->user()->name : '') }}" placeholder="First name" maxlength="80" autocomplete="given-name" required>
-                            <span class="co-errmsg" id="co-fn-e"></span>
-                            @error('first_name')
-                                <p class="mt-2 text-xs text-red-500 font-medium">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="co-fw">
-                            <label class="co-lbl" for="co-ln">Last Name <span class="co-req">*</span></label>
-                            <input type="text" class="co-inp" id="co-ln" name="last_name" value="{{ old('last_name') }}" placeholder="Last name" maxlength="80" autocomplete="family-name" required>
-                            <span class="co-errmsg" id="co-ln-e"></span>
-                            @error('last_name')
-                                <p class="mt-2 text-xs text-red-500 font-medium">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="co-row">
-                        <div class="co-fw">
-                            <label class="co-lbl" for="co-em">Work Email <span class="co-req">*</span></label>
-                            <input type="email" class="co-inp" id="co-em" name="email" value="{{ old('email', auth()->check() ? auth()->user()->email : '') }}" placeholder="you@company.com" maxlength="200" autocomplete="work email" required>
-                            <span class="co-errmsg" id="co-em-e"></span>
-                            @error('email')
-                                <p class="mt-2 text-xs text-red-500 font-medium">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="co-fw">
-                            <label class="co-lbl" for="co-co">Company <span class="co-req">*</span></label>
-                            <input type="text" class="co-inp" id="co-co" name="company" value="{{ old('company', auth()->check() ? auth()->user()->company : '') }}" placeholder="Company name" maxlength="120" autocomplete="organization" required>
-                            <span class="co-errmsg" id="co-co-e"></span>
-                            @error('company')
-                                <p class="mt-2 text-xs text-red-500 font-medium">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="co-row">
-                        <div class="co-fw">
-                            <label class="co-lbl" for="co-ph">Phone Number</label>
-                            <input type="tel" class="co-inp" id="co-ph" name="phone" value="{{ old('phone') }}" placeholder="+1 (000) 000-0000" maxlength="30" autocomplete="tel">
-                            <span class="co-errmsg" id="co-ph-e"></span>
-                        </div>
-                        <div class="co-fw">
-                            <label class="co-lbl" for="co-ps">Portfolio Size (# Properties)</label>
-                            <input type="number" class="co-inp" id="co-ps" name="portfolio_size" value="{{ old('portfolio_size') }}" placeholder="e.g. 25" min="1" max="9999">
-                            <span class="co-errmsg"></span>
-                            @error('portfolio_size')
-                                <p class="mt-2 text-xs text-red-500 font-medium">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="co-row">
-                        <div class="co-fw">
-                            <label class="co-lbl" for="co-int">Primary Interest</label>
-                            <select class="co-inp" id="co-int" name="interest">
-                            <option value="" disabled selected>Select your goal&hellip;</option>
-                            <option value="savings" {{ old('interest') == 'savings' ? 'selected' : '' }}>Reduce water infrastructure cost exposure</option>
-                            <option value="compliance" {{ old('interest') == 'compliance' ? 'selected' : '' }}>ESG water data coverage &amp; reporting</option>
-                            <option value="gresb" {{ old('interest') == 'gresb' ? 'selected' : '' }}>GRESB WT1 / MR3 / RA4 compliance</option>
-                            <option value="monitoring" {{ old('interest') == 'monitoring' ? 'selected' : '' }}>Smart monitoring &amp; leak detection</option>
-                            <option value="savings" {{ old('interest') == 'savings' ? 'selected' : '' }}>Cooling tower optimisation</option>
-                            <option value="audit" {{ old('interest') == 'audit' ? 'selected' : '' }}>Utility bill validation &amp; audit</option>
-                            <option value="tax" {{ old('interest') == 'tax' ? 'selected' : '' }}>Section 179 tax strategy &amp; financing</option>
-                            <option value="full_portfolio" {{ old('interest') == 'full_portfolio' ? 'selected' : '' }}>Full portfolio water programme</option>
-                            <option value="other" {{ old('interest') == 'other' ? 'selected' : '' }}>Other</option>
-                            </select>
-                            @error('interest')
-                                <p class="mt-2 text-xs text-red-500 font-medium">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="co-fw">
-                            <label class="co-lbl" for="co-mt">Preferred Meeting Time</label>
-                            <input type="datetime-local" class="co-inp" id="co-mt" name="time_preference" value="{{ old('time_preference', now()->format('Y-m-d\TH:i')) }}">
-                            @error('time_preference')
-                                <p class="mt-2 text-xs text-red-500 font-medium">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="co-row-1 co-fw">
-                        <label class="co-lbl" for="co-nt">Additional Notes</label>
-                        <textarea class="co-inp" id="co-nt" name="notes" rows="3" placeholder="Tell us about your specific challenges&hellip;" maxlength="1000" style="resize:vertical;padding-top:8px;">{{ old('notes') }}</textarea>
-                        @error('notes')
-                            <p class="mt-2 text-xs text-red-500 font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-                <div class="co-foot">
-                    <p class="co-note">We&rsquo;ll follow up within 24 hours to schedule a 30-minute call. Every submission reviewed personally.</p>
-                    <button class="co-btn" id="co-submit">Submit Request</button>
-                </div>
-            </form>
-        </div>
-    <div class="co-ok" id="co-ok">
-        <div class="co-ok-icon">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#2d5c42" stroke-width="2.2" stroke-linecap="round"><path d="M4 11l5 5 9-9"/></svg>
-        </div>
-            <h3 class="co-ok-title">Request received.</h3>
-            <p class="co-ok-body">A WST advisor will follow up within 24 hours.<br>Every submission is reviewed personally &mdash; no automated sequences.</p>
-        </div>
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <h2 class="co-title" id="co-title">Schedule your ESG water consultation</h2>
+        <p>Our advisors will analyse your portfolio — identifying cost exposure, ESG data gaps, and the financial impact of a structured water programme.</p>
+      </div>
+      <button class="close-btn" id="co-x" aria-label="Close form">&times;</button>
     </div>
+
+    <div class="strips">
+      <div class="strip">
+        <div class="strip-lbl">Risk mitigation</div>
+        <div class="strip-val">Identify hidden cost exposure early</div>
+      </div>
+      <div class="strip">
+        <div class="strip-lbl">Financial impact</div>
+        <div class="strip-val">15–30% reduction in annual water spend</div>
+      </div>
+      <div class="strip">
+        <div class="strip-lbl">ESG performance</div>
+        <div class="strip-val">Verified data for LP &amp; investor reporting</div>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <form action="{{ route('member-dashboard.gresb-water.store') }}" method="POST">
+        @csrf
+        <div style="position:absolute;left:-9999px;height:0;overflow:hidden;" aria-hidden="true">
+          <input type="text" name="co_hp" id="co-hp" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="co-fn">First name <span class="req">*</span></label>
+            <input type="text" id="co-fn" name="first_name" value="{{ old('first_name', auth()->check() ? auth()->user()->name : '') }}" placeholder="First name" maxlength="80" autocomplete="given-name" required>
+            <span class="co-errmsg" id="co-fn-e"></span>
+            @error('first_name')<p class="mt-2 text-xs text-red-500 font-medium">{{ $message }}</p>@enderror
+          </div>
+          <div class="field">
+            <label for="co-ln">Last name <span class="req">*</span></label>
+            <input type="text" id="co-ln" name="last_name" value="{{ old('last_name') }}" placeholder="Last name" maxlength="80" autocomplete="family-name" required>
+            <span class="co-errmsg" id="co-ln-e"></span>
+            @error('last_name')<p class="mt-2 text-xs text-red-500 font-medium">{{ $message }}</p>@enderror
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="co-em">Work email <span class="req">*</span></label>
+            <input type="email" id="co-em" name="email" value="{{ old('email', auth()->check() ? auth()->user()->email : '') }}" placeholder="you@company.com" maxlength="200" autocomplete="email" required>
+            <span class="co-errmsg" id="co-em-e"></span>
+            @error('email')<p class="mt-2 text-xs text-red-500 font-medium">{{ $message }}</p>@enderror
+          </div>
+          <div class="field">
+            <label for="co-co">Company <span class="req">*</span></label>
+            <input type="text" id="co-co" name="company" value="{{ old('company', auth()->check() ? auth()->user()->company : '') }}" placeholder="Company name" maxlength="120" autocomplete="organization" required>
+            <span class="co-errmsg" id="co-co-e"></span>
+            @error('company')<p class="mt-2 text-xs text-red-500 font-medium">{{ $message }}</p>@enderror
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="co-ph">Phone number</label>
+            <input type="tel" id="co-ph" name="phone" value="{{ old('phone') }}" placeholder="+1 (000) 000-0000" maxlength="30" autocomplete="tel">
+            <span class="co-errmsg" id="co-ph-e"></span>
+          </div>
+          <div class="field">
+            <label for="co-ps">Portfolio size (# properties)</label>
+            <input type="number" id="co-ps" name="portfolio_size" value="{{ old('portfolio_size') }}" placeholder="e.g. 25" min="1" max="9999">
+            @error('portfolio_size')<p class="mt-2 text-xs text-red-500 font-medium">{{ $message }}</p>@enderror
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="co-int">Primary interest</label>
+            <select id="co-int" name="interest">
+              <option value="" disabled selected>Select your goal&hellip;</option>
+              <option value="savings" {{ old('interest') == 'savings' ? 'selected' : '' }}>Reduce water infrastructure cost exposure</option>
+              <option value="compliance" {{ old('interest') == 'compliance' ? 'selected' : '' }}>ESG water data coverage &amp; reporting</option>
+              <option value="gresb" {{ old('interest') == 'gresb' ? 'selected' : '' }}>GRESB WT1 / MR3 / RA4 compliance</option>
+              <option value="monitoring" {{ old('interest') == 'monitoring' ? 'selected' : '' }}>Smart monitoring &amp; leak detection</option>
+              <option value="cooling" {{ old('interest') == 'cooling' ? 'selected' : '' }}>Cooling tower optimisation</option>
+              <option value="audit" {{ old('interest') == 'audit' ? 'selected' : '' }}>Utility bill validation &amp; audit</option>
+              <option value="tax" {{ old('interest') == 'tax' ? 'selected' : '' }}>Section 179 tax strategy &amp; financing</option>
+              <option value="full_portfolio" {{ old('interest') == 'full_portfolio' ? 'selected' : '' }}>Full portfolio water programme</option>
+              <option value="other" {{ old('interest') == 'other' ? 'selected' : '' }}>Other</option>
+            </select>
+            @error('interest')<p class="mt-2 text-xs text-red-500 font-medium">{{ $message }}</p>@enderror
+          </div>
+          <div class="field">
+            <label for="co-mt">Preferred meeting time</label>
+            <input type="datetime-local" id="co-mt" name="time_preference" value="{{ old('time_preference', now()->format('Y-m-d\TH:i')) }}">
+            @error('time_preference')<p class="mt-2 text-xs text-red-500 font-medium">{{ $message }}</p>@enderror
+          </div>
+        </div>
+
+        <div class="row-full field">
+          <label for="co-nt">Additional notes</label>
+          <textarea id="co-nt" name="notes" placeholder="Tell us about your specific challenges&hellip;" maxlength="1000">{{ old('notes') }}</textarea>
+          @error('notes')<p class="mt-2 text-xs text-red-500 font-medium">{{ $message }}</p>@enderror
+        </div>
+
+        <div class="modal-foot">
+          <p class="foot-note">We'll follow up within 24 hours to schedule a 30-minute call. Every submission reviewed personally.</p>
+          <button type="submit" class="submit-btn" id="co-submit">Submit request</button>
+        </div>
+
+      </form>
+    </div>
+
+
+    <div class="co-ok" id="co-ok">
+      <div class="co-ok-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#2d5c42" stroke-width="2.2" stroke-linecap="round"><path d="M4 11l5 5 9-9"/></svg>
+      </div>
+      <h3 class="co-ok-title">Request received.</h3>
+      <p class="co-ok-body">A WST advisor will follow up within 24 hours.<br>Every submission is reviewed personally — no automated sequences.</p>
+    </div>
+  </div>
 </div>
 
 <!-- ═══ SEARCH OVERLAY ═══ -->
@@ -1974,96 +2111,103 @@
     var coSubmit = document.getElementById('co-submit');
     var coAttempts = 0;
     if (coSubmit) {
-        coSubmit.addEventListener('click', function() {
-        /* Honeypot check */
-        var hp = document.getElementById('co-hp');
-        if (hp && hp.value.trim()) return;
+      coSubmit.addEventListener('click', function () {
 
-        if (coAttempts >= 5) return;
-        coAttempts++;
+          /* Honeypot check */
+          var hp = document.getElementById('co-hp');
+          if (hp && hp.value.trim()) return;
 
-        var ok = true;
-        var fn = document.getElementById('co-fn');
-        var ln = document.getElementById('co-ln');
-        var em = document.getElementById('co-em');
-        var co = document.getElementById('co-co');
-        var ph = document.getElementById('co-ph');
+          if (coAttempts >= 5) return;
+          coAttempts++;
 
-        if (!fn || !fn.value.trim()) ok = coSetState('co-fn','co-fn-e','First name is required.') && ok;
-        else coSetState('co-fn','co-fn-e','');
+          var ok = true;
+          var fn = document.getElementById('co-fn');
+          var ln = document.getElementById('co-ln');
+          var em = document.getElementById('co-em');
+          var co = document.getElementById('co-co');
+          var ph = document.getElementById('co-ph');
 
-        if (!ln || !ln.value.trim()) ok = coSetState('co-ln','co-ln-e','Last name is required.') && ok;
-        else coSetState('co-ln','co-ln-e','');
+          if (!fn || !fn.value.trim()) ok = coSetState('co-fn', 'co-fn-e', 'First name is required.') && ok;
+          else coSetState('co-fn', 'co-fn-e', '');
 
-        if (!em || !em.value.trim()) {
-            ok = coSetState('co-em','co-em-e','Work email is required.') && ok;
-        } else if (!/[^@]+@[^.]+\..+/.test(em.value)) {
-            ok = coSetState('co-em','co-em-e','Please enter a valid email address.') && ok;
-        } else if (!isWorkEmail(em.value)) {
-            ok = coSetState('co-em','co-em-e','Please use a work email address.') && ok;
-        } else coSetState('co-em','co-em-e','');
+          if (!ln || !ln.value.trim()) ok = coSetState('co-ln', 'co-ln-e', 'Last name is required.') && ok;
+          else coSetState('co-ln', 'co-ln-e', '');
 
-        if (!co || !co.value.trim()) ok = coSetState('co-co','co-co-e','Company name is required.') && ok;
-        else coSetState('co-co','co-co-e','');
+          if (!em || !em.value.trim()) {
+              ok = coSetState('co-em', 'co-em-e', 'Work email is required.') && ok;
+          } else if (!/[^@]+@[^.]+\..+/.test(em.value)) {
+              ok = coSetState('co-em', 'co-em-e', 'Please enter a valid email address.') && ok;
+          } else if (!isWorkEmail(em.value)) {
+              ok = coSetState('co-em', 'co-em-e', 'Please use a work email address.') && ok;
+          } else {
+              coSetState('co-em', 'co-em-e', '');
+          }
 
-        if (ph && ph.value.trim()) {
-            var digits = ph.value.replace(/\D/g,'');
-            if (digits.length < 7 || digits.length > 15) {
-            ok = coSetState('co-ph','co-ph-e','Please enter a valid phone number.') && ok;
-            } else coSetState('co-ph','co-ph-e','');
-        }
+          if (!co || !co.value.trim()) ok = coSetState('co-co', 'co-co-e', 'Company name is required.') && ok;
+          else coSetState('co-co', 'co-co-e', '');
 
-        /* Strip any HTML/JS injection attempts */
-        document.querySelectorAll('#co-form-wrap .co-inp').forEach(function(f) {
-            if (f.value && /<[^>]+>|javascript:/i.test(f.value)) f.value = '';
-        });
+          if (ph && ph.value.trim()) {
+              var digits = ph.value.replace(/\D/g, '');
+              if (digits.length < 7 || digits.length > 15) {
+                  ok = coSetState('co-ph', 'co-ph-e', 'Please enter a valid phone number.') && ok;
+              } else {
+                  coSetState('co-ph', 'co-ph-e', '');
+              }
+          }
 
-        if (!ok) return;
+          /* Strip HTML/JS injection attempts */
+          document.querySelectorAll('.modal .field input, .modal .field select, .modal .field textarea').forEach(function (f) {
+              if (f.value && /<[^>]+>|javascript:/i.test(f.value)) f.value = '';
+          });
 
-        coSubmit.disabled = true;
-        coSubmit.textContent = 'Sending\u2026';
+          if (!ok) return;
 
-        /* Send form data to server */
-        var form = document.querySelector('#co-form-wrap form');
-        var formData = new FormData(form);
+          coSubmit.disabled = true;
+          coSubmit.textContent = 'Sending\u2026';
 
-        fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            if (data.success) {
-                var fw = document.getElementById('co-form-wrap');
-                var okDiv = document.getElementById('co-ok');
-                if (fw) fw.style.display = 'none';
-                if (okDiv) okDiv.classList.add('show');
-            } else {
-                // Handle validation errors
-                if (data.errors) {
-                    Object.keys(data.errors).forEach(field => {
-                        var errorElement = document.getElementById(field + '-e');
-                        if (errorElement) {
-                            errorElement.textContent = data.errors[field][0];
-                        }
-                    });
-                }
-                coSubmit.disabled = false;
-                coSubmit.textContent = 'Submit Request';
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            coSubmit.disabled = false;
-            coSubmit.textContent = 'Submit Request';
-        });
-        });
-    }
+          /* Send form data to server */
+          var form = document.querySelector('.modal form');
+          var formData = new FormData(form);
+
+          fetch(form.action, {
+              method: 'POST',
+              body: formData,
+              headers: {
+                  'X-Requested-With': 'XMLHttpRequest',
+                  'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+              }
+          })
+          .then(function (response) {
+              if (!response.ok) throw new Error('Server error: ' + response.status);
+              return response.json();
+          })
+          .then(function (data) {
+              if (data.success) {
+                  var modalBody = document.querySelector('.modal-body');
+                  var modalFoot = document.querySelector('.modal-foot');
+                  var okDiv = document.getElementById('co-ok');
+
+                  if (modalBody) modalBody.style.display = 'none';
+                  if (modalFoot) modalFoot.style.display = 'none';
+                  if (okDiv) okDiv.classList.add('show');
+              } else {
+                  if (data.errors) {
+                      Object.keys(data.errors).forEach(function (field) {
+                          var errorEl = document.getElementById('co-' + field.replace('_', '-') + '-e');
+                          if (errorEl) errorEl.textContent = data.errors[field][0];
+                      });
+                  }
+                  coSubmit.disabled = false;
+                  coSubmit.textContent = 'Submit request';
+              }
+          })
+          .catch(function (error) {
+              console.error('Error:', error);
+              coSubmit.disabled = false;
+              coSubmit.textContent = 'Submit request';
+          });
+      });
+  }
 
     /* ══════════════════════════════════════════
         SEARCH OVERLAY

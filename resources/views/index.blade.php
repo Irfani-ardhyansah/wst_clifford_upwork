@@ -2,6 +2,68 @@
 
 @section('title', 'Water Solutions Technology')
 
+@push('styles')
+<style>
+.logo-cell {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 12px;
+    border-right: 0.5px solid rgba(0,0,0,0.1);
+    border-bottom: 0.5px solid rgba(0,0,0,0.1);
+    cursor: default;
+    min-height: 80px;
+    overflow: hidden;          /* ganti dari visible ke hidden */
+    perspective: 600px;        /* tambah ini */
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    transform-style: preserve-3d;
+}
+
+/* hapus .logo-img-wrap yang lama, ganti dengan ini */
+.logo-img-wrap {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: rotateX(-25deg) scale(0.88);
+    transform-origin: center center;
+    transform-style: preserve-3d;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    pointer-events: none;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.logo-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    max-height: 52px;
+}
+
+.logo-cell:hover .logo-img-wrap {
+    opacity: 1;
+    transform: rotateX(0deg) scale(1);
+}
+
+.logo-cell:hover .logo-text {
+    opacity: 0;
+    transform: rotateX(15deg) scale(0.9);
+}
+</style>
+@endpush
+
 @section('content')
 
 <!-- ─── HERO ─── -->
@@ -104,8 +166,8 @@
         <div class="insight-tag">Webinar On Demand</div>
         <div class="insight-title">{{ $item->title }}</div>
         <div class="insight-desc">{{ Str::limit($item->description, 100) }}</div>
-        <button class="insight-btn open-modal-btn"
-        data-id="{{ $item->id }}" data-title="{{ $item->title }}" data-image="{{ asset('storage/' . $item->image_path) }}">Watch Now</button>
+        <span class="insight-btn open-modal-btn"
+        data-id="{{ $item->id }}" data-title="{{ $item->title }}" data-image="{{ asset('storage/' . $item->image_path) }}">Watch Now</span>
       </div>
     @endforeach
   </div>
@@ -435,76 +497,112 @@
   <div class="logos-label">Trusted by leading institutional owners and operators</div>
   <div class="logos-grid">
     <div class="logo-cell" data-client="diamondrock" title="DiamondRock Hospitality">
-      <!-- Upload: place diamondrock-logo.png in /assets/img/logos/ then uncomment:
-      <img src="/assets/img/logos/diamondrock-logo.png" alt="DiamondRock Hospitality" loading="lazy"/> -->
-      <span class="logo-name">DiamondRock Hospitality</span>
-      <span class="logo-sector">Hospitality REIT</span>
+      <div class="logo-img-wrap">
+          <img src="{{ asset('assets/img/clients/diamondrock.jpg') }}" alt="DiamondRock Hospitality" loading="lazy">
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">DiamondRock Hospitality</span>
+        <span class="logo-sector">Hospitality REIT</span>
+      </div>
     </div>
     <div class="logo-cell" data-client="westin" title="Westin Hotels & Resorts">
-      <!-- Upload: place westin-logo.png in /assets/img/logos/ then uncomment:
-      <img src="/assets/img/logos/westin-logo.png" alt="Westin Hotels & Resorts" loading="lazy"/> -->
-      <span class="logo-name">Westin Hotels & Resorts</span>
-      <span class="logo-sector">Marriott Portfolio</span>
+      <div class="logo-img-wrap">
+          <img src="{{ asset('assets/img/clients/westin.png') }}" alt="DiamondRock Hospitality" loading="lazy">
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Westin Hotels & Resorts</span>
+        <span class="logo-sector">Marriott Portfolio</span>
+      </div>
     </div>
     <div class="logo-cell" data-client="kimpton" title="Kimpton Hotels">
-      <!-- Upload: place kimpton-logo.png in /assets/img/logos/ then uncomment:
-      <img src="/assets/img/logos/kimpton-logo.png" alt="Kimpton Hotels" loading="lazy"/> -->
-      <span class="logo-name">Kimpton Hotels</span>
-      <span class="logo-sector">IHG Portfolio</span>
+      <div class="logo-img-wrap">
+          <img src="{{ asset('assets/img/clients/kimpton.png') }}" alt="DiamondRock Hospitality" loading="lazy">
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Kimpton Hotels</span>
+        <span class="logo-sector">IHG Portfolio</span>
+      </div>
     </div>
     <div class="logo-cell" data-client="even" title="Even Hotels">
-      <!-- Upload: place even-logo.png in /assets/img/logos/ then uncomment:
-      <img src="/assets/img/logos/even-logo.png" alt="Even Hotels" loading="lazy"/> -->
-      <span class="logo-name">Even Hotels</span>
-      <span class="logo-sector">IHG Portfolio</span>
+      <div class="logo-img-wrap">
+          <img src="{{ asset('assets/img/clients/even-hotels.jpg') }}" alt="DiamondRock Hospitality" loading="lazy">
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Even Hotels</span>
+        <span class="logo-sector">IHG Portfolio</span>
+      </div>
     </div>
     <div class="logo-cell" data-client="slgreen" title="SL Green Realty Corp">
-      <!-- Upload: place slgreen-logo.png in /assets/img/logos/ then uncomment:
-      <img src="/assets/img/logos/slgreen-logo.png" alt="SL Green Realty Corp" loading="lazy"/> -->
-      <span class="logo-name">SL Green Realty Corp</span>
-      <span class="logo-sector">Office REIT</span>
+      <div class="logo-img-wrap">
+          <img src="{{ asset('assets/img/clients/slgreen.png') }}" alt="DiamondRock Hospitality" loading="lazy">
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">SL Green Realty Corp</span>
+        <span class="logo-sector">Office REIT</span>
+      </div>
     </div>
     <div class="logo-cell" data-client="kroger" title="Kroger">
-      <!-- Upload: place kroger-logo.png in /assets/img/logos/ then uncomment:
-      <img src="/assets/img/logos/kroger-logo.png" alt="Kroger" loading="lazy"/> -->
-      <span class="logo-name">Kroger</span>
-      <span class="logo-sector">Retail</span>
+      <div class="logo-img-wrap">
+          <img src="{{ asset('assets/img/clients/kroger.png') }}" alt="DiamondRock Hospitality" loading="lazy">
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Kroger</span>
+        <span class="logo-sector">Retail</span>
+      </div>
     </div>
     <div class="logo-cell" data-client="sandals" title="Sandals Resorts">
-      <!-- Upload: place sandals-logo.png in /assets/img/logos/ then uncomment:
-      <img src="/assets/img/logos/sandals-logo.png" alt="Sandals Resorts" loading="lazy"/> -->
-      <span class="logo-name">Sandals Resorts</span>
-      <span class="logo-sector">Hospitality</span>
+      <div class="logo-img-wrap">
+          <img src="{{ asset('assets/img/clients/sandals.png') }}" alt="DiamondRock Hospitality" loading="lazy">
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Sandals Resorts</span>
+        <span class="logo-sector">Hospitality</span>
+      </div>
     </div>
     <div class="logo-cell" data-client="hilton" title="Hilton">
-      <!-- Upload: place hilton-logo.png in /assets/img/logos/ then uncomment:
-      <img src="/assets/img/logos/hilton-logo.png" alt="Hilton" loading="lazy"/> -->
-      <span class="logo-name">Hilton</span>
-      <span class="logo-sector">Hospitality</span>
+      <div class="logo-img-wrap">
+          <img src="{{ asset('assets/img/clients/hilton.png') }}" alt="DiamondRock Hospitality" loading="lazy">
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Hilton</span>
+        <span class="logo-sector">Hospitality</span>
+      </div>
     </div>
     <div class="logo-cell" data-client="concours" title="The Concours Club">
-      <!-- Upload: place concours-logo.png in /assets/img/logos/ then uncomment:
-      <img src="/assets/img/logos/concours-logo.png" alt="The Concours Club" loading="lazy"/> -->
-      <span class="logo-name">The Concours Club</span>
-      <span class="logo-sector">Golf & Recreation</span>
+      <div class="logo-img-wrap">
+          <img src="{{ asset('assets/img/clients/concours.png') }}" alt="DiamondRock Hospitality" loading="lazy">
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">The Concours Club</span>
+        <span class="logo-sector">Golf & Recreation</span>
+      </div>
     </div>
     <div class="logo-cell" data-client="hillel" title="Hillel Community School">
-      <!-- Upload: place hillel-logo.png in /assets/img/logos/ then uncomment:
-      <img src="/assets/img/logos/hillel-logo.png" alt="Hillel Community School" loading="lazy"/> -->
-      <span class="logo-name">Hillel Community School</span>
-      <span class="logo-sector">Education</span>
+      <div class="logo-img-wrap">
+          <img src="{{ asset('assets/img/clients/hill.jpeg') }}" alt="DiamondRock Hospitality" loading="lazy">
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Hillel Community School</span>
+        <span class="logo-sector">Education</span>
+      </div>
     </div>
     <div class="logo-cell" data-client="panna" title="Panna Manufacturing">
-      <!-- Upload: place panna-logo.png in /assets/img/logos/ then uncomment:
-      <img src="/assets/img/logos/panna-logo.png" alt="Panna Manufacturing" loading="lazy"/> -->
-      <span class="logo-name">Panna Manufacturing</span>
-      <span class="logo-sector">Industrial</span>
+      <div class="logo-img-wrap">
+          <img src="{{ asset('assets/img/clients/panna.png') }}" alt="DiamondRock Hospitality" loading="lazy">
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Panna Manufacturing</span>
+        <span class="logo-sector">Industrial</span>
+      </div>
     </div>
     <div class="logo-cell" data-client="lyc" title="Lauderdale Yacht Club">
-      <!-- Upload: place lyc-logo.png in /assets/img/logos/ then uncomment:
-      <img src="/assets/img/logos/lyc-logo.png" alt="Lauderdale Yacht Club" loading="lazy"/> -->
-      <span class="logo-name">Lauderdale Yacht Club</span>
-      <span class="logo-sector">Marina & Club</span>
+      <div class="logo-img-wrap">
+          <img src="{{ asset('assets/img/clients/lyc.webp') }}" alt="DiamondRock Hospitality" loading="lazy">
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Lauderdale Yacht Club</span>
+        <span class="logo-sector">Marina & Club</span>
+      </div>
     </div>
   </div>
 </section>
