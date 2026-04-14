@@ -29,35 +29,33 @@
     <div>
       <div class="footer-col-title">Portfolio</div>
       <ul class="footer-links">
-        <li><a href="/resources/case-studies">Case Studies</a></li>
-        <li><a href="/industries">Industries</a></li>
-        <li><a href="/services">All Services</a></li>
-        <li><a href="/resources/tools">Water Tools</a></li>
+        <li><a href="{{ route('industries.case_study', ['slug' => 'hospitality']) }}">Case Studies</a></li>
+        <li><a href="{{ url('/industries') }}">Industries</a></li>
+        <li><a href="{{ url('/industries') }}">All Services</a></li>
+        <li><a href="{{ route('resources.tools.selection_tool') }}">Water Tools</a></li>
       </ul>
       <div class="footer-col-title" style="margin-top:24px;">Portals</div>
       <ul class="footer-links">
-        <li><a href="https://member.watersolutech.com">Member Portal</a></li>
-        <li><a href="https://monitor.watersolutech.com">Smart Monitor</a></li>
-        <li><a href="https://ara.watersolutech.com">Ara AI Assistant</a></li>
-        <li><a href="https://clientportal.watersolutech.com">Project Tracking</a></li>
+        <li><a href="{{ route('member-dashboard.index') }}">Member Portal</a></li>
+        <li><a href="{{ route('services.smart_water_monitoring') }}">Smart Monitor</a></li>
+        <li><a href="{{ route('services.elara_ai') }}">Ara AI Assistant</a></li>
       </ul>
     </div>
     <div>
       <div class="footer-col-title">Resources</div>
       <ul class="footer-links">
-        <li><a href="/resources/white-papers">White Papers</a></li>
-        <li><a href="/resources/webinars">Webinars On Demand</a></li>
-        <li><a href="/resources/tools">GRESB Peer Tool</a></li>
-        <li><a href="/resources/tax-strategy">Tax Strategy</a></li>
-        <li><a href="/resources/city-rebates">Water Consumption Tool</a></li>
-        <li><a href="/resources/events">Events &amp; Conferences</a></li>
-        <li><a href="/resources/tax-strategy">Financing Application</a></li>
+        <li><a href="{{ route('resources.white-papers') }}">White Papers</a></li>
+        <li><a href="{{ route('resources.webinar') }}">Webinars On Demand</a></li>
+        <li><a href="{{ route('resources.financing_form') }}">Tax Strategy</a></li>
+        <li><a href="{{ route('resources.tools.selection_tool') }}">Water Consumption Tool</a></li>
+        <li><a href="{{ route('member-dashboard.gresb-water.list') }}">Events &amp; Conferences</a></li>
+        <li><a href="{{ route('resources.financing_form') }}">Financing Application</a></li>
       </ul>
       <div class="footer-col-title" style="margin-top:24px;">Legal</div>
       <ul class="footer-links">
-        <li><a href="/privacy-policy">Privacy Policy</a></li>
-        <li><a href="/user-agreement">User Agreement</a></li>
-        <li><a href="/terms">Terms of Service</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">User Agreement</a></li>
+        <li><a href="#">Terms of Service</a></li>
       </ul>
     </div>
   </div>

@@ -145,7 +145,6 @@
         display: flex;
         align-items: center;
         white-space: nowrap;
-        border-left: 1px solid var(--border-l);
         transition: color 0.2s;
     }
     .nav-portfolio-link:hover { color: var(--green-lt); }
