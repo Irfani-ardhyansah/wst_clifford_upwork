@@ -3,776 +3,261 @@
 @section('title', 'Cooling Tower Intelligence — Water Solutions Technology')
 
 @push('styles')
-<style>
-/* ═══════════════════════════════════════
-   COOLING TOWER PAGE — Style matching Water Treatment page
-   ═══════════════════════════════════════ */
-
-/* ─── HERO ─── */
-.ct-hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #000;
-  overflow: hidden;
-}
-.ct-hero-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  opacity: .55;
-  filter: grayscale(15%);
-}
-.ct-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(0,0,0,.75) 40%, rgba(0,0,0,.45) 100%);
-}
-.ct-hero-content {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  padding: 0 24px;
-  max-width: 780px;
-}
-.ct-hero-h1 {
-  font-size: clamp(2.4rem, 6vw, 4.5rem);
-  font-weight: 300;
-  color: #fff;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  margin: 16px 0 20px;
-}
-.ct-hero-h1 em { font-style: italic; color: rgba(255,255,255,.65); }
-.ct-hero-sub {
-  color: rgba(255,255,255,.55);
-  font-size: 1.1rem;
-  font-weight: 300;
-  letter-spacing: .04em;
-  margin-bottom: 32px;
-  max-width: 480px;
-}
-.ct-hero-sub strong { color: #fff; font-weight: 500; }
-.ct-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-
-.ct-hero-stats {
-  position: absolute;
-  bottom: 40px;
-  right: 40px;
-  background: rgba(0,0,0,.9);
-  padding: 24px;
-  border-radius: 12px;
-  display: flex;
-  gap: 24px;
-  align-items: center;
-}
-.ct-stat { text-align: center; }
-.ct-stat-val {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #fff;
-  margin-bottom: 4px;
-}
-.ct-stat-lbl {
-  font-size: .75rem;
-  color: rgba(255,255,255,.6);
-  text-transform: uppercase;
-  letter-spacing: .08em;
-}
-.ct-stat-sep {
-  width: 1px;
-  height: 40px;
-  background: rgba(255,255,255,.2);
-}
-@media(max-width:768px){
-  .ct-hero-stats {
-    position: relative;
-    bottom: 0; right: 0;
-    margin: 40px auto 0;
-    max-width: 320px;
-  }
-}
-
-/* ─── PROBLEM SECTION ─── */
-.ct-problem-section {
-  background: #080808;
-  padding: 96px 24px;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-}
-.ct-problem-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
-}
-@media(max-width:768px){ .ct-problem-inner{ grid-template-columns:1fr; gap:40px; } }
-
-.ct-rule-wrap {
-  display: flex;
-  gap: 24px;
-  align-items: flex-start;
-  margin: 28px 0 32px;
-}
-.ct-rule {
-  flex-shrink: 0;
-  width: 3px;
-  height: 120px;
-  background: linear-gradient(to bottom, rgba(255,255,255,.5), rgba(255,255,255,.05));
-  border-radius: 2px;
-  opacity: 0;
-  transform: translateY(1rem);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-.ct-rule.visible { opacity: 1; transform: translateY(0); }
-
-.ct-check-list {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-.ct-check-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  color: rgba(255,255,255,.65);
-  font-size: .95rem;
-  font-weight: 300;
-  line-height: 1.6;
-}
-.ct-check-list li svg {
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  margin-top: 3px;
-  color: rgba(255,255,255,.5);
-}
-.ct-check-list li strong { color: #fff; font-weight: 500; }
-
-.ct-problem-video {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-  background: #000;
-}
-
-/* ─── OPEX CAPEX SECTION ─── */
-.ct-opex-section {
-  background: #000;
-  padding: 96px 24px;
-  border-top: 1px solid rgba(255,255,255,.06);
-}
-.ct-opex-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
-}
-@media(max-width:768px){ .ct-opex-inner{ grid-template-columns:1fr; gap:40px; } }
-
-.ct-opex-body {
-  color: rgba(255,255,255,.65);
-  font-size: .95rem;
-  font-weight: 300;
-  line-height: 1.7;
-  margin: 16px 0 24px;
-}
-
-.ct-cards-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  background: rgba(255,255,255,.06);
-  border-radius: 12px;
-  overflow: hidden;
-}
-.ct-card {
-  background: #111;
-  padding: 32px 28px;
-}
-.ct-card-title {
-  font-size: 1.1rem;
-  font-weight: 300;
-  color: #fff;
-  letter-spacing: -.01em;
-  margin-bottom: 20px;
-}
-.ct-card-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.ct-card-list li {
-  color: rgba(255,255,255,.55);
-  font-size: .875rem;
-  font-weight: 300;
-  line-height: 1.5;
-  padding-left: 12px;
-  border-left: 1px solid rgba(255,255,255,.12);
-}
-
-/* ─── PROCESS SECTION ─── */
-.ct-process-section {
-  background: #080808;
-  padding: 96px 24px;
-  border-top: 1px solid rgba(255,255,255,.06);
-}
-.ct-process-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
-}
-@media(max-width:768px){ .ct-process-inner{ grid-template-columns:1fr; gap:40px; } }
-
-.ct-process-steps {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin: 32px 0 0;
-}
-.ct-process-step {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  padding: 24px 0;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-}
-.ct-process-step:last-child { border-bottom: none; }
-.ct-step-icon {
-  flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.ct-step-icon svg {
-  width: 16px;
-  height: 16px;
-  color: rgba(255,255,255,.6);
-}
-.ct-step-body {}
-.ct-step-title {
-  font-size: .95rem;
-  font-weight: 500;
-  color: #fff;
-  margin-bottom: 6px;
-  letter-spacing: -.01em;
-}
-.ct-step-desc {
-  font-size: .875rem;
-  color: rgba(255,255,255,.5);
-  font-weight: 300;
-  line-height: 1.6;
-}
-.ct-step-sub {
-  margin: 6px 0 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.ct-step-sub li {
-  font-size: .8rem;
-  color: rgba(255,255,255,.35);
-  font-weight: 300;
-  padding-left: 12px;
-  border-left: 1px solid rgba(255,255,255,.1);
-}
-
-.ct-chart-wrap {
-  background: #111;
-  border-radius: 12px;
-  padding: 28px;
-  position: sticky;
-  top: 24px;
-}
-.ct-chart-label {
-  font-size: .875rem;
-  font-weight: 500;
-  color: rgba(255,255,255,.7);
-  letter-spacing: -.01em;
-  margin-bottom: 20px;
-}
-.ct-coc-formula {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,.06);
-}
-.ct-coc-formula-text {
-  font-size: .875rem;
-  color: rgba(255,255,255,.45);
-  font-weight: 300;
-  line-height: 1.6;
-  margin-bottom: 16px;
-}
-.ct-coc-steps {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  counter-reset: coc-counter;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.ct-coc-steps li {
-  counter-increment: coc-counter;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: .8rem;
-  color: rgba(255,255,255,.45);
-  font-weight: 300;
-  line-height: 1.5;
-}
-.ct-coc-steps li::before {
-  content: counter(coc-counter);
-  flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-  background: rgba(255,255,255,.08);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: .7rem;
-  color: rgba(255,255,255,.4);
-  margin-top: 1px;
-}
-.ct-coc-steps li strong { color: rgba(255,255,255,.7); font-weight: 500; }
-
-/* ─── PERFORMANCE SECTION ─── */
-.ct-perf-section {
-  background: #fff;
-  padding: 96px 24px;
-}
-.ct-perf-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
-}
-@media(max-width:768px){ .ct-perf-inner{ grid-template-columns:1fr; gap:40px; } }
-
-.ct-blockquote {
-  border-left: 3px solid #111;
-  padding-left: 24px;
-  margin: 28px 0 32px;
-}
-.ct-blockquote p {
-  font-size: 1.05rem;
-  color: #374151;
-  font-weight: 300;
-  line-height: 1.7;
-  font-style: italic;
-}
-.ct-blockquote strong { color: #111; font-weight: 600; }
-.ct-blockquote footer {
-  font-size: .85rem;
-  color: #6b7280;
-  font-weight: 500;
-  margin-top: 12px;
-  font-style: normal;
-}
-
-.ct-savings-chart-wrap {
-  background: #fff;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  padding: 28px;
-  height: 400px;
-}
-
-/* ─── FINAL FORM SECTION ─── */
-.ct-form-section {
-  background: #000;
-  padding: 96px 24px;
-}
-.ct-form-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
-}
-@media(max-width:768px){ .ct-form-inner{ grid-template-columns:1fr; gap:40px; } }
-
-.ct-form-h {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 300;
-  color: #fff;
-  line-height: 1.2;
-  margin: 16px 0 20px;
-}
-.ct-form-sub {
-  color: rgba(255,255,255,.55);
-  font-size: 1rem;
-  font-weight: 300;
-  margin-bottom: 32px;
-  max-width: 400px;
-}
-.ct-form-ghost-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid rgba(255,255,255,.25);
-  color: rgba(255,255,255,.7);
-  font-size: .875rem;
-  font-weight: 400;
-  padding: 12px 24px;
-  border-radius: 100px;
-  text-decoration: none;
-  transition: border-color .2s, color .2s;
-}
-.ct-form-ghost-btn:hover { border-color: rgba(255,255,255,.5); color: #fff; }
-
-.ct-form-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 36px;
-}
-.ct-form-card-header {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #111;
-  margin-bottom: 24px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #e5e7eb;
-  letter-spacing: -.01em;
-}
-.ct-form-fields { display: flex; flex-direction: column; gap: 16px; }
-.ct-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-@media(max-width:480px){ .ct-form-row{ grid-template-columns:1fr; } }
-.ct-input-group { display: flex; flex-direction: column; gap: 6px; }
-.ct-input-group label {
-  font-size: .8rem;
-  font-weight: 500;
-  color: #6b7280;
-  text-transform: uppercase;
-  letter-spacing: .05em;
-}
-.ct-input {
-  width: 100%;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 12px 14px;
-  font-size: .9rem;
-  color: #111;
-  background: #fafafa;
-  outline: none;
-  transition: border-color .2s, background .2s;
-  box-sizing: border-box;
-}
-.ct-input:focus { border-color: #111; background: #fff; }
-.ct-textarea { resize: vertical; }
-.ct-submit-btn {
-  width: 100%;
-  background: #111;
-  color: #fff;
-  font-size: .9rem;
-  font-weight: 500;
-  padding: 14px 24px;
-  border: none;
-  border-radius: 100px;
-  cursor: pointer;
-  transition: background .2s, transform .2s;
-}
-.ct-submit-btn:hover { background: #222; transform: translateY(-1px); }
-
-/* ─── CHART HEIGHT FIX ─── */
-#instantCocChart {
-  width: 100% !important;
-  height: 260px !important;
-}
-</style>
+<link rel="stylesheet" href="{{ asset('assets/css/cooling_tower.css') }}">
 @endpush
 
 @section('content')
 
-{{-- ─── HERO ─── --}}
-<div class="ct-hero">
-  <img
-    src="/assets/img/services/cooling_tower_1.png"
-    alt="Cooling Tower Intelligence"
-    class="ct-hero-img" />
-  <div class="ct-hero-overlay"></div>
-  <div class="ct-hero-content">
-    <div class="section-eyebrow" style="color:rgba(255,255,255,0.4);">Cooling Tower</div>
-    <h1 class="ct-hero-h1">
-      Cooling Tower Intelligence:<br>
-      <em>Balancing OpEx &amp; CapEx</em>
-    </h1>
-    <p class="ct-hero-sub">
-      <strong>Leverage real-time flow metering and smart CoC control to unlock 20–45% water savings.</strong>
-      A trusted, science-driven process for quantifiable savings, compliance, and true operational resilience.
-    </p>
-    <div class="ct-hero-actions">
-      <a href="#ct-form" class="btn-hero-primary">Request a Tower Audit</a>
-      <a href="#ct-process" class="btn-hero-ghost">Explore the Process</a>
+<div class="svc-hero">
+  <div class="svc-hero-bg"></div>
+  <div class="svc-hero-content">
+    <div class="svc-bc">
+      <a href="/services">Services</a>
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 1l4 4-4 4"/></svg>
+      <span>Cooling Tower Optimization</span>
+    </div>
+    <div class="svc-eye">Service &mdash; Cooling Tower Optimization</div>
+    <h1 class="svc-h1">Cooling Tower Water Waste:<br><em>The $200K Hidden Cost<br>No One Monitors.</em></h1>
+    <p class="svc-deck">Cooling towers in full-service hotels and office buildings account for 25&ndash;40% of total water consumption. Most are operating at bleed rates set at conservative manufacturer defaults &mdash; wasting 15&ndash;30% of make-up water above the optimum for local water chemistry. WST audits, recalibrates, and monitors.</p>
+    <div class="svc-ctas">
+      <a href="{{route('contact')}}" class="btn-svc-primary">Schedule Cooling Tower Assessment</a>
+      <a href="#how-it-works" class="btn-svc-ghost">How It Works &darr;</a>
     </div>
   </div>
-  <div class="ct-hero-stats">
-    <div class="ct-stat">
-      <div class="ct-stat-val">180,000 gal/month</div>
-      <div class="ct-stat-lbl">Audit uncovered savings</div>
-    </div>
-    <div class="ct-stat-sep"></div>
-    <div class="ct-stat">
-      <div class="ct-stat-val">6.3 months</div>
-      <div class="ct-stat-lbl">Payback period</div>
-    </div>
+  <div class="svc-stat-strip">
+    <div class="sss-cell"><div class="sss-num g">25&ndash;40%</div><div class="sss-lbl">Of total building water consumption — cooling towers in full-service hotel/office</div></div>
+    <div class="sss-cell"><div class="sss-num">15&ndash;30%</div><div class="sss-lbl">Average make-up water waste from default bleed rate settings</div></div>
+    <div class="sss-cell"><div class="sss-num g">$15&ndash;40K</div><div class="sss-lbl">Annual savings per asset from bleed rate recalibration alone</div></div>
+    <div class="sss-cell"><div class="sss-num">Zero</div><div class="sss-lbl">Capital investment required — bleed rate adjustment is operational, not capital</div></div>
   </div>
 </div>
 
-{{-- ─── PROBLEM ─── --}}
-<section class="ct-problem-section" id="ct-problem">
-  <div class="ct-problem-inner">
-    <div>
-      <div class="section-eyebrow">The Challenge</div>
-      <h2 class="section-h2">
-        Why Cooling Towers<br><em>Fail to Deliver</em>
-      </h2>
-      <div class="ct-rule-wrap">
-        <div class="ct-rule" id="ctIntroRule"></div>
-        <p class="section-sub" style="max-width:480px;">
-          When your cooling tower underperforms, you face higher OPEX and CAPEX. Inefficiencies hide in scale buildup, corrosion, biogrowth, and manual blowdown — driving up energy costs and maintenance burdens across your portfolio.
-        </p>
-      </div>
-      <ul class="ct-check-list">
-        <li>
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-          </svg>
-          <span><strong>Scale &amp; Fouling</strong> — Impedes heat transfer; up to 25% energy penalty.</span>
-        </li>
-        <li>
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-          </svg>
-          <span><strong>Corrosion &amp; Biogrowth</strong> — Equipment damage and elevated Legionella risk.</span>
-        </li>
-        <li>
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-          </svg>
-          <span><strong>Manual Blowdown</strong> — Time-based or probe-based: wasted water and missed CoC targets.</span>
-        </li>
-      </ul>
-      <a href="#ct-form" class="btn-hero-primary" style="display:inline-flex;">Download the Problem Brief</a>
+<!-- WHY COOLING TOWERS OVERSPEND -->
+<section class="sec sec-o">
+  <div style="max-width:760px;margin-bottom:40px;">
+    <p class="eye">The Problem</p>
+    <h2 class="sh">Cooling towers are factory-set to waste water.<br><em>Almost no one changes the defaults.</em></h2>
+    <p class="sub">Cooling tower bleed rates are set by manufacturers to protect equipment under worst-case water chemistry conditions. For most US commercial properties, local water quality is far better than the worst case &mdash; meaning the default bleed rate is wasting water that doesn't need to be expelled. The optimum bleed rate depends on local water chemistry, tower design, and cooling load. Without a water chemistry analysis and site-specific calculation, the default is always over-conservative.</p>
+  </div>
+  <div class="three" style="background:var(--border-l);">
+    <div style="background:var(--white);padding:32px;">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:rgba(0,0,0,.06);line-height:1;margin-bottom:12px;">01</div>
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:9px;">Bleed rate set to manufacturer default</div>
+      <p style="font-size:12px;color:var(--gray-1);line-height:1.75;">Manufacturer default bleed rates are calibrated for water chemistry with high dissolved solids &mdash; the worst-case scenario for scale and corrosion. Most US municipal water supplies are significantly better than this threshold. Operating at the default bleed rate in a low-TDS water supply area wastes water protecting against a risk that doesn't exist at the local level.</p>
     </div>
-    <div>
-      <video
-        src="/assets/img/services/cooling_tower_video_1.mp4"
-        controls
-        class="ct-problem-video">
-        Your browser does not support the video tag.
-      </video>
+    <div style="background:var(--white);padding:32px;">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:rgba(0,0,0,.06);line-height:1;margin-bottom:12px;">02</div>
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:9px;">Sewer charges on water that never enters sewer</div>
+      <p style="font-size:12px;color:var(--gray-1);line-height:1.75;">Cooling tower make-up water evaporates &mdash; it never enters the municipal sewer. Most utilities charge sewer fees on total water consumption unless the property files a sub-meter or non-return exemption. Hotels and office buildings paying sewer fees on cooling tower make-up water are paying for a service they're not receiving, often for years before the error is identified.</p>
+    </div>
+    <div style="background:var(--white);padding:32px;">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:rgba(0,0,0,.06);line-height:1;margin-bottom:12px;">03</div>
+      <div style="font-size:14px;font-weight:700;color:var(--black);margin-bottom:9px;">Make-up water volume not sub-metered</div>
+      <p style="font-size:12px;color:var(--gray-1);line-height:1.75;">Without a dedicated sub-meter on the cooling tower make-up line, total consumption cannot be split between tower use and other building systems. This prevents sewer exemption filing, makes it impossible to identify anomalous tower consumption, and leaves the property without the data required for GRESB MR3 target documentation on the most significant water-consuming system in the building.</p>
     </div>
   </div>
 </section>
 
-{{-- ─── OPEX / CAPEX ─── --}}
-<section class="ct-opex-section" id="ct-opex">
-  <div class="ct-opex-inner">
+<!-- HOW WST APPROACHES IT -->
+<section class="sec sec-w" id="how-it-works">
+  <div class="two">
     <div>
-      <div class="section-eyebrow">Financial Impact</div>
-      <h2 class="section-h2" style="color:#fff;">
-        Cooling Tower Success<br><em>Reduces OpEx &amp; CapEx</em>
-      </h2>
-      <p class="ct-opex-body">
-        The success relies on advanced water treatment and optimized in-time monitoring — delivering significant operational savings while deferring capital expenditures. Significant water conservation, energy savings, and zero chemicals required.
-      </p>
-      <a href="#ct-form" class="btn-hero-primary" style="display:inline-flex;">Download the Problem Brief</a>
-    </div>
-    <div class="ct-cards-grid">
-      <div class="ct-card">
-        <div class="ct-card-title">OpEx Savings</div>
-        <ul class="ct-card-list">
-          <li>Lower water &amp; chemical costs</li>
-          <li>Reduced maintenance burden</li>
-          <li>Predictable operational budgets</li>
-        </ul>
-      </div>
-      <div class="ct-card">
-        <div class="ct-card-title">CapEx Deferral</div>
-        <ul class="ct-card-list">
-          <li>Delay infrastructure upgrades</li>
-          <li>Extend equipment lifecycles</li>
-          <li>Defer costly tower rebuilds</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-{{-- ─── PROCESS ─── --}}
-<section class="ct-process-section" id="ct-process">
-  <div class="ct-process-inner">
-    <div>
-      <div class="section-eyebrow">Technology</div>
-      <h2 class="section-h2" style="color:#fff;">
-        How Cooling Tower<br><em>Success Happens</em>
-      </h2>
-      <p class="section-sub" style="max-width:480px;">
-        Simultaneous smart treatment of make-up water and optimizing Cycles of Concentration (CoCs) — the WST patented process.
-      </p>
-      <div class="ct-process-steps">
-        <div class="ct-process-step">
-          <div class="ct-step-icon">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m6.364 1.636l-.707.707M21 12h-1M17.657 17.657l-.707-.707M12 21v-1m-5.657-2.343l-.707.707M3 12H4M6.343 6.343l.707.707"/>
-            </svg>
-          </div>
-          <div class="ct-step-body">
-            <div class="ct-step-title">Make-up Water Treatment</div>
-            <div class="ct-step-desc">Through a patented process, our electro-water reactors remove unstable minerals in the make-up water to allow for high cycle rates, managing three key drivers of operating and capital expenses:</div>
-            <ul class="ct-step-sub">
-              <li>Scale formation</li>
-              <li>Corrosion</li>
-              <li>Bio-contamination</li>
-            </ul>
+      <p class="eye">WST Methodology</p>
+      <h2 class="sh">Four steps from baseline<br><em>to optimised tower.</em></h2>
+      <p class="sub">WST's cooling tower optimisation programme is not a one-time adjustment. It establishes the data infrastructure, calculates the optimal operating parameters, implements the changes, and monitors performance on an ongoing basis.</p>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="ps-num"><div class="ps-num-inner">01</div></div>
+          <div class="ps-body">
+            <div class="ps-title">Water Chemistry Analysis</div>
+            <div class="ps-text">Local municipal water quality report reviewed against tower specifications. Cycles of concentration calculated for the specific water chemistry. Optimum bleed rate determined for the tower's cooling load and local TDS levels &mdash; replacing the manufacturer default with a site-specific target.</div>
           </div>
         </div>
-        <div class="ct-process-step">
-          <div class="ct-step-icon">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0H3"/>
-            </svg>
-          </div>
-          <div class="ct-step-body">
-            <div class="ct-step-title">Smart Monitoring with AI</div>
-            <ul class="ct-step-sub" style="margin-top:6px;">
-              <li>Make-up water metering</li>
-              <li>Blowdown water metering</li>
-            </ul>
+        <div class="process-step">
+          <div class="ps-num"><div class="ps-num-inner">02</div></div>
+          <div class="ps-body">
+            <div class="ps-title">Make-Up Volume Measurement &amp; Sewer Exemption Filing</div>
+            <div class="ps-text">Sub-metering installed on make-up water supply if not already present. Historical make-up volumes estimated from current consumption data. Sewer exemption application prepared and filed with the municipal utility for all eligible non-returned water volume &mdash; tower evaporation, drift, and blowdown.</div>
           </div>
         </div>
-        <div class="ct-process-step">
-          <div class="ct-step-icon">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>
-            </svg>
+        <div class="process-step">
+          <div class="ps-num"><div class="ps-num-inner">03</div></div>
+          <div class="ps-body">
+            <div class="ps-title">Bleed Rate Recalibration &amp; Controller Adjustment</div>
+            <div class="ps-text">Tower controller programmed to the site-specific optimal bleed rate. Conductivity set-point adjusted to maintain cycles of concentration at the calculated optimum. Drift eliminator condition assessed. Any mechanical issues affecting bleed rate control identified and documented for maintenance scheduling.</div>
           </div>
-          <div class="ct-step-body">
-            <div class="ct-step-title">Enhance &amp; Optimize</div>
-            <div class="ct-step-desc">Implement continuous improvements based on real-time CoC data and AI-driven recommendations.</div>
+        </div>
+        <div class="process-step">
+          <div class="ps-num"><div class="ps-num-inner">04</div></div>
+          <div class="ps-body">
+            <div class="ps-title">IoT Monitoring &amp; Continuous Verification</div>
+            <div class="ps-text">Smart sensor on make-up line tracks consumption against the new optimised baseline. Anomalies &mdash; consumption above the expected range for the current cooling load &mdash; trigger cost-quantified alerts before they become billing events. Monthly performance reports confirm savings against pre-optimisation baseline for investment committee and GRESB documentation.</div>
           </div>
         </div>
       </div>
-      <a href="#ct-form" class="btn-hero-primary" style="display:inline-flex; margin-top:32px;">Get Started</a>
     </div>
     <div>
-      <div class="ct-chart-wrap">
-        <div class="ct-chart-label">CoC Ratio &amp; Water Saved — Before vs. After</div>
-        <canvas id="instantCocChart"></canvas>
-        <div class="ct-coc-formula">
-          <div class="ct-coc-formula-text">
-            <strong style="color:rgba(255,255,255,.7);">Instant CoC</strong> = Make-Up Flow ÷ Blow-Down Flow
-          </div>
-          <ol class="ct-coc-steps">
-            <li><strong>Make-Up Meter</strong> measures incoming water flow.</li>
-            <li><strong>Blow-Down Meter</strong> measures discharged water flow.</li>
-            <li>Instant CoC = MU ÷ BD.</li>
-            <li><strong>Treatment Module</strong> adjusts chemistry dosage based on CoC.</li>
-            <li>Comparator checks CoC &amp; treatment set-points.</li>
-            <li><strong>Auto-actuate Valve</strong> or <strong>Trigger Alert</strong> if out of range.</li>
-          </ol>
+      <div class="bm" style="margin-bottom:2px;">
+        <div class="bm-title">Cooling Tower Optimisation &mdash; Typical Outcomes</div>
+        <div class="brow"><span class="bl">Make-up water reduction</span><span class="bv">15&ndash;30%</span></div>
+        <div class="brow"><span class="bl">Annual cost saving (per tower)</span><span class="bv">$15&ndash;40K</span></div>
+        <div class="brow"><span class="bl">Sewer exemption recovery (where applicable)</span><span class="bv">$18&ndash;45K/yr</span></div>
+        <div class="brow"><span class="bl">Retroactive sewer credit recovery</span><span class="bv">Up to 5 years</span></div>
+        <div class="brow"><span class="bl">Implementation timeline</span><span class="bv">1&ndash;3 days on-site</span></div>
+        <div class="brow"><span class="bl">Capital investment required</span><span class="bv">Zero (operational adjustment)</span></div>
+        <div class="brow"><span class="bl">Payback period</span><span class="bv">First billing cycle</span></div>
+        <a href="{{route('contact')}}" class="bm-cta">Request Cooling Tower Assessment</a>
+      </div>
+      <div class="sys-diagram">
+        <div class="sd-title">What WST Monitors Post-Optimisation</div>
+        <div class="sd-row">
+          <div class="sd-dot"></div>
+          <div><div class="sd-label">Make-up water flow rate</div><div class="sd-desc">Continuous flow measurement vs. cooling load ratio — any deviation from expected range triggers an alert</div></div>
+        </div>
+        <div class="sd-row">
+          <div class="sd-dot"></div>
+          <div><div class="sd-label">Bleed / blowdown volume</div><div class="sd-desc">Actual bleed rate vs. calculated optimum — drift indicates controller fault or water chemistry change</div></div>
+        </div>
+        <div class="sd-row">
+          <div class="sd-dot"></div>
+          <div><div class="sd-label">Overnight consumption</div><div class="sd-desc">Tower make-up at 3am should be zero or minimal — any sustained overnight flow indicates a fault or valve leak</div></div>
+        </div>
+        <div class="sd-row">
+          <div class="sd-dot" style="background:#b8860b;"></div>
+          <div><div class="sd-label">Sewer exemption compliance</div><div class="sd-desc">Sub-metered make-up volumes confirmed for utility exemption filing — ensures exemption credits continue uninterrupted</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-{{-- ─── PERFORMANCE ─── --}}
-<section class="ct-perf-section" id="ct-performance">
-  <div class="ct-perf-inner">
+<!-- WHO BENEFITS -->
+<section class="sec sec-dk">
+  <div style="margin-bottom:36px;">
+    <p class="eye" style="color:rgba(255,255,255,.3);">Applications</p>
+    <h2 class="sh sh--white">Property types where cooling tower<br><em>optimisation delivers the highest returns.</em></h2>
+  </div>
+  <div class="dark-feat-grid">
+    <div class="dfc">
+      <div class="dfc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 16V9l7-7 7 7v7M8 16v-5h4v5"/></svg></div>
+      <div class="dfc-title">Full-Service Hotels &amp; Hotel REITs</div>
+      <div class="dfc-body">Centralised chilled water plant serving guest rooms, restaurants, event space, and back-of-house. Cooling towers typically running year-round in Florida and Southeast US climates. Sewer exemption on pool make-up frequently applicable alongside tower optimisation.</div>
+    </div>
+    <div class="dfc">
+      <div class="dfc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="4" width="16" height="14" rx="1.5"/><path d="M6 4V2M14 4V2M2 9h16"/></svg></div>
+      <div class="dfc-title">Class A Office Buildings</div>
+      <div class="dfc-body">Cooling towers serving centralised HVAC systems in multi-tenant office buildings. Multiple towers on large footprint properties create compounding savings opportunity. Tenant sub-metering often provides the monitoring infrastructure for GRESB MR3 credit.</div>
+    </div>
+    <div class="dfc">
+      <div class="dfc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 18V8l8-6 8 6v10"/><path d="M7 18v-6h6v6"/></svg></div>
+      <div class="dfc-title">Mixed-Use &amp; Institutional Portfolios</div>
+      <div class="dfc-body">Multi-asset portfolios with varying building ages and cooling system vintages. Oldest equipment typically carries the highest deviation from optimal bleed rates. Portfolio-level optimisation delivers compounding aggregate savings across all assets.</div>
+    </div>
+    <div class="dfc">
+      <div class="dfc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="14" height="14" rx="1"/><path d="M3 8h14M8 3v14"/></svg></div>
+      <div class="dfc-title">Manufacturing &amp; Industrial Facilities</div>
+      <div class="dfc-body">Process cooling towers with high and continuous loads. Water quality variation and seasonal make-up demand require more dynamic bleed rate management. WST's chemical treatment coordination ensures optimised bleed rates remain compatible with corrosion and scale control targets.</div>
+    </div>
+    <div class="dfc">
+      <div class="dfc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 2C6.7 2 4 5.1 4 9s6 11 6 11 6-7.1 6-11c0-3.9-2.7-7-6-7z"/><circle cx="10" cy="9" r="2"/></svg></div>
+      <div class="dfc-title">Healthcare &amp; Medical Campuses</div>
+      <div class="dfc-body">Year-round cooling demand with regulatory compliance requirements. WST's documentation framework is structured to satisfy both operational efficiency targets and the risk quantification required for healthcare facility water management compliance programmes.</div>
+    </div>
+    <div class="dfc">
+      <div class="dfc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 14l4-4 4 4 4-8 4 4"/></svg></div>
+      <div class="dfc-title">Portfolios Preparing for GRESB Submission</div>
+      <div class="dfc-body">Cooling tower optimisation generates the verified baseline consumption data, monitored targets, and financial risk quantification required for WT1 coverage, MR3 evidence, and RA4 documentation &mdash; three indicators addressed by one programme.</div>
+    </div>
+  </div>
+</section>
+
+<!-- GRESB / ESG CONNECTION -->
+<section class="sec sec-o">
+  <div class="two">
     <div>
-      <div class="section-eyebrow">Featured Performance</div>
-      <h2 class="section-h2" style="color:#111;">The EnviroTower<br><em>Savings Profile</em></h2>
-      <div class="ct-blockquote">
-        <p>
-          "Since installing Water Solutions' technology package, we boosted our CoC from <strong>2.4×</strong> to <strong>3.5×</strong> in just 6 months — cutting water spend by <strong>22%</strong> and slashing annual chemical costs by over <strong>$40K</strong>."
-        </p>
-        <footer>— Alexandra Wu, Director of Engineering, GreenOak Asset Management</footer>
+      <p class="eye">GRESB Connection</p>
+      <h2 class="sh">Cooling tower optimisation addresses<br><em>three GRESB water indicators.</em></h2>
+      <p class="sub">A cooling tower that has been sub-metered, optimised, and placed on continuous monitoring simultaneously satisfies the evidence requirements for WT1, MR3, and RA4 &mdash; the three water indicators that collectively account for ~7.67 points in the GRESB scoring model.</p>
+      <div class="check-list" style="margin-top:8px;">
+        <div class="check-item"><span class="check-icon">✓</span><span><strong>WT1 Data Coverage:</strong> Sub-metered make-up volume provides verified consumption data for the property's most significant water system &mdash; critical for WT1 coverage calculation.</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span><strong>MR3 Monitoring &amp; Targets:</strong> IoT monitoring generates the continuous consumption record required for MR3. Optimised bleed rate becomes the documented target against which monitoring performance is measured.</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span><strong>RA4 Risk Assessment:</strong> Cost-quantified anomaly alerts (excess make-up flow, overnight consumption) constitute the financially-expressed water risk evidence RA4 requires at the asset level.</span></div>
+        <div class="check-item"><span class="check-icon">✓</span><span><strong>Sewer Exemption Documentation:</strong> Sub-metered make-up volumes provide the evidence basis for ongoing sewer exemption filing &mdash; eliminating recurring overcharges while creating GRESB-usable consumption records.</span></div>
       </div>
-      <a href="#ct-form" class="btn-hero-primary" style="display:inline-flex;">Estimate My Savings</a>
     </div>
-    <div class="ct-savings-chart-wrap">
-      <canvas id="savingsProfileChart"></canvas>
-    </div>
-  </div>
-</section>
-
-{{-- ─── FINAL FORM ─── --}}
-<section class="ct-form-section" id="ct-form">
-  <div class="ct-form-inner">
     <div>
-      <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">Get Started</div>
-      <h2 class="ct-form-h">Transform Hidden Water<br><em>Challenges to Opportunities</em></h2>
-      <p class="ct-form-sub">
-        Request a confidential flow management audit to optimize your property's profitability.
-      </p>
-      <a href="#ct-form" class="ct-form-ghost-btn">Schedule a Confidential Consultation</a>
-    </div>
-
-    <div class="ct-form-card" id="schedule-demo">
-      <div class="ct-form-card-header">Confidential Demo Request</div>
-      <form class="ct-form-fields">
-        <div class="ct-form-row">
-          <input type="text" placeholder="First Name" required class="ct-input" />
-          <input type="text" placeholder="Last Name" required class="ct-input" />
+      <div class="stat-panel">
+        <div class="stat-panel-grid">
+          <div class="sp-cell"><div class="sp-num g">28%</div><div class="sp-lbl">Cooling tower make-up reduction — Miami full-service hotel, 2024</div></div>
+          <div class="sp-cell"><div class="sp-num">$38K</div><div class="sp-lbl">Annual sewer exemption credit recovered — same property</div></div>
+          <div class="sp-cell"><div class="sp-num g">Day 1</div><div class="sp-lbl">Savings begin — bleed rate adjustment implemented during site visit</div></div>
+          <div class="sp-cell"><div class="sp-num">3 days</div><div class="sp-lbl">Typical on-site time for assessment and full optimisation</div></div>
         </div>
-        <div class="ct-form-row">
-          <input type="text" placeholder="Company Name" required class="ct-input" />
-          <input type="text" placeholder="Company Role" required class="ct-input" />
+        <div class="quote-bl quote-bl--dark" style="margin-top:0;">
+          <p>"The cooling tower adjustment took half a day. The sewer exemption filing took a week. The combined saving was $38,000 a year &mdash; and we'd been leaving it on the table for three years."</p>
+          <cite>Engineering Director &middot; Full-Service Hotel &middot; Miami, FL</cite>
         </div>
-        <div class="ct-form-row">
-          <input type="tel" placeholder="Contact Number" required class="ct-input" />
-          <input type="email" placeholder="Email" required class="ct-input" />
-        </div>
-        <div class="ct-form-row">
-          <div class="ct-input-group">
-            <label>Preferred Date</label>
-            <input type="date" required class="ct-input" />
-          </div>
-          <div class="ct-input-group">
-            <label>Preferred Time</label>
-            <input type="time" required class="ct-input" />
-          </div>
-        </div>
-        <textarea placeholder="Additional Message (optional)" rows="4" class="ct-input ct-textarea"></textarea>
-        <button type="submit" class="ct-submit-btn">Submit Request</button>
-      </form>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- FAQ -->
+<section class="sec sec-w">
+  <div style="max-width:720px;">
+    <p class="eye">Common Questions</p>
+    <h2 class="sh" style="margin-bottom:28px;">Cooling tower optimisation &mdash;<br><em>what to expect.</em></h2>
+    <div class="svc-faq">
+      <div class="svc-faq-item">
+        <div class="svc-faq-q">Does cooling tower optimisation require shutting the system down?</div>
+        <div class="svc-faq-a">No. Bleed rate recalibration is performed on operating equipment &mdash; the controller adjustment requires the tower to be running, not shut down. WST completes the optimisation process during normal operations, typically within a single site visit. Sub-meter installation on make-up lines may require a brief valve isolation, which is coordinated with the engineering team to minimise any operational impact.</div>
+      </div>
+      <div class="svc-faq-item">
+        <div class="svc-faq-q">What is a sewer exemption and does my property qualify?</div>
+        <div class="svc-faq-a">A sewer exemption (also called a non-return water credit or sewer discharge adjustment) is a billing adjustment available in most US municipalities for water that doesn't enter the sewer system. Cooling tower evaporation, pool make-up water, and irrigation water all qualify. To claim the exemption, properties must typically install a sub-meter on the non-return supply and file an application with the utility. WST handles the sub-meter specification, the application preparation, and the filing. Historical exemptions can typically be recovered for 2&ndash;5 years depending on the utility and jurisdiction.</div>
+      </div>
+      <div class="svc-faq-item">
+        <div class="svc-faq-q">How does WST calculate the optimum bleed rate?</div>
+        <div class="svc-faq-a">The optimum bleed rate (expressed as cycles of concentration) is determined by the Langelier Saturation Index for the local water supply &mdash; a calculation that balances scale prevention against water waste. WST obtains the current municipal water quality report, cross-references against the tower's design specifications and current cooling load, and calculates the highest safe cycles of concentration for the local water chemistry. This is typically 1.5&ndash;2x higher than the manufacturer default, translating directly to a 30&ndash;50% reduction in bleed volume for the same cooling output.</div>
+      </div>
+      <div class="svc-faq-item">
+        <div class="svc-faq-q">Will optimising the bleed rate affect water treatment chemical costs?</div>
+        <div class="svc-faq-a">Higher cycles of concentration require more active chemical treatment to maintain corrosion and scale control. WST's optimisation programme includes a review of the current chemical treatment programme and, where necessary, a recommendation for treatment adjustment to match the new operating parameters. In most cases, the reduction in water and sewer costs significantly exceeds any increase in chemical treatment costs &mdash; the net saving remains strongly positive. WST documents the full programme economics including chemical treatment in the client findings report.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RELATED SERVICES -->
+<section class="sec sec-o" style="padding-top:48px;padding-bottom:48px;">
+  <p class="eye">Related Services</p>
+  <h2 class="sh" style="margin-bottom:24px;">Services that complement<br><em>cooling tower optimisation.</em></h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border-l);">
+    <a href="/services/smart-water-monitoring" style="background:var(--white);padding:24px 26px;text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:background .18s;" onmouseover="this.style.background='var(--off-white)'" onmouseout="this.style.background='var(--white)'">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green-lt);">Smart Water Monitoring</div>
+      <div style="font-size:13px;font-weight:600;color:var(--black);">IoT monitoring on make-up lines post-optimisation</div>
+      <div style="font-size:11px;color:var(--gray-1);">Verify savings and catch anomalies in real time &rarr;</div>
+    </a>
+    <a href="/services/efficiency-audits" style="background:var(--white);padding:24px 26px;text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:background .18s;" onmouseover="this.style.background='var(--off-white)'" onmouseout="this.style.background='var(--white)'">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green-lt);">Water Efficiency Audits</div>
+      <div style="font-size:13px;font-weight:600;color:var(--black);">Full building water audit including all systems</div>
+      <div style="font-size:11px;color:var(--gray-1);">Cooling tower plus billing validation and fixtures &rarr;</div>
+    </a>
+    <a href="/services/gresb-compliance-strategy" style="background:var(--white);padding:24px 26px;text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:background .18s;" onmouseover="this.style.background='var(--off-white)'" onmouseout="this.style.background='var(--white)'">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green-lt);">ESG &amp; GRESB Strategy</div>
+      <div style="font-size:13px;font-weight:600;color:var(--black);">Translate tower data into GRESB submission evidence</div>
+      <div style="font-size:11px;color:var(--gray-1);">WT1, MR3, and RA4 documentation &rarr;</div>
+    </a>
+  </div>
+</section>
+
+<div class="cs">
+  <div>
+    <div class="cs-t">How much is your cooling tower<br><em>wasting right now?</em></div>
+    <p class="cs-s">A WST cooling tower assessment identifies the specific make-up water waste at your property, calculates the optimum bleed rate, and documents the annual saving &mdash; typically delivered within 48 hours of on-site visit.</p>
+  </div>
+  <a href="/contact" class="cs-btn">Schedule Assessment</a>
+</div>
 
 @endsection
 

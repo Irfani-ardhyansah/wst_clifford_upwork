@@ -66,7 +66,7 @@
         <a href="{{ route('services.smart_water_monitoring') }}">Smart Water Monitoring</a>
         <a href="{{ route('services.smart_water_recovery') }}">Smart Water Recovery</a>
         <a href="{{ route('services.cooling_towers') }}">Cooling Tower Optimization</a>
-        <a href="#">GRESB Compliance &amp; Strategy</a>
+        <a href="{{ route('services.gresb_compliance') }}">GRESB Compliance &amp; Strategy</a>
       </div>
     </li>
 

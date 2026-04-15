@@ -162,6 +162,10 @@ Route::prefix('services')->name('services.')->group(function () {
     Route::get('/smart_water_recovery', function () {
         return view('services.smart_water_recovery');
     })->name('smart_water_recovery');
+
+    Route::get('/gresb_compliance', function () {
+        return view('services.gresb_compliance');
+    })->name('gresb_compliance');
 });
 
 Route::prefix('opportunities')->name('opportunities.')->group(function () {
@@ -222,6 +226,10 @@ Route::prefix('resources')->name('resources.')->group(function () {
         return view('resources.financing_form');
     })->name('financing_form');
 });
+
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
 
 Route::post('/subscribe', [SubscriberController::class, 'store'])->name('subscribe.store');
 

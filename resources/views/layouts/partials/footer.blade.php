@@ -23,7 +23,7 @@
         <li><a href="/about/team">Team</a></li>
         <li><a href="/investors">Investors</a></li>
         <li><a href="/opportunities/mep">Careers &amp; Partners</a></li>
-        <li><a href="/contact">Contact</a></li>
+        <li><a href="{{ route('contact') }}">Contact</a></li>
       </ul>
     </div>
     <div>

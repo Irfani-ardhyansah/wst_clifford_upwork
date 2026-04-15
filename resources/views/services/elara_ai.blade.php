@@ -3,683 +3,208 @@
 @section('title', 'Elara AI Digital Billing Assistants — Water Solutions Technology')
 
 @push('styles')
-<style>
-/* ═══════════════════════════════════════
-   ELARA AI PAGE — Style matching Audit page
-   ═══════════════════════════════════════ */
-
-/* ─── HERO ─── */
-.elara-hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #000;
-  overflow: hidden;
-}
-.elara-hero-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  opacity: .55;
-  filter: grayscale(15%);
-}
-.elara-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(0,0,0,.75) 40%, rgba(0,0,0,.45) 100%);
-}
-.elara-hero-content {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  padding: 0 24px;
-  max-width: 780px;
-}
-.elara-hero-h1 {
-  font-size: clamp(2.4rem, 6vw, 4.5rem);
-  font-weight: 300;
-  color: #fff;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  margin: 16px 0 20px;
-}
-.elara-hero-h1 em { font-style: italic; color: rgba(255,255,255,.65); }
-.elara-hero-sub {
-  color: rgba(255,255,255,.55);
-  font-size: 1.1rem;
-  font-weight: 300;
-  letter-spacing: .04em;
-  margin-bottom: 32px;
-  max-width: 480px;
-}
-.elara-hero-sub strong { color: #fff; font-weight: 500; }
-.elara-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-.elara-hero-stats {
-  position: absolute;
-  bottom: 40px;
-  right: 40px;
-  background: rgba(0,0,0,.9);
-  padding: 24px;
-  border-radius: 12px;
-  display: flex;
-  gap: 24px;
-  align-items: center;
-}
-.elara-stat { text-align: center; }
-.elara-stat-val {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #fff;
-  margin-bottom: 4px;
-}
-.elara-stat-lbl {
-  font-size: .75rem;
-  color: rgba(255,255,255,.6);
-  text-transform: uppercase;
-  letter-spacing: .08em;
-}
-.elara-stat-sep {
-  width: 1px;
-  height: 40px;
-  background: rgba(255,255,255,.2);
-}
-@media(max-width:768px){
-  .elara-hero-stats {
-    position: relative;
-    bottom: 0; right: 0;
-    margin: 40px auto 0;
-    max-width: 320px;
-  }
-}
-
-/* ─── WELCOME SECTION ─── */
-.elara-welcome-section {
-  background: #080808;
-  padding: 96px 24px;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-}
-.elara-welcome-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
-}
-@media(max-width:768px){ .elara-welcome-inner{ grid-template-columns:1fr; gap:40px; } }
-
-.elara-rule-wrap {
-  display: flex;
-  gap: 24px;
-  align-items: flex-start;
-  margin: 28px 0 32px;
-}
-.elara-rule {
-  flex-shrink: 0;
-  width: 3px;
-  height: 120px;
-  background: linear-gradient(to bottom, rgba(255,255,255,.5), rgba(255,255,255,.05));
-  border-radius: 2px;
-  opacity: 0;
-  transform: translateY(1rem);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-.elara-rule.visible { opacity: 1; transform: translateY(0); }
-
-.elara-welcome-img-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.elara-welcome-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-  filter: grayscale(10%);
-}
-.elara-welcome-img-caption {
-  font-size: .8rem;
-  color: rgba(255,255,255,.35);
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  text-align: center;
-}
-
-/* ─── FEATURES SECTION ─── */
-.elara-features-section {
-  background: #080808;
-  padding: 96px 24px;
-  border-top: 1px solid rgba(255,255,255,.06);
-}
-.elara-features-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 2fr 3fr;
-  gap: 64px;
-  align-items: stretch;
-}
-@media(max-width:768px){ .elara-features-inner{ grid-template-columns:1fr; gap:40px; } }
-
-.elara-features-nav {}
-.elara-features-list {
-  list-style: none;
-  padding: 0;
-  margin: 32px 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-.elara-features-list li {}
-.elara-features-list button {
-  width: 100%;
-  text-align: left;
-  background: none;
-  border: none;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-  padding: 16px 0;
-  font-size: .95rem;
-  font-weight: 300;
-  color: rgba(255,255,255,.4);
-  cursor: pointer;
-  transition: color .2s;
-  letter-spacing: -.01em;
-}
-.elara-features-list button:hover { color: rgba(255,255,255,.7); }
-.elara-features-list button.active {
-  color: #fff;
-  font-weight: 500;
-}
-
-.elara-feature-display {
-  position: relative;
-  min-height: 360px;
-  border-radius: 16px;
-  overflow: hidden;
-}
-.elara-feature-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.elara-feature-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,.65);
-}
-.elara-feature-content {
-  position: relative;
-  z-index: 10;
-  padding: 40px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-.elara-feature-title {
-  font-size: 1.6rem;
-  font-weight: 300;
-  color: #fff;
-  letter-spacing: -.02em;
-  margin-bottom: 12px;
-}
-.elara-feature-desc {
-  font-size: .95rem;
-  color: rgba(255,255,255,.65);
-  font-weight: 300;
-  line-height: 1.7;
-  margin-bottom: 24px;
-  max-width: 480px;
-}
-.elara-feature-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: rgba(255,255,255,.5);
-  font-size: .85rem;
-  font-weight: 400;
-  text-decoration: none;
-  transition: color .2s;
-  letter-spacing: .04em;
-}
-.elara-feature-link:hover { color: #fff; }
-.elara-feature-link svg { width: 14px; height: 14px; }
-
-/* ─── ADVISORY SECTION ─── */
-.elara-advisory-section {
-  background: #fff;
-  padding: 96px 24px;
-}
-.elara-advisory-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 48px;
-  align-items: start;
-}
-@media(max-width:900px){ .elara-advisory-inner{ grid-template-columns:1fr; gap:40px; } }
-
-.elara-advisory-ai {}
-.elara-advisory-textarea {
-  width: 100%;
-  margin-top: 16px;
-  padding: 12px 14px;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  font-size: .9rem;
-  color: #111;
-  background: #fafafa;
-  outline: none;
-  resize: vertical;
-  transition: border-color .2s;
-  box-sizing: border-box;
-}
-.elara-advisory-textarea:focus { border-color: #111; background: #fff; }
-.elara-advisory-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #111;
-  color: #fff;
-  font-size: .875rem;
-  font-weight: 500;
-  padding: 12px 24px;
-  border-radius: 100px;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  margin-top: 12px;
-  transition: background .2s, transform .2s;
-}
-.elara-advisory-btn:hover { background: #222; transform: translateY(-1px); }
-.elara-advisory-error {
-  color: #ef4444;
-  font-size: .8rem;
-  margin-top: 8px;
-  display: none;
-}
-
-.elara-advisory-chat {}
-.elara-advisory-img-wrap {
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-}
-.elara-advisory-img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  display: block;
-  filter: grayscale(10%);
-}
-.elara-advisory-img-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,.6);
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  color: #fff;
-}
-.elara-advisory-img-overlay h3 {
-  font-size: 1.2rem;
-  font-weight: 500;
-  margin-bottom: 8px;
-  letter-spacing: -.01em;
-}
-.elara-advisory-img-overlay p {
-  font-size: .85rem;
-  color: rgba(255,255,255,.7);
-  font-weight: 300;
-  line-height: 1.6;
-  margin-bottom: 12px;
-}
-.elara-advisory-img-overlay a {
-  font-size: .85rem;
-  color: rgba(255,255,255,.6);
-  text-decoration: none;
-  font-weight: 500;
-  transition: color .2s;
-}
-.elara-advisory-img-overlay a:hover { color: #fff; }
-
-/* ─── FINAL FORM SECTION ─── */
-.elara-form-section {
-  background: #000;
-  padding: 96px 24px;
-}
-.elara-form-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
-}
-@media(max-width:768px){ .elara-form-inner{ grid-template-columns:1fr; gap:40px; } }
-
-.elara-form-h {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 300;
-  color: #fff;
-  line-height: 1.2;
-  margin: 16px 0 20px;
-}
-.elara-form-sub {
-  color: rgba(255,255,255,.55);
-  font-size: 1rem;
-  font-weight: 300;
-  margin-bottom: 32px;
-  max-width: 400px;
-}
-.elara-form-ghost-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid rgba(255,255,255,.25);
-  color: rgba(255,255,255,.7);
-  font-size: .875rem;
-  font-weight: 400;
-  padding: 12px 24px;
-  border-radius: 100px;
-  text-decoration: none;
-  transition: border-color .2s, color .2s;
-}
-.elara-form-ghost-btn:hover { border-color: rgba(255,255,255,.5); color: #fff; }
-
-.elara-form-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 36px;
-}
-.elara-form-card-header {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #111;
-  margin-bottom: 24px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #e5e7eb;
-  letter-spacing: -.01em;
-}
-.elara-form-fields { display: flex; flex-direction: column; gap: 16px; }
-.elara-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-@media(max-width:480px){ .elara-form-row{ grid-template-columns:1fr; } }
-.elara-input-group { display: flex; flex-direction: column; gap: 6px; }
-.elara-input-group label {
-  font-size: .8rem;
-  font-weight: 500;
-  color: #6b7280;
-  text-transform: uppercase;
-  letter-spacing: .05em;
-}
-.elara-input {
-  width: 100%;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 12px 14px;
-  font-size: .9rem;
-  color: #111;
-  background: #fafafa;
-  outline: none;
-  transition: border-color .2s, background .2s;
-  box-sizing: border-box;
-}
-.elara-input:focus { border-color: #111; background: #fff; }
-.elara-textarea { resize: vertical; }
-.elara-submit-btn {
-  width: 100%;
-  background: #111;
-  color: #fff;
-  font-size: .9rem;
-  font-weight: 500;
-  padding: 14px 24px;
-  border: none;
-  border-radius: 100px;
-  cursor: pointer;
-  transition: background .2s, transform .2s;
-}
-.elara-submit-btn:hover { background: #222; transform: translateY(-1px); }
-
-/* ─── LOADER ─── */
-.elara-loader {
-  display: none;
-  width: 20px; height: 20px;
-  border: 3px solid rgba(255,255,255,.2);
-  border-top-color: #fff;
-  border-radius: 50%;
-  animation: elara-spin 0.8s linear infinite;
-  margin-left: 8px;
-}
-@keyframes elara-spin { to { transform: rotate(360deg); } }
-</style>
+<link rel="stylesheet" href="{{ asset('assets/css/elara_ai.css') }}">
 @endpush
 
 @section('content')
 
-{{-- ─── HERO ─── --}}
-<div class="elara-hero">
-  <img
-    src="/assets/img/services/elara_ai_hero.png"
-    alt="Elara AI Digital Billing Assistant"
-    class="elara-hero-img" />
-  <div class="elara-hero-overlay"></div>
-  <div class="elara-hero-content">
-    <div class="section-eyebrow" style="color:rgba(255,255,255,0.4);">Elara AI</div>
-    <h1 class="elara-hero-h1">
-      Now Every Property Has<br>
-      <em>an AI Water Analyst</em>
-    </h1>
-    <p class="elara-hero-sub">
-      <strong>Digital Billing Assistants</strong> built on the world's premier real estate water management AI platform. Your water is now intelligent — and it will speak to you.
-    </p>
-    <div class="elara-hero-actions">
-      <a href="#elara-form" class="btn-hero-primary">Request a Confidential Demo</a>
-      <a href="#elara-features" class="btn-hero-ghost">Explore Features</a>
+<!-- HERO -->
+<div class="inner-hero">
+  <div class="ihero-bg"></div>
+  <div class="ihero-content">
+    <div class="ihero-bc">
+      <a href="/services">Services</a>
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 1l4 4-4 4"/></svg>
+      <span>Utility Intelligence</span>
+    </div>
+    <div class="ihero-eye">Service — Ara Utility Intelligence</div>
+    <h1 class="ihero-h1">Automated Utility Intelligence<br><em>for Real Estate Portfolios.</em></h1>
+    <p class="ihero-sub">Ara acquires utility bills portfolio-wide, validates consumption data, and produces GRESB-ready datasets at scale — eliminating the manual collection that most teams fail to complete before submission.</p>
+    <div class="ihero-ctas">
+      <a href="/contact" class="btn-hero-primary">Discuss an Engagement</a>
+      <a href="#how-ara-works" class="btn-dark-ghost">How Ara Works ↓</a>
     </div>
   </div>
-  <div class="elara-hero-stats">
-    <div class="elara-stat">
-      <div class="elara-stat-val">180,000 gal/month</div>
-      <div class="elara-stat-lbl">Audit uncovered savings</div>
-    </div>
-    <div class="elara-stat-sep"></div>
-    <div class="elara-stat">
-      <div class="elara-stat-val">6.3 months</div>
-      <div class="elara-stat-lbl">Payback period</div>
-    </div>
+  <div class="stat-strip">
+    <div class="stat-strip-cell"><div class="ssc-num accent">WT1</div><div class="ssc-lbl">Highest-weighted water indicator — up to 4 points</div></div>
+    <div class="stat-strip-cell"><div class="ssc-num">Auto</div><div class="ssc-lbl">Portfolio-wide bill acquisition — no manual entry</div></div>
+    <div class="stat-strip-cell"><div class="ssc-num accent">GRESB</div><div class="ssc-lbl">Submission-ready datasets, verified coverage</div></div>
+    <div class="stat-strip-cell"><div class="ssc-num">31</div><div class="ssc-lbl">Assets with verified GRESB data — DiamondRock</div></div>
   </div>
 </div>
 
-{{-- ─── WELCOME ─── --}}
-<section class="elara-welcome-section">
-  <div class="elara-welcome-inner">
+<!-- WHAT ARA DOES -->
+<section class="sec sec-w" id="how-ara-works">
+  <div class="two">
     <div>
-      <div class="section-eyebrow">Welcome to Elara AI</div>
-      <h2 class="section-h2" style="color:#fff;">
-        A Better Way to Manage<br><em>Portfolio Water Utilities</em>
-      </h2>
-      <div class="elara-rule-wrap">
-        <div class="elara-rule" id="introRule"></div>
-        <p class="section-sub" style="max-width:480px;">
-          Elara AI empowers real-estate professionals — property managers and asset managers — with instant, accurate billing insights while eliminating manual data entry. From portfolio-wide benchmarking to ESG-ready reports and predictive alerts, Elara is your partner in utility optimization.
-        </p>
+      <p class="eye">Automated Utility Intelligence</p>
+      <h2 class="sh">From data gap to<br><em>GRESB-ready coverage.</em></h2>
+      <p class="sub">Most portfolios enter GRESB submission season with incomplete water data. Ara closes that gap before it costs you points.</p>
+
+      <div class="ai">
+        <div class="ai-ic"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="M5 7h6M5 10h4"/></svg></div>
+        <div><div class="ai-t">Utility Bill Acquisition</div><div class="ai-b">Ara sources utility bills directly from providers across your portfolio — automatically. No manual collection. No gaps from missed submissions. Every property, every billing period, on schedule.</div></div>
       </div>
-      <a href="#elara-features" class="elara-advisory-btn" style="display:inline-flex;">Speak with an Auditor</a>
+      <div class="ai">
+        <div class="ai-ic"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5.5"/><path d="M8 5.5v3l2 1.5"/></svg></div>
+        <div><div class="ai-t">Billing Discrepancy Detection</div><div class="ai-b">Every bill is validated against historical consumption patterns, meter readings, and tariff schedules. Misclassified rates, estimation errors, and anomalies are flagged before they compound into multi-year overcharges.</div></div>
+      </div>
+      <div class="ai">
+        <div class="ai-ic"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14l4-4 4 4 4-8"/></svg></div>
+        <div><div class="ai-t">Verified Consumption Data</div><div class="ai-b">All consumption data is verified against source bills — not estimated or extrapolated. This is the distinction that matters for GRESB: self-reported estimates score differently from verified coverage.</div></div>
+      </div>
+      <div class="ai" style="border-bottom:none;">
+        <div class="ai-ic"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10M3 8h7M3 12h5"/></svg></div>
+        <div><div class="ai-t">GRESB-Ready Dataset Export</div><div class="ai-b">Ara produces consumption data structured to meet GRESB WT1 submission requirements. Not adapted from an operational report — built for submission from the start.</div></div>
+      </div>
     </div>
 
-    <div class="elara-welcome-img-wrap">
-      <img
-        src="/assets/img/services/elara_ai_dashboard.png"
-        alt="Elara AI Dashboard"
-        class="elara-welcome-img" />
-      <div class="elara-welcome-img-caption">Elara AI &nbsp;|&nbsp; Know More. React Faster. Save Smarter.</div>
+    <div class="bm">
+      <div class="bm-title">What Ara Delivers</div>
+      <div class="brow"><span class="bl">Bill acquisition scope</span><span class="bv">Portfolio-wide</span></div>
+      <div class="brow"><span class="bl">Data format</span><span class="bv">GRESB WT1-ready</span></div>
+      <div class="brow"><span class="bl">Validation method</span><span class="bv">Source-bill verified</span></div>
+      <div class="brow"><span class="bl">Discrepancy detection</span><span class="bv">Automated flagging</span></div>
+      <div class="brow"><span class="bl">Historical coverage</span><span class="bv">Full billing history</span></div>
+      <div class="brow"><span class="bl">Deployment model</span><span class="bv">Retained Advisory</span></div>
+      <a href="/contact" class="bm-cta">Discuss an Engagement</a>
     </div>
   </div>
 </section>
 
-{{-- ─── FEATURES ─── --}}
-<section class="elara-features-section" id="elara-features">
-  <div class="elara-features-inner"
-    x-data="{
-      selected: 0,
-      features: [
-        { label: 'Smart Utility Data Extraction', title: 'Smart Utility Data Extraction', desc: 'Extracts data from water utility bills (PDF, scan, image, or Excel) instantly and with zero manual entry. From 7 manual hours – 30 seconds.' },
-        { label: 'Integrated with Smart Technology Systems', title: 'Integrated with Smart Technology Systems', desc: 'Connects data insights directly to building-level monitoring systems to track real-time improvements and savings.' },
-        { label: 'Benchmarking & ESG Reporting', title: 'Benchmarking & ESG Reporting', desc: 'Automatically compares water usage across properties and generates ESG, LEED, or GRESB-ready reports.' },
-        { label: 'Real-Time Anomaly Detection', title: 'Real-Time Anomaly Detection', desc: 'Instantly detects billing errors, leaks, and inefficient consumption across your portfolio.' },
-        { label: 'Built-in Chatbot Support', title: 'Built-in Chatbot Support', desc: 'Ask Elara anything — from utility trends and usage summaries to projected savings. Get instant answers and recommendations.' },
-        { label: 'Chat with Elara', title: 'Chat with Elara', desc: 'Elara\'s chatbot is available 24/7. Ask questions, review summaries, or run quick savings estimates in a conversational interface.' }
-      ]
-    }"
-  >
-    <div class="elara-features-nav">
-      <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">Capabilities</div>
-      <h2 class="section-h2" style="color:#fff;">What Makes Elara AI<br><em>the Industry Standard?</em></h2>
-      <ul class="elara-features-list">
-        <template x-for="(item, idx) in features" :key="idx">
-          <li>
-            <button
-              @click="selected = idx"
-              :class="selected === idx ? 'active' : ''"
-              x-text="item.label">
-            </button>
-          </li>
-        </template>
+<!-- THE PROBLEM ARA SOLVES -->
+<section class="sec sec-o">
+  <div style="max-width:800px;margin-bottom:48px;">
+    <p class="eye">The Problem</p>
+    <h2 class="sh">Most portfolios enter GRESB submission<br><em>with a data coverage problem.</em></h2>
+    <p class="sub">The WT1 indicator is worth up to 4 of ~7.67 available water points — more than any other water indicator. It measures data coverage, not performance. A portfolio that has improved water efficiency but has incomplete data scores lower than a portfolio that has done less but documents everything. Ara exists to close that gap.</p>
+  </div>
+
+  <div class="three" style="margin-bottom:32px;">
+    <div style="background:var(--white);padding:32px;">
+      <p class="eye">Problem 01</p>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--black);margin-bottom:10px;line-height:1.25;">Manual bill collection takes 30+ hours per GRESB cycle</h3>
+      <p style="font-size:12px;color:var(--gray-1);line-height:1.75;">Sustainability teams spend weeks chasing utility providers, property managers, and sub-meter data before each submission. Every missed property is a coverage gap that costs points — not because the water wasn't managed, but because the data wasn't collected.</p>
+    </div>
+    <div style="background:var(--white);padding:32px;">
+      <p class="eye">Problem 02</p>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--black);margin-bottom:10px;line-height:1.25;">Missing coverage suppresses your WT1 score</h3>
+      <p style="font-size:12px;color:var(--gray-1);line-height:1.75;">WT1 awards points based on the percentage of portfolio floor area for which you can submit verified consumption data. A 10-property portfolio where 3 properties have gaps loses WT1 points regardless of how well the other 7 are managed. Coverage, not performance, drives this indicator.</p>
+    </div>
+    <div style="background:var(--white);padding:32px;">
+      <p class="eye">Problem 03</p>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--black);margin-bottom:10px;line-height:1.25;">Billing errors go undetected for months</h3>
+      <p style="font-size:12px;color:var(--gray-1);line-height:1.75;">Without automated validation, billing errors — rate misclassifications, estimation overrides, meter substitution errors — compound over multiple billing cycles. The average commercial property with unreviewed bills carries 8–12% in recoverable overcharges. Ara flags these before they reach year-end.</p>
+    </div>
+  </div>
+
+  <div class="hl-box">
+    <p>On the DiamondRock portfolio, Ara enabled <strong>GRESB-reported documentation across 31 assets</strong> — converting verified field savings into submission-ready data that satisfied WT1 requirements and contributed to a 4-star overall GRESB rating.</p>
+  </div>
+</section>
+
+<!-- GRESB CONNECTION -->
+<section class="sec sec-dk">
+  <div class="two">
+    <div>
+      <p class="eye" style="color:rgba(255,255,255,.35);">GRESB Water Indicators</p>
+      <h2 class="sh sh--white">Ara directly addresses<br><em>three GRESB water indicators.</em></h2>
+      <p class="sub sub--white">Not as a secondary benefit — as its primary purpose. Every dataset Ara produces is structured to satisfy the specific evidence requirements of WT1, MR3, and RA4.</p>
+
+      <div class="ind-row ind-row--dark">
+        <div class="ind-code">WT1</div>
+        <div>
+          <div class="ind-name">Water Consumption Data Coverage</div>
+          <div class="ind-desc">The highest-weighted water indicator (up to 4 of ~7.67 points). Ara automates bill acquisition portfolio-wide — eliminating manual collection that causes coverage gaps before submission.</div>
+        </div>
+        <div class="ind-pts">4 pts</div>
+      </div>
+      <div class="ind-row ind-row--dark">
+        <div class="ind-code">MR3</div>
+        <div>
+          <div class="ind-name">Monitoring & Targets</div>
+          <div class="ind-desc">Ara's validated billing data provides the historical baseline required to set and document water consumption targets — a requirement for MR3 credit. Every billing record is logged and timestamped.</div>
+        </div>
+        <div class="ind-pts">2 pts</div>
+      </div>
+      <div class="ind-row ind-row--dark" style="border-bottom:none;">
+        <div class="ind-code">RA4</div>
+        <div>
+          <div class="ind-name">Risk Assessment</div>
+          <div class="ind-desc">Billing discrepancies flagged by Ara — anomalous consumption, meter accuracy issues, tariff misclassification — constitute documented water risk evidence at the asset level, supporting RA4 scoring.</div>
+        </div>
+        <div class="ind-pts">1 pt</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="stat-panel">
+        <div class="stat-panel-grid">
+          <div class="sp-cell"><div class="sp-num g">67.7%</div><div class="sp-lbl">DiamondRock water indicator score, GRESB 2025</div></div>
+          <div class="sp-cell"><div class="sp-num">86/100</div><div class="sp-lbl">DiamondRock overall GRESB score — 4-star rating</div></div>
+          <div class="sp-cell"><div class="sp-num g">25.3%</div><div class="sp-lbl">Verified water consumption reduction — Westin FL</div></div>
+          <div class="sp-cell"><div class="sp-cell"><div class="sp-num">31</div><div class="sp-lbl">Assets with GRESB-reported data via WST</div></div></div>
+        </div>
+        <div class="quote-bl quote-bl--dark">
+          <p>"Ara enabled us to close the coverage gap that had been suppressing our water score for two consecutive cycles. The data was submission-ready within weeks."</p>
+          <cite>Sustainability Director · DiamondRock Hospitality Company</cite>
+        </div>
+      </div>
+      <div style="background:#0f1a13;border:1px solid rgba(255,255,255,.05);padding:24px;margin-top:2px;">
+        <p class="eye" style="color:rgba(255,255,255,.28);margin-bottom:10px;">Important</p>
+        <p style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.75;">Ara is deployed as part of WST's Retained Advisory engagement — not as a standalone software subscription. This distinction matters: advisory deployment means WST owns the outcome, not just the tool.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO ENGAGE -->
+<section class="sec sec-w">
+  <div style="max-width:720px;margin-bottom:48px;">
+    <p class="eye">Engagement Model</p>
+    <h2 class="sh">Ara is available through<br><em>WST's Retained Advisory engagement.</em></h2>
+    <p class="sub">Ara is not licensed as standalone software. It is deployed by WST as part of an ongoing advisory relationship — which means WST is accountable for the outcome, not just the delivery of a tool.</p>
+  </div>
+
+  <div class="tiers">
+    <div class="tier">
+      <div class="tier-lbl">Project-Based</div>
+      <div class="tier-name">Portfolio Water Assessment</div>
+      <div class="tier-desc">A scoped engagement producing audit-grade findings, GRESB-formatted data, and a prioritised efficiency roadmap. Designed for GRESB preparation, acquisition due diligence, or establishing a water baseline.</div>
+      <ul class="tier-list">
+        <li><span class="tier-tick">✓</span>Ara-driven utility bill acquisition across defined assets</li>
+        <li><span class="tier-tick">✓</span>Billing discrepancy identification and recovery documentation</li>
+        <li><span class="tier-tick">✓</span>WT1-formatted consumption data for GRESB submission</li>
+        <li><span class="tier-tick">✓</span>Historical data coverage — full billing history</li>
+        <li><span class="tier-tick">✓</span>Investment committee–ready findings documentation</li>
       </ul>
+      <a href="/contact" class="tier-cta">Request Scope &amp; Proposal</a>
     </div>
-
-    <div class="elara-feature-display">
-      <video class="elara-feature-video" autoplay loop muted playsinline>
-        <source src="/assets/img/services/elara_ai_video.mp4" type="video/mp4" />
-      </video>
-      <div class="elara-feature-overlay"></div>
-      <div class="elara-feature-content">
-        <h4 class="elara-feature-title" x-text="features[selected].title"></h4>
-        <p class="elara-feature-desc" x-text="features[selected].desc"></p>
-        <a href="#" class="elara-feature-link">
-          More about our approach
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7l7 7-7 7"/>
-          </svg>
-        </a>
-      </div>
+    <div class="tier tier--featured">
+      <div class="tier-lbl">Retained Advisory</div>
+      <div class="tier-name">Ongoing Portfolio Intelligence</div>
+      <div class="tier-desc">Continuous advisory with Ara operating portfolio-wide on an ongoing basis — automated data collection, annual GRESB preparation, and quarterly performance reporting included.</div>
+      <ul class="tier-list">
+        <li><span class="tier-tick">✓</span>Ara automated utility bill collection — portfolio-wide, year-round</li>
+        <li><span class="tier-tick">✓</span>Annual GRESB water data preparation and submission support</li>
+        <li><span class="tier-tick">✓</span>Quarterly portfolio water performance reporting</li>
+        <li><span class="tier-tick">✓</span>Billing discrepancy monitoring and recovery flagging</li>
+        <li><span class="tier-tick">✓</span>Investment committee briefings and ESG disclosure support</li>
+        <li><span class="tier-tick">✓</span>WST advisory team accountable for outcomes</li>
+      </ul>
+      <a href="/contact" class="tier-cta">Discuss Retained Engagement</a>
     </div>
   </div>
 </section>
 
-{{-- ─── ADVISORY ─── --}}
-<section class="elara-advisory-section">
-  <div class="elara-advisory-inner">
-
-    <div class="elara-advisory-ai">
-      <div class="section-eyebrow">Advisory Services</div>
-      <h2 class="section-h2" style="font-size:clamp(1.6rem,3vw,2.4rem);">
-        Core Services<br><em>to Get You Started</em>
-      </h2>
-      <p class="section-sub">Our experts are ready to address your specific water management challenges.</p>
-      <div style="margin-top:28px;">
-        <label for="ai-challenge-input" style="font-size:.85rem;font-weight:600;color:#374151;text-transform:uppercase;letter-spacing:.05em;">
-          Describe your challenge
-        </label>
-        <textarea
-          id="ai-challenge-input"
-          rows="3"
-          class="elara-advisory-textarea"
-          placeholder="e.g., 'My hotel's water bills have increased by 30% this year...'">
-        </textarea>
-        <button id="get-ai-advice-btn" class="elara-advisory-btn">
-          ✨ Get Elara AI-Powered Advice
-          <span class="elara-loader" id="ai-loader"></span>
-        </button>
-        <p id="ai-error-msg" class="elara-advisory-error"></p>
-      </div>
-    </div>
-
-    <div class="elara-advisory-chat">
-      <div class="section-eyebrow">Chat with Elara</div>
-      <h2 class="section-h2" style="font-size:clamp(1.6rem,3vw,2.4rem);">
-        Sample Elara<br><em>Before Your Demo</em>
-      </h2>
-      <p class="section-sub">Available 24/7 to answer questions, review summaries, and run savings estimates.</p>
-    </div>
-
-    <div>
-      <div class="section-eyebrow">Audit Services</div>
-      <div class="elara-advisory-img-wrap" style="margin-top:16px;">
-        <img
-          src="/assets/img/services/elara_ai_hero.png"
-          alt="Comprehensive Water Audits"
-          class="elara-advisory-img" />
-        <div class="elara-advisory-img-overlay">
-          <h3>Comprehensive Water Audits</h3>
-          <p>We begin with a thorough audit of your property's water usage to identify key areas for improvement and savings.</p>
-          <a href="#">More about Audits →</a>
-        </div>
-      </div>
-    </div>
-
+<!-- CTA -->
+<div class="cs">
+  <div>
+    <div class="cs-t">Close your portfolio's<br><em>GRESB data coverage gap.</em></div>
+    <p class="cs-s">A 90-minute working session with WST to map your current water data coverage, identify your WT1 gaps, and outline the impact of closing them before your next submission.</p>
   </div>
-</section>
-
-{{-- ─── FINAL FORM ─── --}}
-<section class="elara-form-section" id="elara-form">
-  <div class="elara-form-inner">
-
-    <div>
-      <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">Get Started</div>
-      <h2 class="elara-form-h">Protect Your<br>Asset <em>Performance</em></h2>
-      <p class="elara-form-sub">
-        Request a confidential water audit to optimize your property's health and profitability.
-      </p>
-      <a href="#elara-form" class="elara-form-ghost-btn">Schedule a Demo</a>
-    </div>
-
-    <div class="elara-form-card" id="schedule-demo">
-      <div class="elara-form-card-header">Confidential Demo Request</div>
-      <form class="elara-form-fields">
-        <div class="elara-form-row">
-          <input type="text" placeholder="First Name" required class="elara-input" />
-          <input type="text" placeholder="Last Name" required class="elara-input" />
-        </div>
-        <div class="elara-form-row">
-          <input type="text" placeholder="Company Name" required class="elara-input" />
-          <input type="text" placeholder="Company Role" required class="elara-input" />
-        </div>
-        <div class="elara-form-row">
-          <input type="tel" placeholder="Contact Number" required class="elara-input" />
-          <input type="email" placeholder="Email" required class="elara-input" />
-        </div>
-        <div class="elara-form-row">
-          <div class="elara-input-group">
-            <label>Preferred Date</label>
-            <input type="date" required class="elara-input" />
-          </div>
-          <div class="elara-input-group">
-            <label>Preferred Time</label>
-            <input type="time" required class="elara-input" />
-          </div>
-        </div>
-        <textarea placeholder="Additional Message (optional)" rows="4" class="elara-input elara-textarea"></textarea>
-        <button type="submit" class="elara-submit-btn">Submit Request</button>
-      </form>
-    </div>
-
-  </div>
-</section>
-
+  <a href="/contact" class="cs-btn">Schedule Assessment</a>
+</div>
 @endsection
 
 @push('scripts')

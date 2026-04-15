@@ -2,718 +2,200 @@
 
 @section('title', 'Scoping Studies — Water Solutions Technology')
 
+@push('styles')
+  <link rel="stylesheet" href="{{ asset('assets/css/scope_studies.css') }}">
+@endpush
+
 @section('content')
 
-{{-- ─── HERO ─── --}}
-<div class="scope-hero">
-  <img
-    src="/assets/img/services/scope_studies.png"
-    alt="Modern hotel or commercial building"
-    class="scope-hero-img" />
-  <div class="scope-hero-overlay"></div>
-  <div class="scope-hero-content">
-    <div class="section-eyebrow" style="color:rgba(255,255,255,0.4);">Scoping Studies</div>
-    <h1 class="scope-hero-h1">
-      The Gold Standard in<br>
-      <em>Water Stewardship</em>
-    </h1>
-    <p class="scope-hero-sub">
-      Delivering proven returns and transparency for owners, asset managers, and property teams.
-    </p>
-    <div class="scope-hero-actions">
-      <a href="#scope-form" class="btn-hero-primary">Request a Flow Assessment</a>
-      <a href="#scope-approach" class="btn-hero-ghost">Learn More</a>
+<div class="svc-hero">
+  <div class="svc-hero-bg"></div>
+  <div class="svc-hero-content">
+    <div class="svc-bc">
+      <a href="/services">Services</a>
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 1l4 4-4 4"/></svg>
+      <span>Feasibility Assessment</span>
+    </div>
+    <div class="svc-eye">Service &mdash; Feasibility Assessment</div>
+    <h1 class="svc-h1">Know the opportunity<br><em>before committing to<br>a full engagement.</em></h1>
+    <p class="svc-deck">A WST Feasibility Assessment maps your portfolio's water cost exposure, estimates the recoverable savings opportunity, and scopes the programme required to capture it &mdash; before you commit to a full engagement. Five days. No upfront cost.</p>
+    <div class="svc-ctas">
+      <a href="{{route('contact')}}" class="btn-svc-primary">Request Feasibility Assessment</a>
+      <a href="#what-is-included" class="btn-svc-ghost">What's Included &darr;</a>
     </div>
   </div>
-  <div class="scope-hero-stats">
-    <div class="scope-stat">
-      <div class="scope-stat-val">180,000 gal/month</div>
-      <div class="scope-stat-lbl">Audit uncovered savings</div>
-    </div>
-    <div class="scope-stat-sep"></div>
-    <div class="scope-stat">
-      <div class="scope-stat-val">6.3 months</div>
-      <div class="scope-stat-lbl">Payback period</div>
-    </div>
+  <div class="svc-stat-strip">
+    <div class="sss-cell"><div class="sss-num g">5 days</div><div class="sss-lbl">Typical turnaround — from billing records to findings summary</div></div>
+    <div class="sss-cell"><div class="sss-num">Zero</div><div class="sss-lbl">Upfront cost — feasibility assessment is delivered before any programme fee is discussed</div></div>
+    <div class="sss-cell"><div class="sss-num g">IC-ready</div><div class="sss-lbl">All output formatted for investment committee presentation</div></div>
+    <div class="sss-cell"><div class="sss-num">No lock-in</div><div class="sss-lbl">The assessment is a standalone deliverable — not a commitment to a full programme</div></div>
   </div>
 </div>
 
-{{-- ─── PROVEN APPROACH ─── --}}
-<section class="scope-approach-section" id="scope-approach">
-  <div class="scope-approach-inner">
-
-    <div class="scope-approach-phases">
-      <div class="section-eyebrow">Our Proven Approach</div>
-      <h2 class="section-h2" style="color:#fff;">A Science-Driven<br><em>Four-Phase Process</em></h2>
-
-      <div class="scope-phases">
-        <div class="scope-phase">
-          <div class="scope-phase-icon">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="scope-phase-body">
-            <div class="scope-phase-label">Phase I</div>
-            <div class="scope-phase-title">Scoping Studies</div>
-            <p class="scope-phase-desc">Pointing you into the right technical and economic decisions</p>
-          </div>
-        </div>
-
-        <div class="scope-phase">
-          <div class="scope-phase-icon">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12l2 2l4-4" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="scope-phase-body">
-            <div class="scope-phase-label">Phase II</div>
-            <div class="scope-phase-title">Implementation</div>
-            <p class="scope-phase-desc">Delivering highest quality workmanship exceeding ISO Standards and localized building codes</p>
-          </div>
-        </div>
-
-        <div class="scope-phase">
-          <div class="scope-phase-icon">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <rect x="6" y="4" width="12" height="16" rx="2"/><path d="M9 8h6M9 12h6M9 16h3" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="scope-phase-body">
-            <div class="scope-phase-label">Phase III</div>
-            <div class="scope-phase-title">Benchmarking</div>
-            <p class="scope-phase-desc">Providing data-driven insights to maximize savings and efficiency</p>
-          </div>
-        </div>
-
-        <div class="scope-phase">
-          <div class="scope-phase-icon">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <circle cx="12" cy="10" r="4"/><path d="M4 20v-1a6 6 0 0112 0v1" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="scope-phase-body">
-            <div class="scope-phase-label">Phase IV</div>
-            <div class="scope-phase-title">24/7 Ongoing Support</div>
-            <p class="scope-phase-desc">Continuous adjustments and optimizations to ensure that the original goals are met</p>
-          </div>
-        </div>
+<!-- WHAT IS IT -->
+<section class="sec sec-o">
+  <div class="two">
+    <div>
+      <p class="eye">What Is a Feasibility Assessment?</p>
+      <h2 class="sh">A defined-scope diagnostic that answers<br><em>one specific question.</em></h2>
+      <p class="sub">The question is: "Given what's visible in our billing records and portfolio profile, what is the most likely water savings opportunity &mdash; and is a full WST programme likely to be worth the management attention it requires?"</p>
+      <p style="font-size:14px;color:var(--gray-1);line-height:1.85;margin-bottom:16px;">Most potential clients reach WST through a specific trigger &mdash; an unexplained billing spike, a board question about GRESB water scores, a CFO reviewing the utilities line in the operating expense schedule. The Feasibility Assessment is designed for that moment: a fast, low-cost, low-friction way to establish whether a full programme makes financial sense for your specific portfolio before the engagement is structured.</p>
+      <p style="font-size:14px;color:var(--gray-1);line-height:1.85;margin-bottom:24px;">The output is a written findings summary with three components: a savings opportunity estimate (quantified by category), a risk identification summary (categories of billing exposure present), and a programme scope recommendation (what WST would do if engaged for a full programme, and the expected outcome). This is not a proposal. It is a diagnostic. The decision to proceed is made after reviewing it.</p>
+      <div style="background:rgba(45,92,66,.06);border-left:3px solid var(--green-lt);padding:16px 20px;">
+        <p style="font-size:13px;color:var(--black);line-height:1.75;"><strong style="color:var(--green-lt);">Important:</strong> The Feasibility Assessment is not a watered-down version of a full audit. It uses the same billing forensics methodology &mdash; applied to a defined subset of records. If material overcharges are identified during the assessment, those findings are documented and recoverable immediately, regardless of whether the client proceeds to a full programme.</p>
       </div>
     </div>
-
-    <div class="scope-approach-insights">
-      <div class="scope-insights-card">
-        <h3 class="scope-insights-title">Water Metering <span>Industry Insights</span></h3>
-        <div class="scope-insights-grid">
-          <div class="scope-insight-item">
-            <div class="scope-insight-val">30%+</div>
-            <div class="scope-insight-lbl">Non-revenue water lost in distribution systems</div>
-          </div>
-          <div class="scope-insight-item">
-            <div class="scope-insight-val">10–23%</div>
-            <div class="scope-insight-lbl">Typical savings from our clients</div>
-          </div>
-          <div class="scope-insight-item">
-            <div class="scope-insight-val">15–25%</div>
-            <div class="scope-insight-lbl">Billing discrepancy from manual readings and aging meters</div>
-          </div>
-          <div class="scope-insight-item">
-            <div class="scope-insight-val">ROI &lt;2y</div>
-            <div class="scope-insight-lbl">Payback for most commercial property projects</div>
-          </div>
-        </div>
-        <div class="scope-insights-quote">
-          "Accurate, real-time water metering is not just a compliance or billing issue — it's a strategic advantage for cost control, sustainability, and asset value."
-        </div>
+    <div>
+      <div class="bm">
+        <div class="bm-title">Feasibility Assessment &mdash; At a Glance</div>
+        <div class="brow"><span class="bl">Turnaround time</span><span class="bv">3&ndash;5 business days</span></div>
+        <div class="brow"><span class="bl">Records required</span><span class="bv">12 months utility bills</span></div>
+        <div class="brow"><span class="bl">Site visit required</span><span class="bv">No &mdash; remote only at this stage</span></div>
+        <div class="brow"><span class="bl">Output format</span><span class="bv">Written findings summary</span></div>
+        <div class="brow"><span class="bl">IC-ready documentation</span><span class="bv">Yes &mdash; structured for committee</span></div>
+        <div class="brow"><span class="bl">Programme commitment required</span><span class="bv">None &mdash; standalone deliverable</span></div>
+        <div class="brow"><span class="bl">Cost</span><span class="bv">Zero &mdash; no upfront fee</span></div>
+        <a href="{{route('contact')}}" class="bm-cta">Request Feasibility Assessment</a>
       </div>
     </div>
-
   </div>
 </section>
 
-{{-- ─── WHY IT WORKS ─── --}}
-<section class="scope-split-section">
-  <div class="scope-split-inner">
-
-    <div class="scope-split-item">
-      <div class="scope-split-text">
-        <div class="section-eyebrow">Why It Works for Leaders Like You</div>
-        <h2 class="section-h2" style="font-size:clamp(1.6rem,3vw,2.4rem);">
-          Strategic ROI &amp;<br><em>ESG-Grade Reporting</em>
-        </h2>
-        <div class="scope-why-list">
-          <div class="scope-why-item">
-            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 13l3 3l5-5" stroke-linecap="round"/>
-            </svg>
-            <div>
-              <div class="scope-why-title">Strategic ROI</div>
-              <div class="scope-why-sub">ESG-Grade Reporting aligned to your sustainability strategy</div>
-            </div>
-          </div>
-          <div class="scope-why-item">
-            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 11h8M8 15h6" stroke-linecap="round"/><circle cx="9" cy="9" r="1" fill="currentColor"/>
-            </svg>
-            <div>
-              <div class="scope-why-title">White-Glove Service</div>
-              <div class="scope-why-sub">Dedicated specialists from scoping through ongoing optimization</div>
-            </div>
-          </div>
-        </div>
-        <a href="/resources" class="scope-dl-btn">Download Playbook</a>
-      </div>
-
-      <div class="scope-split-right">
-        <div class="section-eyebrow">Water Use Intensity Benchmarking</div>
-        <p class="section-sub" style="max-width:440px;">
-          See how your property stacks up vs. industry benchmarks. Trusted by leaders at AD1 Global and DiamondRock Hospitality.
-        </p>
-        <div class="scope-split-img-wrap">
-          <img
-            src="/assets/img/services/scope_study_water_use_intensity_5.png"
-            alt="Water Use Intensity Chart"
-            class="scope-split-img" />
-        </div>
-      </div>
+<!-- WHAT IS INCLUDED -->
+<section class="sec sec-w" id="what-is-included">
+  <div style="margin-bottom:36px;">
+    <p class="eye">What's Included</p>
+    <h2 class="sh">Three deliverables in<br><em>five business days.</em></h2>
+  </div>
+  <div class="three" style="background:var(--border-l);">
+    <div style="background:var(--white);padding:36px;">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:rgba(45,92,66,.12);line-height:1;margin-bottom:16px;">01</div>
+      <div style="font-size:15px;font-weight:700;color:var(--black);margin-bottom:10px;">Savings Opportunity Estimate</div>
+      <p style="font-size:13px;color:var(--gray-1);line-height:1.8;margin-bottom:14px;">A quantified estimate of the recoverable savings opportunity across four categories: billing error recovery (rate misclassifications, estimation overrides, meter accuracy), sewer exemption opportunity, operational efficiency (cooling tower, leak exposure), and GRESB data coverage gap.</p>
+      <p style="font-size:13px;color:var(--gray-1);line-height:1.8;">Each category is expressed as an annual savings range (low/mid/high) based on the billing records reviewed and the portfolio characteristics provided. The estimate is clearly marked as preliminary &mdash; the full audit will produce verified figures.</p>
     </div>
-
+    <div style="background:var(--white);padding:36px;">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:rgba(45,92,66,.12);line-height:1;margin-bottom:16px;">02</div>
+      <div style="font-size:15px;font-weight:700;color:var(--black);margin-bottom:10px;">Risk Identification Summary</div>
+      <p style="font-size:13px;color:var(--gray-1);line-height:1.8;margin-bottom:14px;">A summary of the specific billing risk categories identified in the records reviewed &mdash; which specific error types appear to be present, which assets show anomalous consumption patterns, and which properties should be prioritised for on-site audit attention.</p>
+      <p style="font-size:13px;color:var(--gray-1);line-height:1.8;">Where material overcharges are clearly visible in the remote review (rate misclassification, obvious estimation errors), these are documented immediately regardless of whether a full programme follows.</p>
+    </div>
+    <div style="background:var(--white);padding:36px;">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:rgba(45,92,66,.12);line-height:1;margin-bottom:16px;">03</div>
+      <div style="font-size:15px;font-weight:700;color:var(--black);margin-bottom:10px;">Programme Scope Recommendation</div>
+      <p style="font-size:13px;color:var(--gray-1);line-height:1.8;margin-bottom:14px;">A clear recommendation on whether a full WST programme makes financial sense for your portfolio, and if so, what the programme should include &mdash; which services, which assets, in what sequence, with what expected outcome range.</p>
+      <p style="font-size:13px;color:var(--gray-1);line-height:1.8;">The recommendation is honest. If the assessment suggests the savings opportunity is below the threshold where a full programme makes economic sense, WST says so. The Feasibility Assessment is not a sales document &mdash; it is a diagnostic.</p>
+    </div>
   </div>
 </section>
 
-{{-- ─── TRUSTED BY ─── --}}
-<section class="scope-trust-section">
-  <div class="scope-trust-inner">
+<!-- WHEN TO USE IT -->
+<section class="sec sec-dk">
+  <div style="margin-bottom:36px;">
+    <p class="eye" style="color:rgba(255,255,255,.3);">When to Commission a Feasibility Assessment</p>
+    <h2 class="sh sh--white">Six scenarios where a<br><em>Feasibility Assessment is the right first step.</em></h2>
+  </div>
+  <div class="dark-feat-grid">
+    <div class="dfc">
+      <div class="dfc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 14l4-4 4 4 4-8 4 4"/></svg></div>
+      <div class="dfc-title">Unexplained billing increase</div>
+      <div class="dfc-body">A billing spike that engineering can't explain. The feasibility assessment identifies whether it's a meter error, leak, rate change, or estimation override &mdash; in 48 hours, from records already in your files.</div>
+    </div>
+    <div class="dfc">
+      <div class="dfc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L10 14.4l-4.8 2.5.9-5.4L1.2 7.7l5.4-.8z"/></svg></div>
+      <div class="dfc-title">GRESB water score below peer average</div>
+      <div class="dfc-body">GRESB water indicator below 75% without a clear understanding of why. The assessment maps the specific WT1/MR3/RA4 gaps and estimates the score improvement achievable with a documentation programme.</div>
+    </div>
+    <div class="dfc">
+      <div class="dfc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="14" height="14" rx="1"/><path d="M7 10h6M10 7v6"/></svg></div>
+      <div class="dfc-title">New acquisition due diligence</div>
+      <div class="dfc-body">Pre-acquisition water risk assessment. The feasibility review identifies billing exposure, infrastructure risk, and efficiency opportunity in the target assets &mdash; before the deal closes and the cost becomes yours.</div>
+    </div>
+    <div class="dfc">
+      <div class="dfc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 18V8l8-6 8 6v10"/><path d="M7 18v-6h6v6"/></svg></div>
+      <div class="dfc-title">Annual budget review</div>
+      <div class="dfc-body">Water utilities line item under scrutiny in the operating budget. The assessment provides a defensible savings estimate the CFO or asset manager can use to evaluate whether a formal programme belongs in the budget.</div>
+    </div>
+    <div class="dfc">
+      <div class="dfc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="10" cy="10" r="7"/><path d="M10 7v3l2 2"/></svg></div>
+      <div class="dfc-title">LP or investor ESG request</div>
+      <div class="dfc-body">An LP or ESG-focused investor has asked about water performance for the first time. The assessment provides enough documentation to frame an initial response while scoping the full programme required to satisfy ongoing disclosure requirements.</div>
+    </div>
+    <div class="dfc">
+      <div class="dfc-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 6h12M4 10h8M4 14h10"/></svg></div>
+      <div class="dfc-title">Never audited a commercial property</div>
+      <div class="dfc-body">The property has never had a water audit. The assessment provides a baseline understanding of the billing exposure and savings opportunity &mdash; before committing to the full on-site audit programme.</div>
+    </div>
+  </div>
+</section>
 
-    <div class="scope-trust-text">
-      <div class="section-eyebrow">Trusted By</div>
-      <h2 class="section-h2" style="font-size:clamp(1.8rem,4vw,3rem);">
-        Industry Leaders<br><em>Across Every Sector</em>
-      </h2>
-      <p class="section-sub">
-        Hospitality, Manufacturing, Commercial Real Estate, Health Centers, Schools &amp; Universities, Multifamily Communities, Condominiums — and many more.
-      </p>
-      <blockquote class="scope-quote">
-        <p>"Their expertise in transformational water management led to impeccable results — both in cost savings and sustainability at the site and portfolio levels."</p>
-        <cite>Asset Manager, Hilton South Tower</cite>
-      </blockquote>
-      <a href="/contact" class="scope-cta-btn">Request a Confidential Consultation</a>
-      <div class="scope-logos">
-        <span>Sandals</span>
-        <span>AD1</span>
-        <span>DiamondRock</span>
-        <span>Even Hotels</span>
+<!-- PROCESS -->
+<section class="sec sec-w">
+  <div style="max-width:720px;margin-bottom:36px;">
+    <p class="eye">How It Works</p>
+    <h2 class="sh">From first contact to<br><em>findings in five days.</em></h2>
+  </div>
+  <div class="process-steps" style="max-width:720px;">
+    <div class="process-step">
+      <div class="ps-num"><div class="ps-num-inner">01</div></div>
+      <div class="ps-body">
+        <div class="ps-title">Initial Conversation (30 minutes)</div>
+        <div class="ps-text">A brief call with a WST advisor to understand your portfolio, the trigger for the assessment request, and which assets should be prioritised. No preparation required &mdash; we'll ask you what we need to know.</div>
       </div>
     </div>
-
-    <div class="scope-trust-img-wrap">
-      <img
-        src="/assets/img/services/scope_study_water_use_intensity_client_results_1.png"
-        alt="Client Results Chart"
-        class="scope-trust-img" />
+    <div class="process-step">
+      <div class="ps-num"><div class="ps-num-inner">02</div></div>
+      <div class="ps-body">
+        <div class="ps-title">Bill Submission (12 months, 1&ndash;3 assets)</div>
+        <div class="ps-text">Provide 12 months of utility bills for the 1&ndash;3 assets identified in the initial call. Bills can be PDFs, portal exports, or paper scans &mdash; whatever format you have. No reformatting required on your end.</div>
+      </div>
     </div>
-
+    <div class="process-step">
+      <div class="ps-num"><div class="ps-num-inner">03</div></div>
+      <div class="ps-body">
+        <div class="ps-title">Remote Forensic Review (3&ndash;5 days)</div>
+        <div class="ps-text">WST conducts the billing forensics, cross-references tariff schedules, identifies anomalies, and builds the savings opportunity model. No further input required from the client during this phase.</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="ps-num"><div class="ps-num-inner">04</div></div>
+      <div class="ps-body">
+        <div class="ps-title">Findings Presentation (45 minutes)</div>
+        <div class="ps-text">WST presents the three deliverables &mdash; savings estimate, risk summary, and programme recommendation &mdash; in a written report and live walk-through call. The report is structured for IC circulation if required. No decision required at this point.</div>
+      </div>
+    </div>
   </div>
 </section>
 
-{{-- ─── FINAL CTA + FORM ─── --}}
-<section class="scope-form-section" id="scope-form">
-  <div class="scope-form-inner">
-
-    <div class="scope-form-text">
-      <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">Get Started</div>
-      <h2 class="scope-form-h">Transform Hidden Water<br>Challenges to <em>Opportunities</em></h2>
-      <p class="scope-form-sub">
-        Request a confidential flow management audit to optimize your property's profitability.
-      </p>
-      <a href="#scope-form" class="scope-form-ghost-btn">Schedule a Confidential Consultation</a>
-    </div>
-
-    <div class="scope-form-card" id="schedule-demo">
-      <div class="scope-form-card-header">Confidential Flow Assessment</div>
-      <form class="scope-form-fields">
-        <div class="scope-form-row">
-          <input type="text" placeholder="First Name" required class="scope-input" />
-          <input type="text" placeholder="Last Name" required class="scope-input" />
-        </div>
-        <div class="scope-form-row">
-          <input type="text" placeholder="Company Name" required class="scope-input" />
-          <input type="text" placeholder="Company Role" required class="scope-input" />
-        </div>
-        <div class="scope-form-row">
-          <input type="tel" placeholder="Contact Number" required class="scope-input" />
-          <input type="email" placeholder="Email" required class="scope-input" />
-        </div>
-        <div class="scope-form-row">
-          <div class="scope-input-group">
-            <label>Preferred Date</label>
-            <input type="date" required class="scope-input" />
-          </div>
-          <div class="scope-input-group">
-            <label>Preferred Time</label>
-            <input type="time" required class="scope-input" />
-          </div>
-        </div>
-        <textarea placeholder="Additional Message (optional)" rows="4" class="scope-input scope-textarea"></textarea>
-        <button type="submit" class="scope-submit-btn">Submit Request</button>
-      </form>
-    </div>
-
+<!-- RELATED -->
+<section class="sec sec-o" style="padding:48px;">
+  <p class="eye">Next Steps After Feasibility</p>
+  <h2 class="sh" style="margin-bottom:24px;">If the feasibility confirms a material<br><em>opportunity, these are the next steps.</em></h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border-l);">
+    <a href="/services/efficiency-audits" style="background:var(--white);padding:24px 26px;text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:background .18s;" onmouseover="this.style.background='var(--off-white)'" onmouseout="this.style.background='var(--white)'">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green-lt);">Water Efficiency Audits</div>
+      <div style="font-size:13px;font-weight:600;color:var(--black);">Full remote + on-site audit programme</div>
+      <div style="font-size:11px;color:var(--gray-1);">The complete verified savings programme &rarr;</div>
+    </a>
+    <a href="/services/smart-water-recovery" style="background:var(--white);padding:24px 26px;text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:background .18s;" onmouseover="this.style.background='var(--off-white)'" onmouseout="this.style.background='var(--white)'">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green-lt);">Smart Water Recovery</div>
+      <div style="font-size:13px;font-weight:600;color:var(--black);">Billing forensics &amp; forward monitoring</div>
+      <div style="font-size:11px;color:var(--gray-1);">Recover historical overcharges &rarr;</div>
+    </a>
+    <a href="/services/gresb-compliance-strategy" style="background:var(--white);padding:24px 26px;text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:background .18s;" onmouseover="this.style.background='var(--off-white)'" onmouseout="this.style.background='var(--white)'">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green-lt);">ESG &amp; GRESB Strategy</div>
+      <div style="font-size:13px;font-weight:600;color:var(--black);">If GRESB gap was identified in feasibility</div>
+      <div style="font-size:11px;color:var(--gray-1);">Close the water score gap &rarr;</div>
+    </a>
   </div>
 </section>
+
+<div class="cs">
+  <div>
+    <div class="cs-t">Start with the bills<br><em>you already have.</em></div>
+    <p class="cs-s">Send WST 12 months of utility bills for one property. Within 5 business days, you'll have a written estimate of the recoverable savings opportunity &mdash; with zero commitment and zero cost.</p>
+  </div>
+  <a href="{{route('contact')}}" class="cs-btn">Request Feasibility Assessment</a>
+</div>
 
 @endsection
-
-@push('styles')
-<style>
-/* ═══════════════════════════════════════
-   SCOPE STUDIES PAGE — Style matching Audit page
-   ═══════════════════════════════════════ */
-
-/* ─── HERO ─── */
-.scope-hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #000;
-  overflow: hidden;
-}
-.scope-hero-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  opacity: .25;
-  filter: grayscale(15%);
-}
-.scope-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(0,0,0,.75) 40%, rgba(0,0,0,.45) 100%);
-}
-.scope-hero-content {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  padding: 0 24px;
-  max-width: 780px;
-}
-.scope-hero-h1 {
-  font-size: clamp(2.4rem, 6vw, 4.5rem);
-  font-weight: 300;
-  color: #fff;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  margin: 16px 0 20px;
-}
-.scope-hero-h1 em { font-style: italic; color: rgba(255,255,255,.65); }
-.scope-hero-sub {
-  color: rgba(255,255,255,.55);
-  font-size: 1.1rem;
-  font-weight: 300;
-  letter-spacing: .04em;
-  margin-bottom: 32px;
-  max-width: 480px;
-}
-.scope-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-.scope-hero-stats {
-  position: absolute;
-  bottom: 40px;
-  right: 40px;
-  background: rgba(0,0,0,.9);
-  padding: 24px;
-  border-radius: 12px;
-  display: flex;
-  gap: 24px;
-  align-items: center;
-}
-.scope-stat { text-align: center; }
-.scope-stat-val {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #fff;
-  margin-bottom: 4px;
-}
-.scope-stat-lbl {
-  font-size: .75rem;
-  color: rgba(255,255,255,.6);
-  text-transform: uppercase;
-  letter-spacing: .08em;
-}
-.scope-stat-sep {
-  width: 1px;
-  height: 40px;
-  background: rgba(255,255,255,.2);
-}
-@media(max-width:768px){
-  .scope-hero-stats {
-    position: relative;
-    bottom: 0; right: 0;
-    margin: 40px auto 0;
-    max-width: 320px;
-  }
-}
-
-/* ─── APPROACH ─── */
-.scope-approach-section {
-  background: #080808;
-  padding: 96px 24px;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-}
-.scope-approach-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
-}
-@media(max-width:768px){ .scope-approach-inner{ grid-template-columns:1fr; gap:40px; } }
-
-.scope-phases {
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border-left: 1px solid rgba(255,255,255,.1);
-  padding-left: 28px;
-}
-.scope-phase {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  padding: 24px 0;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-}
-.scope-phase:last-child { border-bottom: none; }
-.scope-phase-icon {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255,255,255,.5);
-}
-.scope-phase-body {}
-.scope-phase-label {
-  font-size: .72rem;
-  font-weight: 500;
-  color: rgba(255,255,255,.35);
-  text-transform: uppercase;
-  letter-spacing: .1em;
-  margin-bottom: 4px;
-}
-.scope-phase-title {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #fff;
-  margin-bottom: 6px;
-}
-.scope-phase-desc {
-  font-size: .875rem;
-  color: rgba(255,255,255,.5);
-  font-weight: 300;
-  line-height: 1.6;
-  margin: 0;
-}
-
-/* ─── INSIGHTS CARD ─── */
-.scope-insights-card {
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 16px;
-  padding: 36px;
-  background: rgba(255,255,255,.025);
-}
-.scope-insights-title {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #fff;
-  margin-bottom: 28px;
-  letter-spacing: -.01em;
-}
-.scope-insights-title span { font-weight: 300; color: rgba(255,255,255,.5); }
-.scope-insights-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-bottom: 28px;
-}
-.scope-insight-item {}
-.scope-insight-val {
-  font-size: 2rem;
-  font-weight: 200;
-  color: #fff;
-  letter-spacing: -.02em;
-  margin-bottom: 6px;
-}
-.scope-insight-lbl {
-  font-size: .8rem;
-  color: rgba(255,255,255,.5);
-  font-weight: 300;
-  line-height: 1.5;
-}
-.scope-insights-quote {
-  border-top: 1px solid rgba(255,255,255,.07);
-  padding-top: 20px;
-  font-size: .875rem;
-  color: rgba(255,255,255,.45);
-  font-style: italic;
-  font-weight: 300;
-  line-height: 1.7;
-}
-
-/* ─── SPLIT SECTION ─── */
-.scope-split-section {
-  background: #fff;
-  padding: 96px 24px;
-}
-.scope-split-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.scope-split-item {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
-}
-@media(max-width:768px){ .scope-split-item{ grid-template-columns:1fr; gap:40px; } }
-
-.scope-why-list {
-  margin: 28px 0 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.scope-why-item {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  padding: 20px 0;
-  border-bottom: 1px solid #f0f0f0;
-}
-.scope-why-item svg { flex-shrink: 0; color: #374151; margin-top: 2px; }
-.scope-why-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #111;
-  margin-bottom: 4px;
-}
-.scope-why-sub {
-  font-size: .875rem;
-  color: #6b7280;
-  font-weight: 300;
-  line-height: 1.6;
-}
-.scope-dl-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #111;
-  color: #fff;
-  font-size: .875rem;
-  font-weight: 500;
-  padding: 12px 24px;
-  border-radius: 100px;
-  text-decoration: none;
-  transition: background .2s, transform .2s;
-}
-.scope-dl-btn:hover { background: #222; transform: translateY(-1px); }
-
-.scope-split-right {}
-.scope-split-img-wrap {
-  margin-top: 24px;
-  overflow: hidden;
-  border-radius: 12px;
-}
-.scope-split-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  filter: grayscale(10%);
-  transition: filter .4s, transform .4s;
-}
-.scope-split-img:hover { filter: grayscale(0%); transform: scale(1.02); }
-
-/* ─── TRUSTED BY ─── */
-.scope-trust-section {
-  background: #f9f9f9;
-  padding: 96px 24px;
-}
-.scope-trust-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
-}
-@media(max-width:768px){ .scope-trust-inner{ grid-template-columns:1fr; gap:40px; } }
-
-.scope-quote {
-  border-left: 3px solid #111;
-  padding-left: 20px;
-  margin: 28px 0 32px;
-}
-.scope-quote p {
-  font-size: 1rem;
-  font-style: italic;
-  color: #374151;
-  font-weight: 300;
-  line-height: 1.7;
-  margin: 0 0 8px;
-}
-.scope-quote cite {
-  font-size: .8rem;
-  color: #9ca3af;
-  font-style: normal;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-}
-.scope-cta-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #111;
-  color: #fff;
-  font-size: .875rem;
-  font-weight: 500;
-  padding: 12px 24px;
-  border-radius: 100px;
-  text-decoration: none;
-  transition: background .2s, transform .2s;
-}
-.scope-cta-btn:hover { background: #222; transform: translateY(-1px); }
-.scope-logos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  margin-top: 32px;
-}
-.scope-logos span {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #d1d5db;
-  letter-spacing: -.01em;
-}
-
-.scope-trust-img-wrap { overflow: hidden; border-radius: 12px; }
-.scope-trust-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  filter: grayscale(10%);
-  transition: filter .4s, transform .4s;
-}
-.scope-trust-img:hover { filter: grayscale(0%); transform: scale(1.01); }
-
-/* ─── FORM SECTION ─── */
-.scope-form-section {
-  background: #000;
-  padding: 96px 24px;
-}
-.scope-form-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
-}
-@media(max-width:768px){ .scope-form-inner{ grid-template-columns:1fr; gap:40px; } }
-
-.scope-form-h {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 300;
-  color: #fff;
-  line-height: 1.2;
-  margin: 16px 0 20px;
-}
-.scope-form-h em { font-style: italic; color: rgba(255,255,255,.65); }
-.scope-form-sub {
-  color: rgba(255,255,255,.55);
-  font-size: 1rem;
-  font-weight: 300;
-  margin-bottom: 32px;
-  max-width: 400px;
-}
-.scope-form-ghost-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid rgba(255,255,255,.25);
-  color: rgba(255,255,255,.7);
-  font-size: .875rem;
-  font-weight: 400;
-  padding: 12px 24px;
-  border-radius: 100px;
-  text-decoration: none;
-  transition: border-color .2s, color .2s;
-}
-.scope-form-ghost-btn:hover { border-color: rgba(255,255,255,.5); color: #fff; }
-
-.scope-form-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 36px;
-}
-.scope-form-card-header {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #111;
-  margin-bottom: 24px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #e5e7eb;
-  letter-spacing: -.01em;
-}
-.scope-form-fields { display: flex; flex-direction: column; gap: 16px; }
-.scope-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-@media(max-width:480px){ .scope-form-row{ grid-template-columns:1fr; } }
-
-.scope-input-group { display: flex; flex-direction: column; gap: 6px; }
-.scope-input-group label {
-  font-size: .8rem;
-  font-weight: 500;
-  color: #6b7280;
-  text-transform: uppercase;
-  letter-spacing: .05em;
-}
-.scope-input {
-  width: 100%;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 12px 14px;
-  font-size: .9rem;
-  color: #111;
-  background: #fafafa;
-  outline: none;
-  transition: border-color .2s, background .2s;
-  box-sizing: border-box;
-}
-.scope-input:focus { border-color: #111; background: #fff; }
-.scope-textarea { resize: vertical; }
-.scope-submit-btn {
-  width: 100%;
-  background: #111;
-  color: #fff;
-  font-size: .9rem;
-  font-weight: 500;
-  padding: 14px 24px;
-  border: none;
-  border-radius: 100px;
-  cursor: pointer;
-  transition: background .2s, transform .2s;
-}
-.scope-submit-btn:hover { background: #222; transform: translateY(-1px); }
-</style>
-@endpush
