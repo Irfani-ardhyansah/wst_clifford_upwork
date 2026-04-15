@@ -2,32 +2,59 @@
 
 @section('title', 'Water Solutions Technology')
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/industries.css') }}">
+@endpush
+
 @section('content')
-
-<!-- ─── INDUSTRIES HEADER ─── -->
-<section class="industries-page-hero" style="background:#0d0d0d; padding: 80px 40px 60px; text-align:center;">
-  <div class="section-eyebrow">Who We Serve</div>
-  <div class="text-center">
-    <h1 class="hero-h1">Industries We Serve</h1>
-    <p class="hero-body" style="text-align:center;">Tailored water efficiency strategies for every sector.</p>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-eye">Industries We Serve</div>
+    <h1 class="page-h1">Commercial real estate<br><em>water management — across every sector.</em></h1>
+    <p class="page-sub">Water cost exposure exists in every commercial property type — but the specific systems, billing structures, and regulatory frameworks differ significantly by sector. WST's advisory programmes are built around the water characteristics of each industry, not a generic audit template.</p>
   </div>
-</section>
+</div>
 
-<!-- ─── FILTER + GRID ─── -->
-<section style="background:#111; padding: 40px;">
-  <div style="max-width:1280px; margin:0 auto;">
+<!-- SECTOR OVERVIEW STRIP -->
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-l);">
+  <div style="background:var(--off-white);padding:28px;">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--green-lt);line-height:1;margin-bottom:6px;">16</div>
+    <div style="font-size:11px;color:var(--gray-1);line-height:1.55;">Commercial real estate sectors served by WST</div>
+  </div>
+  <div style="background:var(--off-white);padding:28px;">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--green-lt);line-height:1;margin-bottom:6px;">500+</div>
+    <div style="font-size:11px;color:var(--gray-1);line-height:1.55;">Properties audited and monitored across sectors</div>
+  </div>
+  <div style="background:var(--off-white);padding:28px;">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--green-lt);line-height:1;margin-bottom:6px;">$2.3M</div>
+    <div style="font-size:11px;color:var(--gray-1);line-height:1.55;">Verified savings documented — all sectors combined</div>
+  </div>
+  <div style="background:var(--off-white);padding:28px;">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--green-lt);line-height:1;margin-bottom:6px;">GRESB</div>
+    <div style="font-size:11px;color:var(--gray-1);line-height:1.55;">Solution Provider Partner — institutional ESG reporting</div>
+  </div>
+</div>
 
-    <!-- Filter bar -->
-    <div style="display:flex; justify-content:flex-end; margin-bottom:24px;">
-      <button onclick="toggleFilter()" class="cc-btn-ghost" style="cursor:pointer;">
-        Filter by Sector
-      </button>
-    </div>
+<!-- INDUSTRIES GRID -->
+<section class="sec sec-w" style="padding-top:48px;">
+  <div style="margin-bottom:32px;">
+    <p class="eye">All Industries</p>
+    <h2 class="sh">Select your sector to see<br><em>WST's industry-specific approach.</em></h2>
+  </div>
+  <div style="display:flex; justify-content:flex-end; align-items:center; gap:12px;">
 
-    <div id="filterDropdown" style="margin-bottom:24px; display:none;">
+    <div id="filterDropdown" style="display:none;">
       <select id="sectorSelect" onchange="filterTiles()"
-        style="background:#1a1a1a; color:#fff; border:1px solid rgba(255,255,255,0.15);
-               padding:8px 16px; font-size:14px; outline:none;">
+        style="
+          background:#ffffff;
+          color:#333;
+          border:1px solid #dcdcdc;
+          padding:10px 16px;
+          font-size:14px;
+          border-radius:6px;
+          min-width:220px;
+        ">
+        
         <option value="all">All Industries</option>
         <option value="golf">Golf Courses</option>
         <option value="healthcare">Health Care Facilities</option>
@@ -45,124 +72,82 @@
       </select>
     </div>
 
-    <!-- Industry Cards Grid -->
-    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:24px;">
-      @foreach($industries as $item)
-        <div class="tile {{ $item->slug }}"
-          style="background:#1a1a1a; overflow:hidden; display:flex; flex-direction:column;
-                 border:1px solid rgba(255,255,255,0.07); transition:transform 0.3s, box-shadow 0.3s;"
-          onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 12px 32px rgba(0,0,0,0.4)'"
-          onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+    <button onclick="toggleFilter()" 
+      style="
+        cursor:pointer;
+        background:#ffffff;
+        color:#333;
+        border:1px solid #dcdcdc;
+        padding:8px 16px;
+        font-size:14px;
+        border-radius:6px;
+      ">
+      Filter by Sector
+    </button>
 
-          @if($item->image_path)
-            <img src="{{ asset('storage/' . $item->image_path) }}"
-                 alt="{{ $item->title }}"
-                 style="width:100%; height:192px; object-fit:cover;">
-          @else
-            <img src="https://via.placeholder.com/400x300?text=No+Image"
-                 alt="Placeholder"
-                 style="width:100%; height:192px; object-fit:cover;">
-          @endif
-
-          <div style="padding:20px; flex:1;">
-            <div class="service-panel-tag" style="margin-bottom:8px;">{{ $item->title }}</div>
-            <p style="color:rgba(255,255,255,0.55); font-size:14px; font-weight:300; line-height:1.6; margin:0;">
-              {{ $item->description }}
-            </p>
-          </div>
-
-          <a href="{{ route('industries.case_study', ['slug' => $item->slug]) }}"
-             style="display:block; text-align:center; padding:14px;
-                    border-top:1px solid rgba(255,255,255,0.07);
-                    color:rgba(255,255,255,0.6); font-size:13px; font-weight:300;
-                    letter-spacing:0.05em; text-decoration:none; transition:background 0.2s, color 0.2s;"
-             onmouseover="this.style.background='rgba(255,255,255,0.06)';this.style.color='#fff'"
-             onmouseout="this.style.background='transparent';this.style.color='rgba(255,255,255,0.6)'">
-            View Solutions →
-          </a>
+  </div>
+  <div class="ind-index-grid">
+    @foreach($industries as $item)
+    <div class="tile {{ $item->slug }}" style="display:block;">
+      <a href="{{ route('industries.case_study', ['slug' => $item->slug]) }}" class="ind-index-card">
+              @if($item->image_path)
+          <img src="{{ asset('storage/' . $item->image_path) }}"
+                alt="{{ $item->title }}"
+                style="width:100%; height:192px; object-fit:cover;">
+        @else
+          <img src="https://via.placeholder.com/400x300?text=No+Image"
+                alt="Placeholder"
+                style="width:100%; height:192px; object-fit:cover;">
+        @endif
+        <div class="iic-tag">Available</div>
+        <div class="iic-name">{{$item->title}}</div>
+        <div class="iic-desc">
+          {{ \Illuminate\Support\Str::limit($item->description, 60) }}
         </div>
-      @endforeach
+        <div class="iic-arrow">Learn more &rarr;</div>
+      </a>
     </div>
-
+    @endforeach
   </div>
 </section>
 
-<!-- ─── PROTECT YOUR ASSET PERFORMANCE ─── -->
-<section class="contact-section" style="padding:0;">
-  <div class="cc">
+<!-- APPROACH NOTE -->
+<section class="sec sec-dk" style="padding:56px 48px;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
     <div>
-      <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">Start Here</div>
-      <h2 class="contact-h">Protect Your<br>Asset Performance</h2>
-      <p class="contact-sub">
-        Request a confidential water audit to optimize your property's health and profitability.
-      </p>
-      <div class="cc-btns">
-        <a href="#contact-form" class="cc-btn-primary">Speak with an Auditor</a>
+      <p class="eye" style="color:rgba(255,255,255,.3);">Our Approach</p>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(26px,2.8vw,38px);font-weight:300;color:var(--white);margin-bottom:18px;line-height:1.2;">Every industry has different water systems.<br><em>Our programmes reflect that.</em></h2>
+      <p style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.85;margin-bottom:20px;">A hotel's dominant water cost is cooling towers and laundry. An office building's is HVAC make-up and tenant sub-metering. A golf course's is irrigation. WST doesn't apply a generic audit template — we design each engagement around the specific systems, tariff structures, and regulatory context of the property type.</p>
+      <p style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.85;">If your sector isn't listed with a dedicated page yet, it doesn't mean we haven't worked in it. Speak with an advisor to discuss your specific portfolio.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px;">
+      <div style="background:#0f1a13;padding:20px 24px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-lt);margin-bottom:6px;">Hospitality</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.65;">Primary focus: cooling towers, sewer exemptions, GRESB water score, IoT leak detection</div>
+      </div>
+      <div style="background:#0f1a13;padding:20px 24px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-lt);margin-bottom:6px;">REITs & Office</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.65;">Primary focus: billing validation, WT1 data coverage, IC documentation, cap rate analysis</div>
+      </div>
+      <div style="background:#0f1a13;padding:20px 24px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-lt);margin-bottom:6px;">Industrial & Golf</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.65;">Primary focus: process water audits, irrigation systems, cooling loop efficiency</div>
+      </div>
+      <div style="background:#0f1a13;padding:20px 24px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-lt);margin-bottom:6px;">Healthcare & Education</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.65;">Primary focus: compliance documentation, risk assessment, regulatory billing validation</div>
       </div>
     </div>
-
-    <!-- Contact Form -->
-    <div>
-      <form id="contact-form" style="display:flex; flex-direction:column; gap:16px; max-width:480px; width:100%;">
-        <div style="display:flex; gap:12px;">
-          <input type="text" name="first-name" required placeholder="First Name"
-            style="flex:1; background:#1a1a1a; border:1px solid rgba(255,255,255,0.12);
-                   color:#fff; padding:10px 14px; font-size:14px; font-weight:300; outline:none;"
-            onfocus="this.style.borderColor='rgba(255,255,255,0.4)'"
-            onblur="this.style.borderColor='rgba(255,255,255,0.12)'"/>
-          <input type="text" name="last-name" required placeholder="Last Name"
-            style="flex:1; background:#1a1a1a; border:1px solid rgba(255,255,255,0.12);
-                   color:#fff; padding:10px 14px; font-size:14px; font-weight:300; outline:none;"
-            onfocus="this.style.borderColor='rgba(255,255,255,0.4)'"
-            onblur="this.style.borderColor='rgba(255,255,255,0.12)'"/>
-        </div>
-        <div style="display:flex; gap:12px;">
-          <input type="text" name="company-name" placeholder="Company Name"
-            style="flex:1; background:#1a1a1a; border:1px solid rgba(255,255,255,0.12);
-                   color:#fff; padding:10px 14px; font-size:14px; font-weight:300; outline:none;"
-            onfocus="this.style.borderColor='rgba(255,255,255,0.4)'"
-            onblur="this.style.borderColor='rgba(255,255,255,0.12)'"/>
-          <input type="text" name="company-role" placeholder="Company Role"
-            style="flex:1; background:#1a1a1a; border:1px solid rgba(255,255,255,0.12);
-                   color:#fff; padding:10px 14px; font-size:14px; font-weight:300; outline:none;"
-            onfocus="this.style.borderColor='rgba(255,255,255,0.4)'"
-            onblur="this.style.borderColor='rgba(255,255,255,0.12)'"/>
-        </div>
-        <div style="display:flex; gap:12px;">
-          <input type="tel" name="contact-number" placeholder="Contact Number"
-            style="flex:1; background:#1a1a1a; border:1px solid rgba(255,255,255,0.12);
-                   color:#fff; padding:10px 14px; font-size:14px; font-weight:300; outline:none;"
-            onfocus="this.style.borderColor='rgba(255,255,255,0.4)'"
-            onblur="this.style.borderColor='rgba(255,255,255,0.12)'"/>
-          <input type="email" name="email" required placeholder="Email"
-            style="flex:1; background:#1a1a1a; border:1px solid rgba(255,255,255,0.12);
-                   color:#fff; padding:10px 14px; font-size:14px; font-weight:300; outline:none;"
-            onfocus="this.style.borderColor='rgba(255,255,255,0.4)'"
-            onblur="this.style.borderColor='rgba(255,255,255,0.12)'"/>
-        </div>
-        <select name="reason"
-          style="background:#1a1a1a; border:1px solid rgba(255,255,255,0.12);
-                 color:rgba(255,255,255,0.6); padding:10px 14px; font-size:14px; font-weight:300; outline:none;">
-          <option value="">Reason for Contact</option>
-          <option>Request a Water Audit</option>
-          <option>Billing or Invoice Question</option>
-          <option>Consultation on Smart Water Solutions</option>
-          <option>Technical Support</option>
-          <option>General Inquiry</option>
-        </select>
-        <textarea name="message" rows="3" required placeholder="Message"
-          style="background:#1a1a1a; border:1px solid rgba(255,255,255,0.12);
-                 color:#fff; padding:10px 14px; font-size:14px; font-weight:300;
-                 outline:none; resize:none;"
-          onfocus="this.style.borderColor='rgba(255,255,255,0.4)'"
-          onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></textarea>
-        <button type="submit" class="cc-btn-primary" style="cursor:pointer;">
-          Submit Request
-        </button>
-      </form>
-    </div>
   </div>
 </section>
+
+<div class="cs">
+  <div>
+    <div class="cs-t">Don't see your industry?<br><em>Speak with an advisor.</em></div>
+    <p class="cs-s">WST works with any commercial real estate operator with water cost exposure. If your sector isn't listed, we've likely worked in it — tell us about your portfolio.</p>
+  </div>
+  <a href="{{route('contact')}}" class="cs-btn">Speak With an Advisor</a>
+</div>
 
 @endsection
 
@@ -174,6 +159,7 @@
 
   function filterTiles() {
     const value = $("#sectorSelect").val();
+    console.log(value);
     $(".tile").each(function() {
       if (value === "all" || $(this).hasClass(value)) {
         $(this).show();
