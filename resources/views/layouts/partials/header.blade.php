@@ -86,7 +86,7 @@
         <a href="{{ route('resources.my_city_rebates') }}">My City Water Rebates</a>
         <a href="{{ route('resources.financing_form') }}">Tax Strategy &amp; Financing</a>
         <a href="{{ route('resources.webinar') }}">Webinars On Demand</a>
-        <a href="{{ route('member-dashboard.gresb-water.list') }}">Events (Past &amp; Upcoming)</a>
+        <a href="{{ route('resources.events') }}">Events (Past &amp; Upcoming)</a>
         <a href="{{ route('resources.tools.selection_tool') }}">Water Target Tools (&amp; Cost Reduction)</a>
       </div>
     </li>

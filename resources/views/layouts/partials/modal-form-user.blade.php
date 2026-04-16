@@ -13,6 +13,9 @@
     elseif (request()->is('resources/webinar*')) {
         $destination = route('member-dashboard.index', ['category' => 'webinar']);
     }
+    elseif (request()->is('resources/events*')) {
+        $destination = route('member-dashboard.gresb-water.list');
+    }
 @endphp
 
 <div id="auth-modal" class="co hidden opacity-0 transition-all duration-300">
@@ -73,7 +76,7 @@
 
             @auth
                 {{-- Authenticated state --}}
-                <div class="gate-success" style="display:flex;">
+                <div class="gate-success" style="display:flex; flex-direction:column; align-items:center; text-align:center;">
                     <div class="gate-success-icon">
                         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#fff" stroke-width="2.2"><path d="M4 11l5 5 9-9"/></svg>
                     </div>

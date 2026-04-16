@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\GRESBWaterController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\Front\WebinarController;
 use App\Http\Controllers\Front\ArticleController;
+use App\Http\Controllers\Front\EventController;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login.custom');
 Route::post('/login-by-phone', [AuthController::class, 'loginByPhone'])->name('login.phone');
@@ -225,6 +226,8 @@ Route::prefix('resources')->name('resources.')->group(function () {
     Route::get('/financing_form', function () {
         return view('resources.financing_form');
     })->name('financing_form');
+
+    Route::get('/events', [EventController::class, 'index'])->name('events');
 });
 
 Route::get('/contact', function () {

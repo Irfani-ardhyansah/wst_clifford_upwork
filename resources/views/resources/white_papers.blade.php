@@ -2,7 +2,142 @@
 
 @section('title', 'Water Solutions Technology')
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/white_papers.css') }}">
+@endpush
+
 @section('content')
+
+@php
+function adjustBrightness($hex, $steps) {
+    $steps = max(-255, min(255, $steps));
+
+    $hex = str_replace('#', '', $hex);
+
+    $r = hexdec(substr($hex, 0, 2));
+    $g = hexdec(substr($hex, 2, 2));
+    $b = hexdec(substr($hex, 4, 2));
+
+    $r = max(0, min(255, $r + $steps));
+    $g = max(0, min(255, $g + $steps));
+    $b = max(0, min(255, $b + $steps));
+
+    return '#' . str_pad(dechex($r), 2, '0', STR_PAD_LEFT)
+              . str_pad(dechex($g), 2, '0', STR_PAD_LEFT)
+              . str_pad(dechex($b), 2, '0', STR_PAD_LEFT);
+}
+@endphp
+
+<div class="res-hero">
+  <div class="res-hero-inner">
+    <div class="res-hero-bc">
+      <a href="/resources">Resources</a>
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 1l4 4-4 4"/></svg>
+      <span>White Papers</span>
+    </div>
+    <div class="res-hero-eye">Resources &mdash; White Papers</div>
+    <h1 class="res-hero-h1">Institutional research<br><em>for CRE water performance.</em></h1>
+    <p class="res-hero-sub">WST white papers combine proprietary portfolio data with GRESB benchmark analysis and financial modelling &mdash; written for asset managers, sustainability directors, and engineering teams making capital decisions.</p>
+    <div class="res-hero-gate-note">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="8" height="6" rx="1"/><path d="M5 6V4.5a2.5 2.5 0 015 0V6"/></svg>
+      Free download &mdash; register once for full library access.
+    </div>
+  </div>
+</div>
+
+<div class="value-strip">
+  <div class="vs-cell"><div class="vs-num">3</div><div class="vs-lbl">White papers available at launch &mdash; expanding quarterly</div></div>
+  <div class="vs-cell"><div class="vs-num">8&ndash;12</div><div class="vs-lbl">Pages per paper &mdash; research quality, institutional language</div></div>
+  <div class="vs-cell"><div class="vs-num">PDF</div><div class="vs-lbl">Downloadable &mdash; sharable with investment committees and LPs</div></div>
+  <div class="vs-cell"><div class="vs-num">Free</div><div class="vs-lbl">No charge &mdash; register once, access all current and future papers</div></div>
+</div>
+
+<section class="sec sec-o" style="padding-top:48px;">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
+
+      @forelse ($whitePapers as $item)
+          @php
+            $base = '#1a2a2a';
+            $randomStep = rand(-15, 15); // variasi kecil biar tetap 1 palette
+            $bgColor = adjustBrightness($base, $randomStep);
+          @endphp
+
+        <div class="wp-card">
+
+          @if($item->image_path)
+            <img src="{{ asset('storage/' . $item->image_path) }}"
+              alt="{{ $item->title }}"
+              style="width:100%; height:192px; object-fit:cover;">
+          @else
+            <img src="https://via.placeholder.com/400x300?text=No+Image"
+              alt="Placeholder"
+              style="width:100%; height:192px; object-fit:cover;">
+          @endif
+
+          <div class="wp-card-top" style="background:#1a2a1a;">
+            <div><div class="wp-tag">{{ $item->tags }}</div>
+            <div class="wp-title">{{ $item->title }}</div></div>
+            <div class="wp-pages">10 pages &middot; PDF &middot; March 2026</div>
+          </div>
+          <div class="wp-card-body">
+            <p class="wp-abstract">
+              {{ $item->description }}
+            </p>
+            <div class="wp-audience"><strong>Audience:</strong> Asset Managers, Fund Managers, CFOs &mdash; institutional CRE</div>
+          </div>
+          <button class="wp-dl-btn open-modal-btn"
+              data-id="{{ $item->id }}"
+              data-title="{{ $item->title }}"
+              data-image="{{ asset('storage/' . $item->image_path) }}">
+            <span>View White Paper →</span>
+          </button>
+        </div>
+      @empty
+        <p style="color:rgba(255,255,255,0.55); font-size:14px; text-align:center; grid-column:1/-1;">
+          No white papers available at the moment.
+        </p>
+      @endforelse
+  </div>
+</section>
+
+<section class="sec sec-w" style="padding:48px;">
+  <div style="display:flex;justify-content:space-between;align-items:start;gap:48px;flex-wrap:wrap;">
+    <div>
+      <p class="eye">Coming Soon</p>
+      <h2 class="sh">Forthcoming White Papers</h2>
+      <p class="sub" style="margin-bottom:0;">Registered members are notified when new papers are published &mdash; no separate sign-up required.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:1px;min-width:360px;flex:1;max-width:520px;">
+      <div style="background:var(--off-white);border:1px solid var(--border-l);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
+        <span style="font-size:13px;color:var(--black);">IoT Water Monitoring ROI: A Framework for Real Estate Portfolios</span>
+        <span style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-1);white-space:nowrap;">Q2 2026</span>
+      </div>
+      <div style="background:var(--off-white);border:1px solid var(--border-l);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
+        <span style="font-size:13px;color:var(--black);">Water Due Diligence in CRE Acquisitions: Standards and Best Practices</span>
+        <span style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-1);white-space:nowrap;">Q3 2026</span>
+      </div>
+      <div style="background:var(--off-white);border:1px solid var(--border-l);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;">
+        <span style="font-size:13px;color:var(--black);">GRESB 2026 Water Benchmarks: Hotel REIT Sector Analysis</span>
+        <span style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-1);white-space:nowrap;">Q4 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-dk" style="padding:48px;">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(255,255,255,.04);">
+    <div style="padding:28px;background:var(--dark);"><div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--green-lt);margin-bottom:8px;">01</div><div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:6px;">Register once</div><div style="font-size:12px;color:rgba(255,255,255,.38);line-height:1.7;">Enter your work email, company, and portfolio size. Under 60 seconds.</div></div>
+    <div style="padding:28px;background:var(--dark);"><div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--green-lt);margin-bottom:8px;">02</div><div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:6px;">Instant access</div><div style="font-size:12px;color:rgba(255,255,255,.38);line-height:1.7;">Download begins immediately. Confirmation email sent with your member portal link.</div></div>
+    <div style="padding:28px;background:var(--dark);"><div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--green-lt);margin-bottom:8px;">03</div><div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:6px;">Full library</div><div style="font-size:12px;color:rgba(255,255,255,.38);line-height:1.7;">One registration unlocks all current and future white papers, case studies, and webinars.</div></div>
+    <div style="padding:28px;background:var(--dark);"><div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--green-lt);margin-bottom:8px;">04</div><div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:6px;">New alerts</div><div style="font-size:12px;color:rgba(255,255,255,.38);line-height:1.7;">Automatic notification when new research is published &mdash; no separate sign-up required.</div></div>
+  </div>
+</section>
+
+<div class="cs">
+  <div><div class="cs-t">Looking for research specific<br><em>to your portfolio type?</em></div>
+  <p class="cs-s">WST publishes research anchored in verified portfolio data. If you have a specific research need &mdash; GRESB benchmarking, industry analysis, or financial modelling &mdash; speak with an advisor.</p></div>
+  <a href="/contact" class="cs-btn">Speak With an Advisor</a>
+</div>
 
 <!-- ─── WHITE PAPERS HEADER ─── -->
 <section class="industries-page-hero" style="background:#0d0d0d; padding: 80px 40px 60px; text-align:center;">
@@ -84,7 +219,7 @@
   </div>
 </section>
 
-    @include('layouts.partials.modal-form-user')
+@include('layouts.partials.modal-form-user')
 @endsection
   
 @push('scripts')

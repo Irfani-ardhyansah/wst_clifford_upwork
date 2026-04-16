@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Carbon\Carbon;
 class GresbConsultation extends Model {
     use HasFactory;
 
@@ -25,4 +25,9 @@ class GresbConsultation extends Model {
     protected $casts = [
         'time_preference' => 'datetime',
     ];
+
+    public function getIsPastAttribute()
+    {
+        return Carbon::parse($this->time_preference)->isPast();
+    }
 }
