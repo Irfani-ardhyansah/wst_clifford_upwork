@@ -114,7 +114,7 @@
       <div class="hero-stat-grid">
         <div class="hero-stat">
           <div class="hero-stat-val">31</div>
-          <div class="hero-stat-lbl">Assets — DiamondRock</div>
+          <div class="hero-stat-lbl">Assets — REITs</div>
         </div>
         <div class="hero-stat">
           <div class="hero-stat-val">100%</div>
@@ -130,8 +130,8 @@
         </div>
       </div>
       <div class="hero-proof">
-        <div class="hero-proof-tag">Verified — The Westin Fort Lauderdale · DiamondRock Hospitality</div>
-        <div class="hero-proof-q">"25.3% water reduction. $2.3M documented savings. 31 assets. Reported to GRESB."</div>
+        <div class="hero-proof-tag">Verified — The Westin Fort Lauderdale · REITs</div>
+        <div class="hero-proof-q">"25.3% water reduction. $2.3M documented savings. 31 assets. Reported to ESG."</div>
       </div>
     </div>
   </div>
@@ -314,7 +314,7 @@
     <div>
       <div class="industries-scroll">
         @foreach($industries as $item)
-        <a href="/industries/{{ $item->slug }}" class="industry-card">
+        <a href="#" class="industry-card">
           <div class="industry-img">
             @if($item->image_path)  
               <img src="{{ asset('storage/' . $item->image_path) }}" 
@@ -442,13 +442,13 @@
 <section class="proof-section">
   <div class="proof-inner">
     <div class="proof-left">
-      <div class="proof-left-tag">Verified Case Study &mdash; DiamondRock Hospitality</div>
+      <div class="proof-left-tag">Verified Case Study &mdash; REITs</div>
       <div class="proof-quote">
         &ldquo;The outcome was not<br><em>estimated.</em> It was measured,<br>verified, and reported.&rdquo;
       </div>
       <div class="proof-attribution">
         The Westin Fort Lauderdale Beach Resort<br>
-        DiamondRock Hospitality Company<br>
+        REITs Company<br>
         31 assets &middot; GRESB submitted
       </div>
     </div>
@@ -469,7 +469,7 @@
         <div class="proof-metric-val">$69K</div>
         <div class="proof-metric-lbl">Equipment investment</div>
       </div>
-      <div class="proof-metric-client">The Westin Fort Lauderdale Beach Resort &middot; DiamondRock Hospitality</div>
+      <div class="proof-metric-client">The Westin Fort Lauderdale Beach Resort &middot; REITs Hospitality</div>
       <div class="proof-who">
         <div class="proof-who-item">
           <div class="proof-who-title">Asset Managers</div>
