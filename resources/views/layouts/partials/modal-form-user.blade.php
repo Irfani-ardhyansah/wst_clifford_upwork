@@ -16,92 +16,88 @@
 @endphp
 
 <div id="auth-modal" class="co hidden opacity-0 transition-all duration-300">
-    <div class="co-box scale-95" id="modal-content">
+    <div class="gate-box scale-95" id="modal-content">
+
         {{-- Header --}}
-        <div class="co-head">
-            <div>
-                <h3 class="co-title" id="co-title">Access Premium Content</h3>
-                <p class="co-sub">Register once for unlimited access.</p>
-            </div>
-            <button class="co-x close-modal" id="co-x" aria-label="Close form">&times;</button>
+        <div class="gate-header">
+            <button class="gate-close close-modal" id="co-x" aria-label="Close form">&times;</button>
+            <div class="gate-header-eye">Access Required</div>
+            <h2 class="gate-header-title" id="co-title">Access Premium Content</h2>
+            <p class="gate-header-sub">Register once for unlimited access — no subscription required.</p>
         </div>
 
-        {{-- Feature Strips --}}
-        <div class="co-strips">
-            <div class="co-strip">
-                <div class="co-strip-lbl">Free Access</div>
-                <div class="co-strip-val">No subscription required</div>
-            </div>
-            <div class="co-strip">
-                <div class="co-strip-lbl">Unlimited</div>
-                <div class="co-strip-val">All case studies & tools</div>
-            </div>
-            <div class="co-strip">
-                <div class="co-strip-lbl">Instant</div>
-                <div class="co-strip-val">One-time registration only</div>
-            </div>
-        </div>
-
-        <div class="co-body">
+        <div class="gate-body" id="auth-form-container">
             @guest
                 {{-- Auth Form --}}
-                <div id="auth-form-container" class="auth-form-container">    
-                    <form id="ajaxUserLoginForm" method="POST" action="{{ route('login.phone') }}" class="space-y-4">
-                        @csrf
-                        <input type="hidden" name="source_url" id="source_url_input">
-                        <input type="hidden" name="case_study_id" id="modal-case-id">
+                <form id="ajaxUserLoginForm" method="POST" action="{{ route('login.phone') }}">
+                    @csrf
+                    <input type="hidden" name="source_url" id="source_url_input">
+                    <input type="hidden" name="case_study_id" id="modal-case-id">
+                    {{-- Honeypot --}}
+                    <input type="text" name="website" style="display:none;" tabindex="-1" autocomplete="off">
 
-                        <div class="co-row">
-                            <div class="co-fw">
-                                <label class="co-lbl" for="name">Full Name <span class="co-req">*</span></label>
-                                <input type="text" name="name" id="name" required class="co-inp">
-                            </div>
-                            <div class="co-fw">
-                                <label class="co-lbl" for="company">Company <span class="co-req">*</span></label>
-                                <input type="text" name="company" id="company" required class="co-inp">
-                            </div>
+                    <div class="gate-row">
+                        <div class="gate-field">
+                            <label class="gate-label" for="name">Full Name</label>
+                            <input class="gate-input" type="text" name="name" id="name" placeholder="Jane Smith" autocomplete="name" required>
+                            <span class="gate-err" id="err-name">Required</span>
                         </div>
-
-                        <div class="co-row">
-                            <div class="co-fw">
-                                <label class="co-lbl" for="email">Work Email <span class="co-req">*</span></label>
-                                <input type="email" name="email" id="email" required class="co-inp">
-                            </div>
-                            <div class="co-fw">
-                                <label class="co-lbl" for="phone">Phone Number <span class="co-req">*</span></label>
-                                <input type="number" name="phone" id="phone" required class="co-inp">
-                            </div>
+                        <div class="gate-field">
+                            <label class="gate-label" for="company">Company</label>
+                            <input class="gate-input" type="text" name="company" id="company" placeholder="Acme Real Estate Fund" autocomplete="organization" required>
+                            <span class="gate-err" id="err-company">Required</span>
                         </div>
+                    </div>
 
-                        {{-- Footer area --}}
-                        <div class="co-foot">
-                            <p class="co-note">We'll follow up within 24 hours. Every submission reviewed personally.</p>
-                            <button type="submit" id="btn-submit-auth" class="co-btn">
-                                <i class="fa-solid fa-unlock text-xs"></i>
-                                <span>Get Instant Access</span>
-                            </button>
+                    <div class="gate-row">
+                        <div class="gate-field">
+                            <label class="gate-label" for="email">Work Email</label>
+                            <input class="gate-input" type="email" name="email" id="email" placeholder="jane@company.com" autocomplete="email" required>
+                            <span class="gate-err" id="err-email">Please enter a valid work email.</span>
                         </div>
-                    </form>
-                </div>
+                        <div class="gate-field">
+                            <label class="gate-label" for="phone">Phone Number</label>
+                            <input class="gate-input" type="number" name="phone" id="phone" placeholder="+1 000 000 0000" autocomplete="tel" required>
+                            <span class="gate-err" id="err-phone">Required</span>
+                        </div>
+                    </div>
 
-                {{-- Success State (guest) --}}
-                <div id="auth-success-container" class="co-ok hidden text-center py-4 space-y-4">
-                    <a id="success-redirect-btn" class="co-btn" href="{{ $destination }}"
-                        class="flex items-center justify-center gap-2 w-full bg-black hover:bg-gray-800 text-white text-sm font-semibold py-3 rounded-lg transition">
-                        <i class="fa-solid fa-arrow-right"></i> View Content
-                    </a>
-                </div>
+                    <button class="gate-submit" type="submit" id="btn-submit-auth">
+                        <i class="fa-solid fa-unlock text-xs"></i>
+                        Get Instant Access
+                    </button>
+
+                    <p class="gate-legal">By registering you agree to WST's <a href="/privacy-policy">Privacy Policy</a>. We do not sell your data.</p>
+                </form>
             @endguest
 
             @auth
-                {{-- Welcome State (authenticated) --}}
-                <div class="co-ok show text-center py-4 space-y-4">
-                    <a id="success-redirect-btn" class="co-btn" href="{{ $destination }}">
+                {{-- Authenticated state --}}
+                <div class="gate-success" style="display:flex;">
+                    <div class="gate-success-icon">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#fff" stroke-width="2.2"><path d="M4 11l5 5 9-9"/></svg>
+                    </div>
+                    <div class="gate-success-title">Welcome back.</div>
+                    <p class="gate-success-body">You already have full access to WST resources.</p>
+                    <a class="gate-success-cta" href="{{ $destination }}">
                         <i class="fa-solid fa-arrow-right"></i> View Content
                     </a>
                 </div>
             @endauth
         </div>
+
+        {{-- Success State (guest — shown after submit) --}}
+        <div class="gate-success" id="auth-success-container" style="display:none;">
+            <div class="gate-success-icon">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#fff" stroke-width="2.2"><path d="M4 11l5 5 9-9"/></svg>
+            </div>
+            <div class="gate-success-title">Access granted.</div>
+            <p class="gate-success-body">Check your email for your member portal link. Your requested resource is now unlocked.</p>
+            <a id="success-redirect-btn" class="gate-success-cta" href="{{ $destination }}">
+                <i class="fa-solid fa-arrow-right"></i> View Content
+            </a>
+        </div>
+
     </div>
 </div>
 
