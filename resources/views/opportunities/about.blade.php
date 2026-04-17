@@ -2,1827 +2,201 @@
 
 @section('title', 'About — Water Solutions Technology')
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/about.css') }}">
+@endpush
+
 @section('content')
+<div class="ab2-hero">
+  <div class="ab2-glow"></div>
+  <div class="ab2-rule"></div>
+  <div class="ab2-hero-content">
+    <div class="ab2-bc" style="grid-column:1/-1;">
+      <a href="/">Home</a><svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 1l4 4-4 4"/></svg><span>About</span></div><div><h1 class="ab2-h1">We found<span class="line-italic">the overcharge.</span><span class="line-green">That&rsquo;s why<br>WST exists.</span></h1></div><div class="ab2-hero-right"><div class="ab2-cred"><div class="ab2-cred-label">GRESB Certified Partner</div><div class="ab2-cred-val">Solution Provider Partner</div><div class="ab2-cred-sub">All WST outputs structured for direct GRESB submission &mdash; WT1, MR3, RA4</div></div><div class="ab2-cred"><div class="ab2-cred-label">Institutional Focus</div><div class="ab2-cred-val">REITs &amp; Asset Managers</div><div class="ab2-cred-sub">Portfolio-level water intelligence formatted for IC, LP, and ESG audiences</div></div><div class="ab2-cred"><div class="ab2-cred-label">Business Model</div><div class="ab2-cred-val">Shared-Savings Only</div><div class="ab2-cred-sub">Zero upfront &mdash; WST is compensated on verified, documented outcomes only</div></div><div class="ab2-cred"><div class="ab2-cred-label">Headquarters</div><div class="ab2-cred-val">Fort Lauderdale, FL</div><div class="ab2-cred-sub">200 S. Andrews Avenue, Suite 504 &mdash; Fort Lauderdale, FL 33301</div></div></div></div><div class="ab2-hero-bar"><div class="ab2-hero-bar-tag">Water Solutions Technology &nbsp;&middot;&nbsp; <span>Est. Fort Lauderdale</span> &nbsp;&middot;&nbsp; Institutional Water Advisory</div><a href="/contact" class="ab2-hero-cta">Start a Conversation</a></div></div><div class="ab2-story"><div class="ab2-story-left"><span class="ab2-case-num">01</span><div class="ab2-story-eye">The Origin</div><h2 class="ab2-story-h">A 31-asset hotel REIT.<br>Four years of<br><em>invisible overcharges.</em></h2><p style="font-size:14px;color:rgba(255,255,255,.38);line-height:1.82;margin-bottom:20px;">The portfolio had genuine, documented water improvements in the field. Consumption was down. GRESB scores hadn&rsquo;t moved. The water bills weren&rsquo;t reflecting what was actually happening inside the buildings.</p><p style="font-size:14px;color:rgba(255,255,255,.38);line-height:1.82;margin-bottom:24px;">When we looked at the billing records, the utility had been charging sewer fees on 100% of metered consumption &mdash; including all the water that had evaporated from the cooling towers and never entered the sewer. It had been overcharging the portfolio for <strong style="color:rgba(255,255,255,.7);">four years</strong>. The property managers had no idea. The REIT had no visibility. The asset managers had never been told it was possible to ask for a credit.</p><div style="padding:16px 20px;background:rgba(45,92,66,.08);border-left:3px solid var(--green-lt);"><p style="font-size:12px;color:rgba(255,255,255,.38);line-height:1.7;">That&rsquo;s what WST was built to find. The savings that are already there, already earned, already sitting in the billing records &mdash; waiting for someone who knows how to ask for them back.</p></div></div><div class="ab2-story-right"><blockquote class="ab2-pull">&ldquo;Most portfolios we engage with have been paying water costs they didn&rsquo;t owe. The question is never whether the overcharge exists &mdash; it&rsquo;s how far back it goes.&rdquo;</blockquote><div class="ab2-story-body"><p>Water is the only major operating expense in commercial real estate that has no institutional oversight infrastructure. Energy has ENERGY STAR. Carbon has GHG protocols and dedicated reporting frameworks. Water has a utility bill that arrives monthly and gets paid without analysis.</p><p>The result: rate misclassifications that compound for years. Sewer charges on evaporated water that never entered the municipal system. Billing multiplier errors. Tier misapplications. Cooling tower make-up volumes charged at potable rates when reclaimed rates apply. Each category invisible in isolation. Together, they represent <strong>8&ndash;12% of the average commercial property&rsquo;s annual water bill</strong> &mdash; recoverable, retroactively, in most US jurisdictions for three to five years.</p><p>WST built a systematic methodology for finding these overcharges, documenting them in the format institutional portfolios need, and recovering them at the portfolio level. The same data that produces the billing recovery produces the GRESB water indicator documentation. The same IoT monitoring that controls the cooling tower blowdown rate generates the MR3 and RA4 evidence. Everything is designed to serve the institutional output, not the other way around.</p></div><div class="ab2-story-sig"><span>Clifford Campbell</span>, Managing Partner &nbsp;&middot;&nbsp; Water Solutions Technology</div></div></div><div class="ab2-partners"><div class="ab2-partners-head"><div class="ab2-partners-eye">The Partners</div><h2 class="ab2-partners-h">The principals behind<br><em>every WST engagement.</em></h2><p class="ab2-partners-note">WST is a two-partner boutique. Every client relationship is led directly by Clifford or Jody &mdash; not delegated to analysts or junior consultants. You engage the principals. They deliver the work.</p></div><div class="ab2-partner-grid"><div class="ab2-pcard"><div class="ab2-pcard-av-row"><div class="ab2-pcard-av" style="background:var(--green-lt);">CC</div><div><div class="ab2-pcard-name">Clifford Campbell</div><div class="ab2-pcard-role">Managing Partner</div></div></div><p class="ab2-pcard-conviction">&ldquo;Every portfolio we&rsquo;ve engaged has had recoverable water savings it didn&rsquo;t know about. The methodology to find them isn&rsquo;t complicated. The institutional infrastructure to document and present them &mdash; that&rsquo;s what WST built.&rdquo;</p><div class="ab2-pcard-body"><p>Clifford leads WST&rsquo;s institutional advisory practice, working directly with REITs, asset managers, and LP audiences on portfolio-level water strategy. His focus: translating field performance into the financial language that matters to institutional audiences &mdash; NOI improvement, cap rate asset value, GRESB score impact, and LP-disclosable outcomes.</p><p>His core belief, developed across years of commercial water system engagement, is that <strong>water cost exposure in institutional real estate is systematically underreported</strong> &mdash; not because the performance isn&rsquo;t there, but because the documentation infrastructure to present it doesn&rsquo;t exist at most portfolios. WST&rsquo;s entire methodology is built around closing that gap.</p><p>Clifford holds the GRESB Solution Provider Partner designation and leads all IC presentation preparation, portfolio-level programme design, and REIT and asset manager relationships.</p></div><div class="ab2-pcard-foot"><div class="ab2-pcard-contact"><a href="mailto:acc@watersolutech.com">acc@watersolutech.com</a></div><a href="https://www.linkedin.com/company/watersolutech" target="_blank" rel="noopener" class="ab2-pcard-li"><svg width="12" height="12" viewBox="0 0 14 14" fill="currentColor"><path d="M1.5 3.5A1.5 1.5 0 103 2a1.5 1.5 0 00-1.5 1.5zM2 5h2v7H2zM5.5 5h1.8v1h.04A2.2 2.2 0 019.4 5c2.1 0 2.6 1.4 2.6 3.2V12H10V8.6c0-.8 0-1.9-1.2-1.9S7.4 7.7 7.4 8.6V12H5.5V5z"/></svg> LinkedIn</a></div></div><div class="ab2-pcard"><div class="ab2-pcard-av-row"><div class="ab2-pcard-av" style="background:rgba(45,92,66,.5);border:1px solid rgba(45,92,66,.8);">JA</div><div><div class="ab2-pcard-name">Jody Ashton</div><div class="ab2-pcard-role">Partner of Operations</div></div></div><p class="ab2-pcard-conviction">&ldquo;The financial outcomes Clifford structures at the advisory level only matter if they&rsquo;re actually delivered in the field. My job is to make sure the numbers presented to an LP are the numbers that show up in the utility ledger.&rdquo;</p><div class="ab2-pcard-body"><p>Jody leads WST&rsquo;s operational delivery practice, overseeing programme execution, field engagement management, and the technical advisory relationships that underpin WST&rsquo;s service quality. Her approach is systematic and process-driven &mdash; ensuring that every engagement delivers with the precision the institutional reporting environment demands.</p><p>Her operational expertise spans <strong>billing forensics, cooling tower programme management, sewer exemption filing, and IoT sensor deployment coordination</strong>. She leads all client engagements in the healthcare and educational institution sectors, where WST&rsquo;s 25.8% average monthly water reduction has been most consistently documented.</p><p>Jody is the primary contact for all field-level engineering engagements, utility relationship management, and regulatory filing. She manages the operational quality of every active WST programme.</p></div><div class="ab2-pcard-foot"><div class="ab2-pcard-contact"><a href="mailto:info@watersolutech.com">info@watersolutech.com</a></div><a href="https://www.linkedin.com/company/watersolutech" target="_blank" rel="noopener" class="ab2-pcard-li"><svg width="12" height="12" viewBox="0 0 14 14" fill="currentColor"><path d="M1.5 3.5A1.5 1.5 0 103 2a1.5 1.5 0 00-1.5 1.5zM2 5h2v7H2zM5.5 5h1.8v1h.04A2.2 2.2 0 019.4 5c2.1 0 2.6 1.4 2.6 3.2V12H10V8.6c0-.8 0-1.9-1.2-1.9S7.4 7.7 7.4 8.6V12H5.5V5z"/></svg> LinkedIn</a></div></div></div></div><div class="ab2-proof"><div class="ab2-proof-head"><div class="ab2-proof-eye">Verified Outcomes</div><h2 class="ab2-proof-h">Named institutions.<br><em>Documented results.</em></h2><p class="ab2-proof-sub">Drawn from disclosed sustainability programmes, published case data, and verified WST engagements. No anonymised projections. No estimated ranges. Every number on this page has been documented.</p></div><div class="ab2-proof-grid"><div class="ab2-pc" style="border-top-color:var(--green-lt);"><div class="ab2-pc-tag" style="color:var(--green-lt);">Hospitality REIT &mdash; WST Engagement</div><div class="ab2-pc-client">Leading Hotel REIT<br>31 Assets, $3.5B+ AUM</div><div class="ab2-pc-metric" style="color:var(--green-lt);">$2.3M</div><div class="ab2-pc-metric-label">Annual verified water savings</div><div class="ab2-pc-desc">25.3% water reduction, 31 assets. GRESB 4-star, 86/100. Savings documented for LP disclosure. Billing overcharge recovery initiated retroactively.</div></div><div class="ab2-pc" style="border-top-color:rgba(45,92,66,.5);"><div class="ab2-pc-tag" style="color:rgba(45,92,66,.7);">Office REIT &mdash; Sustainability Programme</div><div class="ab2-pc-client">Boston Properties<br>BXP &mdash; S&amp;P 500</div><div class="ab2-pc-metric" style="color:rgba(255,255,255,.7);">$34M</div><div class="ab2-pc-metric-label">Annual avoided OpEx &mdash; disclosed</div><div class="ab2-pc-desc">Cooling tower filtration contributed to 27% energy and 30% water reduction vs. 2008 baseline. A permanent annual reduction to the cost base &mdash; not a one-time project.</div></div><div class="ab2-pc" style="border-top-color:rgba(45,92,66,.45);"><div class="ab2-pc-tag" style="color:rgba(45,92,66,.65);">Office REIT &mdash; Technical Services ROI</div><div class="ab2-pc-client">Vornado Realty Trust<br>VNO &mdash; NYSE</div><div class="ab2-pc-metric" style="color:rgba(255,255,255,.65);">4.6&times;</div><div class="ab2-pc-metric-label">Year-one return on investment</div><div class="ab2-pc-desc">$126K technical services investment identified $580K in annual savings. Year-one ROI: 4.6&times;. Separate $6M capital programme generated $260K annual cooling savings.</div></div><div class="ab2-pc" style="border-top-color:rgba(45,92,66,.35);"><div class="ab2-pc-tag" style="color:rgba(45,92,66,.55);">Office REIT &mdash; IoT &amp; Retrocommissioning</div><div class="ab2-pc-client">Kilroy Realty<br>KRC &mdash; NYSE</div><div class="ab2-pc-metric" style="color:rgba(255,255,255,.55);">$7.1M</div><div class="ab2-pc-metric-label">Asset value created at 5.5% cap rate</div><div class="ab2-pc-desc">32-story tower: 847 IoT sensors, AI setpoint optimisation, $392K annual HVAC savings. At 5.5% cap, the annual saving translates to $7.1M in permanent asset value.</div></div></div><div style="padding:20px 28px;background:rgba(45,92,66,.06);border-top:1px solid rgba(45,92,66,.12);display:flex;align-items:center;gap:16px;flex-wrap:wrap;"><p style="font-size:12px;color:rgba(255,255,255,.3);line-height:1.65;flex:1;min-width:300px;">At a 5.5% cap rate, every $90K in annual water savings equals <strong style="color:rgba(255,255,255,.6);">$1.6M in asset value</strong>. The Kilroy case is the institutional proof of concept. The WST hospitality REIT engagement is the replication at portfolio scale.</p><a href="/resources/water-target-tools#tool-caprate" style="padding:10px 20px;background:var(--green-lt);color:#fff;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:background .2s;" onmouseover="this.style.background='#3a7a55'" onmouseout="this.style.background='var(--green-lt)'">Calculate Your Portfolio Impact &rarr;</a></div></div><div class="ab2-meter"><div class="ab2-meter-left"><div class="ab2-meter-svg-wrap"><svg viewBox="0 0 520 380" xmlns="http://www.w3.org/2000/svg"
+  style="width:100%;max-width:520px;display:block;"
+  aria-label="Water meter technical line drawing" role="img">
+  <defs>
+    <style>
+      .wm-line { stroke:#2D5C42; stroke-width:.9; fill:none; }
+      .wm-thin  { stroke:rgba(45,92,66,.45); stroke-width:.55; fill:none; }
+      .wm-dim   { stroke:rgba(45,92,66,.28); stroke-width:.45; fill:none; stroke-dasharray:3 2; }
+      .wm-fill  { fill:rgba(45,92,66,.06); stroke:#2D5C42; stroke-width:.7; }
+      .wm-dark  { fill:rgba(45,92,66,.12); stroke:#2D5C42; stroke-width:.7; }
+      .wm-txt   { font-family:DM Sans,sans-serif; font-size:7px; fill:rgba(45,92,66,.65); letter-spacing:.5px; }
+      .wm-lbl   { font-family:DM Sans,sans-serif; font-size:6px; fill:rgba(45,92,66,.4); letter-spacing:.8px; text-transform:uppercase; }
+      .wm-num   { font-family:DM Sans,sans-serif; font-size:8.5px; font-weight:600; fill:rgba(45,92,66,.8); }
+    </style>
+  </defs>
 
-{{-- ─── HERO ─── --}}
-<div class="page-hero">
-  <div class="page-hero-inner">
-    <div class="page-eye">About WST</div>
-    <h1 class="page-h1">We are a commercial real estate<br><em>water advisory firm.</em></h1>
-    <p class="page-sub">We work with real estate portfolios to reduce infrastructure cost exposure — identifying billing discrepancies, eliminating water waste, and converting every improvement into verified NOI gains and ESG performance data.</p>
-  </div>
-</div>
+  <!-- Title block — top right -->
+  <rect x="390" y="12" width="118" height="52" fill="none" stroke="rgba(45,92,66,.25)" stroke-width=".6"/>
+  <line x1="390" y1="26" x2="508" y2="26" stroke="rgba(45,92,66,.2)" stroke-width=".5"/>
+  <text x="449" y="22" class="wm-lbl" text-anchor="middle">WST</text>
+  <text x="449" y="36" class="wm-txt" text-anchor="middle">WATER METER</text>
+  <text x="449" y="47" class="wm-txt" text-anchor="middle">TECHNICAL ASSEMBLY</text>
+  <text x="449" y="57" class="wm-lbl" text-anchor="middle">SCALE 1:4</text>
 
-<!-- INTRO + PROOF -->
-<section style="padding:0;">
-  <div class="about-intro-grid">
-    <div class="about-intro-left">
-      <p class="eye">Who We Are</p>
-      <div class="about-tagline">WST is positioned as an <em>institutional advisor</em> — not a utility vendor.</div>
-      <p class="about-body-text">Water Solutions Technology (WST) was founded in 2016 and is headquartered in Fort Lauderdale, Florida. We exist to solve one specific problem: the gap between what institutional real estate portfolios actually spend on water and what they should.</p>
-      <p class="about-body-text">Most commercial properties carry undetected billing errors, invisible leaks, and under-optimised mechanical systems that compound over years without detection. WST's role is to find them, verify the savings, and translate every improvement into the language institutional investors expect — NOI impact, payback period, and GRESB-reported documentation.</p>
-      <p class="about-body-text">WST is a GRESB Solution Provider Partner. Our work is structured around the requirements of institutional capital: verified, documented, and independent.</p>
-      <div style="margin-top:28px;padding:20px 24px;background:var(--off-white);border-left:3px solid var(--green-lt);">
-        <p style="font-size:13px;color:var(--black);line-height:1.75;font-style:italic;">"We work with real estate portfolios to reduce infrastructure cost exposure — identifying billing discrepancies, eliminating water waste, and converting every improvement into verified NOI gains and ESG performance data."</p>
-        <div style="font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--green-lt);margin-top:10px;">WST Advisory Mandate</div>
-      </div>
-    </div>
-    <div class="about-intro-right">
-      <p class="eye" style="color:rgba(255,255,255,.3);">Proof Points</p>
-      <div class="about-proof-grid">
-        <div class="about-proof-cell"><div class="apc-num">$2.3M</div><div class="apc-lbl">Verified savings documented across institutional engagements</div></div>
-        <div class="about-proof-cell"><div class="apc-num">500+</div><div class="apc-lbl">Commercial properties audited and monitored</div></div>
-        <div class="about-proof-cell"><div class="apc-num">25.3%</div><div class="apc-lbl">Average water reduction — DiamondRock hospitality portfolio</div></div>
-        <div class="about-proof-cell"><div class="apc-num">2016</div><div class="apc-lbl">Founded — Fort Lauderdale, Florida</div></div>
-      </div>
-      <div class="credential-list">
-        <div class="cred-item">
-          <span class="cred-icon">✓</span>
-          GRESB Solution Provider Partner — datasets structured for GRESB WT1 submission
-        </div>
-        <div class="cred-item">
-          <span class="cred-icon">✓</span>
-          DiamondRock Hospitality Company anchor engagement — 31 assets, GRESB-reported
-        </div>
-        <div class="cred-item">
-          <span class="cred-icon">✓</span>
-          Ara AI platform for automated utility bill acquisition — portfolio-wide coverage
-        </div>
-        <div class="cred-item">
-          <span class="cred-icon">✓</span>
-          IoT monitoring infrastructure across commercial real estate asset classes
-        </div>
-        <div class="cred-item">
-          <span class="cred-icon">✓</span>
-          Shared-savings engagement model — WST's compensation tied to documented outcomes
-        </div>
-        <div class="cred-item">
-          <span class="cred-icon">✓</span>
-          Headquartered: 200 S. Andrews Avenue, Suite 504, Fort Lauderdale, FL 33301
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  <!-- Main meter body — front elevation -->
+  <!-- Outer housing -->
+  <rect x="120" y="80" width="280" height="160" rx="8" class="wm-fill"/>
+  <!-- Inner housing wall detail -->
+  <rect x="128" y="88" width="264" height="144" rx="5" fill="none" stroke="rgba(45,92,66,.25)" stroke-width=".5"/>
 
-<!-- VALUES -->
-<section class="sec sec-o">
-  <div style="margin-bottom:36px;">
-    <p class="eye">How We Work</p>
-    <h2 class="sh">Four principles that define<br><em>every WST engagement.</em></h2>
-  </div>
-  <div class="about-values-grid">
-    <div class="val-card">
-      <div class="val-num">01</div>
-      <div class="val-title">Advisor, not vendor</div>
-      <p class="val-body">Every WST engagement is structured as an advisory relationship. We are accountable for outcomes, not the delivery of a product. Our compensation is tied directly to documented savings — which means our interests are aligned with yours from day one.</p>
-    </div>
-    <div class="val-card">
-      <div class="val-num">02</div>
-      <div class="val-title">Proof over claims</div>
-      <p class="val-body">WST only reports verified savings — consumption reductions cross-referenced against utility bills, meter readings, or GRESB submission evidence. If it isn't independently verifiable, it doesn't appear in a WST case study or client report.</p>
-    </div>
-    <div class="val-card">
-      <div class="val-num">03</div>
-      <div class="val-title">Capital markets language</div>
-      <p class="val-body">Water savings are expressed as annualised NOI impact, payback period, and asset value contribution — not just gallons saved. Every finding is formatted for the audience that matters: investment committees, lenders, and LP reporting.</p>
-    </div>
-    <div class="val-card">
-      <div class="val-num">04</div>
-      <div class="val-title">Institutional-grade documentation</div>
-      <p class="val-body">Every engagement produces documentation that meets institutional standards: GRESB-formatted data, IC-ready findings reports, and verification-ready evidence for ESG disclosure. Not adapted from operational reports — built for submission from the start.</p>
-    </div>
-    <div class="val-card">
-      <div class="val-num">05</div>
-      <div class="val-title">Independence</div>
-      <p class="val-body">WST carries no equipment manufacturer relationships, utility company affiliations, or technology vendor incentives. Our advisory mandate is to the portfolio owner — identifying the highest-value water improvement opportunities regardless of the solution required.</p>
-    </div>
-    <div class="val-card">
-      <div class="val-num">06</div>
-      <div class="val-title">Water-only focus</div>
-      <p class="val-body">WST does one thing: water. Not energy, not waste, not general sustainability consulting. Specialisation means depth — the billing error patterns, tariff structures, and GRESB water indicators that generalist consultants miss are our primary focus.</p>
-    </div>
-  </div>
-</section>
+  <!-- Register face — domed dial housing -->
+  <ellipse cx="260" cy="145" rx="72" ry="58" class="wm-dark"/>
+  <ellipse cx="260" cy="145" rx="64" ry="50" fill="rgba(45,92,66,.04)" stroke="rgba(45,92,66,.35)" stroke-width=".7"/>
+  <!-- Dial tick marks — 12 positions -->
+  <g class="wm-line" stroke-width=".7">
+    <line x1="260" y1="99" x2="260" y2="106"/>
+    <line x1="260" y1="185" x2="260" y2="192"/>
+    <line x1="196" y1="145" x2="203" y2="145"/>
+    <line x1="317" y1="145" x2="324" y2="145"/>
+    <line x1="214" y1="111" x2="219" y2="116"/>
+    <line x1="301" y1="174" x2="306" y2="179"/>
+    <line x1="306" y1="111" x2="301" y2="116"/>
+    <line x1="219" y1="174" x2="214" y2="179"/>
+  </g>
+  <!-- Dial sub-ticks -->
+  <g class="wm-thin">
+    <line x1="237" y1="100" x2="238.5" y2="106"/>
+    <line x1="283" y1="100" x2="281.5" y2="106"/>
+    <line x1="237" y1="190" x2="238.5" y2="184"/>
+    <line x1="283" y1="190" x2="281.5" y2="184"/>
+  </g>
+  <!-- Sweep hand -->
+  <line x1="260" y1="145" x2="282" y2="116" stroke="#2D5C42" stroke-width="1.2" stroke-linecap="round"/>
+  <circle cx="260" cy="145" r="3.5" fill="#2D5C42" opacity=".7"/>
+  <circle cx="260" cy="145" r="1.5" fill="#fff" opacity=".6"/>
+  <!-- Register odometer window -->
+  <rect x="226" y="153" width="68" height="16" rx="2" class="wm-dark"/>
+  <rect x="229" y="156" width="62" height="10" rx="1" fill="rgba(0,0,0,.2)" stroke="none"/>
+  <!-- Odometer digits -->
+  <text x="238" y="164" class="wm-num" fill="rgba(255,255,255,.75)">0 0 2 4 7</text>
+  <!-- Units label -->
+  <text x="260" y="178" class="wm-lbl" text-anchor="middle">GAL × 100</text>
 
-<!-- TEAM -->
-<section class="sec sec-w">
-  <div style="margin-bottom:36px;">
-    <p class="eye">Leadership</p>
-    <h2 class="sh">The WST advisory team.</h2>
-    <p class="sub">Every WST advisor is a practitioner. Every submission is reviewed personally. No automated sequences.</p>
-  </div>
-  <div class="team-strip">
-    <div class="team-cell">
-      <div class="team-name">Clifford Campbell</div>
-      <div class="team-role">Partner — Water Solutions Technology</div>
-      <p class="team-bio">Clifford leads WST's institutional advisory practice, working directly with asset managers, fund managers, and sustainability directors to structure water performance programmes for commercial real estate portfolios. His engagements are grounded in capital markets language — every finding expressed as NOI impact, payback period, and verifiable ESG data.</p>
-      <p class="team-bio" style="margin-top:12px;">He brings deep working knowledge of GRESB scoring methodology, institutional real estate financial structures, and the utility billing landscape across US commercial property types — including the tariff classification patterns that generate the most significant billing errors.</p>
-      <a href="https://www.linkedin.com/company/water-solutions-technology" class="team-linkedin" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="12" height="12" rx="2"/><path d="M4 6v4M4 4v.01M7 10V7.5A1.5 1.5 0 0110 9v1"/></svg>
-        Connect on LinkedIn
-      </a>
-    </div>
-    <div class="team-cell dark">
-      <p class="eye" style="color:rgba(255,255,255,.3);">Our Commitment</p>
-      <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--white);margin-bottom:18px;line-height:1.25;">Every engagement reviewed personally. Every finding verified before it leaves our desk.</h3>
-      <p class="team-bio">WST is intentionally structured as a boutique advisory practice. We do not scale through automation or junior analysts. Every client engagement is managed by an experienced advisor who understands both the technical water systems and the financial structure of the portfolio they are advising.</p>
-      <p class="team-bio" style="margin-top:14px;">This is not a volume business. WST works with a select number of institutional clients where the advisory relationship can be genuine and the outcomes can be documented.</p>
-      <div style="margin-top:24px;padding:16px 18px;background:rgba(45,92,66,.15);border-left:2px solid var(--green-lt);">
-        <p style="font-size:12px;color:rgba(255,255,255,.55);line-height:1.75;">GRESB Solution Provider Partner &middot; Fort Lauderdale, FL &middot; Founded 2016</p>
-      </div>
-    </div>
-  </div>
-</section>
+  <!-- Inlet/outlet flanged connections — left -->
+  <rect x="52" y="132" width="68" height="26" rx="3" class="wm-fill"/>
+  <line x1="52" y1="137" x2="120" y2="137" class="wm-thin"/>
+  <line x1="52" y1="153" x2="120" y2="153" class="wm-thin"/>
+  <!-- Flange bolts left -->
+  <circle cx="58" cy="140" r="2.5" fill="none" stroke="rgba(45,92,66,.5)" stroke-width=".6"/>
+  <circle cx="58" cy="150" r="2.5" fill="none" stroke="rgba(45,92,66,.5)" stroke-width=".6"/>
+  <circle cx="66" cy="135" r="2.5" fill="none" stroke="rgba(45,92,66,.5)" stroke-width=".6"/>
+  <circle cx="66" cy="155" r="2.5" fill="none" stroke="rgba(45,92,66,.5)" stroke-width=".6"/>
+  <!-- Pipe in -->
+  <rect x="12" y="137" width="40" height="16" class="wm-fill"/>
+  <line x1="12" y1="141" x2="52" y2="141" class="wm-thin"/>
+  <line x1="12" y1="149" x2="52" y2="149" class="wm-thin"/>
 
-<!-- GRESB PARTNER -->
-<section class="sec sec-dk" style="padding:56px 48px;">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
-    <div>
-      <p class="eye" style="color:rgba(255,255,255,.3);">GRESB Partnership</p>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,2.8vw,36px);font-weight:300;color:var(--white);margin-bottom:16px;line-height:1.2;">WST is a GRESB Solution Provider Partner.</h2>
-      <p style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.85;margin-bottom:16px;">GRESB is the investor-driven global ESG benchmark for real estate. WST's status as a Solution Provider Partner means our datasets and documentation frameworks are structured to satisfy GRESB submission requirements — not adapted from operational reports after the fact.</p>
-      <p style="font-size:13px;color:rgba(255,255,255,.4);line-height:1.85;">150+ institutional investors reference GRESB benchmarks in capital allocation decisions. For institutional portfolios, a weak GRESB water score is not a compliance issue — it is a capital access issue. WST's engagement model addresses the data coverage and documentation gaps that drive most of that weakness.</p>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:2px;">
-      <div style="background:#0f1a13;padding:22px 24px;">
-        <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-lt);margin-bottom:6px;">WT1 Water Data Coverage</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.65;">Ara AI automates portfolio-wide bill acquisition — closing the coverage gaps that suppress WT1 scores before submission.</div>
-      </div>
-      <div style="background:#0f1a13;padding:22px 24px;">
-        <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-lt);margin-bottom:6px;">MR3 Monitoring & Targets</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.65;">IoT monitoring creates the documented baseline and target evidence required for MR3 — logged with cost impact per alert.</div>
-      </div>
-      <div style="background:#0f1a13;padding:22px 24px;">
-        <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-lt);margin-bottom:6px;">RA4 Risk Assessment</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.65;">Cost-quantified anomaly alerts and infrastructure risk documentation satisfy RA4's water risk evidence requirements.</div>
-      </div>
-    </div>
-  </div>
-</section>
+  <!-- Inlet/outlet flanged connections — right -->
+  <rect x="400" y="132" width="68" height="26" rx="3" class="wm-fill"/>
+  <line x1="400" y1="137" x2="468" y2="137" class="wm-thin"/>
+  <line x1="400" y1="153" x2="468" y2="153" class="wm-thin"/>
+  <!-- Flange bolts right -->
+  <circle cx="462" cy="140" r="2.5" fill="none" stroke="rgba(45,92,66,.5)" stroke-width=".6"/>
+  <circle cx="462" cy="150" r="2.5" fill="none" stroke="rgba(45,92,66,.5)" stroke-width=".6"/>
+  <circle cx="454" cy="135" r="2.5" fill="none" stroke="rgba(45,92,66,.5)" stroke-width=".6"/>
+  <circle cx="454" cy="155" r="2.5" fill="none" stroke="rgba(45,92,66,.5)" stroke-width=".6"/>
+  <!-- Pipe out -->
+  <rect x="468" y="137" width="40" height="16" class="wm-fill"/>
+  <line x1="468" y1="141" x2="508" y2="141" class="wm-thin"/>
+  <line x1="468" y1="149" x2="508" y2="149" class="wm-thin"/>
 
-<div class="cs">
-  <div>
-    <div class="cs-t">Ready to discuss<br><em>your portfolio?</em></div>
-    <p class="cs-s">A 90-minute portfolio visibility session with WST maps your current water data coverage, identifies billing exposure, and outlines the financial impact. No obligation.</p>
-  </div>
-  <a href="/contact" class="btn-hero-primary">Schedule Assessment</a>
-</div>
+  <!-- Strainer / filter screen — left side of body -->
+  <rect x="145" y="96" width="28" height="22" rx="2" fill="rgba(45,92,66,.08)" stroke="rgba(45,92,66,.3)" stroke-width=".6"/>
+  <g stroke="rgba(45,92,66,.3)" stroke-width=".4">
+    <line x1="149" y1="96" x2="149" y2="118"/>
+    <line x1="153" y1="96" x2="153" y2="118"/>
+    <line x1="157" y1="96" x2="157" y2="118"/>
+    <line x1="161" y1="96" x2="161" y2="118"/>
+    <line x1="165" y1="96" x2="165" y2="118"/>
+    <line x1="169" y1="96" x2="169" y2="118"/>
+  </g>
+  <text x="159" y="130" class="wm-lbl" text-anchor="middle">FILTER</text>
+
+  <!-- Bypass valve — top of body -->
+  <circle cx="330" cy="80" r="14" class="wm-dark"/>
+  <line x1="330" y1="66" x2="330" y2="94" stroke="#2D5C42" stroke-width=".7"/>
+  <line x1="316" y1="80" x2="344" y2="80" stroke="#2D5C42" stroke-width=".7"/>
+  <!-- Valve stem -->
+  <rect x="324" y="56" width="12" height="24" rx="2" class="wm-fill"/>
+  <rect x="320" y="52" width="20" height="6" rx="1" class="wm-fill"/>
+  <text x="330" y="112" class="wm-lbl" text-anchor="middle">VALVE</text>
+
+  <!-- IoT sensor housing — right side top -->
+  <rect x="355" y="88" width="32" height="36" rx="3" class="wm-dark"/>
+  <circle cx="371" cy="100" r="7" fill="none" stroke="rgba(45,92,66,.5)" stroke-width=".7"/>
+  <circle cx="371" cy="100" r="3" fill="rgba(45,92,66,.35)"/>
+  <line x1="371" y1="107" x2="371" y2="124" stroke="rgba(45,92,66,.4)" stroke-width=".6"/>
+  <!-- Antenna -->
+  <line x1="371" y1="88" x2="371" y2="78" stroke="rgba(45,92,66,.5)" stroke-width=".7"/>
+  <line x1="371" y1="78" x2="381" y2="70" stroke="rgba(45,92,66,.4)" stroke-width=".6"/>
+  <circle cx="381" cy="70" r="1.5" fill="rgba(45,92,66,.6)"/>
+  <text x="371" y="135" class="wm-lbl" text-anchor="middle">IoT</text>
+
+  <!-- Dimension lines — horizontal overall -->
+  <line x1="12" y1="265" x2="508" y2="265" class="wm-dim"/>
+  <line x1="12" y1="260" x2="12" y2="270" stroke="rgba(45,92,66,.4)" stroke-width=".7"/>
+  <line x1="508" y1="260" x2="508" y2="270" stroke="rgba(45,92,66,.4)" stroke-width=".7"/>
+  <text x="260" y="274" class="wm-lbl" text-anchor="middle">OVERALL LENGTH — 496mm</text>
+
+  <!-- Dimension lines — body only -->
+  <line x1="120" y1="255" x2="400" y2="255" class="wm-dim"/>
+  <line x1="120" y1="250" x2="120" y2="260" stroke="rgba(45,92,66,.35)" stroke-width=".6"/>
+  <line x1="400" y1="250" x2="400" y2="260" stroke="rgba(45,92,66,.35)" stroke-width=".6"/>
+  <text x="260" y="251" class="wm-lbl" text-anchor="middle">METER BODY — 280mm</text>
+
+  <!-- Vertical dimension line — body height -->
+  <line x1="88" y1="80" x2="88" y2="240" class="wm-dim"/>
+  <line x1="83" y1="80" x2="93" y2="80" stroke="rgba(45,92,66,.35)" stroke-width=".6"/>
+  <line x1="83" y1="240" x2="93" y2="240" stroke="rgba(45,92,66,.35)" stroke-width=".6"/>
+  <text x="78" y="162" class="wm-lbl" text-anchor="middle" transform="rotate(-90,78,162)">160mm</text>
+
+  <!-- Reference arrows — flow direction -->
+  <g fill="rgba(45,92,66,.55)" stroke="none">
+    <!-- Left arrow (IN) -->
+    <polygon points="30,143 22,139 22,147"/>
+    <!-- Right arrow (OUT) -->
+    <polygon points="490,143 498,139 498,147"/>
+  </g>
+  <text x="24" y="174" class="wm-lbl" text-anchor="middle">INLET</text>
+  <text x="494" y="174" class="wm-lbl" text-anchor="middle">OUTLET</text>
+
+  <!-- Section cross-hatch lines inside body at ends -->
+  <g class="wm-thin" opacity=".4" stroke-dasharray="none">
+    <line x1="128" y1="88" x2="145" y2="105"/>
+    <line x1="133" y1="88" x2="150" y2="105"/>
+    <line x1="138" y1="88" x2="155" y2="105"/>
+    <line x1="380" y1="88" x2="392" y2="100"/>
+    <line x1="385" y1="88" x2="392" y2="95"/>
+    <line x1="390" y1="88" x2="392" y2="90"/>
+  </g>
+
+  <!-- Notes block — bottom left -->
+  <line x1="12" y1="288" x2="260" y2="288" stroke="rgba(45,92,66,.15)" stroke-width=".5"/>
+  <text x="12" y="300" class="wm-lbl">NOTES:</text>
+  <text x="12" y="311" class="wm-txt">1. FLANGED CONNECTIONS PER AWWA C700</text>
+  <text x="12" y="321" class="wm-txt">2. MAX WORKING PRESSURE: 150 PSI</text>
+  <text x="12" y="331" class="wm-txt">3. FLOW RANGE: 0.25 — 160 GPM</text>
+  <text x="12" y="341" class="wm-txt">4. ACCURACY CLASS: ±1.5% (AWWA CLASS C)</text>
+
+  <!-- Part callout lines -->
+  <line x1="195" y1="95" x2="175" y2="70" stroke="rgba(45,92,66,.3)" stroke-width=".5"/>
+  <text x="160" y="67" class="wm-lbl">REGISTER HOUSING</text>
+
+  <line x1="260" y1="200" x2="260" y2="222" stroke="rgba(45,92,66,.3)" stroke-width=".5"/>
+  <text x="245" y="233" class="wm-lbl">DISC CHAMBER</text>
+
+  <line x1="195" y1="158" x2="165" y2="178" stroke="rgba(45,92,66,.3)" stroke-width=".5"/>
+  <text x="130" y="188" class="wm-lbl">MEASURING ELEMENT</text>
+
+  <!-- WST watermark -->
+  <text x="260" y="370" class="wm-lbl" text-anchor="middle" opacity=".4">WATER SOLUTIONS TECHNOLOGY · 200 S. ANDREWS AVE · FORT LAUDERDALE FL</text>
+</svg></div><p class="ab2-meter-caption">WST &middot; Water Meter Assembly &middot; Precision Technical Reference</p></div><div class="ab2-meter-right"><div class="ab2-meter-eye">The Programme</div><h2 class="ab2-meter-h">Five capabilities.<br><em>One institutional output.</em></h2><p style="font-size:13px;color:rgba(255,255,255,.35);line-height:1.78;margin-bottom:24px;">Every WST service is designed to serve the same end: documented, verified savings formatted for NOI presentation, GRESB submission, and LP disclosure.</p><div class="ab2-svc-list"><div class="ab2-svc"><div class="ab2-svc-bar"></div><div class="ab2-svc-body"><div class="ab2-svc-title">Ara AI &mdash; Utility Bill Intelligence</div><div class="ab2-svc-outcome">AI-powered extraction of billing anomalies across any provider format. <strong>$42K average recovery per portfolio.</strong> GRESB WT1 documentation as standard output.</div></div></div><div class="ab2-svc"><div class="ab2-svc-bar"></div><div class="ab2-svc-body"><div class="ab2-svc-title">Cooling Tower Optimisation</div><div class="ab2-svc-outcome">CoC recalibration, sewer exemption filing, biofilm management. <strong>20&ndash;45% make-up water reduction.</strong> Zero upfront. LEED v4.1 credits achievable.</div></div></div><div class="ab2-svc"><div class="ab2-svc-bar"></div><div class="ab2-svc-body"><div class="ab2-svc-title">Smart Water Monitoring &mdash; IoT</div><div class="ab2-svc-outcome">Real-time sensor networks. <strong>8-month average payback.</strong> Cost-tagged anomaly detection within 48 hours. MR3 &amp; RA4 evidence generated automatically.</div></div></div><div class="ab2-svc"><div class="ab2-svc-bar"></div><div class="ab2-svc-body"><div class="ab2-svc-title">GRESB Compliance &amp; Strategy</div><div class="ab2-svc-outcome">End-to-end WT1, MR3, RA4 documentation. <strong>76&rarr;84 score lift demonstrated.</strong> Submission-ready &mdash; not adapted from operations reports.</div></div></div><div class="ab2-svc"><div class="ab2-svc-bar"></div><div class="ab2-svc-body"><div class="ab2-svc-title">Smart Water Recovery &mdash; Billing &amp; Rebates</div><div class="ab2-svc-outcome">Sewer exemption filing, retroactive recovery (3&ndash;5 years), rebate identification. <strong>32 programmes across 10 states.</strong> Shared-savings &mdash; paid from outcomes.</div></div></div></div></div></div><div class="ab2-values"><div class="ab2-values-inner"><div class="ab2-values-top"><div><div class="ab2-values-eye">Core Values</div><h2 class="ab2-values-h">How we show up.<br><em>In every engagement.</em></h2><p style="font-size:13px;color:#666;line-height:1.78;margin-top:14px;max-width:440px;">Principles that guide how we build, serve, and lead &mdash; inside WST and with every client relationship we enter.</p></div><div class="ab2-founders-note"><div class="ab2-fn-label">A Note from the Founders</div><p class="ab2-fn-text">Before any of the financial frameworks, the methodology, or the GRESB credentials, there is a foundational belief that every good thing we build is built on something greater than ourselves. We believe in YHVH &mdash; the one true Almighty &mdash; and that when we walk in His ways, success follows. That conviction shapes how we treat clients, how we treat our work, and how we measure what matters. We mention it not to impose it, but because we think the people we work with deserve to know what we&rsquo;re built on.</p><p class="ab2-fn-sig">&mdash; Clifford Campbell &amp; Jody Ashton, WST</p></div></div><div class="ab2-values-grid"><div class="ab2-val"><div class="ab2-val-bar"></div><div class="ab2-val-title">Remember Others</div><div class="ab2-val-body">We thrive best when we show genuine kindness and support. The best work we do serves people beyond the transaction.</div></div><div class="ab2-val"><div class="ab2-val-bar"></div><div class="ab2-val-title">Keep Growing</div><div class="ab2-val-body">Be courageous. Make mistakes. Stay curious. Growth is an endless pursuit &mdash; in technology, methodology, and thinking.</div></div><div class="ab2-val"><div class="ab2-val-bar"></div><div class="ab2-val-title">Speak the Truth</div><div class="ab2-val-body">Honesty and clarity build trust. We present outcomes accurately &mdash; verified data, not projected estimates.</div></div><div class="ab2-val"><div class="ab2-val-bar"></div><div class="ab2-val-title">Be a Team Player</div><div class="ab2-val-body">Collaboration produces more value than individual effort &mdash; inside WST and across every client relationship.</div></div><div class="ab2-val"><div class="ab2-val-bar"></div><div class="ab2-val-title">Client Priority</div><div class="ab2-val-body">We measure success by what the portfolio manager can show to their LP &mdash; not by internal metrics.</div></div></div></div></div><div class="ab2-advisory"><div class="ab2-adv-inner"><div class="ab2-adv-head"><div class="ab2-adv-eye">Advisory Network</div><h2 class="ab2-adv-h">Backed by proven<br><em>industry expertise.</em></h2><p class="ab2-adv-sub">A focused group whose specific expertise directly informs how WST works &mdash; in environmental engineering, flow dynamics, energy systems, and utility expense management.</p></div><div class="ab2-adv-grid"><div class="ab2-adv-card"><div class="ab2-adv-name">Dr. Danuta Leszczynska</div><div class="ab2-adv-role">Environmental Engineering</div><div class="ab2-adv-org">Jackson State University</div><div class="ab2-adv-contrib">Advanced water treatment technologies, contamination remediation, and emerging water quality methodologies informing WST&rsquo;s chemical programme design.</div></div><div class="ab2-adv-card"><div class="ab2-adv-name">Dr. Oliver Jones</div><div class="ab2-adv-role">Energy Innovation</div><div class="ab2-adv-org">Source Energy Global</div><div class="ab2-adv-contrib">Energy-water nexus expertise bridging cooling system optimisation with energy storage and building electrification strategy.</div></div><div class="ab2-adv-card"><div class="ab2-adv-name">Jeff Chalfin</div><div class="ab2-adv-role">Flow Dynamics &amp; Metering</div><div class="ab2-adv-org">Flow Dynamics LLC</div><div class="ab2-adv-contrib">Commercial metering system selection, flow accuracy validation, and IoT deployment design across large-scale commercial portfolio engagements.</div></div><div class="ab2-adv-card"><div class="ab2-adv-name">Marc Freedman</div><div class="ab2-adv-role">Utility Expense Management</div><div class="ab2-adv-org">Expense to Profit</div><div class="ab2-adv-contrib">Billing error recovery methodology and systematic utility expense management informing WST&rsquo;s multi-state retroactive filing practice.</div></div></div></div></div><div class="ab2-cta"><div class="ab2-cta-inner"><div><h2 class="ab2-cta-h">Your portfolio has recoverable<br>savings it doesn&rsquo;t know about.<br><em>We&rsquo;ll find them.</em></h2><p class="ab2-cta-sub">A 90-minute WST portfolio review maps the water cost exposure across your assets, identifies applicable billing programmes and rebates in your jurisdictions, and formats the aggregate NOI impact for investment committee presentation. Shared-savings model &mdash; zero upfront, paid from verified outcomes only.</p></div><div class="ab2-cta-btns"><a href="{{route('contact')}}" class="ab2-cta-btn-p">Schedule a Portfolio Review</a><a href="/services/feasibility-assessment" class="ab2-cta-btn-g">Feasibility Assessment &rarr;</a></div></div></div>
+
 
 @endsection
-
-@push('styles')
-<style>
-    :root {
-      --black:      #0d0d0d;
-      --dark:       #111111;
-      --dark-2:     #1a1a1a;
-      --off-white:  #f4f3f0;
-      --white:      #ffffff;
-      --gray-1:     #888580;
-      --gray-2:     #3a3a3a;
-      --gray-3:     #cccac6;
-      --border-d:   rgba(255,255,255,0.08);
-      --border-l:   rgba(0,0,0,0.09);
-      --green:      #1a3a2a;
-      --green-lt:   #2d5c42;
-      --blue-link:  #3b6fd4;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--off-white);
-      color: var(--black);
-      font-family: 'DM Sans', sans-serif;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-      padding-bottom: 56px;
-    }
-
-    /* ─── NAV ─── */
-    .top-bar {
-      background: var(--black);
-      display: flex; justify-content: flex-end; align-items: center;
-      padding: 0 48px; height: 36px; gap: 28px;
-    }
-    .top-bar a {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
-      text-transform: uppercase; color: rgba(255,255,255,0.45);
-      text-decoration: none; transition: color 0.2s;
-    }
-    .top-bar a:hover { color: rgba(255,255,255,0.85); }
-
-    /* Top bar dropdown — Opportunities only */
-    .top-bar .tb-dropdown-wrap { position: relative; }
-    .top-bar .tb-dropdown-wrap > a { display: flex; align-items: center; gap: 4px; }
-    .top-bar .tb-dropdown-wrap > a svg { opacity: 0.5; transition: transform 0.2s; }
-    .top-bar .tb-dropdown-wrap:hover > a svg { transform: rotate(180deg); }
-    .tb-dropdown {
-      position: absolute; top: 100%; right: 0;
-      min-width: 230px; background: var(--white);
-      border: 1px solid var(--border-l);
-      border-top: 2px solid var(--black);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
-      opacity: 0; pointer-events: none;
-      transform: translateY(-4px);
-      transition: opacity 0.18s, transform 0.18s;
-      z-index: 500; margin-top: 1px;
-    }
-    .top-bar .tb-dropdown-wrap:hover .tb-dropdown {
-      opacity: 1; pointer-events: auto; transform: translateY(0);
-    }
-    .tb-dropdown-header {
-      padding: 12px 16px 8px;
-      font-size: 12px; font-weight: 800; color: var(--black);
-      border-bottom: 1px solid var(--border-l);
-    }
-    .tb-dropdown a {
-      display: block; padding: 10px 16px;
-      font-size: 12px; font-weight: 400; color: #444;
-      text-decoration: none; border-bottom: 1px solid var(--border-l);
-      transition: all 0.15s; letter-spacing: 0; text-transform: none;
-    }
-    .tb-dropdown a:last-child { border-bottom: none; }
-    .tb-dropdown a:hover { color: var(--black); background: var(--off-white); padding-left: 22px; }
-
-    nav {
-      position: sticky; top: 0; z-index: 200;
-      background: var(--white);
-      border-bottom: 1px solid var(--border-l);
-      display: flex; align-items: center;
-      padding: 0 48px; height: 68px; gap: 0;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-    }
-    .nav-logo-wrap {
-      display: flex; align-items: center; gap: 10px;
-      text-decoration: none; margin-right: 40px; flex-shrink: 0;
-    }
-    .nav-logo-icon {
-      width: 36px; height: 36px;
-    }
-    .nav-logo-text {
-      display: flex; flex-direction: column; line-height: 1.2;
-    }
-    .nav-logo-name {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px; font-weight: 600;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--black);
-    }
-    .nav-logo-sub {
-      font-size: 10px; color: var(--gray-1);
-      font-weight: 400; letter-spacing: 0.02em;
-    }
-
-    .nav-links {
-      display: flex; list-style: none; flex: 1; gap: 0;
-    }
-    .nav-links > li { position: relative; }
-    .nav-links > li > a {
-      display: flex; align-items: center; gap: 5px;
-      height: 68px; padding: 0 16px;
-      font-size: 13px; font-weight: 500;
-      color: var(--black); text-decoration: none;
-      transition: color 0.2s; white-space: nowrap;
-    }
-    .nav-links > li > a svg { width: 10px; height: 10px; opacity: 0.5; }
-    .nav-links > li > a:hover { color: var(--green-lt); }
-    .nav-links > li > a.active-link { color: var(--green); font-weight: 600; }
-
-    .dropdown {
-      position: absolute; top: 68px; left: 0;
-      min-width: 240px; background: var(--white);
-      border: 1px solid var(--border-l);
-      border-top: 2px solid var(--black);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.10);
-      opacity: 0; pointer-events: none;
-      transform: translateY(-6px);
-      transition: opacity 0.2s, transform 0.2s; z-index: 400;
-    }
-    .nav-links > li:hover .dropdown {
-      opacity: 1; pointer-events: auto; transform: translateY(0);
-    }
-    .dropdown a {
-      display: block; padding: 11px 18px;
-      font-size: 12px; font-weight: 500; color: var(--gray-1);
-      text-decoration: none; border-bottom: 1px solid var(--border-l);
-      transition: all 0.15s;
-    }
-    .dropdown a:last-child { border-bottom: none; }
-    .dropdown a:hover { color: var(--black); background: var(--off-white); padding-left: 24px; }
-
-    .nav-right { display: flex; gap: 10px; align-items: center; margin-left: auto; }
-    .nav-icon-btn {
-      width: 38px; height: 38px; display: flex; align-items: center;
-      justify-content: center; border: 1px solid var(--border-l);
-      background: none; cursor: pointer; color: var(--black);
-      text-decoration: none; transition: border-color 0.2s;
-    }
-    .nav-icon-btn:hover { border-color: var(--black); }
-    .nav-cta {
-      font-size: 11px; font-weight: 600; letter-spacing: 0.10em;
-      text-transform: uppercase; color: var(--white);
-      background: var(--black); padding: 11px 22px;
-      text-decoration: none; transition: background 0.2s; white-space: nowrap;
-    }
-    .nav-cta:hover { background: var(--green); }
-
-
-    .inner-hero { background: var(--black); padding: 72px 48px 64px; border-bottom: 1px solid var(--border-d); }
-    .inner-hero-bc { display:flex; align-items:center; gap:8px; font-size:11px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-bottom:28px; }
-    .inner-hero-bc a { color:rgba(255,255,255,0.25); text-decoration:none; }
-    .inner-hero-bc a:hover { color:rgba(255,255,255,0.6); }
-    .inner-hero-eye { font-size:10px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--green-lt); margin-bottom:16px; }
-    .inner-hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(40px,5vw,66px); font-weight:300; line-height:1.05; color:var(--white); margin-bottom:20px; }
-    .inner-hero h1 em { font-style:italic; }
-    .inner-hero-sub { font-size:15px; color:rgba(255,255,255,0.45); line-height:1.75; max-width:560px; }
-    .stat-row { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(255,255,255,0.06); margin-top:48px; border-top:1px solid rgba(255,255,255,0.06); }
-    .stat-cell { padding:24px 28px; background:var(--black); }
-    .stat-val { font-family:'Cormorant Garamond',serif; font-size:36px; font-weight:300; color:var(--white); line-height:1; margin-bottom:6px; }
-    .stat-lbl { font-size:10px; font-weight:600; letter-spacing:0.10em; text-transform:uppercase; color:rgba(255,255,255,0.28); }
-    section.sec { padding:72px 48px; }
-    .sec-w { background:var(--white); }
-    .sec-o { background:var(--off-white); }
-    .sec-d { background:var(--dark-2); }
-    .eye { font-size:10px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--green-lt); margin-bottom:12px; }
-    h2.sh { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,3vw,44px); font-weight:300; line-height:1.1; margin-bottom:14px; }
-    h2.sh em { font-style:italic; }
-    .sub { font-size:14px; color:var(--gray-1); line-height:1.75; max-width:560px; margin-bottom:40px; }
-    .two { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; }
-    .three { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:var(--border-l); }
-    .four { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border-l); }
-    .card { background:var(--white); display:flex; flex-direction:column; border:1px solid var(--border-l); }
-    .card-img { width:100%; height:220px; overflow:hidden; position:relative; }
-    .card-img img { width:100%; height:100%; object-fit:cover; transition:transform .4s; display:block; }
-    .card:hover .card-img img { transform:scale(1.03); }
-    .card-img::after { content:'CASE STUDY'; position:absolute; top:14px; right:14px; background:rgba(0,0,0,0.78); color:rgba(255,255,255,0.8); font-size:9px; font-weight:700; letter-spacing:0.12em; padding:5px 10px; }
-    .card-body { padding:24px 24px 0; flex:1; }
-    .card-name { font-size:16px; font-weight:700; color:var(--black); margin-bottom:8px; }
-    .card-text { font-size:13px; color:var(--gray-1); line-height:1.65; }
-    .card-text strong { color:var(--black); font-weight:600; }
-    .card-btn { margin-top:20px; display:flex; align-items:center; justify-content:space-between; padding:16px 24px; background:var(--black); color:var(--white); font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; border:none; cursor:pointer; width:100%; transition:background .2s; font-family:'DM Sans',sans-serif; text-decoration:none; }
-    .card-btn:hover { background:var(--green-lt); }
-    .ai { padding:20px 0; border-bottom:1px solid var(--border-l); display:flex; gap:18px; }
-    .ai:first-of-type { border-top:1px solid var(--border-l); }
-    .ai-ic { width:36px; height:36px; background:rgba(45,92,66,0.08); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
-    .ai-t { font-size:13px; font-weight:700; color:var(--black); margin-bottom:4px; }
-    .ai-b { font-size:12px; color:var(--gray-1); line-height:1.7; }
-    .bm { background:var(--off-white); padding:36px; border:1px solid var(--border-l); }
-    .bm-title { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:400; margin-bottom:20px; color:var(--black); }
-    .brow { display:flex; justify-content:space-between; align-items:baseline; padding:12px 0; border-bottom:1px solid var(--border-l); }
-    .brow:last-of-type { border-bottom:none; }
-    .bl { font-size:12px; color:var(--gray-1); }
-    .bv { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:var(--black); }
-    .bm-cta { margin-top:24px; display:block; text-align:center; padding:14px; background:var(--green-lt); color:var(--white); font-size:11px; font-weight:700; letter-spacing:0.10em; text-transform:uppercase; text-decoration:none; transition:background .2s; }
-    .bm-cta:hover { background:var(--green); }
-    .cs { background:var(--dark); padding:80px 48px; display:grid; grid-template-columns:1fr auto; gap:48px; align-items:center; }
-    .cs-t { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,3vw,44px); font-weight:300; color:var(--white); line-height:1.1; }
-    .cs-t em { font-style:italic; }
-    .cs-s { font-size:14px; color:rgba(255,255,255,0.38); margin-top:12px; max-width:480px; line-height:1.75; }
-    .cs-btn { font-size:11px; font-weight:700; letter-spacing:0.10em; text-transform:uppercase; color:var(--black); background:var(--white); padding:15px 32px; text-decoration:none; white-space:nowrap; transition:background .2s; display:inline-block; }
-    .cs-btn:hover { background:var(--off-white); }
-    .art-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:32px; }
-    .art { background:var(--white); border:1px solid var(--border-l); overflow:hidden; text-decoration:none; color:inherit; display:flex; flex-direction:column; transition:box-shadow .2s; }
-    .art:hover { box-shadow:0 8px 32px rgba(0,0,0,0.08); }
-    .art-img { width:100%; height:180px; overflow:hidden; }
-    .art-img img { width:100%; height:100%; object-fit:cover; display:block; }
-    .art-body { padding:20px; flex:1; }
-    .art-tag { font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--green-lt); margin-bottom:8px; }
-    .art-title { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; color:var(--black); margin-bottom:8px; line-height:1.25; }
-    .art-excerpt { font-size:12px; color:var(--gray-1); line-height:1.65; }
-    .art-foot { padding:12px 20px; border-top:1px solid var(--border-l); font-size:11px; color:var(--gray-1); display:flex; justify-content:space-between; }
-    .modal-overlay { position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,0.75); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; padding:24px; opacity:0; pointer-events:none; transition:opacity .25s; }
-    .modal-overlay.open { opacity:1; pointer-events:auto; }
-    .modal { background:var(--white); width:100%; max-width:480px; overflow:hidden; transform:translateY(16px); transition:transform .25s; box-shadow:0 32px 80px rgba(0,0,0,0.4); }
-    .modal-overlay.open .modal { transform:translateY(0); }
-    .mhdr { background:var(--black); padding:28px 28px 22px; position:relative; }
-    .mx { position:absolute; top:16px; right:16px; background:none; border:none; color:rgba(255,255,255,0.4); font-size:24px; cursor:pointer; line-height:1; padding:0; }
-    .mx:hover { color:var(--white); }
-    .mhdr h2 { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--white); margin-bottom:4px; }
-    .mhdr p { font-size:13px; color:rgba(255,255,255,0.4); }
-    .mprev { display:flex; align-items:center; gap:14px; background:var(--off-white); margin:20px 24px 0; padding:14px; }
-    .mthumb { width:48px; height:48px; object-fit:cover; flex-shrink:0; }
-    .mprev-name { font-size:14px; font-weight:600; color:var(--black); }
-    .mbody { padding:20px 24px 28px; }
-    .mform { display:flex; flex-direction:column; gap:12px; }
-    .mlabel { font-size:12px; font-weight:600; color:var(--black); margin-bottom:4px; }
-    .mreq { color:#e33; }
-    .mfield { width:100%; padding:12px 14px; border:1.5px solid rgba(0,0,0,0.12); background:var(--off-white); font-family:'DM Sans',sans-serif; font-size:13px; color:var(--black); outline:none; }
-    .mfield:focus { border-color:var(--black); background:var(--white); }
-    .msub { width:100%; padding:14px; background:var(--black); color:var(--white); border:none; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; transition:background .2s; margin-top:4px; }
-    .msub:hover { background:var(--green-lt); }
-    .mlegal { font-size:10px; color:var(--gray-1); text-align:center; margin-top:8px; }
-    .malr { text-align:center; margin-top:14px; font-size:12px; color:var(--gray-1); }
-    .malr a { color:var(--green-lt); text-decoration:none; font-weight:600; }
-    .mwelcome { text-align:center; padding:16px 0 4px; }
-    .mwtitle { font-size:20px; font-weight:700; color:var(--black); margin-bottom:8px; }
-    .mwtitle span { color:var(--green-lt); }
-    .mwsub { font-size:13px; color:var(--gray-1); margin-bottom:22px; line-height:1.6; }
-    .mvbtn { display:block; width:100%; padding:14px; background:var(--black); color:var(--white); border:none; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; text-align:center; text-decoration:none; transition:background .2s; }
-    .mvbtn:hover { background:var(--green-lt); }
-    @media(max-width:1100px){
-      .inner-hero,.sec,.cs{padding-left:24px;padding-right:24px;}
-      .stat-row{grid-template-columns:1fr 1fr;}
-      .two{grid-template-columns:1fr;gap:40px;}
-      .three,.four{grid-template-columns:1fr;}
-      .cs{grid-template-columns:1fr;}
-      .art-grid{grid-template-columns:1fr 1fr;}
-    }
-    @media(max-width:600px){.art-grid{grid-template-columns:1fr;}}
-
-    /* ─── FOOTER ─── */
-    footer { background: var(--black); }
-    .footer-main {
-      display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr;
-      gap: 48px; padding: 64px 48px 48px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .footer-logo-wrap {
-      display: flex; align-items: center; gap: 10px;
-      text-decoration: none; margin-bottom: 16px; display: block;
-    }
-    .footer-brand-name {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 15px; font-weight: 600; color: var(--white);
-      letter-spacing: 0.04em; display: block; margin-bottom: 14px;
-      text-decoration: none;
-    }
-    .footer-tagline {
-      font-size: 12px; line-height: 1.75; color: rgba(255,255,255,0.3);
-      margin-bottom: 20px; max-width: 260px;
-    }
-    .footer-address {
-      font-size: 12px; line-height: 1.8; color: rgba(255,255,255,0.3);
-    }
-    .footer-address a { color: rgba(255,255,255,0.45); text-decoration: none; }
-    .footer-address a:hover { color: rgba(255,255,255,0.8); }
-    .footer-socials {
-      display: flex; gap: 12px; margin-top: 20px;
-    }
-    .footer-social {
-      width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.12);
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.35); text-decoration: none;
-      font-size: 12px; font-weight: 700;
-      transition: all 0.2s;
-    }
-    .footer-social:hover { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.7); }
-
-    .footer-col-title {
-      font-size: 9px; font-weight: 700; letter-spacing: 0.16em;
-      text-transform: uppercase; color: rgba(255,255,255,0.2);
-      margin-bottom: 18px;
-    }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .footer-links a {
-      font-size: 12px; color: rgba(255,255,255,0.4);
-      text-decoration: none; transition: color 0.2s;
-    }
-    .footer-links a:hover { color: rgba(255,255,255,0.8); }
-
-    .footer-bottom {
-      padding: 20px 48px;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 12px;
-    }
-    .footer-bottom-left {
-      display: flex; align-items: center; gap: 16px;
-    }
-    .footer-copy {
-      font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.04em;
-    }
-    .footer-bottom-links { display: flex; gap: 20px; }
-    .footer-bottom-links a {
-      font-size: 11px; color: rgba(255,255,255,0.25); text-decoration: none;
-    }
-    .footer-bottom-links a:hover { color: rgba(255,255,255,0.6); }
-    .footer-portfolio-cta {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.10em;
-      text-transform: uppercase; color: var(--black); background: var(--white);
-      padding: 10px 20px; text-decoration: none; transition: background 0.2s;
-    }
-    .footer-portfolio-cta:hover { background: var(--off-white); }
-
-    /* ─── STICKY BOTTOM CTA ─── */
-    .sticky-cta {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 150;
-      background: var(--green-lt);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 48px; gap: 24px;
-      transform: translateY(100%);
-      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 -4px 24px rgba(0,0,0,0.2);
-    }
-    .sticky-cta.visible { transform: translateY(0); }
-    .sticky-cta-text {
-      font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.85);
-      display: flex; align-items: center; gap: 16px;
-    }
-    .sticky-cta-text strong { color: #fff; font-weight: 700; }
-    .sticky-cta-actions { display: flex; gap: 10px; align-items: center; }
-    .sticky-cta-btn {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.10em;
-      text-transform: uppercase; color: var(--black); background: var(--white);
-      padding: 10px 22px; text-decoration: none; transition: background 0.2s;
-      white-space: nowrap;
-    }
-    .sticky-cta-btn:hover { background: var(--off-white); }
-    .sticky-cta-dismiss {
-      background: none; border: none; cursor: pointer;
-      color: rgba(255,255,255,0.5); font-size: 18px; padding: 4px 8px;
-      transition: color 0.2s; line-height: 1;
-    }
-    .sticky-cta-dismiss:hover { color: rgba(255,255,255,0.9); }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 1100px) {
-      .hero-main { grid-template-columns: 1fr; }
-      .hero-right { display: none; }
-      .insights-grid { grid-template-columns: 1fr; }
-      .services-layout { grid-template-columns: 1fr; }
-      .services-list { border-right: none; border-bottom: 1px solid var(--border-l); }
-      .ba-layout { grid-template-columns: 1fr; gap: 2px; }
-      .ba-center { flex-direction: row; padding: 20px 0; border: none; }
-      .contact-layout { grid-template-columns: 1fr; }
-      .footer-main { grid-template-columns: 1fr 1fr; }
-      .logos-grid { grid-template-columns: repeat(3, 1fr); }
-      section { padding: 72px 24px; }
-      nav, .top-bar, .footer-main, .footer-bottom { padding-left: 24px; padding-right: 24px; }
-      .hero-main { padding: 60px 24px 40px; }
-      .hero-strip { grid-template-columns: 1fr; }
-      .hero-strip-item { padding: 18px 24px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
-      .cap-grid { grid-template-columns: 1fr; }
-      .cap-card:last-child { grid-column: auto; }
-      .industries-header { grid-template-columns: 1fr; }
-    }
-
-  
-    /* ══ HERO with background image ══ */
-    .inner-hero {
-      position: relative;
-      background: var(--black);
-      padding: 96px 48px 0;
-      border-bottom: 1px solid var(--border-d);
-      overflow: hidden;
-      min-height: 520px;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1600&q=80&auto=format&fit=crop');
-      background-size: cover; background-position: center 30%;
-      opacity: 0.18;
-      transition: opacity 1.2s ease;
-    }
-    .hero-bg::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(to right, rgba(0,0,0,0.85) 40%, rgba(0,0,0,0.3) 100%),
-                  linear-gradient(to top, var(--black) 0%, transparent 40%);
-    }
-    .hero-content { position: relative; z-index: 2; }
-    .hero-cta-row {
-      display: flex; align-items: center; gap: 18px;
-      margin-top: 32px; flex-wrap: wrap;
-    }
-    .hero-btn-primary {
-      display: inline-block; padding: 14px 28px;
-      background: var(--white); color: var(--black);
-      font-size: 11px; font-weight: 700; letter-spacing: .10em;
-      text-transform: uppercase; text-decoration: none;
-      transition: background .2s;
-    }
-    .hero-btn-primary:hover { background: var(--off-white); }
-    .hero-btn-ghost {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 12px; font-weight: 600; letter-spacing: .06em;
-      color: rgba(255,255,255,0.5); text-decoration: none;
-      text-transform: uppercase; transition: color .2s;
-    }
-    .hero-btn-ghost:hover { color: var(--white); }
-    .hero-btn-ghost svg { opacity: .6; }
-
-    /* ══ ADVISORS section (3-col: intro | gain | insights) ══ */
-    .advisors-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1px;
-      background: var(--border-l);
-    }
-    .advisors-col { background: var(--white); padding: 48px 36px; }
-    .advisors-col.dark { background: var(--dark); }
-    .gain-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
-    .gain-item {
-      display: flex; align-items: flex-start; gap: 12px;
-      padding: 14px 0; border-bottom: 1px solid var(--border-l);
-      font-size: 13px; color: var(--black); line-height: 1.55;
-    }
-    .gain-item:last-child { border-bottom: none; }
-    .gain-check {
-      color: var(--green-lt); font-size: 13px; flex-shrink: 0; margin-top: 1px;
-    }
-    .insight-box { display: flex; flex-direction: column; gap: 0; }
-    .insight-row {
-      padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
-    }
-    .insight-row:last-child { border-bottom: none; }
-    .insight-big {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 42px; font-weight: 300; color: var(--white);
-      line-height: 1; margin-bottom: 5px;
-    }
-    .insight-text { font-size: 12px; color: rgba(255,255,255,0.42); line-height: 1.65; }
-    .insight-quote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 16px; font-style: italic; font-weight: 300;
-      color: rgba(255,255,255,0.55); line-height: 1.65;
-      padding-top: 20px;
-    }
-
-    /* ══ WHY VALIDATE BILLS ══ */
-    .validate-grid { display: grid; grid-template-columns: 1fr 380px; gap: 72px; align-items: start; }
-    .validate-body p { font-size: 14px; color: var(--gray-1); line-height: 1.85; margin-bottom: 18px; }
-    .validate-body p:last-child { margin-bottom: 0; }
-    .insights-guide {
-      background: var(--dark);
-      padding: 40px;
-      display: flex; flex-direction: column; gap: 24px;
-    }
-    .guide-title { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 2px; }
-    .guide-body { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.8; }
-    .guide-btn {
-      display: inline-flex; align-items: center; justify-content: space-between;
-      padding: 14px 20px; background: var(--white); color: var(--black);
-      font-size: 11px; font-weight: 700; letter-spacing: .10em;
-      text-transform: uppercase; text-decoration: none;
-      border-radius: 999px; gap: 12px; transition: background .2s;
-    }
-    .guide-btn:hover { background: var(--off-white); }
-    .guide-btn-arrow {
-      width: 28px; height: 28px; border-radius: 50%;
-      background: var(--black); display: flex; align-items: center;
-      justify-content: center; flex-shrink: 0;
-    }
-
-    /* ══ WATER PRICE INCREASES ══ */
-    .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
-    .price-check-list { display: flex; flex-direction: column; gap: 0; margin: 24px 0 32px; }
-    .price-check-item {
-      display: flex; align-items: center; gap: 12px;
-      padding: 12px 0; border-bottom: 1px solid var(--border-l);
-      font-size: 13px; font-weight: 600; color: var(--black);
-    }
-    .price-check-item:last-child { border-bottom: none; }
-    .price-check-icon { color: var(--green-lt); flex-shrink: 0; }
-    .price-img-wrap {
-      position: relative; overflow: hidden;
-      background: var(--dark);
-    }
-    .price-img-wrap img {
-      width: 100%; display: block;
-      filter: grayscale(100%) contrast(1.05);
-      transition: transform .5s ease;
-    }
-    .price-img-wrap:hover img { transform: scale(1.03); }
-    .pricing-box {
-      background: var(--dark); padding: 32px 36px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-    .pricing-box-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 22px; font-weight: 300; color: var(--white);
-      margin-bottom: 12px;
-    }
-    .pricing-box-body { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.75; margin-bottom: 8px; }
-    .pricing-box-highlight {
-      font-size: 12px; font-weight: 700; letter-spacing: .06em;
-      text-transform: uppercase; color: var(--green-lt);
-      margin-top: 12px;
-    }
-
-    /* ══ PROOF STRIP ══ */
-    .proof-strip { background: var(--black); border-top: 1px solid var(--border-d); border-bottom: 1px solid var(--border-d); }
-    .proof-inner { display: grid; grid-template-columns: 1fr 1fr; }
-    .proof-left  { padding: 72px 48px; border-right: 1px solid var(--border-d); }
-    .proof-right { padding: 72px 48px; }
-    .proof-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 72px; font-weight: 300; color: var(--green-lt); line-height: 1; margin-bottom: 4px; }
-    .proof-stat-lbl { font-size: 10px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 40px; }
-    .proof-quote { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; font-style: italic; color: var(--white); line-height: 1.6; margin-bottom: 20px; }
-    .proof-attr  { font-size: 11px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
-
-    /* ══ ESG ══ */
-    .esg-check-list { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
-    .esg-check-item { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.55; }
-    .esg-stat-block { background: rgba(255,255,255,0.04); border: 1px solid var(--border-d); padding: 48px 40px; display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .esg-stat-big   { font-family: 'Cormorant Garamond', serif; font-size: 88px; font-weight: 300; color: var(--green-lt); line-height: 1; }
-    .esg-stat-lbl   { font-size: 10px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin: 8px 0 16px; }
-    .esg-stat-note  { font-size: 12px; color: rgba(255,255,255,0.28); line-height: 1.7; max-width: 220px; }
-    .esg-cta {
-      margin-top: 28px; display: inline-block;
-      padding: 12px 24px; background: var(--green-lt); color: var(--white);
-      font-size: 11px; font-weight: 700; letter-spacing: .10em;
-      text-transform: uppercase; text-decoration: none; transition: background .2s;
-    }
-    .esg-cta:hover { background: #3a7a55; }
-
-    /* ══ RESPONSIVE ══ */
-    @media (max-width: 1024px) {
-      .advisors-grid { grid-template-columns: 1fr; }
-      .validate-grid, .price-grid { grid-template-columns: 1fr; }
-      .proof-inner { grid-template-columns: 1fr; }
-      .proof-left { border-right: none; border-bottom: 1px solid var(--border-d); }
-      .two { grid-template-columns: 1fr; gap: 48px; }
-    }
-    @media (max-width: 640px) {
-      .inner-hero { padding: 64px 20px 0; min-height: auto; }
-      section.sec { padding: 52px 20px; }
-      .advisors-col { padding: 36px 24px; }
-      .validate-grid, .price-grid { gap: 40px; }
-      .proof-left, .proof-right { padding: 48px 20px; }
-      .pricing-box { padding: 24px 20px; }
-      .insights-guide { padding: 28px 24px; }
-    }
-
-  
-
-/* ── INNER HERO ── */
-.inner-hero {
-  position:relative; background:var(--black);
-  padding:80px 48px 0; overflow:hidden; min-height:460px;
-  display:flex; flex-direction:column;
-}
-.ihero-bg {
-  position:absolute; inset:0; z-index:0;
-  background:radial-gradient(ellipse at 70% 40%, rgba(45,92,66,.25) 0%, transparent 65%);
-}
-.ihero-content { position:relative; z-index:2; flex:1; }
-.ihero-bc {
-  display:flex; align-items:center; gap:8px;
-  font-size:11px; font-weight:500; letter-spacing:.06em;
-  text-transform:uppercase; color:rgba(255,255,255,.25); margin-bottom:28px;
-}
-.ihero-bc a { color:rgba(255,255,255,.25); text-decoration:none; }
-.ihero-bc a:hover { color:rgba(255,255,255,.6); }
-.ihero-bc svg { opacity:.4; }
-.ihero-eye {
-  font-size:10px; font-weight:700; letter-spacing:.18em;
-  text-transform:uppercase; color:var(--green-lt); margin-bottom:16px;
-}
-.ihero-h1 {
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(40px,5vw,68px); font-weight:300;
-  line-height:1.06; color:var(--white); margin-bottom:20px; max-width:720px;
-}
-.ihero-h1 em { font-style:italic; }
-.ihero-sub {
-  font-size:15px; line-height:1.8;
-  color:rgba(255,255,255,.42); max-width:560px;
-  border-left:2px solid var(--green-lt); padding-left:18px;
-  margin-bottom:40px;
-}
-.ihero-ctas { display:flex; gap:16px; flex-wrap:wrap; }
-.btn-dark-primary {
-  padding:14px 28px; background:var(--white); color:var(--black);
-  font-size:11px; font-weight:700; letter-spacing:.10em;
-  text-transform:uppercase; text-decoration:none; display:inline-block;
-  transition:background .2s;
-}
-.btn-dark-primary:hover { background:var(--off-white); }
-.btn-dark-ghost {
-  padding:14px 28px; border:1px solid rgba(255,255,255,.3);
-  color:rgba(255,255,255,.65); font-size:11px; font-weight:600;
-  letter-spacing:.08em; text-transform:uppercase;
-  text-decoration:none; display:inline-block; transition:all .2s;
-}
-.btn-dark-ghost:hover { border-color:rgba(255,255,255,.7); color:#fff; }
-
-/* ── STAT STRIP ── */
-.stat-strip {
-  display:grid; grid-template-columns:repeat(4,1fr);
-  gap:1px; background:rgba(255,255,255,.06);
-  border-top:1px solid rgba(255,255,255,.06);
-  margin:40px -48px 0; position:relative; z-index:2;
-}
-.stat-strip-cell { padding:22px 28px; background:var(--black); }
-.ssc-num {
-  font-family:'Cormorant Garamond',serif;
-  font-size:34px; font-weight:300; color:var(--white);
-  line-height:1; margin-bottom:5px;
-}
-.ssc-num.accent { color:var(--green-lt); }
-.ssc-lbl {
-  font-size:9px; font-weight:600; letter-spacing:.10em;
-  text-transform:uppercase; color:rgba(255,255,255,.28);
-}
-
-/* ── SECTION UTILITIES ── */
-.sec { padding:72px 48px; }
-.sec-w { background:var(--white); }
-.sec-o { background:var(--off-white); }
-.sec-d { background:var(--dark-2); }
-.sec-dk { background:var(--dark); }
-.eye {
-  font-size:10px; font-weight:700; letter-spacing:.16em;
-  text-transform:uppercase; color:var(--green-lt); margin-bottom:12px;
-}
-.sh {
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(28px,3vw,44px); font-weight:300;
-  line-height:1.1; margin-bottom:14px; color:var(--black);
-}
-.sh em { font-style:italic; }
-.sh--white { color:var(--white); }
-.sub {
-  font-size:14px; color:var(--gray-1);
-  line-height:1.75; max-width:560px; margin-bottom:40px;
-}
-.sub--white { color:rgba(255,255,255,.4); }
-
-/* ── TWO-COL / THREE-COL ── */
-.two  { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
-.three{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:var(--border-l); }
-.four { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border-l); }
-
-/* ── STEP ITEMS (ai class from audit page) ── */
-.ai { padding:20px 0; border-bottom:1px solid var(--border-l); display:flex; gap:18px; }
-.ai:first-of-type { border-top:1px solid var(--border-l); }
-.ai-ic {
-  width:36px; height:36px; background:rgba(45,92,66,.08);
-  display:flex; align-items:center; justify-content:center;
-  flex-shrink:0; margin-top:2px; color:var(--green-lt);
-}
-.ai-t { font-size:13px; font-weight:700; color:var(--black); margin-bottom:4px; }
-.ai-b { font-size:12px; color:var(--gray-1); line-height:1.7; }
-
-/* ── BENCHMARK BOX ── */
-.bm { background:var(--off-white); padding:36px; border:1px solid var(--border-l); }
-.bm-title {
-  font-family:'Cormorant Garamond',serif;
-  font-size:24px; font-weight:400; margin-bottom:20px; color:var(--black);
-}
-.brow { display:flex; justify-content:space-between; align-items:baseline; padding:12px 0; border-bottom:1px solid var(--border-l); }
-.brow:last-of-type { border-bottom:none; }
-.bl { font-size:12px; color:var(--gray-1); }
-.bv { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:var(--black); }
-.bm-cta {
-  margin-top:24px; display:block; text-align:center; padding:14px;
-  background:var(--green-lt); color:var(--white);
-  font-size:11px; font-weight:700; letter-spacing:.10em;
-  text-transform:uppercase; text-decoration:none; transition:background .2s;
-}
-.bm-cta:hover { background:#3a7a55; }
-
-/* ── FEATURE CARDS (dark bg) ── */
-.feat-card { background:rgba(255,255,255,.04); border:1px solid var(--border-d); padding:28px; }
-.feat-card-eye {
-  font-size:9px; font-weight:700; letter-spacing:.14em;
-  text-transform:uppercase; color:var(--green-lt); margin-bottom:8px;
-}
-.feat-card-title { font-size:15px; font-weight:700; color:var(--white); margin-bottom:8px; }
-.feat-card-body { font-size:12px; color:rgba(255,255,255,.42); line-height:1.75; }
-.feat-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
-.feat-tag {
-  font-size:9px; font-weight:700; letter-spacing:.10em; text-transform:uppercase;
-  padding:4px 10px; border:1px solid rgba(255,255,255,.12);
-  color:rgba(255,255,255,.38);
-}
-
-/* ── INDICATOR ROWS (GRESB page) ── */
-.ind-row {
-  display:flex; align-items:flex-start; gap:16px;
-  padding:20px 0; border-bottom:1px solid var(--border-l);
-}
-.ind-row:last-child { border-bottom:none; }
-.ind-code {
-  font-family:'Cormorant Garamond',serif;
-  font-size:32px; font-weight:300; color:var(--green-lt);
-  width:56px; flex-shrink:0; line-height:1;
-}
-.ind-name { font-size:14px; font-weight:700; color:var(--black); margin-bottom:4px; }
-.ind-desc { font-size:12px; color:var(--gray-1); line-height:1.7; }
-.ind-pts {
-  font-family:'Cormorant Garamond',serif;
-  font-size:26px; font-weight:300; color:var(--green-lt);
-  flex-shrink:0; white-space:nowrap;
-}
-/* dark variant */
-.ind-row--dark { border-bottom-color:var(--border-d); }
-.ind-row--dark .ind-name { color:var(--white); }
-.ind-row--dark .ind-desc { color:rgba(255,255,255,.38); }
-
-/* ── PROOF / CONTRADICTION ── */
-.contra-grid {
-  display:grid; grid-template-columns:1fr 1fr;
-  gap:1px; background:var(--border-d); margin-bottom:24px;
-}
-.contra-half { padding:36px; }
-.contra-half.cl { background:#0f1a13; }
-.contra-half.cr { background:#1a1a1a; }
-.contra-lbl {
-  font-size:9px; font-weight:700; letter-spacing:.14em;
-  text-transform:uppercase; margin-bottom:10px;
-}
-.contra-half.cl .contra-lbl { color:var(--green-lt); }
-.contra-half.cr .contra-lbl { color:rgba(255,255,255,.25); }
-.contra-big {
-  font-family:'Cormorant Garamond',serif;
-  font-size:56px; font-weight:300; line-height:1; margin-bottom:6px;
-}
-.contra-half.cl .contra-big { color:var(--green-lt); }
-.contra-half.cr .contra-big { color:rgba(255,255,255,.5); }
-.contra-note { font-size:13px; line-height:1.75; }
-.contra-half.cl .contra-note { color:rgba(255,255,255,.42); }
-.contra-half.cr .contra-note { color:rgba(255,255,255,.3); }
-.contra-gap {
-  background:var(--dark); padding:22px 32px;
-  display:flex; align-items:center; justify-content:center;
-  border-top:1px solid var(--border-d);
-}
-.contra-gap-txt {
-  font-size:13px; font-weight:600;
-  color:rgba(255,255,255,.55); text-align:center; line-height:1.65; max-width:560px;
-}
-.contra-gap-txt strong { color:var(--white); }
-
-/* ── PROOF STRIP ── */
-.proof-strip { background:var(--black); border-top:1px solid var(--border-d); border-bottom:1px solid var(--border-d); }
-.proof-inner { display:grid; grid-template-columns:1fr 1fr; }
-.proof-left  { padding:64px 48px; border-right:1px solid var(--border-d); }
-.proof-right { padding:64px 48px; display:flex; flex-direction:column; justify-content:center; }
-.proof-num {
-  font-family:'Cormorant Garamond',serif;
-  font-size:68px; font-weight:300; color:var(--green-lt); line-height:1; margin-bottom:4px;
-}
-.proof-lbl {
-  font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
-  color:rgba(255,255,255,.25); margin-bottom:36px; padding-bottom:36px; border-bottom:1px solid var(--border-d);
-}
-.proof-lbl:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
-.proof-quote {
-  font-family:'Cormorant Garamond',serif;
-  font-size:22px; font-weight:300; font-style:italic;
-  color:var(--white); line-height:1.6; margin-bottom:18px;
-}
-.proof-attr {
-  font-size:10px; font-weight:600; letter-spacing:.09em;
-  text-transform:uppercase; color:rgba(255,255,255,.28);
-}
-
-/* ── GREEN QUOTE BLOCK ── */
-.quote-bl {
-  border-left:2px solid var(--green-lt);
-  padding:14px 18px;
-  background:rgba(45,92,66,.06);
-}
-.quote-bl p {
-  font-family:'Cormorant Garamond',serif;
-  font-size:17px; font-weight:300; font-style:italic;
-  color:var(--black); line-height:1.65; margin-bottom:0;
-}
-.quote-bl--dark { background:rgba(255,255,255,.03); }
-.quote-bl--dark p { color:rgba(255,255,255,.65); }
-.quote-bl cite {
-  font-size:10px; font-weight:700; letter-spacing:.09em;
-  text-transform:uppercase; color:var(--gray-1); font-style:normal; display:block; margin-top:8px;
-}
-.quote-bl--dark cite { color:rgba(255,255,255,.28); }
-
-/* ── CHECK LIST ── */
-.check-list { display:flex; flex-direction:column; gap:0; }
-.check-item {
-  display:flex; align-items:flex-start; gap:12px;
-  padding:12px 0; border-bottom:1px solid var(--border-l);
-  font-size:13px; color:var(--black); line-height:1.55;
-}
-.check-item:last-child { border-bottom:none; }
-.check-item--dark { border-bottom-color:var(--border-d); color:rgba(255,255,255,.55); }
-.check-icon { color:var(--green-lt); flex-shrink:0; font-size:14px; margin-top:1px; }
-
-/* ── DARK STAT PANEL ── */
-.stat-panel { background:var(--black); padding:36px; }
-.stat-panel-grid {
-  display:grid; grid-template-columns:1fr 1fr;
-  gap:1px; background:rgba(255,255,255,.06); margin-bottom:24px;
-}
-.sp-cell { padding:20px; background:var(--black); }
-.sp-num {
-  font-family:'Cormorant Garamond',serif;
-  font-size:40px; font-weight:300; color:var(--white); line-height:1; margin-bottom:5px;
-}
-.sp-num.g { color:var(--green-lt); }
-.sp-lbl {
-  font-size:9px; font-weight:600; letter-spacing:.10em;
-  text-transform:uppercase; color:rgba(255,255,255,.28); line-height:1.4;
-}
-
-/* ── CTA STRIP (cs) ── */
-.cs {
-  background:var(--dark); padding:72px 48px;
-  display:grid; grid-template-columns:1fr auto; gap:48px; align-items:center;
-}
-.cs-t {
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(28px,3vw,42px); font-weight:300;
-  color:var(--white); line-height:1.1;
-}
-.cs-t em { font-style:italic; }
-.cs-s {
-  font-size:14px; color:rgba(255,255,255,.38);
-  margin-top:12px; max-width:480px; line-height:1.75;
-}
-.cs-btn {
-  padding:15px 32px; background:var(--white); color:var(--black);
-  font-size:11px; font-weight:700; letter-spacing:.10em;
-  text-transform:uppercase; text-decoration:none; white-space:nowrap;
-  display:inline-block; transition:background .2s;
-}
-.cs-btn:hover { background:var(--off-white); }
-
-/* ── HIGHLIGHT BOX ── */
-.hl-box {
-  background:rgba(45,92,66,.08); border:1px solid rgba(45,92,66,.2);
-  border-left:3px solid var(--green-lt); padding:20px 24px;
-}
-.hl-box p { font-size:13px; color:var(--black); line-height:1.75; }
-.hl-box strong { color:var(--green-lt); }
-.hl-box--dark { background:rgba(45,92,66,.12); border-color:rgba(45,92,66,.3); }
-.hl-box--dark p { color:rgba(255,255,255,.7); }
-
-/* ── TIERS ── */
-.tiers { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--border-l); }
-.tier { background:var(--white); padding:36px; }
-.tier--featured { background:var(--black); }
-.tier-lbl {
-  font-size:9px; font-weight:700; letter-spacing:.14em;
-  text-transform:uppercase; margin-bottom:8px; color:var(--gray-1);
-}
-.tier--featured .tier-lbl { color:var(--green-lt); }
-.tier-name { font-size:16px; font-weight:700; margin-bottom:10px; color:var(--black); }
-.tier--featured .tier-name { color:var(--white); }
-.tier-desc { font-size:12px; line-height:1.75; color:var(--gray-1); margin-bottom:20px; }
-.tier--featured .tier-desc { color:rgba(255,255,255,.4); }
-.tier-list { list-style:none; display:flex; flex-direction:column; }
-.tier-list li {
-  display:flex; align-items:flex-start; gap:9px;
-  padding:9px 0; border-bottom:1px solid var(--border-l);
-  font-size:11px; color:var(--gray-1); line-height:1.55;
-}
-.tier--featured .tier-list li { border-bottom-color:var(--border-d); color:rgba(255,255,255,.45); }
-.tier-list li:last-child { border-bottom:none; }
-.tier-tick { color:var(--green-lt); flex-shrink:0; }
-.tier-cta {
-  display:block; text-align:center; padding:13px; margin-top:22px;
-  font-size:11px; font-weight:700; letter-spacing:.10em;
-  text-transform:uppercase; text-decoration:none; transition:background .2s;
-}
-.tier .tier-cta { background:var(--black); color:var(--white); }
-.tier .tier-cta:hover { background:var(--green-lt); }
-.tier--featured .tier-cta { background:var(--green-lt); color:var(--white); }
-.tier--featured .tier-cta:hover { background:#3a7a55; }
-
-/* ── RESPONSIVE ── */
-@media(max-width:1024px){
-  .two,.tiers,.contra-grid,.proof-inner,.stat-panel-grid { grid-template-columns:1fr; }
-  .three,.four { grid-template-columns:1fr 1fr; }
-  .proof-left { border-right:none; border-bottom:1px solid var(--border-d); }
-  .cs { grid-template-columns:1fr; }
-  .stat-strip { grid-template-columns:1fr 1fr; }
-}
-@media(max-width:640px){
-  .inner-hero,.sec { padding-left:24px; padding-right:24px; }
-  .stat-strip { margin-left:-24px; margin-right:-24px; }
-  .three,.four { grid-template-columns:1fr; }
-  .ihero-ctas { flex-direction:column; }
-}
-
-.co { position:fixed;inset:0;z-index:900;background:rgba(0,0,0,0.65);
-          backdrop-filter:blur(6px);display:flex;align-items:center;
-          justify-content:center;padding:12px;
-          opacity:0;pointer-events:none;transition:opacity .25s; }
-    .co.open { opacity:1;pointer-events:auto; }
-    .co-box { background:#fff;width:100%;max-width:660px;max-height:96vh;
-              overflow-y:auto;transform:translateY(18px);
-              transition:transform .25s;
-              box-shadow:0 32px 80px rgba(0,0,0,.4); }
-    .co.open .co-box { transform:translateY(0); }
-    .co-head { padding:32px 36px 0;display:flex;
-               justify-content:space-between;align-items:flex-start; }
-    .co-title { font-family:'Cormorant Garamond',serif;
-                font-size:30px;font-weight:300;color:var(--black);
-                line-height:1.1;margin-bottom:8px; }
-    .co-sub { font-size:13px;color:var(--gray-1);line-height:1.7;
-              max-width:490px; }
-    .co-x { background:none;border:none;cursor:pointer;color:var(--gray-1);
-             font-size:28px;line-height:1;padding:0 0 0 16px;flex-shrink:0;
-             transition:color .15s; }
-    .co-x:hover { color:var(--black); }
-    .co-strips { display:flex;margin:18px 36px 0;
-                 border:1px solid var(--border-l); }
-    .co-strip { flex:1;padding:10px 12px;border-right:1px solid var(--border-l); }
-    .co-strip:last-child { border-right:none; }
-    .co-strip-lbl { font-size:9px;font-weight:700;letter-spacing:.14em;
-                    text-transform:uppercase;color:var(--green-lt);
-                    margin-bottom:3px; }
-    .co-strip-val { font-size:12px;font-weight:600;color:var(--black);
-                    line-height:1.4; }
-    .co-body { padding:18px 36px 28px; }
-    .co-row { display:grid;grid-template-columns:1fr 1fr;gap:14px;
-              margin-bottom:14px; }
-    .co-row-1 { margin-bottom:14px; }
-    .co-fw { display:flex;flex-direction:column; }
-    .co-lbl { font-size:9px;font-weight:700;letter-spacing:.14em;
-              text-transform:uppercase;color:rgba(0,0,0,.42);
-              margin-bottom:5px; }
-    .co-req { color:var(--green-lt); }
-    .co-inp { padding:11px 0;border:none;
-              border-bottom:1.5px solid rgba(0,0,0,.12);
-              background:transparent;font-family:'DM Sans',sans-serif;
-              font-size:14px;color:var(--black);outline:none;
-              transition:border-color .2s;width:100%; }
-    .co-inp:focus { border-bottom-color:var(--black); }
-    .co-inp::placeholder { color:var(--gray-1); }
-    .co-inp.err { border-bottom-color:#c0392b; }
-    .co-inp.ok  { border-bottom-color:var(--green-lt); }
-    .co-errmsg { font-size:11px;color:#c0392b;margin-top:3px;
-                 min-height:16px;display:block; }
-    .co-foot { display:flex;align-items:center;justify-content:space-between;
-               padding:16px 36px 24px;border-top:1px solid var(--border-l);
-               gap:12px; }
-    .co-note { font-size:11px;color:var(--gray-1);font-style:italic;
-               line-height:1.5; }
-    .co-btn { padding:13px 30px;background:var(--black);color:#fff;
-              border:none;font-family:'DM Sans',sans-serif;
-              font-size:12px;font-weight:700;letter-spacing:.10em;
-              text-transform:uppercase;cursor:pointer;
-              transition:background .2s;flex-shrink:0;border-radius:3px; }
-    .co-btn:hover { background:var(--green-lt); }
-    .co-btn:disabled { opacity:.55;pointer-events:none; }
-    .co-ok { padding:36px;text-align:center;display:none; }
-    .co-ok.show { display:block; }
-    .co-ok-icon { width:52px;height:52px;border-radius:50%;
-                  background:rgba(45,92,66,.1);
-                  display:flex;align-items:center;justify-content:center;
-                  margin:0 auto 16px; }
-    .co-ok-title { font-family:'Cormorant Garamond',serif;
-                   font-size:28px;font-weight:300;color:var(--black);
-                   margin-bottom:10px; }
-    .co-ok-body { font-size:14px;color:var(--gray-1);line-height:1.75; }
-    @media(max-width:620px){
-      .co-row{grid-template-columns:1fr;}
-      .co-head,.co-body,.co-foot{padding-left:18px;padding-right:18px;}
-      .co-strips{margin:14px 18px 0;flex-wrap:wrap;}
-      .co-strip{border-right:none;border-bottom:1px solid var(--border-l);}
-      .co-strip:last-child{border-bottom:none;}
-    }
-
-    /* ═══ HAMBURGER + DAILY MODAL ═══ */
-    .ham-btn { width:40px;height:40px;display:flex;flex-direction:column;
-               align-items:center;justify-content:center;gap:4px;
-               background:none;border:1px solid var(--border-l);
-               cursor:pointer;transition:border-color .2s;flex-shrink:0;
-               margin-left:10px; }
-    .ham-btn:hover { border-color:var(--black); }
-    .ham-btn span { display:block;width:16px;height:1.5px;
-                    background:var(--black); }
-    .dm-overlay { position:fixed;inset:0;z-index:850;
-                  background:rgba(0,0,0,.35);backdrop-filter:blur(3px);
-                  opacity:0;pointer-events:none;transition:opacity .2s; }
-    .dm-overlay.open { opacity:1;pointer-events:auto; }
-    .dm-box { position:fixed;top:110px;right:20px;width:300px;
-              background:#fff;border:1px solid var(--border-l);
-              box-shadow:0 16px 48px rgba(0,0,0,.18);
-              transform:translateY(-10px) scale(.97);
-              transition:transform .2s,opacity .2s;
-              opacity:0;pointer-events:none;z-index:851; }
-    .dm-overlay.open .dm-box { transform:translateY(0) scale(1);
-                                opacity:1;pointer-events:auto; }
-    .dm-head { padding:14px 16px 10px;border-bottom:1px solid var(--border-l);
-               display:flex;justify-content:space-between;align-items:center; }
-    .dm-head-lbl { font-size:9px;font-weight:700;letter-spacing:.18em;
-                   text-transform:uppercase;color:var(--gray-1); }
-    .dm-x { background:none;border:none;cursor:pointer;color:var(--gray-1);
-             font-size:22px;line-height:1;padding:0;transition:color .15s; }
-    .dm-x:hover { color:var(--black); }
-    .dm-block { padding:13px 16px;border-bottom:1px solid var(--border-l); }
-    .dm-block:last-child { border-bottom:none; }
-    .dm-lbl { font-size:9px;font-weight:700;letter-spacing:.14em;
-              text-transform:uppercase;color:var(--green-lt);margin-bottom:5px; }
-    .dm-date { font-family:'Cormorant Garamond',serif;
-               font-size:17px;font-weight:400;color:var(--black);
-               line-height:1.25;margin-bottom:3px; }
-    .dm-time { font-size:13px;color:var(--gray-1);font-family:'DM Sans',sans-serif; }
-    .dm-joke { font-size:12px;color:var(--black);line-height:1.65;
-               font-style:italic; }
-    .dm-verse { font-family:'Cormorant Garamond',serif;font-size:14px;
-                font-weight:400;color:var(--black);line-height:1.65;
-                font-style:italic;margin-bottom:5px; }
-    .dm-ref { font-size:10px;font-weight:700;letter-spacing:.08em;
-              text-transform:uppercase;color:var(--gray-1); }
-
-    /* ═══ CONTACT CLEAN ═══ */
-    .cc { background:var(--dark);padding:80px 48px;
-          display:grid;grid-template-columns:1fr 1fr;
-          gap:72px;align-items:center; }
-    .cc-grid { display:grid;grid-template-columns:1fr 1fr;
-               gap:1px;background:rgba(255,255,255,.06); }
-    .cc-card { padding:26px 22px;background:var(--dark); }
-    .cc-card-lbl { font-size:9px;font-weight:700;letter-spacing:.14em;
-                   text-transform:uppercase;color:var(--green-lt);
-                   margin-bottom:8px; }
-    .cc-card-title { font-family:'Cormorant Garamond',serif;
-                     font-size:20px;font-weight:300;color:#fff;
-                     margin-bottom:6px;line-height:1.2; }
-    .cc-card-body { font-size:12px;color:rgba(255,255,255,.35);
-                    line-height:1.65; }
-    .cc-btns { display:flex;gap:10px;flex-wrap:wrap;margin-top:28px; }
-    .cc-btn-primary { display:inline-block;padding:13px 26px;
-                      background:#fff;color:var(--black);border:none;
-                      font-family:'DM Sans',sans-serif;font-size:11px;
-                      font-weight:700;letter-spacing:.10em;
-                      text-transform:uppercase;cursor:pointer;
-                      transition:background .2s; }
-    .cc-btn-primary:hover { background:var(--off-white); }
-    .cc-btn-ghost { display:inline-block;padding:13px 26px;
-                    background:none;color:rgba(255,255,255,.6);
-                    border:1px solid rgba(255,255,255,.2);
-                    font-family:'DM Sans',sans-serif;font-size:11px;
-                    font-weight:700;letter-spacing:.10em;
-                    text-transform:uppercase;cursor:pointer;
-                    transition:all .2s; }
-    .cc-btn-ghost:hover { background:rgba(255,255,255,.06);
-                          color:rgba(255,255,255,.9); }
-    @media(max-width:1100px){
-      .cc{grid-template-columns:1fr;gap:40px;padding:60px 24px;}
-    }
-    @media(max-width:600px){
-      .cc{padding:48px 16px;}
-      .cc-grid{grid-template-columns:1fr;}
-    }
-.search-overlay {
-      position:fixed; inset:0; z-index:600;
-      background:rgba(0,0,0,0.85); backdrop-filter:blur(8px);
-      display:flex; flex-direction:column; align-items:center;
-      padding-top:120px;
-      opacity:0; pointer-events:none;
-      transition:opacity 0.22s;
-    }
-    .search-overlay.open { opacity:1; pointer-events:auto; }
-    .search-box {
-      width:100%; max-width:640px; padding:0 24px;
-    }
-    .search-input-wrap {
-      position:relative; display:flex; align-items:center;
-    }
-    .search-input {
-      width:100%; padding:18px 56px 18px 20px;
-      font-family:'DM Sans',sans-serif; font-size:18px;
-      background:var(--white); border:none; outline:none;
-      color:var(--black);
-    }
-    .search-input::placeholder { color:var(--gray-1); }
-    .search-close {
-      position:absolute; right:16px;
-      background:none; border:none; cursor:pointer;
-      color:var(--gray-1); font-size:22px; line-height:1; padding:4px;
-      transition:color 0.15s;
-    }
-    .search-close:hover { color:var(--black); }
-    .search-hint {
-      font-size:11px; color:rgba(255,255,255,0.3);
-      margin-top:10px; padding:0 4px;
-      letter-spacing:0.06em; text-transform:uppercase;
-    }
-    .search-results {
-      width:100%; max-width:640px; margin-top:20px; padding:0 24px;
-      max-height:50vh; overflow-y:auto;
-    }
-    .search-result {
-      background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08);
-      padding:14px 18px; margin-bottom:8px; cursor:pointer;
-      text-decoration:none; display:block;
-      transition:background 0.15s;
-    }
-    .search-result:hover { background:rgba(255,255,255,0.11); }
-    .sr-title { font-size:14px; font-weight:600; color:var(--white); margin-bottom:3px; }
-    .sr-path  { font-size:11px; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:0.06em; }
-    .sr-match { font-size:12px; color:rgba(255,255,255,0.45); margin-top:4px; line-height:1.5; }
-    .sr-match em { color:var(--green-lt); font-style:normal; font-weight:600; }
-    .search-no-results { color:rgba(255,255,255,0.4); font-size:14px; padding:16px 4px; }
-    .search-category {
-      font-size:9px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase;
-      color:rgba(255,255,255,0.2); padding:8px 4px 4px; margin-top:8px;
-    }
-
-    /* ─── VIDEO POPUP ─── */
-    .video-overlay {
-      position:fixed; inset:0; z-index:700;
-      background:rgba(0,0,0,0.92); backdrop-filter:blur(6px);
-      display:flex; align-items:center; justify-content:center;
-      padding:24px;
-      opacity:0; pointer-events:none; transition:opacity 0.22s;
-    }
-    .video-overlay.open { opacity:1; pointer-events:auto; }
-    .video-modal {
-      width:100%; max-width:900px; position:relative;
-      transform:scale(0.96); transition:transform 0.22s;
-    }
-    .video-overlay.open .video-modal { transform:scale(1); }
-    .video-close {
-      position:absolute; top:-42px; right:0;
-      background:none; border:none; cursor:pointer;
-      color:rgba(255,255,255,0.5); font-size:28px; line-height:1;
-      transition:color 0.15s; padding:4px;
-    }
-    .video-close:hover { color:#fff; }
-    .video-ratio {
-      position:relative; padding-bottom:56.25%; height:0; overflow:hidden;
-      background:#000;
-    }
-    .video-ratio iframe {
-      position:absolute; top:0; left:0; width:100%; height:100%;
-      border:none;
-    }
-    .video-caption {
-      text-align:center; margin-top:14px;
-      font-size:11px; color:rgba(255,255,255,0.3);
-      letter-spacing:0.08em; text-transform:uppercase;
-    }
-
-        .logo-sector {
-      display:block; font-size:9px; color:var(--gray-1);
-      text-transform:uppercase; letter-spacing:0.08em; margin-top:2px;
-    }
-    .logo-cell { flex-direction:column; }
-
-    /* ─── FORM VALIDATION STATES ─── */
-    .form-field.field-error { border-color: #c0392b !important; }
-    .form-field.field-ok { border-color: var(--green-lt); }
-    .field-err-msg {
-      font-size: 11px; color: #c0392b;
-      margin-top: 3px; display: none;
-    }
-    .field-err-msg.visible { display: block; }
-    .form-success {
-      padding: 24px; background: rgba(45,92,66,0.12);
-      border: 1px solid var(--green-lt);
-      font-size: 14px; color: var(--white); line-height: 1.6;
-      display: none;
-    }
-    .form-success.visible { display: block; }
-    .form-submit.submitting { opacity: 0.6; pointer-events: none; }
-
-    /* ─── RESPONSIVE PATCHES ─── */
-    @media (max-width: 768px) {
-      h1.hero-h1 { font-size: 38px; }
-      .hero-actions { flex-direction: column; }
-      .btn-hero-primary, .btn-hero-ghost { text-align: center; }
-      .proof-inner { grid-template-columns: 1fr; }
-      .proof-left { padding: 40px 0; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
-      .proof-right { padding: 40px 0; }
-      .contact-layout { grid-template-columns: 1fr; gap: 40px; }
-      .form-row { grid-template-columns: 1fr; }
-      .hero-trust { flex-wrap: wrap; gap: 16px; }
-      .trust-sep { display: none; }
-      .logos-grid { grid-template-columns: repeat(2,1fr); }
-      .footer-main { grid-template-columns: 1fr; }
-      .pvmap-inner { flex-direction: column; }
-      .pvmap-dash { width: 100%; border-left: none; border-top: 1px solid rgba(255,255,255,0.06); }
-      .pvmap-foot { flex-direction: column; align-items: flex-start; gap: 8px; }
-      .pvmap-aum-wrap { text-align: left; }
-      .mandate-strip { flex-direction: column; align-items: flex-start; gap: 16px; padding: 20px 24px; }
-      .mandate-label::after { display: none; }
-      .mandate-items { flex-wrap: wrap; gap: 12px; }
-      .mandate-item { border-right: none; padding: 0; }
-    }
-    @media (max-width: 480px) {
-      section { padding: 48px 16px; }
-      nav, .top-bar { padding-left: 16px; padding-right: 16px; }
-      .footer-main, .footer-bottom { padding-left: 16px; padding-right: 16px; }
-      .sticky-cta { padding: 12px 16px; flex-direction: column; gap: 10px; text-align: center; }
-    }
-
-
-    /* ═══ CONSULTATION POPUP ═══ */
-    .co { position:fixed;inset:0;z-index:900;background:rgba(0,0,0,0.65);
-          backdrop-filter:blur(6px);display:flex;align-items:center;
-          justify-content:center;padding:12px;
-          opacity:0;pointer-events:none;transition:opacity .25s; }
-    .co.open { opacity:1;pointer-events:auto; }
-    .co-box { background:#fff;width:100%;max-width:660px;max-height:96vh;
-              overflow-y:auto;transform:translateY(18px);
-              transition:transform .25s;
-              box-shadow:0 32px 80px rgba(0,0,0,.4); }
-    .co.open .co-box { transform:translateY(0); }
-    .co-head { padding:32px 36px 0;display:flex;
-               justify-content:space-between;align-items:flex-start; }
-    .co-title { font-family:'Cormorant Garamond',serif;
-                font-size:30px;font-weight:300;color:var(--black);
-                line-height:1.1;margin-bottom:8px; }
-    .co-sub { font-size:13px;color:var(--gray-1);line-height:1.7;
-              max-width:490px; }
-    .co-x { background:none;border:none;cursor:pointer;color:var(--gray-1);
-             font-size:28px;line-height:1;padding:0 0 0 16px;flex-shrink:0;
-             transition:color .15s; }
-    .co-x:hover { color:var(--black); }
-    .co-strips { display:flex;margin:18px 36px 0;
-                 border:1px solid var(--border-l); }
-    .co-strip { flex:1;padding:10px 12px;border-right:1px solid var(--border-l); }
-    .co-strip:last-child { border-right:none; }
-    .co-strip-lbl { font-size:9px;font-weight:700;letter-spacing:.14em;
-                    text-transform:uppercase;color:var(--green-lt);
-                    margin-bottom:3px; }
-    .co-strip-val { font-size:12px;font-weight:600;color:var(--black);
-                    line-height:1.4; }
-    .co-body { padding:18px 36px 28px; }
-    .co-row { display:grid;grid-template-columns:1fr 1fr;gap:14px;
-              margin-bottom:14px; }
-    .co-row-1 { margin-bottom:14px; }
-    .co-fw { display:flex;flex-direction:column; }
-    .co-lbl { font-size:9px;font-weight:700;letter-spacing:.14em;
-              text-transform:uppercase;color:rgba(0,0,0,.42);
-              margin-bottom:5px; }
-    .co-req { color:var(--green-lt); }
-    .co-inp { padding:11px 0;border:none;
-              border-bottom:1.5px solid rgba(0,0,0,.12);
-              background:transparent;font-family:'DM Sans',sans-serif;
-              font-size:14px;color:var(--black);outline:none;
-              transition:border-color .2s;width:100%; }
-    .co-inp:focus { border-bottom-color:var(--black); }
-    .co-inp::placeholder { color:var(--gray-1); }
-    .co-inp.err { border-bottom-color:#c0392b; }
-    .co-inp.ok  { border-bottom-color:var(--green-lt); }
-    .co-errmsg { font-size:11px;color:#c0392b;margin-top:3px;
-                 min-height:16px;display:block; }
-    .co-foot { display:flex;align-items:center;justify-content:space-between;
-               padding:16px 36px 24px;border-top:1px solid var(--border-l);
-               gap:12px; }
-    .co-note { font-size:11px;color:var(--gray-1);font-style:italic;
-               line-height:1.5; }
-    .co-btn { padding:13px 30px;background:var(--black);color:#fff;
-              border:none;font-family:'DM Sans',sans-serif;
-              font-size:12px;font-weight:700;letter-spacing:.10em;
-              text-transform:uppercase;cursor:pointer;
-              transition:background .2s;flex-shrink:0;border-radius:3px; }
-    .co-btn:hover { background:var(--green-lt); }
-    .co-btn:disabled { opacity:.55;pointer-events:none; }
-    .co-ok { padding:36px;text-align:center;display:none; }
-    .co-ok.show { display:block; }
-    .co-ok-icon { width:52px;height:52px;border-radius:50%;
-                  background:rgba(45,92,66,.1);
-                  display:flex;align-items:center;justify-content:center;
-                  margin:0 auto 16px; }
-    .co-ok-title { font-family:'Cormorant Garamond',serif;
-                   font-size:28px;font-weight:300;color:var(--black);
-                   margin-bottom:10px; }
-    .co-ok-body { font-size:14px;color:var(--gray-1);line-height:1.75; }
-    @media(max-width:620px){
-      .co-row{grid-template-columns:1fr;}
-      .co-head,.co-body,.co-foot{padding-left:18px;padding-right:18px;}
-      .co-strips{margin:14px 18px 0;flex-wrap:wrap;}
-      .co-strip{border-right:none;border-bottom:1px solid var(--border-l);}
-      .co-strip:last-child{border-bottom:none;}
-    }
-
-    /* ═══ HAMBURGER + DAILY MODAL ═══ */
-    .ham-btn { width:40px;height:40px;display:flex;flex-direction:column;
-               align-items:center;justify-content:center;gap:4px;
-               background:none;border:1px solid var(--border-l);
-               cursor:pointer;transition:border-color .2s;flex-shrink:0;
-               margin-left:10px; }
-    .ham-btn:hover { border-color:var(--black); }
-    .ham-btn span { display:block;width:16px;height:1.5px;
-                    background:var(--black); }
-    .dm-overlay { position:fixed;inset:0;z-index:850;
-                  background:rgba(0,0,0,.35);backdrop-filter:blur(3px);
-                  opacity:0;pointer-events:none;transition:opacity .2s; }
-    .dm-overlay.open { opacity:1;pointer-events:auto; }
-    .dm-box { position:fixed;top:110px;right:20px;width:300px;
-              background:#fff;border:1px solid var(--border-l);
-              box-shadow:0 16px 48px rgba(0,0,0,.18);
-              transform:translateY(-10px) scale(.97);
-              transition:transform .2s,opacity .2s;
-              opacity:0;pointer-events:none;z-index:851; }
-    .dm-overlay.open .dm-box { transform:translateY(0) scale(1);
-                                opacity:1;pointer-events:auto; }
-    .dm-head { padding:14px 16px 10px;border-bottom:1px solid var(--border-l);
-               display:flex;justify-content:space-between;align-items:center; }
-    .dm-head-lbl { font-size:9px;font-weight:700;letter-spacing:.18em;
-                   text-transform:uppercase;color:var(--gray-1); }
-    .dm-x { background:none;border:none;cursor:pointer;color:var(--gray-1);
-             font-size:22px;line-height:1;padding:0;transition:color .15s; }
-    .dm-x:hover { color:var(--black); }
-    .dm-block { padding:13px 16px;border-bottom:1px solid var(--border-l); }
-    .dm-block:last-child { border-bottom:none; }
-    .dm-lbl { font-size:9px;font-weight:700;letter-spacing:.14em;
-              text-transform:uppercase;color:var(--green-lt);margin-bottom:5px; }
-    .dm-date { font-family:'Cormorant Garamond',serif;
-               font-size:17px;font-weight:400;color:var(--black);
-               line-height:1.25;margin-bottom:3px; }
-    .dm-time { font-size:13px;color:var(--gray-1);font-family:'DM Sans',sans-serif; }
-    .dm-joke { font-size:12px;color:var(--black);line-height:1.65;
-               font-style:italic; }
-    .dm-verse { font-family:'Cormorant Garamond',serif;font-size:14px;
-                font-weight:400;color:var(--black);line-height:1.65;
-                font-style:italic;margin-bottom:5px; }
-    .dm-ref { font-size:10px;font-weight:700;letter-spacing:.08em;
-              text-transform:uppercase;color:var(--gray-1); }
-
-    /* ═══ CONTACT CLEAN ═══ */
-    .cc { background:var(--dark);padding:80px 48px;
-          display:grid;grid-template-columns:1fr 1fr;
-          gap:72px;align-items:center; }
-    .cc-grid { display:grid;grid-template-columns:1fr 1fr;
-               gap:1px;background:rgba(255,255,255,.06); }
-    .cc-card { padding:26px 22px;background:var(--dark); }
-    .cc-card-lbl { font-size:9px;font-weight:700;letter-spacing:.14em;
-                   text-transform:uppercase;color:var(--green-lt);
-                   margin-bottom:8px; }
-    .cc-card-title { font-family:'Cormorant Garamond',serif;
-                     font-size:20px;font-weight:300;color:#fff;
-                     margin-bottom:6px;line-height:1.2; }
-    .cc-card-body { font-size:12px;color:rgba(255,255,255,.35);
-                    line-height:1.65; }
-    .cc-btns { display:flex;gap:10px;flex-wrap:wrap;margin-top:28px; }
-    .cc-btn-primary { display:inline-block;padding:13px 26px;
-                      background:#fff;color:var(--black);border:none;
-                      font-family:'DM Sans',sans-serif;font-size:11px;
-                      font-weight:700;letter-spacing:.10em;
-                      text-transform:uppercase;cursor:pointer;
-                      transition:background .2s; }
-    .cc-btn-primary:hover { background:var(--off-white); }
-    .cc-btn-ghost { display:inline-block;padding:13px 26px;
-                    background:none;color:rgba(255,255,255,.6);
-                    border:1px solid rgba(255,255,255,.2);
-                    font-family:'DM Sans',sans-serif;font-size:11px;
-                    font-weight:700;letter-spacing:.10em;
-                    text-transform:uppercase;cursor:pointer;
-                    transition:all .2s; }
-    .cc-btn-ghost:hover { background:rgba(255,255,255,.06);
-                          color:rgba(255,255,255,.9); }
-    @media(max-width:1100px){
-      .cc{grid-template-columns:1fr;gap:40px;padding:60px 24px;}
-    }
-    @media(max-width:600px){
-      .cc{padding:48px 16px;}
-      .cc-grid{grid-template-columns:1fr;}
-    }
-
-
-/* ── PAGE HERO (shared inner hero) ── */
-.page-hero {
-  background: var(--black);
-  padding: 72px 48px 64px;
-  position: relative; overflow: hidden;
-  border-bottom: 1px solid var(--border-d);
-}
-.page-hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 75% 40%, rgba(45,92,66,.22) 0%, transparent 65%);
-  pointer-events: none;
-}
-.page-hero-inner { position: relative; z-index: 2; max-width: 760px; }
-.page-bc {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 11px; font-weight: 500; letter-spacing: .06em;
-  text-transform: uppercase; color: rgba(255,255,255,.25); margin-bottom: 24px;
-}
-.page-bc a { color: rgba(255,255,255,.25); text-decoration: none; }
-.page-bc a:hover { color: rgba(255,255,255,.6); }
-.page-eye {
-  font-size: 10px; font-weight: 700; letter-spacing: .18em;
-  text-transform: uppercase; color: var(--green-lt);
-  display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
-}
-.page-eye::before { content: ''; width: 22px; height: 1px; background: var(--green-lt); }
-.page-h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(38px, 4.5vw, 60px); font-weight: 300;
-  line-height: 1.06; color: var(--white); margin-bottom: 18px;
-}
-.page-h1 em { font-style: italic; }
-.page-sub {
-  font-size: 15px; line-height: 1.85;
-  color: rgba(255,255,255,.42); max-width: 560px;
-}
-
-/* ── INDUSTRIES INDEX ── */
-.ind-index-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2px; background: var(--border-l);
-}
-.ind-index-card {
-  background: var(--white);
-  padding: 28px 24px 22px;
-  display: flex; flex-direction: column;
-  text-decoration: none;
-  transition: background .18s;
-  border-bottom: 2px solid transparent;
-}
-.ind-index-card:hover {
-  background: var(--off-white);
-  border-bottom-color: var(--green-lt);
-}
-.ind-index-card.featured {
-  background: var(--black);
-  border-bottom-color: var(--green-lt);
-}
-.ind-index-card.featured:hover { background: #1a1a1a; }
-.iic-tag {
-  font-size: 9px; font-weight: 700; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--green-lt); margin-bottom: 8px;
-}
-.ind-index-card.featured .iic-tag { color: var(--green-lt); }
-.iic-name {
-  font-size: 14px; font-weight: 700; color: var(--black); margin-bottom: 6px; line-height: 1.3;
-}
-.ind-index-card.featured .iic-name { color: var(--white); }
-.iic-desc { font-size: 11px; color: var(--gray-1); line-height: 1.65; flex: 1; }
-.ind-index-card.featured .iic-desc { color: rgba(255,255,255,.38); }
-.iic-arrow {
-  margin-top: 14px; font-size: 11px; font-weight: 700;
-  color: var(--green-lt); display: flex; align-items: center; gap: 5px;
-}
-.iic-coming {
-  font-size: 9px; font-weight: 700; letter-spacing: .10em;
-  text-transform: uppercase; color: var(--gray-3);
-  margin-top: 14px;
-}
-
-/* ── ABOUT PAGE ── */
-.about-intro-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
-  background: var(--border-l);
-}
-.about-intro-left  { background: var(--white);  padding: 64px 56px; }
-.about-intro-right { background: var(--black);  padding: 64px 56px; }
-.about-tagline {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(22px, 2.5vw, 32px); font-weight: 300;
-  line-height: 1.35; color: var(--black); margin-bottom: 24px;
-}
-.about-tagline em { font-style: italic; color: var(--green-lt); }
-.about-body-text { font-size: 14px; color: var(--gray-1); line-height: 1.85; margin-bottom: 16px; }
-.about-body-text:last-child { margin-bottom: 0; }
-.about-proof-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
-  background: rgba(255,255,255,.06); margin-bottom: 32px;
-}
-.about-proof-cell { padding: 22px; background: var(--black); }
-.apc-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 40px; font-weight: 300; color: var(--green-lt);
-  line-height: 1; margin-bottom: 5px;
-}
-.apc-lbl {
-  font-size: 9px; font-weight: 600; letter-spacing: .10em;
-  text-transform: uppercase; color: rgba(255,255,255,.28);
-}
-.credential-list { display: flex; flex-direction: column; gap: 0; }
-.cred-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 14px 0; border-bottom: 1px solid var(--border-d);
-  font-size: 12px; color: rgba(255,255,255,.5); line-height: 1.6;
-}
-.cred-item:last-child { border-bottom: none; }
-.cred-icon { color: var(--green-lt); flex-shrink: 0; font-size: 14px; margin-top: 1px; }
-.about-values-grid {
-  display: grid; grid-template-columns: repeat(3,1fr);
-  gap: 2px; background: var(--border-l);
-}
-.val-card { background: var(--off-white); padding: 32px; }
-.val-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 44px; font-weight: 300; color: rgba(45,92,66,.15);
-  line-height: 1; margin-bottom: 10px;
-}
-.val-title { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 8px; }
-.val-body  { font-size: 12px; color: var(--gray-1); line-height: 1.75; }
-.team-strip {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 2px; background: var(--border-l);
-}
-.team-cell { background: var(--white); padding: 36px 40px; }
-.team-cell.dark { background: var(--black); }
-.team-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 26px; font-weight: 300; color: var(--black); margin-bottom: 4px;
-}
-.team-cell.dark .team-name { color: var(--white); }
-.team-role {
-  font-size: 11px; font-weight: 700; letter-spacing: .10em;
-  text-transform: uppercase; color: var(--green-lt); margin-bottom: 14px;
-}
-.team-bio { font-size: 13px; color: var(--gray-1); line-height: 1.8; }
-.team-cell.dark .team-bio { color: rgba(255,255,255,.4); }
-.team-linkedin {
-  display: inline-flex; align-items: center; gap: 7px;
-  margin-top: 16px; font-size: 11px; font-weight: 700;
-  color: var(--green-lt); text-decoration: none; letter-spacing: .06em;
-  text-transform: uppercase;
-}
-
-/* ── CONTACT PAGE ── */
-.contact-wrap {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 0; background: var(--border-l); min-height: 600px;
-}
-.contact-left  { background: var(--white);  padding: 64px 56px; }
-.contact-right { background: var(--black);  padding: 64px 56px; }
-.contact-form-group {
-  display: flex; flex-direction: column; gap: 5px; margin-bottom: 18px;
-}
-.contact-form-row {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 0;
-}
-.cf-label {
-  font-size: 10px; font-weight: 700; letter-spacing: .10em;
-  text-transform: uppercase; color: var(--black);
-}
-.cf-req { color: var(--green-lt); }
-.cf-input, .cf-select, .cf-textarea {
-  padding: 12px 0;
-  border: none; border-bottom: 1.5px solid rgba(0,0,0,.12);
-  background: transparent; font-family: 'DM Sans', sans-serif;
-  font-size: 14px; color: var(--black); outline: none;
-  transition: border-color .2s; width: 100%;
-  -webkit-appearance: none;
-}
-.cf-input:focus, .cf-select:focus, .cf-textarea:focus { border-bottom-color: var(--black); }
-.cf-input.is-err, .cf-select.is-err { border-bottom-color: #c0392b; }
-.cf-input::placeholder, .cf-textarea::placeholder { color: var(--gray-1); }
-.cf-textarea { resize: vertical; min-height: 80px; }
-.cf-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888580'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0 center; padding-right: 20px; cursor: pointer; }
-.cf-err { font-size: 11px; color: #c0392b; display: none; margin-top: 3px; }
-.cf-err.show { display: block; }
-.cf-submit {
-  width: 100%; padding: 15px; background: var(--black); color: var(--white);
-  font-size: 12px; font-weight: 700; letter-spacing: .10em; text-transform: uppercase;
-  border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
-  margin-top: 8px; transition: background .2s;
-}
-.cf-submit:hover { background: var(--green-lt); }
-.cf-submit:disabled { opacity: .5; cursor: not-allowed; }
-.cf-legal { font-size: 10px; color: var(--gray-1); margin-top: 12px; line-height: 1.65; }
-.cf-legal a { color: var(--gray-1); }
-.cf-success {
-  display: none; text-align: center; padding: 48px 0;
-}
-.cf-success.show { display: block; }
-.cf-success-icon {
-  width: 52px; height: 52px; background: var(--green-lt); border-radius: 50%;
-  display: flex; align-items: center; justify-content: center; margin: 0 auto 18px;
-}
-.cf-success-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 30px; font-weight: 300; color: var(--black); margin-bottom: 10px;
-}
-.cf-success-body { font-size: 14px; color: var(--gray-1); line-height: 1.75; }
-.contact-right-stat {
-  padding: 18px 0; border-bottom: 1px solid var(--border-d);
-}
-.contact-right-stat:last-of-type { border-bottom: none; }
-.crs-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 44px; font-weight: 300; color: var(--green-lt);
-  line-height: 1; margin-bottom: 5px;
-}
-.crs-lbl { font-size: 11px; color: rgba(255,255,255,.35); line-height: 1.55; }
-.contact-right-quote {
-  margin-top: 28px; border-left: 2px solid var(--green-lt);
-  padding: 14px 16px;
-}
-.contact-right-quote p {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 17px; font-weight: 300; font-style: italic;
-  color: rgba(255,255,255,.65); line-height: 1.65; margin-bottom: 8px;
-}
-.contact-right-quote cite {
-  font-size: 10px; font-weight: 600; letter-spacing: .09em;
-  text-transform: uppercase; color: rgba(255,255,255,.28); font-style: normal;
-}
-
-/* ── RESPONSIVE ── */
-@media(max-width: 1024px) {
-  .ind-index-grid { grid-template-columns: repeat(3, 1fr); }
-  .about-intro-grid, .about-values-grid,
-  .team-strip, .contact-wrap { grid-template-columns: 1fr; }
-  .about-intro-left, .about-intro-right,
-  .contact-left, .contact-right { padding: 48px 32px; }
-  .contact-form-row { grid-template-columns: 1fr; gap: 0; }
-  .about-proof-grid { grid-template-columns: 1fr 1fr; }
-}
-@media(max-width: 768px) {
-  .page-hero { padding: 56px 24px 48px; }
-  .ind-index-grid { grid-template-columns: 1fr 1fr; }
-  .about-values-grid { grid-template-columns: 1fr; }
-  .sec { padding-left: 24px; padding-right: 24px; }
-}
-@media(max-width: 480px) {
-  .ind-index-grid { grid-template-columns: 1fr; }
-}
-</style>
-@endpush
 
 @push('scripts')
   <script src="/assets/js/about.js"></script>

@@ -9,9 +9,7 @@
     </a>
     <div class="tb-dropdown">
       <div class="tb-dropdown-header">Opportunities</div>
-      <a href="{{ route('opportunities.property_owners_managers') }}">Portfolio Owner &amp; Asset Managers</a>
       <a href="{{ route('opportunities.mep_installers') }}">MEP Servicers</a>
-      <a href="{{ route('opportunities.esg') }}">ESG</a>
       <a href="{{ route('opportunities.careers') }}">Careers</a>
       <a href="{{ route('opportunities.agents') }}">Agents</a>
     </div>
