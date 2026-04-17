@@ -83,11 +83,11 @@
         <a href="{{ route('resources.articles') }}">Articles</a>
         <a href="{{ route('industries.case_study', ['slug' => 'hospitality']) }}">Case Studies</a>
         <a href="{{ route('resources.white-papers') }}">White Papers</a>
-        <a href="{{ route('resources.my_city_rebates') }}">My City Water Rebates</a>
+        <a href="{{ route('resources.tools.selection_tool') }}">My City Water Rebates</a>
         <a href="{{ route('resources.financing_form') }}">Tax Strategy &amp; Financing</a>
         <a href="{{ route('resources.webinar') }}">Webinars On Demand</a>
         <a href="{{ route('resources.events') }}">Events (Past &amp; Upcoming)</a>
-        <a href="{{ route('resources.tools.selection_tool') }}">Water Target Tools (&amp; Cost Reduction)</a>
+        <a href="{{ route('resources.my_city_rebates') }}">Water Target Tools (&amp; Cost Reduction)</a>
       </div>
     </li>
   </ul>

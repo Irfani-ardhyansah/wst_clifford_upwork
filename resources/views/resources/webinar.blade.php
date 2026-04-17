@@ -2,11 +2,9 @@
 
 @section('title', 'Water Solutions Technology')
 
-
 @push('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/webinar.css') }}">
 @endpush
-
 
 @section('content')
 
