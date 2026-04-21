@@ -13,57 +13,6 @@ class AssetsSeeder extends Seeder
     {
         $now = Carbon::now();
 
-        // $arrHospitalityId = DB::table('industries')
-        //     ->where('slug', 'hospitality')
-        //     ->pluck('id');
-
-        // foreach ($arrHospitalityId as $id) {
-        //     DB::table('assets')->insert([
-        //         [
-        //             'industry_id' => $id,
-        //             'title'       => 'Westin Hotel & Resorts',
-        //             'slug'        => Str::slug('Westin Hotel & Resorts'),
-        //             'category'    => 'case-study',
-        //             'tags'        => 'Full-Service',
-        //             'description' => 'Saved 184,000 gallons /month.',
-        //             'image_path'  => 'industries/hospitality/westin_fort_lauderdale.jpeg',
-        //             'sort_order'  => 1,
-        //             'is_featured' => 1,
-        //             'is_active'   => 1,
-        //             'created_at'  => $now,
-        //             'updated_at'  => $now,
-        //         ],
-        //         [
-        //             'industry_id' => $id,
-        //             'title'       => 'Even Hotels',
-        //             'slug'        => Str::slug('Even Hotels'),
-        //             'category'    => 'case-study',
-        //             'tags'        => 'Boutique',
-        //             'description' => 'Reduced consumption by 30%.',
-        //             'image_path'       => 'industries/hospitality/even-hotels-miami-5997860446-4x3.png',
-        //             'sort_order'  => 2,
-        //             'is_featured' => 1,
-        //             'is_active'   => 1,
-        //             'created_at'  => $now,
-        //             'updated_at'  => $now,
-        //         ],
-        //         [
-        //             'industry_id' => $id,
-        //             'title'       => 'Kimpton',
-        //             'slug'        => Str::slug('Kimpton'),
-        //             'category'    => 'case-study',
-        //             'tags'        => 'Independent',
-        //             'description' => 'Payback period in 11 months.',
-        //             'image_path'       => 'industries/hospitality/kimpton-hotel-palomar-phoenix-exterior-ea53d8e1.png',
-        //             'sort_order'  => 3,
-        //             'is_featured' => 1,
-        //             'is_active'   => 1,
-        //             'created_at'  => $now,
-        //             'updated_at'  => $now,
-        //         ],
-        //     ]);
-        // }
-
         DB::table('assets')->insert([
             [
                 'title'       => 'Energy Efficiency for Hotels',

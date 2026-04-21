@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('industry_id')->nullable()->constrained('industries')->nullOnDelete();
             
             $table->string('title');
+            $table->string('sub_title'); 
+            $table->string('location')->nullable();
             $table->string('slug')->unique();
             
             // Kategori dibuat ENUM atau String biasa agar bisa difilter
@@ -29,7 +31,10 @@ return new class extends Migration
             $table->integer('sort_order')->default(0);
             $table->boolean('is_active')->default(true);
             $table->boolean('is_featured')->default(false);
+            $table->string('mini_description')->nullable();
             
+            $table->date('year_start')->nullable();
+            $table->date('year_end')->nullable();
             $table->timestamps();
         });
     }

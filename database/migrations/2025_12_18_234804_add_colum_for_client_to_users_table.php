@@ -15,6 +15,8 @@ return new class extends Migration
             $table->string('role')->default('user');
             $table->string('phone')->nullable()->unique()->after('email');
             $table->string('company')->nullable()->after('phone');
+            $table->string('last_name')->nullable()->after('name');
+            $table->string('job_title')->nullable()->after('company');
         });
     }
 

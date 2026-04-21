@@ -30,4 +30,9 @@ class GresbConsultation extends Model {
     {
         return Carbon::parse($this->time_preference)->isPast();
     }
+
+    public function hasMeetingLink(): bool
+    {
+        return !empty($this->meeting_link);
+    }
 }
