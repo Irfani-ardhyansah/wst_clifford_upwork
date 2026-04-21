@@ -80,19 +80,14 @@
     .tb-dropdown a:hover { color: var(--black); background: var(--off-white); padding-left: 22px; }
 
     nav {
-        position: sticky; top: 0; z-index: 200;
-        background: var(--white);
-        border-bottom: 1px solid var(--border-l);
-        display: flex; align-items: center;
-        padding: 0 48px; height: 68px;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      position: sticky; top: 0; z-index: 200;
+      background: var(--white);
+      border-bottom: 1px solid var(--border-l);
+      display: flex; align-items: center;
+      padding: 0 48px; height: 68px; gap: 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      position: relative;
     }
-          /* logo kiri — flex: 1 */
-      nav > a:first-child {
-          flex: 1;
-          display: flex;
-          align-items: center;
-      }
     .nav-logo-wrap {
       display: flex; align-items: center; gap: 10px;
       text-decoration: none; margin-right: 0; flex-shrink: 0;
@@ -124,30 +119,9 @@
     }
 
     .nav-links {
-        display: flex;
-        list-style: none;
-        gap: 0;
-        /* hapus position, left, transform */
+      display: flex; list-style: none; gap: 0;
+      position: absolute; left: 50%; transform: translateX(-50%);
     }
-    .nav-portfolio {
-      align-items: center;
-      justify-content: center;
-      min-width: 500px;
-      display: flex;
-    }
-    .nav-portfolio-link {
-        font-size: 13px;
-        font-weight: 500;
-        color: var(--black);
-        text-decoration: none;
-        padding: 0 16px;
-        height: 68px;
-        display: flex;
-        align-items: center;
-        white-space: nowrap;
-        transition: color 0.2s;
-    }
-    .nav-portfolio-link:hover { color: var(--green-lt); }
     /* Ensure nav is position:relative for absolute child */
     .nav-links > li { position: relative; }
     .nav-links > li > a {
@@ -183,14 +157,7 @@
     .dropdown a:last-child { border-bottom: none; }
     .dropdown a:hover { color: var(--black); background: var(--off-white); padding-left: 24px; }
 
-    .nav-right {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 0;
-        margin-left: 0;
-    }
-
+    .nav-right { display: flex; gap: 0; align-items: center; margin-left: auto; }
     .nav-icon-btn {
       width: 38px; height: 38px; display: flex; align-items: center;
       justify-content: center; border: 1px solid var(--border-l);
@@ -1507,6 +1474,40 @@
   .modal-foot { flex-direction: column; align-items: stretch; }
   .submit-btn { width: 100%; text-align: center; }
 }
+
+/* Start Dropdown  */
+.dropdown-menu,
+.dropdown-submenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-item {
+  position: relative;
+}
+
+.dropdown-item > a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 14px;
+  white-space: nowrap;
+}
+
+.dropdown-submenu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  min-width: 220px;
+  background: white;
+}
+
+.dropdown-item:hover > .dropdown-submenu {
+  display: block;
+}
+/* End Dropdown  */
 </style>
 <!-- end style  -->
 

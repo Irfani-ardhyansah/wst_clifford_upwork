@@ -50,7 +50,10 @@ class Industry extends Model
     /** Semua keturunan (rekursif) */
     public function allChildren(): HasMany
     {
-        return $this->children()->with('allChildren');
+        return $this->hasMany(Industry::class, 'parent_id')
+                    ->where('is_active', self::STATUS_ACTIVE)
+                    ->orderBy('sort_order');
+        // ← HAPUS ->with('allChildren') dari sini
     }
 
     // ── Relasi ke model lain ──────────────────────────────────────

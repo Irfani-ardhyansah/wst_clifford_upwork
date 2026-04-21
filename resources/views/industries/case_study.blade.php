@@ -8,21 +8,45 @@
 @endpush
 @section('content')
 
-@if (request()->is('industries/golf-courses'))
+@php 
+  $title = NULL;
+@endphp
+
+@if (request()->is('industries/commercial-laundries'))
+    @php $title = 'Commercial Laundry Operations'; @endphp
+    @include('components.industry.commercial-laundries')
+@elseif (request()->is('industries/clubs-marinas'))
+    @php $title = 'Clubs &amp; Marinas'; @endphp
+    @include('components.industry.clubs-marinas')
+@elseif (request()->is('industries/condominiums'))
+    @php $title = 'Condominiums'; @endphp
+    @include('components.industry.condominiums')
+@elseif (request()->is('industries/golf-courses'))
+    @php $title = 'Golf Courses &amp; Club Operators'; @endphp
     @include('components.industry.golf')
+@elseif (request()->is('industries/supermarkets'))
+    @php $title = 'Supermarkets & Grocery Retailers'; @endphp
+    @include('components.industry.supermarkets')
 @elseif (request()->is('industries/hospitality'))
+    @php $title = 'Hospitality &amp; Hotel Portfolios'; @endphp
     @include('components.industry.hospitality')
 @elseif (request()->is('industries/manufacturing-industrial'))
+    @php $title = 'Manufacturing &amp; Industrial'; @endphp
     @include('components.industry.manufacturing')
 @elseif (request()->is('industries/health-care-facilities'))
+    @php $title = 'Health Care Facilities'; @endphp
     @include('components.industry.healthcare')
 @elseif (request()->is('industries/office-buildings'))
+    @php $title = 'Office Buildings'; @endphp
     @include('components.industry.office')
 @elseif (request()->is('industries/restaurants'))
+    @php $title = 'Restaurants'; @endphp
     @include('components.industry.restaurant')
 @elseif (request()->is('industries/schools-universities-stadiums'))
+    @php $title = 'Schools, Universities & Stadiums'; @endphp
     @include('components.industry.school')
 @elseif (request()->is('industries/service-stations-car-washes'))
+    @php $title = 'Service Stations & Car Washes'; @endphp
     @include('components.industry.service-stations')
 @endif
 
@@ -30,7 +54,7 @@
 <section class="sec sec-o">
   <div style="margin-bottom:32px;">
     <p class="eye">Verified Results</p>
-    <h2 class="sh">Case studies from<br><em>golf course and club engagements.</em></h2>
+    <h2 class="sh">Case studies from<br><em>{{$title}}</em></h2>
     <p class="sub">Register free to access the full reports. Every outcome is verified &mdash; no projections.</p>
   </div>
   <div class="cs-strip">
@@ -48,19 +72,19 @@
           @endif
           <div class="csc-header">
             <div class="csc-tag">Case Study</div>
-            <div class="csc-client">{{$item->tags}}</div>
+            <div class="csc-client">{{$item->sub_title}}</div>
             <h3 class="csc-title">{{$item->title}}</h3>
-            <div class="csc-outcome">$38K annual billing saving &middot; 280K gal/month leak detected</div>
+            <div class="csc-outcome">{{$item->tags}}</div>
           </div>
           <p class="csc-excerpt">
               {{ $item->description }}
           </p>
           <div class="csc-footer">
-            <span class="csc-meta">18 holes + tennis &middot; Central Florida &middot; 2023</span>
+            <span class="csc-meta">{{ $item->mini_description }}</span>
             <button class="csc-btn open-modal-btn"
             data-id="{{ $item->id }}" data-title="{{ $item->title }}" data-image="{{ asset('storage/' . $item->image_path) }}">
               <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="8" height="5.5" rx=".75"/><path d="M4 5V3.5a2 2 0 014 0V5"/></svg>
-              Full Case Study
+              Read Case Study
             </button>
           </div>
         </div>
@@ -76,7 +100,7 @@
 <section class="sec sec-w">
   <div style="margin-bottom:28px;">
     <p class="eye">Related Services</p>
-    <h2 class="sh">WST services most relevant<br><em>to golf courses and club operators.</em></h2>
+    <h2 class="sh">WST services most relevant<br><em>to {{$title}}.</em></h2>
   </div>
   <div class="svc-links">
     <a href="{{ route('services.audit') }}" class="svc-link-card">
@@ -132,7 +156,7 @@
 <div class="cs">
   <div>
     <div class="cs-t">Ready to optimise your course's<br><em>irrigation water budget?</em></div>
-    <p class="cs-s">A WST golf course assessment maps your current irrigation schedule against ET requirements, identifies the savings opportunity, and scopes the programme — delivered within 5 business days from billing records.</p>
+    <p class="cs-s">A WST {{$title}} assessment maps your current irrigation schedule against ET requirements, identifies the savings opportunity, and scopes the programme — delivered within 5 business days from billing records.</p>
   </div>
   <a href="/contact" class="cs-btn">Schedule Assessment</a>
 </div>

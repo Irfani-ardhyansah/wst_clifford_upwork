@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('industry_id')->nullable()->constrained('industries')->nullOnDelete();
             
             $table->string('title');
-            $table->string('sub_title'); 
+            $table->string('sub_title')->nullable(); 
             $table->string('location')->nullable();
             $table->string('slug')->unique();
             

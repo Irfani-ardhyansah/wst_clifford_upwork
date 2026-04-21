@@ -1,3 +1,29 @@
+@php
+    use App\Models\Industry;
+    
+    static $industries = null;
+    
+    if ($industries === null) {
+        $all = Industry::active()
+            ->orderBy('sort_order')
+            ->get()
+            ->keyBy('id');
+
+        $all->each(fn($i) => $i->setRelation('allChildren', collect()));
+
+        $all->each(function ($industry) use ($all) {
+            if (
+                $industry->parent_id &&
+                $industry->parent_id !== $industry->id &&
+                $all->has($industry->parent_id)
+            ) {
+                $all->get($industry->parent_id)->allChildren->push($industry);
+            }
+        });
+
+        $industries = $all->filter(fn($i) => is_null($i->parent_id))->values();
+    }
+@endphp
 
 <!-- TOP BAR -->
 <div class="top-bar">
@@ -52,6 +78,11 @@
 
   <ul class="nav-links">
 
+    <!-- ABOUT — plain link, no dropdown -->
+    <li>
+      <a href="#">Portfolio Intelligence</a>
+    </li>
+
     <!-- SERVICES — dropdown -->
     <li>
       <a href="#">Services <svg viewBox="0 0 10 6" fill="currentColor"><path d="M0 0l5 6 5-6z"/></svg></a>
@@ -69,8 +100,19 @@
     </li>
 
     <!-- INDUSTRIES — plain link, no dropdown -->
-    <li>
-      <a href="{{ url('/industries') }}">Industries</a>
+    <li class="has-dropdown">
+      <a href="#">
+        Solutions
+        <svg viewBox="0 0 10 6" fill="currentColor">
+          <path d="M0 0l5 6 5-6z"/>
+        </svg>
+      </a>
+
+      <div class="dropdown">
+        <ul class="dropdown-menu">
+            @include('components.industry-menu', ['industries' => $industries])
+        </ul>
+      </div>
     </li>
 
     <!-- RESOURCES — dropdown -->
@@ -89,11 +131,6 @@
       </div>
     </li>
   </ul>
-
-  <div class="nav-portfolio">
-    <a href="#" class="nav-portfolio-link">Portfolio Intelligence</a>
-  </div>
-
 
   <div class="nav-right">
     <button id="nav-search-btn" class="nav-icon-btn" aria-label="Search" type="button">

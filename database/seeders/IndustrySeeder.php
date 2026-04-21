@@ -13,35 +13,9 @@ class IndustrySeeder extends Seeder
     {
         $now = Carbon::now();
 
-        // ── STRUKTUR HIERARKI ─────────────────────────────────────
-        // Parent → Children (sesuai gambar)
-        //
-        // Commercial Real Estate
-        //   ├── Commercial Real Estate Portfolio
-        //   ├── Office Buildings
-        //   ├── Supermarkets
-        //   ├── Restaurants
-        //   ├── Service Stations & Car Washes
-        //   └── Others We Serve
-        // Hospitality
-        //   ├── Hospitality (General)
-        //   ├── Golf Courses
-        //   ├── Clubs & Marinas
-        //   └── Water Parks
-        // Multifamily
-        //   ├── Condominiums
-        //   └── Senior Living Homes
-        // Health Care
-        //   └── Health Care Facilities
-        // Education
-        //   ├── Schools (Pre-K12)
-        //   └── Universities & Stadiums
-        // Industrial
-        //   ├── Manufacturing & Industrial
-        //   └── Commercial Laundries
-
         $structure = [
-            // ── PARENT 1 ──────────────────────────────────────────
+
+            // ── 1. COMMERCIAL REAL ESTATE ─────────────────────────
             [
                 'title'       => 'Commercial Real Estate',
                 'description' => 'Water efficiency solutions for commercial real estate including offices, retail, and mixed-use properties.',
@@ -54,9 +28,39 @@ class IndustrySeeder extends Seeder
                         'image_path'  => 'industries/office_building_water_efficiency_1.jpeg',
                         'sort_order'  => 1,
                         'assets'      => [
-                            ['Brookfield Properties', 'Portfolio-wide sub-metering rollout.', 'Portfolio'],
-                            ['CBRE Global', 'ESG water reporting integration.', 'Asset Management'],
-                            ['JLL Portfolio', 'Centralized leak detection system.', 'Commercial'],
+                            [
+                                'title'            => 'Portfolio Sub-Metering & ESG Water Reporting — 12 Assets',
+                                'sub_title'        => 'Brookfield Properties — Northeast US',
+                                'location'         => 'Northeast US',
+                                'category'         => 'Case Study',
+                                'tags'             => '$110K annual savings · 12 properties · GRESB WT1 coverage: portfolio-wide',
+                                'description'      => 'A leading commercial real estate owner engaged WST to deploy sub-metering across 12 assets for its first GRESB submission. Ara AI closed WT1 data coverage gaps across all buildings. Concurrent billing audit identified rate misclassifications at four properties. Combined annual savings: $110K.',
+                                'mini_description' => '12 assets · Portfolio REIT · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => true,
+                            ],
+                            [
+                                'title'            => 'GRESB WT1 Data Coverage & Billing Audit — Managed Portfolio',
+                                'sub_title'        => 'CBRE Global Investors — Southeast US',
+                                'location'         => 'Southeast US',
+                                'category'         => 'Case Study',
+                                'tags'             => '$88K annual savings · ESG-ready documentation · GRESB WT1 compliant',
+                                'description'      => 'CBRE Global Investors engaged WST to establish water data coverage across a managed commercial portfolio. Ara AI automated bill acquisition to close coverage gaps. Billing audit revealed sewer overcharges at three properties, recovering $88K annually.',
+                                'mini_description' => 'Managed portfolio · Asset management · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
+                            [
+                                'title'            => 'Centralized IoT Leak Detection Across Mixed-Use Portfolio',
+                                'sub_title'        => 'JLL Portfolio — Midwest US',
+                                'location'         => 'Midwest US',
+                                'category'         => 'Case Study',
+                                'tags'             => '23% water reduction · IoT monitoring deployed · 9 buildings covered',
+                                'description'      => 'JLL engaged WST to deploy centralized IoT leak detection across a 9-building mixed-use portfolio. Real-time monitoring identified three active leaks within the first month. Combined operational savings of 23% across the portfolio within the first year.',
+                                'mini_description' => '9 buildings · Mixed-use · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
                         ],
                     ],
                     [
@@ -65,21 +69,80 @@ class IndustrySeeder extends Seeder
                         'image_path'  => 'industries/office_building_water_efficiency_1.jpeg',
                         'sort_order'  => 2,
                         'assets'      => [
-                            ['Empire State Building', 'Restroom fixture retrofit project.', 'Skyscraper'],
-                            ['Salesforce Tower',      'Greywater reuse for landscaping.',   'Commercial'],
-                            ['The Shard',             'Cooling system demand balancing.',    'Mixed-Use'],
+                            [
+                                'title'            => 'Restroom Fixture Retrofit & Demand Balancing — Skyscraper',
+                                'sub_title'        => 'Empire State Building — New York, NY',
+                                'location'         => 'New York, NY',
+                                'category'         => 'Case Study',
+                                'tags'             => '$64K annual savings · 30% restroom consumption reduction · Full retrofit complete',
+                                'description'      => 'The Empire State Building engaged WST to retrofit all restroom fixtures across 102 floors. High-efficiency aerators and sensor-activated faucets were installed building-wide. Demand balancing on cooling systems yielded an additional 12% reduction in utility costs.',
+                                'mini_description' => '102 floors · Class A office · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => true,
+                            ],
+                            [
+                                'title'            => 'Greywater Reuse System for Landscaping & Cooling',
+                                'sub_title'        => 'Salesforce Tower — San Francisco, CA',
+                                'location'         => 'San Francisco, CA',
+                                'category'         => 'Case Study',
+                                'tags'             => '$52K annual savings · Greywater reuse active · LEED Gold maintained',
+                                'description'      => 'Salesforce Tower engaged WST to design and commission a greywater reuse system serving landscaping and cooling tower make-up water. The system processes 18,000 gallons per day, reducing potable water demand by 28%.',
+                                'mini_description' => '1,070 ft tower · Commercial · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
+                            [
+                                'title'            => 'Cooling System Demand Balancing — Mixed-Use Tower',
+                                'sub_title'        => 'The Shard — London, UK',
+                                'location'         => 'London, UK',
+                                'category'         => 'Case Study',
+                                'tags'             => '18% cooling water reduction · Demand balancing optimised · 3 use types covered',
+                                'description'      => 'The Shard engaged WST to optimize cooling system demand balancing across its mixed-use floors comprising office, residential, and hospitality zones. Chilled water loop optimization reduced cooling water consumption by 18%.',
+                                'mini_description' => '72 floors · Mixed-use · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
                         ],
                     ],
                     [
-                        
                         'title'       => 'Supermarkets',
                         'description' => 'Cooling systems, sanitation stations, and fixture optimization for grocery retail.',
                         'image_path'  => 'industries/supermarket_water_savings_1.jpeg',
                         'sort_order'  => 3,
                         'assets'      => [
-                            ['Whole Foods Market', 'Misting system efficiency.',         'Retail'],
-                            ['Costco Wholesale',   'Food court filtration upgrade.',     'Big Box'],
-                            ['Walmart Supercenter','Sanitation station metering.',        'Grocery'],
+                            [
+                                'title'            => 'Produce Misting System Efficiency & Sanitation Retrofit',
+                                'sub_title'        => 'Whole Foods Market — Austin, TX',
+                                'location'         => 'Austin, TX',
+                                'category'         => 'Case Study',
+                                'tags'             => '$41K annual savings · Misting system optimised · 22% water reduction',
+                                'description'      => 'Whole Foods Market engaged WST to audit produce misting systems and sanitation stations across its Austin flagship store. Misting frequency optimization and low-flow sanitation nozzle replacement yielded a combined 22% reduction in water consumption.',
+                                'mini_description' => 'Flagship store · Retail grocery · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => true,
+                            ],
+                            [
+                                'title'            => 'Food Court Filtration Upgrade & HVAC Water Audit',
+                                'sub_title'        => 'Costco Wholesale — Issaquah, WA',
+                                'location'         => 'Issaquah, WA',
+                                'category'         => 'Case Study',
+                                'tags'             => '$55K annual savings · Filtration upgraded · 5 locations covered',
+                                'description'      => 'Costco Wholesale engaged WST to upgrade food court water filtration systems and audit HVAC condensate recovery across five warehouse locations. Condensate recovery alone contributed 9,000 gallons per month in reclaimed water.',
+                                'mini_description' => '5 locations · Big box retail · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
+                            [
+                                'title'            => 'Sanitation Station Metering & Restroom Sensor Rollout',
+                                'sub_title'        => 'Walmart Supercenter — Bentonville, AR',
+                                'location'         => 'Bentonville, AR',
+                                'category'         => 'Case Study',
+                                'tags'             => '$78K annual savings · 200+ locations · Sensor rollout complete',
+                                'description'      => 'Walmart engaged WST to lead a national sanitation station sub-metering and restroom sensor rollout across 200+ Supercenter locations. Average restroom water reduction of 35% per location achieved within six months.',
+                                'mini_description' => '200+ locations · Grocery retail · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => false,
+                            ],
                         ],
                     ],
                     [
@@ -88,9 +151,39 @@ class IndustrySeeder extends Seeder
                         'image_path'  => 'industries/restaurant_water_savings_1.jpeg',
                         'sort_order'  => 4,
                         'assets'      => [
-                            ['Starbucks HQ', 'High-efficiency filtration rollout.',  'Chain'],
-                            ['Chipotle',     'Kitchen prep water optimization.',      'Fast Casual'],
-                            ['McDonalds',    'Restroom sensor implementation.',       'QSR'],
+                            [
+                                'title'            => 'High-Efficiency Filtration Rollout — 500 Locations',
+                                'sub_title'        => 'Starbucks — Seattle, WA',
+                                'location'         => 'Seattle, WA',
+                                'category'         => 'Case Study',
+                                'tags'             => '$120K annual savings · 500 locations · Filtration standardised',
+                                'description'      => 'Starbucks engaged WST to standardise high-efficiency water filtration across 500 company-operated locations. Filtration replacement cycles were optimised using Ara AI usage data, reducing filter waste by 40% while improving beverage water quality scores.',
+                                'mini_description' => '500 locations · QSR chain · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => true,
+                            ],
+                            [
+                                'title'            => 'Kitchen Prep Water Optimization & Dishwasher Audit',
+                                'sub_title'        => 'Chipotle Mexican Grill — Newport Beach, CA',
+                                'location'         => 'Newport Beach, CA',
+                                'category'         => 'Case Study',
+                                'tags'             => '$47K annual savings · 28% kitchen water reduction · 80 units audited',
+                                'description'      => 'Chipotle engaged WST to audit kitchen prep and dishwashing water consumption across 80 high-volume locations. Pre-rinse spray valve replacements and dishwasher cycle optimization reduced kitchen water use by 28% per unit.',
+                                'mini_description' => '80 units · Fast casual · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
+                            [
+                                'title'            => 'Restroom Sensor Implementation — National Franchise Program',
+                                'sub_title'        => "McDonald's — Chicago, IL",
+                                'location'         => 'Chicago, IL',
+                                'category'         => 'Case Study',
+                                'tags'             => '$95K annual savings · Sensor rollout: 1,200 units · 35% restroom reduction',
+                                'description'      => "McDonald's engaged WST to lead a restroom sensor implementation program across 1,200 franchise locations. Average restroom water reduction of 35% per location achieved within six months.",
+                                'mini_description' => '1,200 franchise units · QSR · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => false,
+                            ],
                         ],
                     ],
                     [
@@ -99,9 +192,39 @@ class IndustrySeeder extends Seeder
                         'image_path'  => 'industries/carwash_water_saving_1.jpeg',
                         'sort_order'  => 5,
                         'assets'      => [
-                            ['Mister Car Wash', 'Rinse water recycling loop.',          'Car Wash'],
-                            ['Zips Car Wash',   'High-pressure pump tuning.',           'Express'],
-                            ['Shell Station',   'Restroom & landscaping audit.',        'Service Station'],
+                            [
+                                'title'            => 'Closed-Loop Rinse Water Recycling System Installation',
+                                'sub_title'        => 'Mister Car Wash — Tucson, AZ',
+                                'location'         => 'Tucson, AZ',
+                                'category'         => 'Case Study',
+                                'tags'             => '$62K annual savings · 70% water reclaimed · Closed-loop active',
+                                'description'      => 'Mister Car Wash engaged WST to design and install a closed-loop rinse water recycling system. The system reclaims 70% of rinse water per wash cycle through a multi-stage filtration and recirculation process.',
+                                'mini_description' => 'Flagship facility · Express car wash · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => true,
+                            ],
+                            [
+                                'title'            => 'High-Pressure Pump Tuning & Energy-Water Audit',
+                                'sub_title'        => 'Zips Car Wash — Fayetteville, AR',
+                                'location'         => 'Fayetteville, AR',
+                                'category'         => 'Case Study',
+                                'tags'             => '$38K annual savings · 20% pump energy reduction · 15 locations audited',
+                                'description'      => 'Zips Car Wash engaged WST to audit and tune high-pressure pump systems across 15 express wash locations. Pump pressure calibration eliminated over-spray waste and reduced energy consumption by 20% per location.',
+                                'mini_description' => '15 locations · Express wash · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
+                            [
+                                'title'            => 'Restroom & Landscaping Water Audit — Forecourt Facilities',
+                                'sub_title'        => 'Shell Service Station — Houston, TX',
+                                'location'         => 'Houston, TX',
+                                'category'         => 'Case Study',
+                                'tags'             => '$22K annual savings · Landscaping optimised · Restroom sensors installed',
+                                'description'      => 'Shell engaged WST to conduct a full restroom and landscaping water audit across a high-traffic Houston forecourt. Smart irrigation scheduling reduced landscaping water use by 45%, and restroom sensor upgrades cut fixture consumption by 30%.',
+                                'mini_description' => 'High-traffic forecourt · Service station · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
                         ],
                     ],
                     [
@@ -110,15 +233,45 @@ class IndustrySeeder extends Seeder
                         'image_path'  => 'industries/others_we_serve_water_savings_1.jpeg',
                         'sort_order'  => 6,
                         'assets'      => [
-                            ['Data Center X',          'Adiabatic cooling optimization.',   'Tech'],
-                            ['International Airport',  'Terminal restroom overhaul.',       'Transportation'],
-                            ['Cruise Ship Z',          'Onboard water purification.',       'Maritime'],
+                            [
+                                'title'            => 'Adiabatic Cooling Optimization & Water-Use Efficiency Audit',
+                                'sub_title'        => 'Data Center X — Northern Virginia',
+                                'location'         => 'Northern Virginia',
+                                'category'         => 'Case Study',
+                                'tags'             => '$85K annual savings · WUE improved by 34% · Adiabatic system optimised',
+                                'description'      => 'A hyperscale data center engaged WST to optimize adiabatic cooling systems and audit water-use efficiency across three halls. Cooling tower blowdown recovery and adiabatic pad scheduling reduced water consumption by 34% while maintaining thermal SLA compliance.',
+                                'mini_description' => '3 halls · Hyperscale · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => true,
+                            ],
+                            [
+                                'title'            => 'Terminal Restroom Overhaul & Irrigation Audit — 4 Concourses',
+                                'sub_title'        => 'International Airport — Miami, FL',
+                                'location'         => 'Miami, FL',
+                                'category'         => 'Case Study',
+                                'tags'             => '$73K annual savings · 4 concourses covered · 40% restroom reduction',
+                                'description'      => 'Miami International Airport engaged WST to overhaul restroom fixtures and audit irrigation across four concourses. Sensor-activated faucets reduced restroom consumption by 40%. Smart irrigation scheduling cut landside water use by 28%.',
+                                'mini_description' => '4 concourses · Transportation · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
+                            [
+                                'title'            => 'Onboard Water Purification & Grey Water Reclamation System',
+                                'sub_title'        => 'Cruise Ship Z — Port of Miami',
+                                'location'         => 'Port of Miami',
+                                'category'         => 'Case Study',
+                                'tags'             => '55% onboard water reclaimed · Purification system installed · IMO compliant',
+                                'description'      => 'A major cruise operator engaged WST to design an onboard grey water reclamation and purification system for a 3,500-passenger vessel. The system reclaims 55% of onboard grey water for reuse in non-potable applications.',
+                                'mini_description' => '3,500 passengers · Maritime · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
                         ],
                     ],
                 ],
             ],
 
-            // ── PARENT 2 ──────────────────────────────────────────
+            // ── 2. HOSPITALITY ────────────────────────────────────
             [
                 'title'       => 'Hospitality',
                 'description' => 'Smart water management solutions across hotels, resorts, golf courses, and recreational venues.',
@@ -131,9 +284,39 @@ class IndustrySeeder extends Seeder
                         'image_path'  => 'industries/hotel_industry_water_savings_2.jpeg',
                         'sort_order'  => 1,
                         'assets'      => [
-                            ['Westin Hotel & Resorts', 'Saved 184,000 gallons/month.', 'Full-Service'],
-                            ['Even Hotels',            'Reduced consumption by 30%.', 'Boutique'],
-                            ['Kimpton',                'Payback period in 11 months.', 'Independent'],
+                            [
+                                'title'            => 'Guestroom Water Audit & Leak Detection — Full-Service Resort',
+                                'sub_title'        => 'Westin Hotels & Resorts — Fort Lauderdale, FL',
+                                'location'         => 'Fort Lauderdale, FL',
+                                'category'         => 'Case Study',
+                                'tags'             => '$92K annual savings · 184,000 gallons saved/month · Payback: 8 months',
+                                'description'      => 'Westin Fort Lauderdale engaged WST to audit guestroom plumbing and deploy IoT leak detection across 500 rooms. Silent toilet leaks identified in 42 rooms were repaired within 72 hours. Combined monthly savings of 184,000 gallons achieved within the first quarter.',
+                                'mini_description' => '500 rooms · Full-service resort · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => true,
+                            ],
+                            [
+                                'title'            => 'Low-Flow Fixture Retrofit & Linen Reuse Program Integration',
+                                'sub_title'        => 'Even Hotels — Nashville, TN',
+                                'location'         => 'Nashville, TN',
+                                'category'         => 'Case Study',
+                                'tags'             => '$44K annual savings · 30% consumption reduction · Full retrofit complete',
+                                'description'      => 'Even Hotels Nashville engaged WST to retrofit all guestroom and public area fixtures to low-flow standards. Integration with the existing linen reuse program reduced laundry water use by an additional 18%.',
+                                'mini_description' => '210 rooms · Boutique hotel · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
+                            [
+                                'title'            => 'Cooling Tower Optimisation & Sewer Exemption Filing',
+                                'sub_title'        => 'Kimpton Hotels — Chicago, IL',
+                                'location'         => 'Chicago, IL',
+                                'category'         => 'Case Study',
+                                'tags'             => '$61K annual savings · Payback: 11 months · Sewer exemption approved',
+                                'description'      => 'Kimpton Chicago engaged WST to optimize cooling tower operations and file sewer exemption applications for two rooftop towers. Blowdown cycle adjustment reduced make-up water by 22%. Sewer exemption approval recovered $28,000 in annual overcharges.',
+                                'mini_description' => '305 rooms · Independent hotel · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => false,
+                            ],
                         ],
                     ],
                     [
@@ -142,9 +325,39 @@ class IndustrySeeder extends Seeder
                         'image_path'  => 'industries/golf_course_water_savings_1.jpeg',
                         'sort_order'  => 2,
                         'assets'      => [
-                            ['The Concours Club', 'Smart irrigation zoning implementation.', 'Private Club'],
-                            ['Ocean One Course',  'Reclaimed water filtration system.',      'Resort'],
-                            ['Pebble Beach Links','Pump station energy optimization.',       'Championship'],
+                            [
+                                'title'            => 'Smart Irrigation Zoning & ET-Based Scheduling Implementation',
+                                'sub_title'        => 'The Concours Club — Miami, FL',
+                                'location'         => 'Miami, FL',
+                                'category'         => 'Case Study',
+                                'tags'             => '$78K annual savings · 36% irrigation reduction · ET scheduling live',
+                                'description'      => 'The Concours Club engaged WST to implement smart irrigation zoning and evapotranspiration-based scheduling across its 18-hole championship course. Zone-by-zone soil moisture sensors eliminated overwatering in 14 zones, reducing total irrigation draw by 36%.',
+                                'mini_description' => '18-hole course · Private club · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => true,
+                            ],
+                            [
+                                'title'            => 'Reclaimed Water Filtration & Irrigation Distribution Upgrade',
+                                'sub_title'        => 'Ocean One Golf Course — Palm Beach, FL',
+                                'location'         => 'Palm Beach, FL',
+                                'category'         => 'Case Study',
+                                'tags'             => '$55K annual savings · 100% reclaimed water irrigation · Filtration commissioned',
+                                'description'      => 'Ocean One Golf Course engaged WST to design a reclaimed water filtration and distribution system enabling full irrigation coverage from reclaimed sources, eliminating all potable water use for irrigation.',
+                                'mini_description' => 'Resort course · 27 holes · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
+                            [
+                                'title'            => 'Pump Station Energy & Water Optimisation — Championship Links',
+                                'sub_title'        => 'Pebble Beach Golf Links — Pebble Beach, CA',
+                                'location'         => 'Pebble Beach, CA',
+                                'category'         => 'Case Study',
+                                'tags'             => '$91K annual savings · 28% pump energy reduction · 4 stations optimised',
+                                'description'      => 'Pebble Beach Golf Links engaged WST to audit and optimise four pump stations serving irrigation across the championship links. Variable frequency drive retrofits reduced pump energy by 28% while maintaining all agronomic performance benchmarks.',
+                                'mini_description' => 'Championship links · 18 holes · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => false,
+                            ],
                         ],
                     ],
                     [
@@ -153,9 +366,39 @@ class IndustrySeeder extends Seeder
                         'image_path'  => 'industries/yacht_club_marina_water_savings_2.jpeg',
                         'sort_order'  => 3,
                         'assets'      => [
-                            ['Miami Yacht Club', 'Dockside pedestal monitoring.',      'Marina'],
-                            ['Soho House',       'Pool filtration efficiency.',         'Private Club'],
-                            ['Monaco Port',      'Desalination unit integration.',      'International'],
+                            [
+                                'title'            => 'Dockside Pedestal Sub-Metering & Leak Detection System',
+                                'sub_title'        => 'Miami Yacht Club — Miami, FL',
+                                'location'         => 'Miami, FL',
+                                'category'         => 'Case Study',
+                                'tags'             => '$34K annual savings · 48 pedestals metered · Leak detection active',
+                                'description'      => 'Miami Yacht Club engaged WST to sub-meter all 48 dockside water pedestals and deploy real-time leak detection. Live flow alerts identified two major hose connection leaks within the first week. Individual slip billing accuracy improved by 94%.',
+                                'mini_description' => '48 slips · Private marina · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => true,
+                            ],
+                            [
+                                'title'            => 'Pool & Spa Filtration Efficiency Upgrade',
+                                'sub_title'        => 'Soho House — Miami Beach, FL',
+                                'location'         => 'Miami Beach, FL',
+                                'category'         => 'Case Study',
+                                'tags'             => '$28K annual savings · 40% pool water reduction · Backwash optimised',
+                                'description'      => 'Soho House Miami Beach engaged WST to upgrade pool and spa filtration systems and optimise automated backwash cycles. Variable-rate filtration reduced backwash water consumption by 40% while maintaining water quality across three pools and two spas.',
+                                'mini_description' => '3 pools · Private members club · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
+                            [
+                                'title'            => 'Desalination Unit Integration & Potable Water Audit',
+                                'sub_title'        => 'Monaco Yacht Club — Monaco',
+                                'location'         => 'Monaco',
+                                'category'         => 'Case Study',
+                                'tags'             => '60% municipal water independence · Desalination commissioned · IMO standards met',
+                                'description'      => 'Monaco Yacht Club engaged WST to integrate a compact desalination unit with the existing potable water distribution system. The unit provides 60% of daily potable water demand from sea water, reducing municipal dependency during peak season.',
+                                'mini_description' => 'International marina · 320 berths · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
                         ],
                     ],
                     [
@@ -164,15 +407,45 @@ class IndustrySeeder extends Seeder
                         'image_path'  => 'industries/water_park_resorts_water_savings_1.jpeg',
                         'sort_order'  => 4,
                         'assets'      => [
-                            ['Typhoon Lagoon', 'Splash zone recirculation.',           'Theme Park'],
-                            ['Volcano Bay',    'Ride flume water reclamation.',        'Resort'],
-                            ['Schlitterbahn', 'Locker room efficiency upgrade.',       'Water Park'],
+                            [
+                                'title'            => 'Splash Zone Recirculation & Evaporation Loss Reduction',
+                                'sub_title'        => 'Typhoon Lagoon — Orlando, FL',
+                                'location'         => 'Orlando, FL',
+                                'category'         => 'Case Study',
+                                'tags'             => '$104K annual savings · 50% recirculation rate · Evaporation loss reduced',
+                                'description'      => "Disney's Typhoon Lagoon engaged WST to optimise splash zone recirculation systems and reduce evaporation losses. A combination of chemical dosing optimisation and cover scheduling reduced evaporation loss by 22% during off-peak hours.",
+                                'mini_description' => 'Wave pool & splash zones · Theme park · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => true,
+                            ],
+                            [
+                                'title'            => 'Ride Flume Water Reclamation & Treatment Upgrade',
+                                'sub_title'        => 'Volcano Bay — Orlando, FL',
+                                'location'         => 'Orlando, FL',
+                                'category'         => 'Case Study',
+                                'tags'             => '$88K annual savings · 65% flume water reclaimed · Treatment system upgraded',
+                                'description'      => "Universal's Volcano Bay engaged WST to design a flume water reclamation and treatment system. Multi-stage filtration and UV treatment enabled 65% of flume water to be reclaimed per cycle, reducing daily make-up water draw by over 80,000 gallons.",
+                                'mini_description' => '18 rides · Resort water park · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
+                            [
+                                'title'            => 'Locker Room & Shower Facility Efficiency Upgrade',
+                                'sub_title'        => 'Schlitterbahn — New Braunfels, TX',
+                                'location'         => 'New Braunfels, TX',
+                                'category'         => 'Case Study',
+                                'tags'             => '$31K annual savings · 35% shower water reduction · Low-flow fixtures installed',
+                                'description'      => 'Schlitterbahn New Braunfels engaged WST to upgrade locker room and shower facilities park-wide. Low-flow showerheads with automatic shut-off timers reduced shower water consumption by 35%.',
+                                'mini_description' => 'Park-wide · Water park · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => false,
+                            ],
                         ],
                     ],
                 ],
             ],
 
-            // ── PARENT 3 ──────────────────────────────────────────
+            // ── 3. MULTIFAMILY ────────────────────────────────────
             [
                 'title'       => 'Multifamily',
                 'description' => 'Water management solutions for residential communities including condos and senior living.',
@@ -185,9 +458,39 @@ class IndustrySeeder extends Seeder
                         'image_path'  => 'industries/condo_water_savings_1.jpeg',
                         'sort_order'  => 1,
                         'assets'      => [
-                            ['Turnberry Ocean',       'Individual unit sub-metering.',    'Luxury'],
-                            ['Porsche Design Tower',  'Pool & spa leak detection.',       'High-Rise'],
-                            ['The Estates',           'Common area water balancing.',     'Residential'],
+                            [
+                                'title'            => 'Individual Unit Sub-Metering & Utility Bill Allocation',
+                                'sub_title'        => 'Turnberry Ocean Club — Sunny Isles Beach, FL',
+                                'location'         => 'Sunny Isles Beach, FL',
+                                'category'         => 'Case Study',
+                                'tags'             => '$67K annual savings · 154 units metered · Billing disputes eliminated',
+                                'description'      => 'Turnberry Ocean Club engaged WST to deploy individual unit sub-metering across all 154 luxury residences. Real-time consumption data enabled accurate utility bill allocation, eliminating billing disputes entirely. Three silent leaks identified within 30 days.',
+                                'mini_description' => '154 units · Luxury high-rise · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => true,
+                            ],
+                            [
+                                'title'            => 'Pool, Spa & Water Feature Leak Detection Program',
+                                'sub_title'        => 'Porsche Design Tower — Sunny Isles Beach, FL',
+                                'location'         => 'Sunny Isles Beach, FL',
+                                'category'         => 'Case Study',
+                                'tags'             => '$42K annual savings · 3 leaks detected · Pool & spa monitoring active',
+                                'description'      => 'Porsche Design Tower engaged WST to deploy leak detection across pools, spas, and water features. IoT sensors identified three active leaks within the first two weeks, including a subsurface pipe fault beneath the pool deck undetected for over six months.',
+                                'mini_description' => '132 units · Ultra-luxury · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
+                            [
+                                'title'            => 'Common Area Water Balancing & Irrigation Optimisation',
+                                'sub_title'        => 'The Estates at Acqualina — Sunny Isles Beach, FL',
+                                'location'         => 'Sunny Isles Beach, FL',
+                                'category'         => 'Case Study',
+                                'tags'             => '$29K annual savings · Common areas optimised · Smart irrigation deployed',
+                                'description'      => 'The Estates engaged WST to balance water distribution across common areas and deploy smart irrigation for landscaped grounds. ET-based irrigation scheduling reduced landscaping water use by 32%.',
+                                'mini_description' => 'Common areas · Residential · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => false,
+                            ],
                         ],
                     ],
                     [
@@ -196,15 +499,45 @@ class IndustrySeeder extends Seeder
                         'image_path'  => 'industries/senior_living_home_water_savings_1.jpeg',
                         'sort_order'  => 2,
                         'assets'      => [
-                            ['Sunrise Senior Living', 'Thermostatic mixing valve safety.', 'Residential'],
-                            ['Brookdale',             'Accessible fixture upgrades.',      'Care Home'],
-                            ['Holiday Retirement',    'Consistent pressure monitoring.',  'Retirement'],
+                            [
+                                'title'            => 'Thermostatic Mixing Valve Safety Retrofit & Flow Monitoring',
+                                'sub_title'        => 'Sunrise Senior Living — McLean, VA',
+                                'location'         => 'McLean, VA',
+                                'category'         => 'Case Study',
+                                'tags'             => '$38K annual savings · TMV safety compliant · Scalding incidents eliminated',
+                                'description'      => 'Sunrise Senior Living McLean engaged WST to retrofit thermostatic mixing valves across all resident bathrooms. TMV installation eliminated scalding risk in 112 resident rooms and ensured full compliance with care facility water safety regulations.',
+                                'mini_description' => '112 rooms · Assisted living · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => true,
+                            ],
+                            [
+                                'title'            => 'Accessible Fixture Upgrade & Water Safety Compliance Audit',
+                                'sub_title'        => 'Brookdale Senior Living — Nashville, TN',
+                                'location'         => 'Nashville, TN',
+                                'category'         => 'Case Study',
+                                'tags'             => '$24K annual savings · ADA compliant fixtures · Safety audit passed',
+                                'description'      => 'Brookdale Nashville engaged WST to upgrade fixtures to ADA-compliant specifications and conduct a full water safety compliance audit. The facility passed state inspection with zero deficiencies.',
+                                'mini_description' => '180 beds · Memory care · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
+                            [
+                                'title'            => 'Consistent Pressure Monitoring & Distribution Balancing',
+                                'sub_title'        => 'Holiday Retirement — Portland, OR',
+                                'location'         => 'Portland, OR',
+                                'category'         => 'Case Study',
+                                'tags'             => '$19K annual savings · Pressure normalised · 3 communities covered',
+                                'description'      => 'Holiday Retirement engaged WST to address inconsistent water pressure across three Oregon communities. Pressure reducing valve adjustments and zone isolation resolved resident complaints in all three properties.',
+                                'mini_description' => '3 communities · Independent living · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
                         ],
                     ],
                 ],
             ],
 
-            // ── PARENT 4 ──────────────────────────────────────────
+            // ── 4. HEALTH CARE ────────────────────────────────────
             [
                 'title'       => 'Health Care',
                 'description' => 'Clean water compliance and critical infrastructure solutions for health care environments.',
@@ -217,15 +550,45 @@ class IndustrySeeder extends Seeder
                         'image_path'  => 'industries/healthcare_facility_water_efficiency_1.jpeg',
                         'sort_order'  => 1,
                         'assets'      => [
-                            ['Mayo Clinic',      'Sterilization equipment retrofitting.',   'Hospital'],
-                            ['Cleveland Center', 'Dialysis water treatment upgrade.',       'Medical Center'],
-                            ['Johns Hopkins',    'Critical leak detection prevention.',     'Research'],
+                            [
+                                'title'            => 'Non-Clinical Cooling Tower Audit & Sewer Exemption — Campus-Wide',
+                                'sub_title'        => 'Regional Medical Centre — Southeast US',
+                                'location'         => 'Southeast US',
+                                'category'         => 'Case Study',
+                                'tags'             => '$72K annual savings · Campus-wide cooling tower optimisation · CMS-compliant',
+                                'description'      => "A 450-bed regional medical centre engaged WST to audit non-clinical water systems across its 3-building campus. Cooling tower optimisation across four towers yielded 24% make-up water reduction. Sewer exemption applications filed for all four towers recovered \$28,000 in annual overcharges. All documentation structured within the facility's existing CMS water management programme framework.",
+                                'mini_description' => '450-bed campus · 3 buildings · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => true,
+                            ],
+                            [
+                                'title'            => 'Billing Audit & Ara AI GRESB WT1 Coverage — 8 Medical Office Buildings',
+                                'sub_title'        => 'Healthcare REIT — Medical Office Portfolio',
+                                'location'         => 'Midwest US',
+                                'category'         => 'Case Study',
+                                'tags'             => '$95K annual savings · 8 properties · GRESB WT1 coverage: portfolio-wide',
+                                'description'      => 'A healthcare REIT managing 8 medical office buildings engaged WST to establish water data coverage for its first GRESB submission. Ara AI closed WT1 data coverage gaps across all 8 buildings. Concurrent billing audit identified rate misclassifications at three properties and cooling tower sewer overcharges at two. Combined annual savings: $95K.',
+                                'mini_description' => '8 buildings · Healthcare REIT · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => false,
+                            ],
+                            [
+                                'title'            => 'IoT Monitoring & CMS Water Management Plan Documentation',
+                                'sub_title'        => 'Long-Term Care Portfolio — Midwest US',
+                                'location'         => 'Midwest US',
+                                'category'         => 'Case Study',
+                                'tags'             => '19% water reduction · CMS survey-ready documentation · 6 facilities',
+                                'description'      => 'A long-term care operator managing 6 facilities across two states engaged WST to strengthen its CMS water management programme documentation while reducing utility costs. IoT monitoring deployed across non-clinical systems at all 6 facilities. Combined operational savings: 19% across the portfolio.',
+                                'mini_description' => '6 facilities · Long-term care · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
                         ],
                     ],
                 ],
             ],
 
-            // ── PARENT 5 ──────────────────────────────────────────
+            // ── 5. EDUCATION ──────────────────────────────────────
             [
                 'title'       => 'Education',
                 'description' => 'Whole-campus water metering and efficiency solutions for educational institutions.',
@@ -238,9 +601,39 @@ class IndustrySeeder extends Seeder
                         'image_path'  => 'industries/campus_water_efficiency_2.jpeg',
                         'sort_order'  => 1,
                         'assets'      => [
-                            ['Miami-Dade Schools',  'Restroom sensor retrofit program.',   'Public School'],
-                            ['Phillips Academy',    'Campus-wide leak detection.',         'Private School'],
-                            ['BASIS Charter',       'Water consumption benchmarking.',     'Charter'],
+                            [
+                                'title'            => 'Restroom Sensor Retrofit Program — 45 Campuses',
+                                'sub_title'        => 'Miami-Dade County Public Schools — Miami, FL',
+                                'location'         => 'Miami, FL',
+                                'category'         => 'Case Study',
+                                'tags'             => '$132K annual savings · 45 campuses · 38% restroom water reduction',
+                                'description'      => 'Miami-Dade County Public Schools engaged WST to deploy restroom sensor retrofits across 45 campuses as part of a district-wide sustainability initiative. Sensor-activated faucets and auto-flush valves reduced restroom water consumption by 38% district-wide within one academic year.',
+                                'mini_description' => '45 campuses · Public school district · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => true,
+                            ],
+                            [
+                                'title'            => 'Campus-Wide Leak Detection & Sub-Metering Installation',
+                                'sub_title'        => 'Phillips Academy — Andover, MA',
+                                'location'         => 'Andover, MA',
+                                'category'         => 'Case Study',
+                                'tags'             => '$48K annual savings · 28 buildings metered · 3 active leaks detected',
+                                'description'      => 'Phillips Academy engaged WST to deploy sub-metering and IoT leak detection across 28 campus buildings. Three active leaks were identified within the first month. Real-time metering provided granular consumption data for annual sustainability reporting.',
+                                'mini_description' => '28 buildings · Private prep school · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
+                            [
+                                'title'            => 'Water Consumption Benchmarking & Fixture Efficiency Audit',
+                                'sub_title'        => 'BASIS Charter Schools — Phoenix, AZ',
+                                'location'         => 'Phoenix, AZ',
+                                'category'         => 'Case Study',
+                                'tags'             => '$21K annual savings · 12 campuses benchmarked · Fixture audit complete',
+                                'description'      => 'BASIS Charter Schools engaged WST to benchmark water consumption and conduct fixture audits across 12 Arizona campuses. Benchmarking revealed three campuses with consumption 40% above network average; replacements reduced consumption to within 10% of benchmark.',
+                                'mini_description' => '12 campuses · Charter school network · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => false,
+                            ],
                         ],
                     ],
                     [
@@ -249,15 +642,45 @@ class IndustrySeeder extends Seeder
                         'image_path'  => 'industries/campus_water_efficiency_2.jpeg',
                         'sort_order'  => 2,
                         'assets'      => [
-                            ['Harvard University', 'Dormitory showerhead retrofit.',      'University'],
-                            ['Texas A&M',          'Irrigation field optimization.',       'Campus'],
-                            ['Stanford Stadium',   'Bulk-use event monitoring.',          'Stadium'],
+                            [
+                                'title'            => 'Dormitory Showerhead Retrofit & Consumption Benchmarking',
+                                'sub_title'        => 'Harvard University — Cambridge, MA',
+                                'location'         => 'Cambridge, MA',
+                                'category'         => 'Case Study',
+                                'tags'             => '$87K annual savings · 4,200 showerheads replaced · 27% reduction achieved',
+                                'description'      => "Harvard University engaged WST to replace 4,200 showerheads across all undergraduate dormitories with WaterSense-certified low-flow models. Post-installation benchmarking confirmed a 27% reduction in dormitory water consumption. Savings documented for Harvard's STARS sustainability reporting.",
+                                'mini_description' => '4,200 units · Ivy League university · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => true,
+                            ],
+                            [
+                                'title'            => 'Athletic Field Irrigation Optimisation — ET-Based Scheduling',
+                                'sub_title'        => 'Texas A&M University — College Station, TX',
+                                'location'         => 'College Station, TX',
+                                'category'         => 'Case Study',
+                                'tags'             => '$63K annual savings · 32% irrigation reduction · 18 fields covered',
+                                'description'      => 'Texas A&M University engaged WST to optimise irrigation across 18 athletic fields using ET-based scheduling and soil moisture monitoring. Irrigation runtime reductions of 32% were achieved while maintaining all NCAA field quality standards.',
+                                'mini_description' => '18 fields · Land-grant university · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
+                            [
+                                'title'            => 'Bulk-Use Event Monitoring & Concession Water Audit',
+                                'sub_title'        => 'Stanford Stadium — Stanford, CA',
+                                'location'         => 'Stanford, CA',
+                                'category'         => 'Case Study',
+                                'tags'             => '$44K annual savings · Real-time event monitoring · 50,000-capacity venue',
+                                'description'      => 'Stanford Stadium engaged WST to deploy real-time bulk-use monitoring during game-day events and audit concession water consumption. Concession audits identified high-waste pre-rinse stations contributing 30% of event-day water use.',
+                                'mini_description' => '50,000 capacity · Stadium · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => false,
+                            ],
                         ],
                     ],
                 ],
             ],
 
-            // ── PARENT 6 ──────────────────────────────────────────
+            // ── 6. INDUSTRIAL ─────────────────────────────────────
             [
                 'title'       => 'Industrial',
                 'description' => 'High-volume water process optimization for manufacturing and industrial operations.',
@@ -270,9 +693,39 @@ class IndustrySeeder extends Seeder
                         'image_path'  => 'industries/manufacturing_water_effciency_1.jpeg',
                         'sort_order'  => 1,
                         'assets'      => [
-                            ['General Motors Plant', 'Cooling tower blowdown recovery.',     'Automotive'],
-                            ['Tesla Gigafactory',    'Process water recycling system.',      'Tech'],
-                            ['Coca-Cola Bottling',   'High-volume sterilization efficiency.','F&B'],
+                            [
+                                'title'            => 'Cooling Tower Blowdown Recovery & Process Water Audit',
+                                'sub_title'        => 'General Motors Assembly Plant — Detroit, MI',
+                                'location'         => 'Detroit, MI',
+                                'category'         => 'Case Study',
+                                'tags'             => '$118K annual savings · 40% blowdown recovery rate · Zero liquid discharge target met',
+                                'description'      => "General Motors' Detroit assembly plant engaged WST to audit process water systems and implement cooling tower blowdown recovery. A closed-loop recovery system now reclaims 40% of discharge water for reuse in non-critical process applications.",
+                                'mini_description' => '2.4M sq ft plant · Automotive · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => true,
+                            ],
+                            [
+                                'title'            => 'Process Water Recycling System — Battery Manufacturing',
+                                'sub_title'        => 'Tesla Gigafactory — Sparks, NV',
+                                'location'         => 'Sparks, NV',
+                                'category'         => 'Case Study',
+                                'tags'             => '$145K annual savings · 55% process water recycled · Nevada DEP compliant',
+                                'description'      => "Tesla's Nevada Gigafactory engaged WST to design a process water recycling system for battery cell manufacturing lines. Multi-stage filtration and ion exchange enable 55% of process water to be reclaimed and returned to production lines.",
+                                'mini_description' => 'Gigafactory Nevada · EV manufacturing · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
+                            [
+                                'title'            => 'High-Volume Sterilization Efficiency & CIP Water Optimization',
+                                'sub_title'        => 'Coca-Cola Bottling — Atlanta, GA',
+                                'location'         => 'Atlanta, GA',
+                                'category'         => 'Case Study',
+                                'tags'             => '$92K annual savings · 33% CIP water reduction · Production uninterrupted',
+                                'description'      => "Coca-Cola's Atlanta bottling facility engaged WST to optimise clean-in-place (CIP) water consumption and sterilization rinse cycles. Rinse cycle sequencing and conductivity-based endpoint detection reduced CIP water consumption by 33% without interrupting production throughput.",
+                                'mini_description' => 'Bottling plant · F&B manufacturing · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => false,
+                            ],
                         ],
                     ],
                     [
@@ -281,9 +734,39 @@ class IndustrySeeder extends Seeder
                         'image_path'  => 'industries/laundry_water_savings_1.jpeg',
                         'sort_order'  => 2,
                         'assets'      => [
-                            ['Cintas Facility',  'Tunnel washer water reuse.',          'Industrial'],
-                            ['Aramark Services', 'Flow control automation.',            'Uniforms'],
-                            ['UniFirst Plant',   'Wastewater heat recovery.',           'Textile'],
+                            [
+                                'title'            => 'Tunnel Washer Water Reuse & Heat Recovery System',
+                                'sub_title'        => 'Cintas Corporation — Cincinnati, OH',
+                                'location'         => 'Cincinnati, OH',
+                                'category'         => 'Case Study',
+                                'tags'             => '$107K annual savings · 60% tunnel wash water reused · Heat recovery active',
+                                'description'      => 'Cintas engaged WST to retrofit tunnel washer systems with water reuse and heat recovery capabilities. Counter-flow rinse optimisation and heat exchanger installation now recover 60% of tunnel wash water and 80% of thermal energy per cycle.',
+                                'mini_description' => 'Processing facility · Industrial laundry · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => true,
+                            ],
+                            [
+                                'title'            => 'Flow Control Automation & Wash Formula Optimisation',
+                                'sub_title'        => 'Aramark Uniform Services — Philadelphia, PA',
+                                'location'         => 'Philadelphia, PA',
+                                'category'         => 'Case Study',
+                                'tags'             => '$74K annual savings · 29% water reduction · 4 facilities covered',
+                                'description'      => 'Aramark Uniform Services engaged WST to automate flow control and optimise wash formulas across four processing facilities. Automated flow controls prevent overfill and enable precise water dosing per load type, reducing per-cycle water use by 29%.',
+                                'mini_description' => '4 facilities · Uniform services · 2023',
+                                'year_start'       => '2023-01-01',
+                                'is_featured'      => false,
+                            ],
+                            [
+                                'title'            => 'Wastewater Heat Recovery & Effluent Pre-Treatment Upgrade',
+                                'sub_title'        => 'UniFirst Corporation — Wilmington, MA',
+                                'location'         => 'Wilmington, MA',
+                                'category'         => 'Case Study',
+                                'tags'             => '$58K annual savings · 75% heat recovered from effluent · Discharge compliant',
+                                'description'      => 'UniFirst engaged WST to install wastewater heat recovery and upgrade effluent pre-treatment at its Wilmington facility. Heat exchangers on the effluent line recover 75% of thermal energy before discharge. Pre-treatment upgrades brought the facility into full municipal discharge compliance.',
+                                'mini_description' => 'Processing plant · Textile services · 2024',
+                                'year_start'       => '2024-01-01',
+                                'is_featured'      => false,
+                            ],
                         ],
                     ],
                 ],
@@ -292,7 +775,6 @@ class IndustrySeeder extends Seeder
 
         // ── INSERT ────────────────────────────────────────────────
         foreach ($structure as $parentData) {
-            // 1. Insert parent
             $parentId = DB::table('industries')->insertGetId([
                 'parent_id'   => null,
                 'title'       => $parentData['title'],
@@ -306,7 +788,6 @@ class IndustrySeeder extends Seeder
                 'updated_at'  => $now,
             ]);
 
-            // 2. Insert children
             foreach ($parentData['children'] as $childData) {
                 $childId = DB::table('industries')->insertGetId([
                     'parent_id'   => $parentId,
@@ -321,22 +802,28 @@ class IndustrySeeder extends Seeder
                     'updated_at'  => $now,
                 ]);
 
-                // 3. Insert assets per child
                 $assetsBatch = [];
                 foreach ($childData['assets'] as $key => $asset) {
                     $assetsBatch[] = [
-                        'industry_id' => $childId,
-                        'title'       => $asset[0],
-                        'slug'        => Str::slug($asset[0]),
-                        'description' => $asset[1],
-                        'tags'        => $asset[2],
-                        'category'    => 'case-study',
-                        'image_path'  => 'industries/hospitality/westin_fort_lauderdale.jpeg',
-                        'sort_order'  => $key + 1,
-                        'is_featured' => 1,
-                        'is_active'   => 1,
-                        'created_at'  => $now,
-                        'updated_at'  => $now,
+                        'industry_id'     => $childId,
+                        'title'           => $asset['title'],
+                        'sub_title'       => $asset['sub_title'],
+                        'slug'            => Str::slug($asset['title']),
+                        'location'        => $asset['location'],
+                        'category'        => $asset['category'],
+                        'tags'            => $asset['tags'],
+                        'description'     => $asset['description'],
+                        'mini_description'=> $asset['mini_description'],
+                        'year_start'      => $asset['year_start'],
+                        'year_end'        => null,
+                        'video_path'      => null,
+                        'html_content'    => null,
+                        'image_path'      => $childData['image_path'], // inherit dari parent child
+                        'sort_order'      => $key + 1,
+                        'is_featured'     => $asset['is_featured'] ? 1 : 0,
+                        'is_active'       => 1,
+                        'created_at'      => $now,
+                        'updated_at'      => $now,
                     ];
                 }
 
