@@ -17,6 +17,20 @@ class IndustryController extends Controller
         return view('industries.index', compact('industries'));
     }
 
+    public function detail(string $slug)
+    {
+        $industry = Industry::where('slug',$slug)->first();
+
+        $case_studies = Asset::select('assets.*', 'industries.title as industry_name')
+            ->join('industries', 'assets.industry_id', '=', 'industries.id')
+            ->where('industries.slug', $slug)
+            ->where('assets.is_active', true)
+            ->orderBy('assets.sort_order', 'asc')
+            ->get();
+
+        return view('industries.detail', compact('case_studies', 'industry'));
+    }
+
     public function showCaseStudy(string $slug)
     {
         $case_studies = Asset::select('assets.*', 'industries.title as industry_name')

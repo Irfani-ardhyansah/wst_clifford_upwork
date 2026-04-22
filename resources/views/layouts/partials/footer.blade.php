@@ -29,7 +29,7 @@
     <div>
       <div class="footer-col-title">Portfolio</div>
       <ul class="footer-links">
-        <li><a href="{{ route('industries.case_study', ['slug' => 'hospitality']) }}">Case Studies</a></li>
+        <li><a href="{{ route('case-studies.index') }}">Case Studies</a></li>
         <li><a href="{{ url('/industries') }}">Industries</a></li>
         <li><a href="{{ url('/industries') }}">All Services</a></li>
         <li><a href="{{ route('resources.tools.selection_tool') }}">Water Tools</a></li>

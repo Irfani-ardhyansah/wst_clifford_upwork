@@ -118,6 +118,7 @@ Route::middleware(['auth', 'role:admin'])
         Route::delete('/gresb-consultation/{id}', [GRESBWaterController::class, 'destroy'])->name('gresb-water.destroy');
         
         Route::get('/dashboard/asset/{id}/details', [AdminPortalController::class, 'getAssetViewDetails'])->name('asset.details');
+        Route::get('/dashboard/article/{id}/details', [AdminPortalController::class, 'getArticleViewDetails'])->name('article.details');
 });
 
 Route::middleware('auth')->prefix('member-dashboard')->name('member-dashboard.')->group(function () {
@@ -201,7 +202,11 @@ Route::prefix('opportunities')->name('opportunities.')->group(function () {
 
 Route::prefix('industries')->name('industries.')->group(function () {
     Route::get('/', [IndustryController::class, 'index'])->name('index');
-    Route::get('/{slug}', [CaseStudyController::class, 'getByIndustrySlug'])->name('case_study');
+    Route::get('/{slug}', [IndustryController::class, 'detail'])->name('detail');
+});
+
+Route::prefix('case-studies')->name('case-studies.')->group(function () {
+    Route::get('/', [CaseStudyController::class, 'index'])->name('index');
 });
 
 Route::prefix('resources')->name('resources.')->group(function () {
@@ -214,6 +219,7 @@ Route::prefix('resources')->name('resources.')->group(function () {
     })->name('tools.whole_building');
 
     Route::get('/white-paper', [WhitePaperController::class, 'index'])->name('white-papers');
+    Route::get('/case-studies/{slug}', [CaseStudyController::class, 'show'])->name('case-studies');
     Route::get('/assets/{slug}', [AssetController::class, 'show']);
     Route::get('/tool', [ToolController::class, 'index'])->name('tools.selection_tool');
     Route::get('/webinar', [WebinarController::class, 'index'])->name('webinar');

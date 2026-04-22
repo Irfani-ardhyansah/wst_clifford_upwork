@@ -121,7 +121,7 @@
       <div class="dropdown">
         <div class="dropdown-section-label" style="padding:10px 16px 4px;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#999;">Resources</div>
         <a href="{{ route('resources.articles') }}">Articles</a>
-        <a href="{{ route('industries.case_study', ['slug' => 'hospitality']) }}">Case Studies</a>
+        <a href="{{ route('case-studies.index') }}">Case Studies</a>
         <a href="{{ route('resources.white-papers') }}">White Papers</a>
         <a href="{{ route('resources.tools.selection_tool') }}">My City Water Rebates</a>
         <a href="{{ route('resources.financing_form') }}">Tax Strategy &amp; Financing</a>

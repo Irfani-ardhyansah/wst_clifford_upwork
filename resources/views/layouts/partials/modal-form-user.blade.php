@@ -25,8 +25,8 @@
         <div class="gate-header">
             <button class="gate-close close-modal" id="co-x" aria-label="Close form">&times;</button>
             <div class="gate-header-eye">Access Required</div>
-            <h2 class="gate-header-title" id="co-title">Access Premium Content</h2>
-            <p class="gate-header-sub">Register once for unlimited access — no subscription required.</p>
+            <h2 class="gate-header-title" id="co-title-modal"></h2>
+            <p class="gate-header-sub">WST resources are available to institutional real estate professionals. Register once for full library access — no charge.</p>
         </div>
 
         <div class="gate-body" id="auth-form-container">

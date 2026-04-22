@@ -85,6 +85,12 @@ class MemberDashboardController extends Controller
                 'user_id'  => $user->id,
                 'view_date'=> Carbon::today(),
             ]);
+        } else {
+            AssetView::firstOrCreate([
+                'article_id' => $article->id,
+                'user_id'  => null,
+                'view_date'=> Carbon::today(),
+            ]);
         }
         return view('member_dashboard.articles._modal', compact('article'));
     }

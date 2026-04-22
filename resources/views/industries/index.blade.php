@@ -89,7 +89,7 @@
   <div class="ind-index-grid">
     @foreach($industries as $item)
     <div class="tile {{ $item->slug }}" style="display:block;">
-      <a href="{{ route('industries.case_study', ['slug' => $item->slug]) }}" class="ind-index-card">
+      <a href="{{ route('case-studies.index') }}" class="ind-index-card">
               @if($item->image_path)
           <img src="{{ asset('storage/' . $item->image_path) }}"
                 alt="{{ $item->title }}"
