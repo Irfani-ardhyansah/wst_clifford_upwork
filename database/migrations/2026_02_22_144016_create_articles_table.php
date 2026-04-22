@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
+            $table->string('type')->default('article'); // ← article | white-paper
             $table->string('category')->nullable();        // ← tambah
             $table->text('excerpt')->nullable();           // ← tambah
             $table->json('target_audience')->nullable();   // ← tambah
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->longText('content')->nullable();
             $table->string('pdf_path')->nullable();
             $table->string('thumbnail')->nullable();
+            $table->integer('page_count')->nullable();
             $table->enum('status', ['draft', 'published'])->default('draft');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();

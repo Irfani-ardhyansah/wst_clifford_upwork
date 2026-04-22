@@ -3,16 +3,15 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Models\Asset;
+use App\Models\WhitePaper;
 
 class WhitePaperController extends Controller
 {
     public function index()
     {
-        $whitePapers = Asset::query()
-            ->where('category', 'white-paper')
-            ->where('is_active', 1)
-            ->orderBy('sort_order')
+        $whitePapers = WhitePaper::query()  
+            ->published()
+            ->orderBy('id')
             ->get();
 
         return view('resources.white_papers', compact('whitePapers'));

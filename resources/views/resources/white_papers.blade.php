@@ -74,16 +74,25 @@ function adjustBrightness($hex, $steps) {
               style="width:100%; height:192px; object-fit:cover;">
           @endif
 
-          <div class="wp-card-top" style="background:#1a2a1a;">
-            <div><div class="wp-tag">{{ $item->tags }}</div>
+          <div class="wp-card-top"     
+                style="
+                  @if($item->category == 'Technical Reference')
+                      background:#1a1a2a;
+                  @elseif($item->category == 'Financial Analysis')
+                      background:#1a2a1a;
+                  @endif
+                  ">
+            <div><div class="wp-tag">{{ $item->category }}</div>
             <div class="wp-title">{{ $item->title }}</div></div>
-            <div class="wp-pages">10 pages &middot; PDF &middot; March 2026</div>
+            <div class="wp-pages">{{$item->page_count}} pages &middot; PDF &middot; {{ \Carbon\Carbon::parse($item->published_at)->format('F Y') }}</div>
           </div>
           <div class="wp-card-body">
             <p class="wp-abstract">
-              {{ $item->description }}
+              {{ $item->excerpt }}
             </p>
-            <div class="wp-audience"><strong>Audience:</strong> Asset Managers, Fund Managers, CFOs &mdash; institutional CRE</div>
+            <div class="wp-audience"><strong>Audience:</strong> 
+                  {{ collect($item->target_audience)->join(', ') }}
+                </div>
           </div>
           <button class="wp-dl-btn open-modal-btn"
               data-id="{{ $item->id }}"

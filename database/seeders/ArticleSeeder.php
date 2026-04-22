@@ -14,7 +14,8 @@ class ArticleSeeder extends Seeder
         $articles = [
             [
                 'title'           => 'GRESB Water Score Benchmarks: Hotel REIT Performance in 2025',
-                'slug'            => 'gresb-water-score-benchmarks-hotel-reit-2025',
+                'slug'            => 'article-gresb-water-score-benchmarks-hotel-reit-2025',
+                'type'            => 'article',
                 'category'        => 'ESG & GRESB Strategy',
                 'excerpt'         => 'Hotel REITs average 67.7% on the water indicator in GRESB 2025 — the second-lowest performance indicator. Here\'s why the gap exists and how the three-step documentation programme closes it.',
                 'target_audience' => ['Sustainability Managers', 'Asset Managers'],
@@ -25,7 +26,8 @@ class ArticleSeeder extends Seeder
             ],
             [
                 'title'           => 'Water Efficiency as a Cap Rate Lever: What Asset Managers Need to Know',
-                'slug'            => 'water-efficiency-cap-rate-lever-asset-managers',
+                'slug'            => 'article-water-efficiency-cap-rate-lever-asset-managers',
+                'type'            => 'article',
                 'category'        => 'Financial Analysis',
                 'excerpt'         => 'A $90K annual water saving adds $1.6M in asset value at a 5.5% cap rate. The complete financial framework for institutional CRE water management.',
                 'target_audience' => ['Asset Managers', 'CFOs'],
@@ -36,7 +38,8 @@ class ArticleSeeder extends Seeder
             ],
             [
                 'title'           => 'What a Commercial Water Audit Actually Finds: A Step-by-Step Guide',
-                'slug'            => 'commercial-water-audit-step-by-step-guide',
+                'slug'            => 'article-commercial-water-audit-step-by-step-guide',
+                'type'            => 'article',
                 'category'        => 'Efficiency Audits',
                 'excerpt'         => 'Most commercial properties carry billing errors, operational waste, and missed exemptions that compound over years. This guide explains the full audit process and what the output looks like.',
                 'target_audience' => ['All Buyer Roles'],
@@ -47,7 +50,8 @@ class ArticleSeeder extends Seeder
             ],
             [
                 'title'           => 'How DiamondRock Hospitality Verified $2.3M in Water Savings',
-                'slug'            => 'diamondrock-hospitality-verified-water-savings',
+                'slug'            => 'article-diamondrock-hospitality-verified-water-savings',
+                'type'            => 'article',
                 'category'        => 'Case Study',
                 'excerpt'         => 'DiamondRock had genuine field water improvements — but their GRESB score didn\'t show it. This is how WST closed the gap between field performance and documented outcomes across 31 assets.',
                 'target_audience' => ['Asset Managers', 'Sustainability Managers'],
@@ -58,7 +62,8 @@ class ArticleSeeder extends Seeder
             ],
             [
                 'title'           => 'IoT Water Monitoring ROI: Calculating Payback for Real Estate Portfolios',
-                'slug'            => 'iot-water-monitoring-roi-real-estate-portfolios',
+                'slug'            => 'article-iot-water-monitoring-roi-real-estate-portfolios',
+                'type'            => 'article',
                 'category'        => 'Smart Monitoring',
                 'excerpt'         => 'Traditional meter reading misses 60–80% of water cost opportunities. The full ROI framework for IoT monitoring — what it detects, 8-month average payback, and GRESB indicator impact.',
                 'target_audience' => ['Directors of Engineering', 'COOs'],
@@ -67,6 +72,46 @@ class ArticleSeeder extends Seeder
                 'status'          => 'published',
                 'published_at'    => Carbon::parse('2026-04-01'),
             ],
+
+                        [
+                'type'            => 'white-paper',
+                'category'        => 'ESG & GRESB Strategy',
+                'title'           => 'The GRESB Water Gap: How Hotel REITs Leave Points on the Table',
+                'slug'            => 'white-paper-gresb-water-score-benchmarks-hotel-reit-2025',
+                'excerpt'         => 'Hotel REITs average 67.7% on the water indicator in GRESB 2025 — the second-lowest performance indicator. Here\'s why the gap exists and how the three-step documentation programme closes it.',
+                'target_audience' => ['Sustainability Managers', 'Asset Managers'],
+                'source_type'     => 'editor',
+                'content'         => $this->contentIoT(),
+                'status'          => 'published',
+                'page_count'      => 12,
+                'published_at'    => Carbon::parse('2026-04-01'),
+            ],
+            [
+                'type'            => 'white-paper',
+                'category'        => 'Financial Analysis',
+                'title'           => 'Water as a Cap Rate Lever: The Financial Case for Institutional Water Management',
+                'slug'            => 'white-paper-water-efficiency-cap-rate-lever-asset-managers',
+                'excerpt'         => 'A $90K annual water saving adds $1.6M in asset value at a 5.5% cap rate. The complete financial framework for institutional CRE water management.',
+                'target_audience' => ['Asset Managers', 'CFOs'],
+                'source_type'     => 'editor',
+                'content'         => $this->contentIoT(),
+                'status'          => 'published',
+                'page_count'    => 10,
+                'published_at'    => Carbon::parse('2026-04-01'),
+            ],
+            [
+                'type'            => 'white-paper',
+                'category'        => 'Technical Reference',
+                'title'           => 'Commercial Water Billing: A Field Guide to Errors, Tariff Misclassifications, and Recovery',
+                'slug'            => 'white-paper-commercial-water-audit-step-by-step-guide',
+                'excerpt'         => 'Most commercial properties carry billing errors, operational waste, and missed exemptions that compound over years. This guide explains the full audit process and what the output looks like.',
+                'target_audience' => ['All Buyer Roles'],
+                'source_type'     => 'editor',
+                'content'         => $this->contentIoT(),
+                'status'          => 'published',
+                'page_count'    => 14,
+                'published_at'    => Carbon::parse('2026-04-01'),
+            ]
         ];
 
         foreach ($articles as $article) {
