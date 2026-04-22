@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Article;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,7 +21,8 @@ class DatabaseSeeder extends Seeder
             IndustrySeeder::class,
             AssetsSeeder::class,
             UserSeeder::class,
-            AssetViewsSeeder::class
+            AssetViewsSeeder::class,
+            ArticleSeeder::class,
             // Kamu bisa tambah seeder lain di sini, misal: UserSeeder::class
         ]);
     }

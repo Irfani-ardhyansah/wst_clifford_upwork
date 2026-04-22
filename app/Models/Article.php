@@ -22,6 +22,7 @@ class Article extends Model
     ];
 
     protected $casts = [
+        'target_audience' => 'array',
         'published_at' => 'datetime',
     ];
 

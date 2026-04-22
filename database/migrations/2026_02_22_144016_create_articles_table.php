@@ -13,28 +13,18 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-
             $table->string('title');
             $table->string('slug')->unique();
-
+            $table->string('category')->nullable();        // ← tambah
+            $table->text('excerpt')->nullable();           // ← tambah
+            $table->json('target_audience')->nullable();   // ← tambah
             $table->foreignId('author_id')->constrained('users')->cascadeOnDelete();
-
-            $table->enum('source_type', ['editor', 'pdf']); 
-            // editor = WYSIWYG
-            // pdf = upload file
-
-            $table->longText('content')->nullable(); 
-            // dipakai kalau source_type = editor
-
-            $table->string('pdf_path')->nullable(); 
-            // dipakai kalau source_type = pdf
-
+            $table->enum('source_type', ['editor', 'pdf']);
+            $table->longText('content')->nullable();
+            $table->string('pdf_path')->nullable();
             $table->string('thumbnail')->nullable();
-
             $table->enum('status', ['draft', 'published'])->default('draft');
-
             $table->timestamp('published_at')->nullable();
-
             $table->timestamps();
         });
     }

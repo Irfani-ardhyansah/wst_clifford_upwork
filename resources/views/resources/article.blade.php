@@ -27,10 +27,10 @@
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
       <button class="filter-pill is-active js-af" data-tag="all" style="font-family:'DM Sans',sans-serif;padding:6px 14px;border:1px solid var(--border-l);background:var(--black);color:var(--white);font-size:11px;font-weight:600;cursor:pointer;">All Topics</button>
-      <!-- <button class="filter-pill js-af" data-tag="ESG" style="font-family:'DM Sans',sans-serif;padding:6px 14px;border:1px solid var(--border-l);background:transparent;color:var(--gray-1);font-size:11px;font-weight:600;cursor:pointer;transition:all .18s;">ESG &amp; GRESB</button>
+      <button class="filter-pill js-af" data-tag="ESG" style="font-family:'DM Sans',sans-serif;padding:6px 14px;border:1px solid var(--border-l);background:transparent;color:var(--gray-1);font-size:11px;font-weight:600;cursor:pointer;transition:all .18s;">ESG &amp; GRESB</button>
       <button class="filter-pill js-af" data-tag="Financial" style="font-family:'DM Sans',sans-serif;padding:6px 14px;border:1px solid var(--border-l);background:transparent;color:var(--gray-1);font-size:11px;font-weight:600;cursor:pointer;transition:all .18s;">Financial</button>
       <button class="filter-pill js-af" data-tag="Audit" style="font-family:'DM Sans',sans-serif;padding:6px 14px;border:1px solid var(--border-l);background:transparent;color:var(--gray-1);font-size:11px;font-weight:600;cursor:pointer;transition:all .18s;">Audits</button>
-      <button class="filter-pill js-af" data-tag="Monitoring" style="font-family:'DM Sans',sans-serif;padding:6px 14px;border:1px solid var(--border-l);background:transparent;color:var(--gray-1);font-size:11px;font-weight:600;cursor:pointer;transition:all .18s;">Monitoring</button> -->
+      <button class="filter-pill js-af" data-tag="Monitoring" style="font-family:'DM Sans',sans-serif;padding:6px 14px;border:1px solid var(--border-l);background:transparent;color:var(--gray-1);font-size:11px;font-weight:600;cursor:pointer;transition:all .18s;">Monitoring</button>
     </div>
   </div>
 
@@ -38,33 +38,39 @@
       @forelse ($articles as $item)
 
       <a href="#" class="aic">
-        @if($item->thumbnail)
-          <img src="{{ asset('storage/' . $item->thumbnail) }}"
-            alt="{{ $item->title }}"
-            style="width:100%; height:192px; object-fit:cover;">
-        @else
-          <img src="https://via.placeholder.com/400x300?text=No+Image"
-            alt="Placeholder"
-            style="width:100%; height:192px; object-fit:cover;">
-        @endif
-        <div class="aic-top">
-          <div class="aic-tag">{{$item->status}}</div>
-          <div class="aic-title">{{ $item->title }}</div>
-          <div class="aic-excerpt">
-            {{ $item->description }}
+          @if($item->thumbnail)
+              <img src="{{ asset('storage/' . $item->thumbnail) }}"
+                  alt="{{ $item->title }}"
+                  style="width:100%; height:192px; object-fit:cover;">
+          @else
+              <img src="https://via.placeholder.com/400x300?text=No+Image"
+                  alt="Placeholder"
+                  style="width:100%; height:192px; object-fit:cover;">
+          @endif
+
+          <div class="aic-top">
+              <div class="aic-tag">{{ $item->category }}</div>
+              <div class="aic-title">{{ $item->title }}</div>
+              <div class="aic-excerpt">{{ $item->excerpt }}</div>
           </div>
-        </div>
-        <div class="aic-foot">
-          <div class="aic-meta">Asset Managers, CFOs &middot; April 2026</div>
-          <div class="aic-arrow open-article"
-            data-id="{{ $item->id }}">Read &rarr;</div>
-        </div>
+
+          <div class="aic-foot">
+              <div class="aic-meta">
+                  {{ collect($item->target_audience)->join(', ') }}
+                  &middot;
+                  {{ \Carbon\Carbon::parse($item->published_at)->format('F Y') }}
+              </div>
+              <div class="aic-arrow open-article" data-id="{{ $item->id }}">
+                  Read &rarr;
+              </div>
+          </div>
       </a>
+
       @empty
-        <p style="color:rgba(255,255,255,0.55); font-size:14px; text-align:center; grid-column:1/-1;">
-          No tools available at the moment.
-        </p>
-    @endforelse
+          <p style="color:rgba(255,255,255,0.55); font-size:14px; text-align:center; grid-column:1/-1;">
+              No articles available at the moment.
+          </p>
+      @endforelse
   </div>
 </section>
 
@@ -88,85 +94,6 @@
   <p class="cs-s">A 90-minute portfolio visibility session delivers the specific analysis relevant to your assets — not general benchmarks. Schedule with a WST advisor.</p></div>
   <a href="{{ route('contact') }}" class="cs-btn">Schedule Assessment</a>
 </div>
-
-
-<!-- ─── TOOLS HEADER ─── -->
-<section class="industries-page-hero" style="background:#0d0d0d; padding: 80px 40px 60px; text-align:center;">
-  <div class="section-eyebrow">Resources</div>
-  <div class="text-center">
-    <h1 class="hero-h1">Article</h1>
-    <p class="hero-body" style="text-align:center;">Editorial content from the WST advisory team.</p>
-  </div>
-</section>
-
-<!-- ─── TOOLS GRID ─── -->
-<section style="background:#111; padding: 40px;">
-  <div style="max-width:1280px; margin:0 auto;">
-
-    <!-- Tools Cards Grid -->
-    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px,1fr)); gap:24px;">
-      @forelse ($articles as $item)
-        <div class="tile"
-          style="background:#1a1a1a; overflow:hidden; display:flex; flex-direction:column;
-                 border:1px solid rgba(255,255,255,0.07); transition:transform 0.3s, box-shadow 0.3s;"
-          onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 12px 32px rgba(0,0,0,0.4)'"
-          onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
-
-          @if($item->thumbnail)
-            <img src="{{ asset('storage/' . $item->thumbnail) }}"
-                 alt="{{ $item->title }}"
-                 style="width:100%; height:192px; object-fit:cover;">
-          @else
-            <img src="https://via.placeholder.com/400x300?text=No+Image"
-                 alt="Placeholder"
-                 style="width:100%; height:192px; object-fit:cover;">
-          @endif
-
-          <div style="padding:20px; flex:1;">
-            <div class="service-panel-tag" style="margin-bottom:8px;">{{ $item->title }}</div>
-            <p style="color:rgba(255,255,255,0.55); font-size:14px; font-weight:300; line-height:1.6; margin:0;">
-              {{ $item->description }}
-            </p>
-          </div>
-
-          <button class="open-article"
-             data-id="{{ $item->id }}"
-             style="display:block; text-align:center; padding:14px;
-                    border-top:1px solid rgba(255,255,255,0.07);
-                    color:rgba(255,255,255,0.6); font-size:13px; font-weight:300;
-                    letter-spacing:0.05em; text-decoration:none; transition:background 0.2s, color 0.2s; cursor:pointer; background:none; border:none; width:100%;"
-             onmouseover="this.style.background='rgba(255,255,255,0.06)';this.style.color='#fff'"
-             onmouseout="this.style.background='transparent';this.style.color='rgba(255,255,255,0.6)'">
-            Read Article →
-          </button>
-        </div>
-      @empty
-        <p style="color:rgba(255,255,255,0.55); font-size:14px; text-align:center; grid-column:1/-1;">
-          No tools available at the moment.
-        </p>
-      @endforelse
-    </div>
-
-  </div>
-</section>
-
-<!-- ─── SUBSCRIBE SECTION ─── -->
-<section class="contact-section" style="padding:0;">
-  <div class="cc">
-    <div>
-      <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">Stay Updated</div>
-      <h2 class="contact-h">Want new tools<br>delivered to your inbox?</h2>
-      <p class="contact-sub">
-        Subscribe to our newsletter and get the latest water efficiency tools and calculators.
-      </p>
-    </div>
-
-    <!-- Subscribe Form -->
-    <div>
-      @include('layouts.partials.subscribe')
-    </div>
-  </div>
-</section>
 
 <div id="article-modal" style="display:none; position:fixed; inset:0; z-index:1000;">
     
@@ -204,6 +131,22 @@
   
 @push('scripts')
 <script>
+document.querySelectorAll('.js-af').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.js-af').forEach(function(b){
+      b.style.background='transparent';b.style.color='var(--gray-1)';
+      b.classList.remove('is-active');
+    });
+    btn.style.background='var(--black)';btn.style.color='var(--white)';
+    btn.classList.add('is-active');
+    var tag=btn.dataset.tag;
+    document.querySelectorAll('#art-grid .aic').forEach(function(card){
+      var cardTag=card.querySelector('.aic-tag').textContent;
+      card.style.display=(tag==='all'||cardTag.indexOf(tag)>=0)?'':'none';
+    });
+  });
+});
+
 $(document).ready(function () {
     $(document).on('click', '.open-article', function () {
         const id = $(this).data('id');

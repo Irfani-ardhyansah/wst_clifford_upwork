@@ -79,7 +79,7 @@ class MemberDashboardController extends Controller
     {
         $article = Article::findOrFail($id);
         $user = auth()->user();
-        if ($user->role !== 'admin') {
+        if ($user && $user->role !== 'admin') {
             AssetView::firstOrCreate([
                 'article_id' => $article->id,
                 'user_id'  => $user->id,
