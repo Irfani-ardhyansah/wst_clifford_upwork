@@ -41,25 +41,25 @@
     <div>
       <div class="wf-meta">
         <span class="wf-badge-new">Featured</span>
-        <span class="wf-badge-cat">{{$webinar->tags}}</span>
+        <span class="wf-badge-cat">{{$featuredWebinar->tags}}</span>
         <!-- <span class="wf-duration">48 min &middot; Recorded April 2026</span> -->
       </div>
-      <h2 class="wf-h">{{$webinar->title}}</h2>
+      <h2 class="wf-h">{{$featuredWebinar->title}}</h2>
       <p class="wf-desc">
-        {{$webinar->description}}
+        {{$featuredWebinar->description}}
       </p>
       <div class="wf-speaker">
-        <div class="wf-av">C</div>
+        <div class="wc-av">{{ strtoupper(substr($featuredWebinar->sub_title, 0, 1)) }}</div>
         <div>
-          <div class="wf-av-name">Clifford Campbell</div>
+          <div class="wf-av-name">{{$featuredWebinar->sub_title}}</div>
           <div class="wf-av-role">Partner, Water Solutions Technology &middot; GRESB Solution Provider Partner</div>
         </div>
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;">
         <button class="wf-watch-btn open-modal-btn"
-            data-id="{{ $webinar->id }}"
-            data-title="{{ $webinar->title }}"
-            data-image="{{ asset('storage/' . $webinar->image_path) }}">
+            data-id="{{ $featuredWebinar->id }}"
+            data-title="{{ $featuredWebinar->title }}"
+            data-image="{{ asset('storage/' . $featuredWebinar->image_path) }}">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="#fff"><path d="M5 3l8 4-8 4V3z"/></svg>
           Watch Now
         </button>
@@ -93,14 +93,14 @@
 <div class="web-filters" id="web-filters">
   <span class="web-filter-lbl">Filter:</span>
   <button class="wf on  js-wf" data-f="all"                     role="tab" aria-selected="true">All Sessions</button>
-  <!-- <button class="wf     js-wf" data-f="ESG"                     role="tab" aria-selected="false">ESG &amp; GRESB</button>
+  <button class="wf     js-wf" data-f="ESG"                     role="tab" aria-selected="false">ESG &amp; GRESB</button>
   <button class="wf     js-wf" data-f="Financial"               role="tab" aria-selected="false">Financial Analysis</button>
   <button class="wf     js-wf" data-f="Cooling"                 role="tab" aria-selected="false">Cooling Tower</button>
   <button class="wf     js-wf" data-f="Monitoring"              role="tab" aria-selected="false">Smart Monitoring</button>
   <button class="wf     js-wf" data-f="Billing"                 role="tab" aria-selected="false">Billing &amp; Recovery</button>
   <button class="wf     js-wf" data-f="Risk"                    role="tab" aria-selected="false">Risk Management</button>
   <button class="wf     js-wf" data-f="Platform"                role="tab" aria-selected="false">Platform Demo</button>
-  <span class="web-count" id="web-count">9 sessions</span> -->
+  <span class="web-count" id="web-count">9 sessions</span>
 </div>
 
 <!-- WEBINAR GRID -->
@@ -108,7 +108,7 @@
   <div class="web-grid" id="web-grid">
     @forelse ($webinars as $item)
 
-    <div class="wc" data-cat="ESG &amp; GRESB Strategy" onclick="openGate('GRESB Water Score Benchmarks: Hotel REITs in 2025','/webinars/gresb-water-score-hotel-reit-2025','webinars','webinars')" style="cursor:pointer;">
+    <div class="wc" data-cat="{{$item->tags}}" onclick="openGate('GRESB Water Score Benchmarks: Hotel REITs in 2025','/webinars/gresb-water-score-hotel-reit-2025','webinars','webinars')" style="cursor:pointer;">
       <div class="wc-thumb">
 
         @if($item->image_path)
@@ -125,7 +125,7 @@
             <svg width="14" height="14" viewBox="0 0 14 14" fill="#fff"><path d="M5 3l7 4-7 4V3z"/></svg>
           </div>
         </div>
-        <span class="wc-dur">32 min</span>
+        <span class="wc-dur">{{$item->mini_description}}</span>
         <!-- <span class="wc-new">New</span> -->
       </div>
       <div class="wc-body">
@@ -137,8 +137,8 @@
       </div>
       <div class="wc-foot">
         <div class="wc-speaker">
-          <div class="wc-av">C</div>
-          <span class="wc-spk-name">Clifford Campbell &middot; Partner, WST</span>
+          <div class="wc-av">{{ strtoupper(substr($item->sub_title, 0, 1)) }}</div>
+          <span class="wc-spk-name">{{$item->sub_title}}</span>
         </div>
         <div class="wc-watch open-modal-btn"
             data-id="{{ $item->id }}"
@@ -204,6 +204,37 @@
   
 @push('scripts')
 <script>
+var cards = document.querySelectorAll('.wc');
+var count = document.getElementById('web-count');
+
+document.querySelectorAll('.js-wf').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.js-wf').forEach(function(b) {
+      b.classList.remove('on');
+      b.setAttribute('aria-selected','false');
+    });
+    btn.classList.add('on');
+    btn.setAttribute('aria-selected','true');
+
+    var f = btn.dataset.f;
+    var visible = 0;
+    cards.forEach(function(c) {
+      var cat = c.dataset.cat || '';
+      var show = f === 'all' ||
+        (f === 'ESG'        && cat.includes('GRESB')) ||
+        (f === 'Financial'  && cat.includes('Financial')) ||
+        (f === 'Cooling'    && cat.includes('Cooling')) ||
+        (f === 'Monitoring' && cat.includes('Monitoring')) ||
+        (f === 'Billing'    && cat.includes('Billing')) ||
+        (f === 'Risk'       && cat.includes('Risk')) ||
+        (f === 'Platform'   && cat.includes('Platform'));
+      c.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    count.textContent = visible + ' session' + (visible !== 1 ? 's' : '');
+  });
+});
+
 $(document).ready(function() {
     // Buka Modal
     $(document).on('click', '.open-modal-btn', function(e) {

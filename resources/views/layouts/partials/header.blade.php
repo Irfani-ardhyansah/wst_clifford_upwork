@@ -88,14 +88,14 @@
       <a href="#">Services <svg viewBox="0 0 10 6" fill="currentColor"><path d="M0 0l5 6 5-6z"/></svg></a>
       <div class="dropdown">
         <div class="dropdown-section-label" style="padding:10px 16px 4px;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#999;">Services</div>
-        <a href="{{ route('services.audit') }}">Efficiency Audits</a>
-        <a href="{{ route('services.scope_studies') }}">Feasibility Assessment</a>
-        <a href="{{ route('services.elara_ai') }}">Utility Intelligence (Ara AI)</a>
+        <a href="{{ route('services.audit') }}">Water Efficiency Audits</a>
+        <a href="{{ route('services.smart_water_monitoring') }}">Smart Monitoring</a>
         <a href="{{ route('services.meter_accuracy_optimization') }}">Meter Accuracy Optimization</a>
-        <a href="{{ route('services.smart_water_monitoring') }}">Smart Water Monitoring</a>
-        <a href="{{ route('services.smart_water_recovery') }}">Smart Water Recovery</a>
         <a href="{{ route('services.cooling_towers') }}">Cooling Tower Optimization</a>
-        <a href="{{ route('services.gresb_compliance') }}">GRESB Compliance &amp; Strategy</a>
+        <a href="{{ route('services.elara_ai') }}">Utility Intelligence (Ara AI)</a>
+        <a href="{{ route('services.smart_water_recovery') }}">Smart Water Recovery</a>
+        <a href="{{ route('services.gresb_compliance') }}">ESG (GRESB) Compliance</a>
+        <a href="{{ route('services.scope_studies') }}">Water Risk Management</a>
       </div>
     </li>
 
@@ -120,14 +120,14 @@
       <a href="#">Resources <svg viewBox="0 0 10 6" fill="currentColor"><path d="M0 0l5 6 5-6z"/></svg></a>
       <div class="dropdown">
         <div class="dropdown-section-label" style="padding:10px 16px 4px;font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#999;">Resources</div>
-        <a href="{{ route('resources.articles') }}">Articles</a>
+        <a href="{{ route('resources.my_city_rebates') }}">Water Target Tools</a>
         <a href="{{ route('case-studies.index') }}">Case Studies</a>
         <a href="{{ route('resources.white-papers') }}">White Papers</a>
-        <a href="{{ route('resources.tools.selection_tool') }}">My City Water Rebates</a>
-        <a href="{{ route('resources.financing_form') }}">Tax Strategy &amp; Financing</a>
-        <a href="{{ route('resources.webinar') }}">Webinars On Demand</a>
-        <a href="{{ route('resources.events') }}">Events (Past &amp; Upcoming)</a>
-        <a href="{{ route('resources.my_city_rebates') }}">Water Target Tools (&amp; Cost Reduction)</a>
+        <a href="{{ route('resources.articles') }}">Articles</a>
+        <!-- <a href="{{ route('resources.tools.selection_tool') }}">My City Water Rebates</a> -->
+        <!-- <a href="{{ route('resources.financing_form') }}">Tax Strategy &amp; Financing</a> -->
+        <a href="{{ route('resources.webinar') }}">Webinars</a>
+        <a href="{{ route('resources.events') }}">Events </a>
       </div>
     </li>
   </ul>
