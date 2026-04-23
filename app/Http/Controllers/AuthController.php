@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\EventAttendance;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
@@ -39,6 +40,10 @@ class AuthController extends Controller
         }
 
         $this->loginUser($request, $user);
+
+        if ($request->input('is_event') !== 0) {
+            $this->storeEventAttendance($request, $user);
+        }
 
         $redirectUrl = route('member-dashboard.index');
         $sourceUrl = $request->input('source_url');
@@ -81,7 +86,6 @@ class AuthController extends Controller
         return redirect()->back();
     }
 
-
     public function logout(Request $request)
     {
         Auth::logout();
@@ -91,10 +95,35 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
 
+    public function storeEventAttendance($request, $user)
+    {
+        $eventId = $request->input('is_event');
+
+        if ($eventId) {
+            EventAttendance::firstOrCreate(
+                [
+                    'event_id' => $eventId,
+                    'user_id'  => $user->id,
+                ],
+                [
+                    'full_name'          => $request->input('full_name') ?? $user->name,
+                    'email'              => $request->input('email')     ?? $user->email,
+                    'phone'              => $request->input('phone')     ?? $user->phone ?? null,
+                    'company'            => $request->input('company'),
+                    'job_title'          => $request->input('job_title'),
+                    'notes'              => $request->input('notes'),
+                    'registration_type'  => 'interest',
+                    'status'             => 0,
+                    'source'             => 'website',
+                    'token'              => \Illuminate\Support\Str::uuid(),
+                ]
+            );
+        }
+    }
+
     /* =========================
      |  Validation
      ========================= */
-
     protected function validateBaseInput(Request $request): array
     {
         return $request->validate([

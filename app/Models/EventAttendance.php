@@ -12,18 +12,14 @@ class EventAttendance extends Model
 
     protected $fillable = [
         'event_id',
-        'first_name',
-        'last_name',
-        'email',
-        'company',
-        'phone',
-        'job_title',
-        'registration_type',
+        'user_id',
         'notes',
+        'registration_type',
         'status',
-        'meeting_link',
-        'time_preference',
+        'source',
         'token',
+        'confirmed_at',
+        'cancelled_at',
     ];
 
     protected $casts = [

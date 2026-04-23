@@ -175,11 +175,13 @@ $(document).ready(function() {
     $(document).on('click', '.open-modal-btn', function(e) {
         e.preventDefault();
 
-        const caseId = $(this).data('id');
+        const eventId = $(this).data('id');
         const caseTitle = $(this).data('title');
         const image     = $(this).data('image');
-        $('#modal-case-id').val(caseId);
+        $('#modal-case-id').val(eventId);
         $('#co-title-modal').text(caseTitle);
+
+        $('#is_event').val(eventId); 
 
         $('#modal-image').addClass('hidden').attr('src', '');
         $('#modal-icon').removeClass('hidden');
@@ -197,7 +199,7 @@ $(document).ready(function() {
         $('#auth-modal').removeClass('hidden opacity-0').addClass('open');
 
         setTimeout(function() {
-             $('#modal-content').removeClass('scale-95').addClass('scale-100');
+            $('#modal-content').removeClass('scale-95').addClass('scale-100');
         }, 10);
     });
 

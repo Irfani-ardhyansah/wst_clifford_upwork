@@ -2527,6 +2527,9 @@
                     url: form.attr('action'),
                     type: "POST",
                     data: form.serialize(),
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
                     success: function(response) {
                         if(response.status === 'success') {
 

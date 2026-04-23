@@ -42,6 +42,7 @@
                     <div class="gate-row">
                         <div class="gate-field">
                             <label class="gate-label" for="name">Full Name</label>
+                            <input type="hidden" name="is_event" id="is_event" value="0">
                             <input class="gate-input" type="text" name="name" id="name" placeholder="Jane Smith" autocomplete="name" required>
                             <span class="gate-err" id="err-name">Required</span>
                         </div>

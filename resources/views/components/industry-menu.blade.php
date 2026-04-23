@@ -27,7 +27,7 @@
 
 @foreach($industries as $industry)
     <li class="dropdown-item">
-        <a href="{{ url('/industries/' . $industry->slug) }}">
+        <a href="#">
             {{ $industry->title }}
             @if($industry->allChildren->count())
                 <span class="arrow">›</span>

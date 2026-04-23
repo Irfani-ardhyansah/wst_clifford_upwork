@@ -115,7 +115,7 @@ document.querySelectorAll('.js-csf').forEach(function(btn){
         const caseTitle = 'Access ' + $(this).data('title');
 
         $('#modal-case-id').val(caseId);
-        $('#co-title').text(caseTitle);
+        $('#co-title-modal').text(caseTitle);
 
         $('#auth-modal').removeClass('hidden opacity-0').addClass('open');
         

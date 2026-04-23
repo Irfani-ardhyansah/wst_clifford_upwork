@@ -244,7 +244,7 @@ $(document).ready(function() {
         const caseTitle = $(this).data('title');
         const image     = $(this).data('image');
         $('#modal-case-id').val(caseId);
-        $('#modal-asset-title').text(caseTitle);
+        $('#co-title-modal').text(caseTitle);
 
         $('#modal-image').addClass('hidden').attr('src', '');
         $('#modal-icon').removeClass('hidden');

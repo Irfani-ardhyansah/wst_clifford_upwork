@@ -25,6 +25,16 @@ return new class extends Migration
             $table->string('registration_type')->default('interest');
             // Status: 0=pending, 1=approved, 2=rejected, 3=cancelled
             $table->tinyInteger('status')->default(0);
+            // Sumber registrasi: website | admin | import
+            $table->string('source')->default('website');
+            // Token unik untuk konfirmasi / cancellation via email
+            $table->string('token')->unique()->nullable();
+            // Waktu konfirmasi oleh admin
+            $table->timestamp('confirmed_at')->nullable();
+            // Waktu cancellation
+            $table->timestamp('cancelled_at')->nullable();
+            // Unique: 1 user hanya bisa daftar 1x per event
+            $table->unique(['event_id', 'user_id']);
 
             $table->timestamps();
         });

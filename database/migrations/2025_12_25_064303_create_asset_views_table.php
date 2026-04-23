@@ -10,9 +10,9 @@ return new class extends Migration
     {
         Schema::create('asset_views', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('asset_id');
+            $table->unsignedBigInteger('asset_id')->nullable();
             $table->unsignedBigInteger('article_id')->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->date('view_date');
             $table->timestamps();
 
