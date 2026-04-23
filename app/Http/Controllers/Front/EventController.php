@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Models\Asset;
-use App\Models\GresbConsultation;
+use App\Models\Event;
 
 class EventController extends Controller
 {
     public function index()
     {
-        $events = GresbConsultation::where('status', 1)
-        ->orderBy('created_at', 'desc')
+        $events = Event::where('status', 1)
+        ->orderBy('sort_order', 'asc')
         ->get();
 
         return view('resources.events', compact('events'));

@@ -38,7 +38,7 @@
             'savings' => 'Cost Reduction & Efficiency',
             'compliance' => 'Regulatory Compliance'
         ];
-        $date = Carbon::parse($item->time_preference);
+        $date = Carbon::parse($item->event_date);
         $isPast = $date->isPast();
 
         $month = $date->format('M');
@@ -59,7 +59,7 @@
         </div>
 
         <div class="ec-body">
-            <div class="ec-type ec-type--conference">Conference</div>
+            <div class="ec-type ec-type--conference">{{ ucwords(str_replace('_', ' ', $item->event_type)) }}</div>
 
             <div class="ec-title">
                 {{ $interests[$item->interest] ?? 'General Inquiry' }} 
@@ -68,11 +68,11 @@
 
             <div class="ec-location">
                 <!-- ini masih hardcode, kalau ada field location tinggal ganti -->
-                New York, NY
+                {{$item->location}}
             </div>
 
             <div class="ec-desc">
-                {{ $item->notes }}
+                {{ $item->description }}
             </div>
         </div>
 
@@ -81,11 +81,11 @@
                 <span class="ec-wst-badge">Participated</span>
                 <span class="ec-past-tag">Past Event</span>
             @else
-                <span class="ec-wst-badge">Attending</span>
+                <span class="ec-wst-badge">{{$item->attendance_status}}</span>
                 <button class="ec-register-btn open-modal-btn"
                     data-id="{{ $item->id }}"
                     data-title="{{ $item->title }}">
-                    View Events →
+                    Register Interest
                 </button>
             @endif
         </div>
@@ -179,7 +179,7 @@ $(document).ready(function() {
         const caseTitle = $(this).data('title');
         const image     = $(this).data('image');
         $('#modal-case-id').val(caseId);
-        $('#modal-asset-title').text(caseTitle);
+        $('#co-title-modal').text(caseTitle);
 
         $('#modal-image').addClass('hidden').attr('src', '');
         $('#modal-icon').removeClass('hidden');

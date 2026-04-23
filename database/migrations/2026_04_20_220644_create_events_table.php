@@ -25,9 +25,9 @@ return new class extends Migration
             // conference | workshop | speaking_engagement | webinar | other
             $table->string('event_type')->default('conference');
 
-            // Badge bawah kiri kartu (ATTENDING | PRESENTING | SPEAKING | null)
+            // Badge bawah kiri kartu (ATTENDING | PRESENTING | SPEAKING | PRESENTED | null)
             $table->string('attendance_status')->nullable();
-            // Sub-label badge (SPEAKING OPPORTUNITY PURSUED | WST GRESB PARTNER | dll)
+            // Sub-label badge (SPEAKING OPPORTUNITY PURSUED | WST GRESB PARTNER | WATER BILLING & GRESB SESSION | dll)
             $table->string('attendance_label')->nullable();
 
             // Visual
@@ -36,7 +36,7 @@ return new class extends Migration
             $table->string('external_url')->nullable();     // link register eksternal
 
             // Status
-            // 0=inactive, 1=active/upcoming, 2=past event
+            // 0=inactive, 1=active
             $table->tinyInteger('status')->default(1);
             $table->integer('sort_order')->default(0);
 

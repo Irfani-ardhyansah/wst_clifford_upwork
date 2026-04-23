@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             AssetViewsSeeder::class,
             ArticleSeeder::class,
+            EventSeeder::class,
+
             // Kamu bisa tambah seeder lain di sini, misal: UserSeeder::class
         ]);
     }
