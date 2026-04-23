@@ -80,7 +80,7 @@
 
     <!-- ABOUT — plain link, no dropdown -->
     <li>
-      <a href="#">Portfolio Intelligence</a>
+      <a href="{{ route('portfolio-intelligence') }}">Portfolio Intelligence</a>
     </li>
 
     <!-- SERVICES — dropdown -->

@@ -240,6 +240,10 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
+Route::get('/portfolio-intelligence', function () {
+    return view('portfolio_intelligence');
+})->name('portfolio-intelligence');
+
 Route::post('/subscribe', [SubscriberController::class, 'store'])->name('subscribe.store');
 
 Route::get('/fix-link', function () {
