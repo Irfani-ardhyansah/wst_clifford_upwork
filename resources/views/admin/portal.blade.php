@@ -448,6 +448,11 @@ input,select,textarea{font-family:var(--font-ui);}
           <i class="fa-solid fa-newspaper"></i><span class="lbl">Articles</span>
         </a>
 
+        <a href="{{ route('admin.events.index') }}"
+        class="nav-link {{ request()->routeIs('admin.events*') ? 'active' : '' }}">
+          <i class="fa-solid fa-calendar"></i><span class="lbl">Events</span>
+        </a>
+
         <a href="{{ route('admin.industries.index') }}"
         class="nav-link {{ request()->routeIs('admin.industries*') ? 'active' : '' }}">
           <i class="fa-solid fa-industry"></i><span class="lbl">Industries</span>
@@ -488,6 +493,11 @@ input,select,textarea{font-family:var(--font-ui);}
         <a href="{{ route('member-dashboard.articles.index') }}"
             class="nav-link {{ request()->routeIs('member-dashboard.articles*') ? 'active' : '' }}">
           <i class="fa-solid fa-newspaper"></i><span class="lbl">Articles</span>
+        </a>
+
+        <a href="{{ route('member-dashboard.events.index') }}"
+            class="nav-link {{ request()->routeIs('member-dashboard.events*') ? 'active' : '' }}">
+          <i class="fa-solid fa-calendar"></i><span class="lbl">My Events</span>
         </a>
 
         <a href="{{ route('member-dashboard.index', ['category' => 'white-paper']) }}"

@@ -48,8 +48,19 @@
                   style="width:100%; height:192px; object-fit:cover;">
           @endif
 
+        @php
+            $categories = [
+                'technical-reference' => 'Technical Reference',
+                'financial-analysis' => 'Financial Analysis',
+                'esg-gresb-strategy' => 'ESG & GRESB strategy',
+                'efficiency-audits' => 'Efficiency Audits',
+                'smart-monitoring' => 'Smart Monitoring',
+                'case-study' => 'Case Study',
+            ];
+        @endphp
+
           <div class="aic-top">
-              <div class="aic-tag">{{ $item->category }}</div>
+              <div class="aic-tag">{{ $categories[$item->category] ?? '-' }}</div>
               <div class="aic-title">{{ $item->title }}</div>
               <div class="aic-excerpt">{{ $item->excerpt }}</div>
           </div>

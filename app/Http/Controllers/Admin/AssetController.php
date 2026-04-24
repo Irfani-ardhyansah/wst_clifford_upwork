@@ -13,8 +13,6 @@ class AssetController extends Controller
     public $categories = [
             ['value' => 'case-study', 'text' => 'Case Study'], 
             ['value' => 'webinar', 'text' => 'Webinar'], 
-            ['value' => 'white-paper', 'text' => 'White Paper'], 
-            ['value' => 'tool', 'text' => 'Tool'], 
         ];
     
     public function index(Request $request)
@@ -42,7 +40,7 @@ class AssetController extends Controller
 
     public function create()
     {
-        $industries = Industry::where('is_active', true)->get();
+        $industries = Industry::where('is_active', true)->with('children')->get();
         $categories = $this->categories;
         return view('admin.assets.create', compact('industries', 'categories'));
     }
@@ -50,15 +48,16 @@ class AssetController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'industry_id'      => 'required_if:category,case_study|nullable|exists:industries,id',
-            'title'            => 'required|string|max:255',
-            'category'         => 'required|string|max:100',
-            'video'            => 'required_if:category,webinar|nullable|file|mimetypes:video/mp4,application/mp4|max:51200',
-            'html_content'     => 'nullable|string',
-            'image'            => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'sort_order'       => 'nullable|integer',
-            'tags'             => 'nullable|string|max:255', 
-            'description'      => 'nullable|string',          
+            'parent_industry_id' => 'required_if:category,case-study|nullable|exists:industries,id',
+            'industry_id'        => 'required_if:category,case-study|nullable|exists:industries,id',
+            'title'              => 'required|string|max:255',
+            'category'           => 'required|string|max:100',
+            'video'              => 'required_if:category,webinar|nullable|file|mimetypes:video/mp4,application/mp4|max:51200',
+            'html_content'       => 'required_if:category,case-study|nullable|string',
+            'image'              => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'sort_order'         => 'nullable|integer',
+            'tags'               => 'nullable|string|max:255',
+            'description'        => 'nullable|string',
         ]);
 
         if ($request->filled('sort_order')) {
@@ -91,7 +90,7 @@ class AssetController extends Controller
 
     public function edit(Asset $asset)
     {
-        $industries = Industry::where('is_active', true)->get();
+        $industries = Industry::where('is_active', true)->with('children')->get();
         $categories = $this->categories;
         return view('admin.assets.edit', compact('asset', 'industries', 'categories'));
     }
@@ -99,15 +98,16 @@ class AssetController extends Controller
     public function update(Request $request, Asset $asset)
     {
         $validated = $request->validate([
-            'industry_id'      => 'required_if:category,case_study|nullable|exists:industries,id',
-            'title'            => 'required|string|max:255',
-            'category'         => 'required|string',
-            'video'            => 'nullable|file|mimetypes:video/mp4,application/mp4|max:51200',
-            'html_content'     => 'nullable|string',
-            'image'            => 'nullable|image|max:2048',
-            'tags'             => 'nullable|string|max:255', 
-            'description'      => 'nullable|string',          
-            'sort_order'       => 'nullable|integer',
+            'parent_industry_id' => 'required_if:category,case-study|nullable|exists:industries,id',
+            'industry_id'        => 'required_if:category,case-study|nullable|exists:industries,id',
+            'title'              => 'required|string|max:255',
+            'category'           => 'required|string',
+            'video'              => 'nullable|file|mimetypes:video/mp4,application/mp4|max:51200',
+            'html_content'       => 'required_if:category,case-study|nullable|string',
+            'image'              => 'nullable|image|max:2048',
+            'tags'               => 'nullable|string|max:255',
+            'description'        => 'nullable|string',
+            'sort_order'         => 'nullable|integer',
         ]);
 
         if ($request->filled('sort_order') && $request->sort_order != $asset->sort_order) {

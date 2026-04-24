@@ -60,6 +60,14 @@ function adjustBrightness($hex, $steps) {
             $base = '#1a2a2a';
             $randomStep = rand(-15, 15); // variasi kecil biar tetap 1 palette
             $bgColor = adjustBrightness($base, $randomStep);
+            $categories = [
+                'technical-reference' => 'Technical Reference',
+                'financial-analysis' => 'Financial Analysis',
+                'esg-gresb-strategy' => 'ESG & GRESB strategy',
+                'efficiency-audits' => 'Efficiency Audits',
+                'smart-monitoring' => 'Smart Monitoring',
+                'case-study' => 'Case Study',
+            ];
           @endphp
 
         <div class="wp-card">
@@ -82,7 +90,7 @@ function adjustBrightness($hex, $steps) {
                       background:#1a2a1a;
                   @endif
                   ">
-            <div><div class="wp-tag">{{ $item->category }}</div>
+            <div><div class="wp-tag">{{ $categories[$item->category] ?? '-' }}</div>
             <div class="wp-title">{{ $item->title }}</div></div>
             <div class="wp-pages">{{$item->page_count}} pages &middot; PDF &middot; {{ \Carbon\Carbon::parse($item->published_at)->format('F Y') }}</div>
           </div>

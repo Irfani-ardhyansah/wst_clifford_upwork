@@ -8,7 +8,7 @@
     <div class="page-hdr">
         <div class="page-hdr-left"><h2>White Papers</h2><p>Manage your white papers and technical documents</p></div>
         <div class="page-hdr-right">
-            <a href="{{ route('admin.assets.create') }}" 
+            <a href="{{ route('admin.articles.create') }}" 
                 class="inline-flex items-center justify-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-5 py-2.5 rounded-xl font-medium transition-all duration-200 shadow-md shadow-teal-600/20 hover:shadow-lg hover:shadow-teal-600/30 hover:-translate-y-0.5"
                 >
                 <i class="fa-solid fa-plus text-sm"></i> <span>Add Project</span>
@@ -98,8 +98,8 @@
                             </td>
                             <td>
                                 <div style="display:flex;flex-direction:column;gap:4px;">
-                                    <span class="pill {{ $item->is_active ? 'pill-green' : 'pill-amber' }}">
-                                        {{ $item->is_active ? 'Published' : 'Draft' }}
+                                    <span class="pill {{ $item->status === 'published' ? 'pill-green' : 'pill-amber' }}">
+                                        {{ Str::title($item->status) }}
                                     </span>
                                     @if($item->is_featured)
                                         <span class="pill pill-yellow">
@@ -110,12 +110,12 @@
                             </td>
                             <td class="r">
                                 <div style="display:flex;align-items:center;justify-content:flex-start;gap:6px;">
-                                    <a href="{{ route('admin.assets.edit', $item) }}"
+                                    <a href="{{ route('admin.articles.edit', $item) }}"
                                     class="btn btn-ghost"
                                     style="font-size:10px;padding:4px 8px;">
                                         <i class="fa-solid fa-pencil" style="font-size:9px;"></i> Edit
                                     </a>
-                                    <form action="{{ route('admin.assets.destroy', $item) }}" method="POST"
+                                    <form action="{{ route('admin.articles.destroy', $item) }}" method="POST"
                                         onsubmit="return confirm('Are you sure?');">
                                         @csrf
                                         @method('DELETE')

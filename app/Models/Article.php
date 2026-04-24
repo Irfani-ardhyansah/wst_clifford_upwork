@@ -21,6 +21,8 @@ class Article extends Model
         'type',
         'title',
         'slug',
+        'category',
+        'excerpt',
         'source_type',
         'content',
         'pdf_path',

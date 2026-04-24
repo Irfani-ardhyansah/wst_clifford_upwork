@@ -53,10 +53,22 @@
                             <i class="fa-solid fa-lock" style="font-size:9px;"></i> Premium
                         </div>
                         <h3 class="rc-title">{{ $asset->title }}</h3>
-                        <div class="rc-meta">{{ $asset->industry->title ?? 'General' }}</div>
+                        <div class="rc-meta">
+                            @if(isset($asset->industry_id))
+                                {{ $asset->industry->title ?? 'General' }}
+                            @else
+                                {{ $asset->target_audience ? implode(', ', $asset->target_audience) : 'General' }}
+                            @endif
+                        </div>
                         <div class="rc-footer">
-                            <span class="rc-views">{{ $asset->category }}</span>
-                            <button id="openModalBtn" data-id="{{ $asset->id }}" class="rc-cta">View Resource</button>
+                            <span class="rc-views">
+                                @if(isset($asset->type))
+                                    {{ $asset->type === 'white-paper' ? 'White Paper' : 'Article' }}
+                                @else
+                                    {{ $asset->category ?? 'Resource' }}
+                                @endif
+                            </span>
+                            <button id="openModalBtn" data-id="{{ $asset->id }}" data-type="{{ isset($asset->type) ? 'article' : 'asset' }}" class="rc-cta">View Resource</button>
                         </div>
                     </div>
                 @empty
@@ -122,6 +134,7 @@
             e.preventDefault();
 
             let id = $(this).data('id');
+            let type = $(this).data('type') || 'asset';
 
             $modalBody.html(`
                 <div class="flex justify-center items-center h-40">
@@ -132,13 +145,10 @@
             $modal.removeClass('hidden').hide().fadeIn(200);
             $body.css('overflow', 'hidden');
 
-            // setTimeout(function () {
-            //     $modalPanel
-            //         .removeClass('opacity-0 translate-y-8')
-            //         .addClass('opacity-100 translate-y-0');
-            // }, 20);
+            // Determine the correct endpoint based on type
+            let endpoint = type === 'article' ? `/member-dashboard/${id}/article-content` : `/member-dashboard/${id}/content`;
 
-            $.get(`/member-dashboard/${id}/content`, function (res) {
+            $.get(endpoint, function (res) {
                 // 1. Bersihkan modal body dulu
                 $modalBody.empty();
 

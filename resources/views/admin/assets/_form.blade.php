@@ -31,33 +31,48 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div id="field-industry">
-            <label class="block text-sm font-medium mb-1 text-[var(--text-2)]">Industry</label>
-            <select id="industry_id" name="industry_id" class="w-full px-4 py-2 rounded-lg text-sm
-                bg-[var(--surface)] text-[var(--text-1)]
-                border border-[var(--border)]
-                focus:outline-none focus:ring-2 focus:ring-[var(--primary)]">
-                <option value="">All Industries</option>
-                @foreach($industries as $industry)
+    <!-- Parent Industry (for case-study) -->
+    <div id="field-parent-industry" class="hidden">
+        <label class="block text-sm font-medium mb-1 text-[var(--text-2)]">Parent Industry <span class="text-red-500">*</span></label>
+        <select id="parent_industry_id" name="parent_industry_id" class="w-full px-4 py-2 rounded-lg text-sm
+            bg-[var(--surface)] text-[var(--text-1)]
+            border border-[var(--border)]
+            focus:outline-none focus:ring-2 focus:ring-[var(--primary)]">
+            <option value="">Select Parent Industry</option>
+            @foreach($industries as $industry)
+                @if(!$industry->parent_id)
                     <option value="{{ $industry->id }}" 
-                        {{ old('industry_id', $asset->industry_id ?? '') == $industry->id ? 'selected' : '' }}>
+                        {{ old('parent_industry_id', isset($asset) && $asset->industry ? $asset->industry->parent_id : '') == $industry->id ? 'selected' : '' }}>
                         {{ $industry->title }}
                     </option>
-                @endforeach
-            </select>
-        </div>
-        <div>
-            <label class="block text-sm font-medium mb-1 text-[var(--text-2)]">Tags (comma separated)</label>
-            <input type="text" name="tags"
-                value="{{ old('tags', $asset->tags ?? '') }}"
-                class="w-full px-4 py-2 rounded-lg text-sm
-                    bg-[var(--surface)] text-[var(--text-1)]
-                    border border-[var(--border)]
-                    placeholder-[var(--text-3)]
-                    focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-                placeholder="water, GRESB, savings">
-        </div>
+                @endif
+            @endforeach
+        </select>
+        @error('parent_industry_id') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+    </div>
+
+    <!-- Child Industry (for case-study) -->
+    <div id="field-child-industry" class="hidden">
+        <label class="block text-sm font-medium mb-1 text-[var(--text-2)]">Child Industry</label>
+        <select id="child_industry_id" name="industry_id" class="w-full px-4 py-2 rounded-lg text-sm
+            bg-[var(--surface)] text-[var(--text-1)]
+            border border-[var(--border)]
+            focus:outline-none focus:ring-2 focus:ring-[var(--primary)]">
+            <option value="">Select Child Industry</option>
+        </select>
+        @error('industry_id') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+    </div>
+
+    <div>
+        <label class="block text-sm font-medium mb-1 text-[var(--text-2)]">Tags (comma separated)</label>
+        <input type="text" name="tags"
+            value="{{ old('tags', $asset->tags ?? '') }}"
+            class="w-full px-4 py-2 rounded-lg text-sm
+                bg-[var(--surface)] text-[var(--text-1)]
+                border border-[var(--border)]
+                placeholder-[var(--text-3)]
+                focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+            placeholder="water, GRESB, savings">
     </div>
 
     <div>
@@ -98,7 +113,7 @@
         @error('video') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
     </div>
 
-    <div>
+    <div id="field-html-content">
         <label class="block text-sm font-medium mb-1 text-[var(--text-2)]">HTML Content <span class="text-red-500">*</span></label>
         <textarea name="html_content" rows="10"
                 class="w-full px-4 py-2 rounded-lg text-sm
@@ -146,34 +161,82 @@
 $(function () {
     const $category = $('#categorySelect');
     const $video    = $('#field-video');
-    const $industry = $('#field-industry');
+    const $parentIndustry = $('#field-parent-industry');
+    const $childIndustry = $('#field-child-industry');
+    const $htmlContent = $('#field-html-content');
+    const $parentSelect = $('#parent_industry_id');
+    const $childSelect = $('#child_industry_id');
 
     const isEdit = {{ isset($asset) ? 'true' : 'false' }};
+
+    // Store all industries by parent
+    const industriesData = {
+        @foreach($industries as $industry)
+            {{ $industry->id }}: [
+                @foreach($industry->children ?? [] as $child)
+                    { id: {{ $child->id }}, title: '{{ $child->title }}' },
+                @endforeach
+            ],
+        @endforeach
+    };
 
     function toggleFields(resetValue = true) {
         const category = $category.val();
 
+        // Hide all conditional fields
         $video.addClass('hidden');
-        $industry.addClass('hidden');
+        $htmlContent.removeClass('hidden');
+        $parentIndustry.addClass('hidden');
+        $childIndustry.addClass('hidden');
 
         if (!isEdit && resetValue) {
-            $('#industry_id').val('');
+            $parentSelect.val('');
+            $childSelect.val('').html('<option value="">Select Child Industry</option>');
         }
 
+        // Show fields based on category
         if (category === 'webinar') {
             $video.removeClass('hidden');
+            $htmlContent.addClass('hidden');
         }
 
         if (category === 'case-study') {
-            $industry.removeClass('hidden');
+            $parentIndustry.removeClass('hidden');
+            $childIndustry.removeClass('hidden');
         }
     }
+
+    // Handle parent industry change
+    $parentSelect.on('change', function () {
+        const parentId = $(this).val();
+        const children = industriesData[parentId] || [];
+
+        let options = '<option value="">Select Child Industry</option>';
+        children.forEach(child => {
+            options += `<option value="${child.id}">${child.title}</option>`;
+        });
+
+        $childSelect.html(options);
+        
+        // If editing, restore selected value
+        @if(isset($asset) && $asset->industry_id)
+            const currentChildId = '{{ $asset->industry_id }}';
+            $childSelect.val(currentChildId);
+        @endif
+    });
 
     $category.on('change', function () {
         toggleFields(true);
     });
 
     toggleFields(false);
+
+    // For edit mode, trigger parent change if parent is selected
+    @if(isset($asset) && $asset->category === 'case-study')
+        if ($parentSelect.val()) {
+            $parentSelect.trigger('change');
+        }
+    @endif
 });
 </script>
 @endpush

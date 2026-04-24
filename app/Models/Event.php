@@ -52,16 +52,16 @@ class Event extends Model
 
     // ── Relasi ────────────────────────────────────────────────────
 
-    /** Semua registrasi / interest untuk event ini */
-    public function registrations(): HasMany
+    /** Semua registrasi untuk event ini */
+    public function attendances(): HasMany
     {
-        return $this->hasMany(GresbConsultation::class, 'event_id');
+        return $this->hasMany(EventAttendance::class);
     }
 
-    /** Hanya yang sudah approved (ada meeting link) */
-    public function approvedRegistrations(): HasMany
+    /** Hanya yang sudah approved */
+    public function approvedAttendances(): HasMany
     {
-        return $this->registrations()->whereNotNull('meeting_link');
+        return $this->attendances()->where('status', EventAttendance::STATUS_APPROVED);
     }
 
     // ── Scopes ────────────────────────────────────────────────────

@@ -13,6 +13,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\Admin\AssetController as AdminAssetController;
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
+use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Front\MemberDashboardController;
 use App\Http\Controllers\Front\WhitePaperController;
 use App\Http\Controllers\Front\CaseStudyController;
@@ -84,6 +85,19 @@ Route::middleware(['auth', 'role:admin'])
             Route::delete('/{article}', [AdminArticleController::class, 'destroy'])->name('destroy');
         });
 
+        Route::prefix('events')->name('events.')->group(function () {
+            Route::get('/', [AdminEventController::class, 'index'])->name('index');
+            Route::get('/create', [AdminEventController::class, 'create'])->name('create');
+            Route::post('/', [AdminEventController::class, 'store'])->name('store');
+            Route::get('/{event}/edit', [AdminEventController::class, 'edit'])->name('edit');
+            Route::put('/{event}', [AdminEventController::class, 'update'])->name('update');
+            Route::get('/{event}/show', [AdminEventController::class, 'show'])->name('show');
+            Route::delete('/{event}', [AdminEventController::class, 'destroy'])->name('destroy');
+            Route::put('/{attendance}/approve', [AdminEventController::class, 'approveAttendance'])->name('attendance.approve');
+            Route::put('/{attendance}/reject', [AdminEventController::class, 'rejectAttendance'])->name('attendance.reject');
+            Route::put('/{attendance}/cancel', [AdminEventController::class, 'cancelAttendance'])->name('attendance.cancel');
+        });
+
         Route::prefix('case-studies')->name('case-studies.')->group(function () {
             Route::get('/', [AdminCaseStudyController::class, 'index'])->name('index');
         });
@@ -124,8 +138,10 @@ Route::middleware(['auth', 'role:admin'])
 Route::middleware('auth')->prefix('member-dashboard')->name('member-dashboard.')->group(function () {
     Route::get('/', [MemberDashboardController::class, 'index'])->name('index');
     Route::get('/{id}/content', [AssetController::class, 'show'])->name('show');
+    Route::get('/{id}/article-content', [MemberDashboardController::class, 'articleContent'])->name('article.show');
 
     Route::get('/articles', [MemberDashboardController::class, 'articles'])->name('articles.index');
+    Route::get('/events', [MemberDashboardController::class, 'events'])->name('events.index');
 
     ROUTE::get('/gresb-water', [GRESBWaterController::class, 'index'])->name('gresb-water.index');
     ROUTE::get('/gresb-water/list', [GRESBWaterController::class, 'list'])->name('gresb-water.list');

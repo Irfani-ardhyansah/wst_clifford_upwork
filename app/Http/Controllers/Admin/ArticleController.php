@@ -13,6 +13,7 @@ class ArticleController extends Controller
     public function index(Request $request)
     {
         $query = Article::query()
+            ->where('type', Article::TYPE_ARTICLE)
             ->with('author')
             ->withCount('views')
             ->latest();
@@ -32,12 +33,17 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'type' => ['nullable', Rule::in(['article', 'white-paper'])],
             'title' => 'required|string|max:255',
             'slug' => 'nullable|string|max:255|unique:articles,slug',
+            'category' => 'nullable|string|max:255',
+            'excerpt' => 'nullable|string|max:1000',
+            'target_audience' => 'nullable|array',
             'source_type' => ['required', Rule::in(['editor','pdf'])],
             'content' => 'nullable|string',
             'pdf' => 'nullable|file|mimes:pdf|max:51200',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'page_count' => 'nullable|integer|min:1',
             'status' => ['nullable', Rule::in(['draft','published'])],
             'published_at' => 'nullable|date',
         ]);
@@ -70,6 +76,7 @@ class ArticleController extends Controller
         }
 
         $validated['author_id'] = auth()->id();
+        $validated['type'] = $validated['type'] ?? 'article';
         $validated['status'] = $validated['status'] ?? 'draft';
 
         Article::create($validated);
@@ -85,6 +92,7 @@ class ArticleController extends Controller
     public function update(Request $request, Article $article)
     {
         $validated = $request->validate([
+            'type' => ['nullable', Rule::in(['article', 'white-paper'])],
             'title' => 'required|string|max:255',
             'slug' => [
                 'nullable',
@@ -92,10 +100,14 @@ class ArticleController extends Controller
                 'max:255',
                 Rule::unique('articles', 'slug')->ignore($article->id),
             ],
+            'category' => 'nullable|string|max:255',
+            'excerpt' => 'nullable|string|max:1000',
+            'target_audience' => 'nullable|array',
             'source_type' => ['required', Rule::in(['editor', 'pdf'])],
             'content' => 'nullable|string',
             'pdf' => 'nullable|file|mimes:pdf|max:51200',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'page_count' => 'nullable|integer|min:1',
             'status' => ['nullable', Rule::in(['draft','published'])],
             'published_at' => 'nullable|date',
         ]);
@@ -189,6 +201,7 @@ class ArticleController extends Controller
         */
 
         $validated['author_id'] = $article->author_id;
+        $validated['type'] = $validated['type'] ?? $article->type ?? 'article';
         $validated['status'] = $validated['status'] ?? $article->status;
 
         $article->update($validated);

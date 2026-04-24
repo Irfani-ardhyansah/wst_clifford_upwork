@@ -9,6 +9,8 @@ use App\Models\Asset;
 use App\Models\Industry;
 use App\Models\Article;
 use App\Models\AssetView;
+use App\Models\Event;
+use App\Models\EventAttendance;
 use Carbon\Carbon;
 
 class MemberDashboardController extends Controller
@@ -22,35 +24,53 @@ class MemberDashboardController extends Controller
 
     public function index(Request $request)
     {
-        $query = Asset::where('is_active', true)
-                    ->with('industry')
-                    ->latest('sort_order');
         $typeFunction = 'index';
-
-        if ($request->filled('category')) {
-            $typeFunction = 'detail';
-            $query->where('category', $request->category);
-        }
-
-        if ($request->filled('industry_id')) {
-            $query->where('industry_id', $request->industry_id);
-        }
-
-        if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function($q) use ($search) {
-                $q->where('title', 'like', "%{$search}%")
-                ->orWhere('description', 'like', "%{$search}%")
-                ->orWhere('tags', 'like', "%{$search}%");
-            });
-        }
-
-        $assets = $query->paginate(12)->withQueryString();
-
         $pageTitle = $request->category ? Str::plural($request->category) : 'All Resources';
-
         $categories = $this->categories;
         $industries = Industry::orderBy('title', 'asc')->get();
+
+        // Handle white-paper from Article model
+        if ($request->filled('category') && $request->category === 'white-paper') {
+            $typeFunction = 'detail';
+            $query = Article::where('status', 'published')
+                        ->where('type', 'white-paper');
+
+            if ($request->filled('search')) {
+                $search = $request->search;
+                $query->where(function($q) use ($search) {
+                    $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('excerpt', 'like', "%{$search}%");
+                });
+            }
+
+            $assets = $query->latest('published_at')->paginate(12)->withQueryString();
+        } else {
+            // Handle all other assets (case-study, webinar, tool) from Asset model
+            // dd(Asset::where('is_active', true)->where('category', 'Case Study')->with('industry')->latest('sort_order')->get());
+            $query = Asset::where('is_active', true)
+                        ->with('industry')
+                        ->latest('sort_order');
+
+            if ($request->filled('category')) {
+                $typeFunction = 'detail';
+                $query->where('category', $request->category);
+            }
+
+            if ($request->filled('industry_id')) {
+                $query->where('industry_id', $request->industry_id);
+            }
+
+            if ($request->filled('search')) {
+                $search = $request->search;
+                $query->where(function($q) use ($search) {
+                    $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%")
+                    ->orWhere('tags', 'like', "%{$search}%");
+                });
+            }
+
+            $assets = $query->paginate(12)->withQueryString();
+        }
 
         $sidebarMenu = [
             ['value' => 'white-paper', 'label' => 'White Papers', 'icon' => 'fa-file-lines'],
@@ -79,6 +99,7 @@ class MemberDashboardController extends Controller
     {
         $article = Article::findOrFail($id);
         $user = auth()->user();
+        
         if ($user && $user->role !== 'admin') {
             AssetView::firstOrCreate([
                 'article_id' => $article->id,
@@ -92,6 +113,35 @@ class MemberDashboardController extends Controller
                 'view_date'=> Carbon::today(),
             ]);
         }
-        return view('member_dashboard.articles._modal', compact('article'));
+
+        // Return HTML content as JSON response
+        $html = view('member_dashboard.articles._modal', compact('article'))->render();
+        return response()->json(['html' => $html]);
+    }
+
+    public function events(Request $request)
+    {
+        $user = auth()->user();
+        
+        // Admin sees all events with their attendances, users see only events they registered for
+        if ($user->role === 'admin') {
+            $query = Event::with('attendances.user')
+                        ->latest('created_at');
+        } else {
+            $query = Event::whereHas('attendances', function($q) use ($user) {
+                $q->where('user_id', $user->id);
+            })
+            ->with('attendances')
+            ->latest('created_at');
+        }
+
+        if ($request->filled('search')) {
+            $s = $request->search;
+            $query->where('title', 'like', "%{$s}%");
+        }
+
+        $events = $query->paginate(12)->withQueryString();
+
+        return view('member_dashboard.events.index', compact('events'));
     }
 }

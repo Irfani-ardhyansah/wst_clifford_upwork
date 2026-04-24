@@ -1,5 +1,25 @@
 <div class="space-y-6">
 
+    <!-- Type -->
+    <div>
+        <label class="block text-sm font-medium mb-1 text-[var(--text-2)]">
+            Type
+        </label>
+        <select name="type"
+            class="w-full px-4 py-2 rounded-lg text-sm
+                bg-[var(--surface)] text-[var(--text-1)]
+                border border-[var(--border)]
+                focus:outline-none focus:ring-2 focus:ring-[var(--primary)]">
+            <option value="article" {{ old('type', optional($article)->type ?? 'article') === 'article' ? 'selected' : '' }}>
+                Article
+            </option>
+            <option value="white-paper" {{ old('type', optional($article)->type) === 'white-paper' ? 'selected' : '' }}>
+                White Paper
+            </option>
+        </select>
+        @error('type') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+    </div>
+
     <!-- Title & Slug -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
@@ -34,6 +54,104 @@
                 placeholder="auto-generated-if-empty">
             @error('slug') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
         </div>
+    </div>
+
+    <!-- Category & Excerpt -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+            <label class="block text-sm font-medium mb-1 text-[var(--text-2)]">
+                Category
+            </label>
+
+            <select name="category"
+                class="w-full px-4 py-2 rounded-lg text-sm
+                    bg-[var(--surface)] text-[var(--text-1)]
+                    border border-[var(--border)]
+                    focus:outline-none focus:ring-2 focus:ring-[var(--primary)]">
+
+                <option value="">-- Select Category --</option>
+
+                @php
+                    $categories = [
+                        'technical-reference' => 'Technical Reference',
+                        'financial-analysis' => 'Financial Analysis',
+                        'esg-gresb-strategy' => 'ESG & GRESB strategy',
+                        'efficiency-audits' => 'Efficiency Audits',
+                        'smart-monitoring' => 'Smart Monitoring',
+                        'case-study' => 'Case Study',
+                    ];
+                @endphp
+
+                @foreach ($categories as $cat)
+                    <option value="{{ $cat }}"
+                        {{ old('category', optional($article)->category) == $cat ? 'selected' : '' }}>
+                        {{ $cat }}
+                    </option>
+                @endforeach
+
+            </select>
+
+            @error('category')
+                <span class="text-red-500 text-xs">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium mb-1 text-[var(--text-2)]">
+                Page Count
+            </label>
+            <input type="number" 
+                name="page_count" 
+                value="{{ old('page_count', optional($article)->page_count) }}"
+                min="1"
+                class="w-full px-4 py-2 rounded-lg text-sm
+                    bg-[var(--surface)] text-[var(--text-1)]
+                    border border-[var(--border)]
+                    placeholder-[var(--text-3)]
+                    focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+                placeholder="Number of pages">
+            @error('page_count') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+        </div>
+    </div>
+
+    <!-- Excerpt -->
+    <div>
+        <label class="block text-sm font-medium mb-1 text-[var(--text-2)]">
+            Excerpt
+        </label>
+        <textarea name="excerpt" 
+            rows="3"
+            class="w-full px-4 py-2 rounded-lg text-sm
+                bg-[var(--surface)] text-[var(--text-1)]
+                border border-[var(--border)]
+                placeholder-[var(--text-3)]
+                focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
+            placeholder="Short summary of the article...">{{ old('excerpt', optional($article)->excerpt) }}</textarea>
+        @error('excerpt') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+    </div>
+
+    <!-- Target Audience -->
+    <div>
+        <label class="block text-sm font-medium mb-2 text-[var(--text-2)]">
+            Target Audience
+        </label>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+            @php
+                $audiences = ['Executives', 'Managers', 'Analysts', 'Developers', 'Students', 'Investors'];
+                $selected = old('target_audience', optional($article)->target_audience ?? []);
+            @endphp
+            @foreach($audiences as $audience)
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" 
+                        name="target_audience[]" 
+                        value="{{ $audience }}"
+                        {{ in_array($audience, (array)$selected) ? 'checked' : '' }}
+                        class="rounded border-[var(--border)] text-[var(--primary)] focus:ring-[var(--primary)]">
+                    <span class="text-sm text-[var(--text-2)]">{{ $audience }}</span>
+                </label>
+            @endforeach
+        </div>
+        @error('target_audience') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
     </div>
 
 

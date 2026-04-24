@@ -96,9 +96,7 @@
                             </div>
                         </td>
                         <td>
-                            <span class="pill {{ $article->source_type === 'editor' ? 'pill-blue' : 'pill-purple' }}">
-                                {{ strtoupper($article->source_type) }}
-                            </span>
+                            <span class="text-sm text-[var(--text-2)]">{{ $article->category ?? '-' }}</span>
                         </td>
                         <td style="font-family:var(--font-mono);color:var(--accent);">
                             {{ number_format($article->views_count ?? 0) }}
