@@ -34,8 +34,8 @@ class EventController extends Controller
         if ($request->filled('search')) {
             $s = $request->search;
             $query->where('title', 'like', "%{$s}%")
-                  ->orWhere('slug', 'like', "%{$s}%")
-                  ->orWhere('location', 'like', "%{$s}%");
+                    ->orWhere('slug', 'like', "%{$s}%")
+                    ->orWhere('location', 'like', "%{$s}%");
         }
 
         if ($request->filled('status')) {
@@ -98,6 +98,11 @@ class EventController extends Controller
         $validated['is_featured'] = $request->has('is_featured');
         $validated['status'] = $validated['status'] ?? 1;
         $validated['sort_order'] = $validated['sort_order'] ?? Event::max('sort_order') + 1;
+
+        // Generate Jitsi meeting link
+        $hashDate = $request->event_date ? substr(md5($request->event_date), 0, 8) : Str::lower(Str::random(8));
+        $slug = 'event-' . Str::slug($request->title) . '-' . $hashDate;
+        $validated['external_url'] = 'https://meet.jit.si/' . $slug;
 
         Event::create($validated);
 

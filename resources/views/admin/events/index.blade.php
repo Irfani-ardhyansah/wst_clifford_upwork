@@ -82,6 +82,7 @@
                         <th>Date & Time</th>
                         <th>Type</th>
                         <th>Registrations</th>
+                        <th>Links</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -124,6 +125,21 @@
                                 <span class="pill {{ $event->status === 1 ? 'pill-green' : 'pill-red' }}">
                                     {{ $event->status === 1 ? 'Active' : 'Inactive' }}
                                 </span>
+                            </td>
+                            <td>
+                                @if($event->external_url)
+                                    <a href="{{ $event->external_url }}" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    class="pill pill-blue inline-flex items-center gap-1 hover:opacity-80 transition"
+                                    >
+                                        Link
+                                    </a>
+                                @else
+                                    <span class="pill pill-red">
+                                        #
+                                    </span>
+                                @endif
                             </td>
                             <td>
                                 <div class="flex gap-2 items-center">

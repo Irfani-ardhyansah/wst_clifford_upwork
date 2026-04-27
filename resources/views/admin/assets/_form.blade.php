@@ -63,7 +63,7 @@
         @error('industry_id') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
     </div>
 
-    <div>
+    <div id="field-tags">
         <label class="block text-sm font-medium mb-1 text-[var(--text-2)]">Tags (comma separated)</label>
         <input type="text" name="tags"
             value="{{ old('tags', $asset->tags ?? '') }}"
@@ -75,7 +75,7 @@
             placeholder="water, GRESB, savings">
     </div>
 
-    <div>
+    <div id="field-description">
         <label class="block text-sm font-medium mb-1 text-[var(--text-2)]">Description</label>
         <textarea name="description" rows="2"
                 class="w-full px-4 py-2 rounded-lg text-sm
@@ -126,7 +126,7 @@
         @error('html_content') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
     </div>
 
-    <div class="bg-[var(--surface-2)] border-[var(--border)]">
+    <div class="bg-[var(--surface-2)] border-[var(--border)]" id="field-image">
         <label class="block text-sm font-medium text-[var(--text-2)] mb-2">Cover Image</label>
         <div class="flex items-center gap-6">
             @if(isset($asset) && $asset->image_path)
@@ -141,7 +141,7 @@
             <input type="checkbox" name="is_active" value="1" {{ old('is_active', $asset->is_active ?? true) ? 'checked' : '' }} class="rounded text-[var(--primary)] focus:ring-[var(--primary)]">
             <span class="text-sm font-medium text-[var(--text-2)]">Active</span>
         </label>
-        <label class="flex items-center space-x-2 cursor-pointer">
+        <label class="flex items-center space-x-2 cursor-pointer" id="featuredCheckbox">
             <input type="checkbox" name="is_featured" value="1" {{ old('is_featured', $asset->is_featured ?? false) ? 'checked' : '' }} class="rounded text-[var(--primary)] focus:ring-[var(--primary)]">
             <span class="text-sm font-medium text-[var(--text-2)]">Featured</span>
         </label>
@@ -166,6 +166,10 @@ $(function () {
     const $htmlContent = $('#field-html-content');
     const $parentSelect = $('#parent_industry_id');
     const $childSelect = $('#child_industry_id');
+    const $tagsInput = $('#field-tags');
+    const $description = $('#field-description');
+    const $imageField = $('#field-image');
+    const $featuredCheckbox = $('#featuredCheckbox');
 
     const isEdit = {{ isset($asset) ? 'true' : 'false' }};
 
@@ -189,6 +193,11 @@ $(function () {
         $parentIndustry.addClass('hidden');
         $childIndustry.addClass('hidden');
 
+        $tagsInput.removeClass('hidden');
+        $description.removeClass('hidden');
+        $imageField.removeClass('hidden');
+        $featuredCheckbox.removeClass('hidden');
+
         if (!isEdit && resetValue) {
             $parentSelect.val('');
             $childSelect.val('').html('<option value="">Select Child Industry</option>');
@@ -203,6 +212,13 @@ $(function () {
         if (category === 'case-study') {
             $parentIndustry.removeClass('hidden');
             $childIndustry.removeClass('hidden');
+        }
+
+        if (category === 'tool') {
+            $tagsInput.addClass('hidden');
+            $description.addClass('hidden');
+            $imageField.addClass('hidden');
+            $featuredCheckbox.addClass('hidden');
         }
     }
 

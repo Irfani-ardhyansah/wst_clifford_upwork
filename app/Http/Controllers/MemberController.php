@@ -17,7 +17,10 @@ class MemberController extends Controller
                         ->limit(3)->get();
 
         $industries = Industry::orderBy('sort_order', 'asc')
-                        ->limit(5)->get();
+                        ->where('is_active', 1)
+                        ->children()
+                        ->limit(5)
+                        ->get();
 
         return view('index', compact('webinars', 'industries'));
     }

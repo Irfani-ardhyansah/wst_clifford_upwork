@@ -3,6 +3,7 @@
 @section('title', 'Water Solutions Technology')
 
 @push('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/case_study.css') }}">
 <style>
 .logo-cell {
     position: relative;
@@ -649,23 +650,15 @@
 <script>
     $(document).on('click', '.open-modal-btn', function(e) {
         e.preventDefault();
-        console.log('Modal button clicked');
 
         const caseId = $(this).data('id');
-        const caseTitle = $(this).data('title');
-        console.log('Case ID:', caseId, 'Title:', caseTitle);
+        const caseTitle = 'Access ' + $(this).data('title');
 
         $('#modal-case-id').val(caseId);
-        $('#modal-asset-title').text(caseTitle);
-
-        $('#modal-image').addClass('hidden').attr('src', '');
-        $('#modal-icon').removeClass('hidden');
-
-        $('#pending-asset-preview').removeClass('hidden').addClass('flex');
+        $('#co-title-modal').text(caseTitle);
 
         $('#auth-modal').removeClass('hidden opacity-0').addClass('open');
-        console.log('Modal classes after:', $('#auth-modal').attr('class'));
-        
+
         setTimeout(function() {
             $('#modal-content').removeClass('scale-95').addClass('scale-100');
         }, 10);

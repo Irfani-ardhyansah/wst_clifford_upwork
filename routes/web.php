@@ -28,6 +28,7 @@ use App\Http\Controllers\Front\EventController;
 
 Route::post('/login', [AuthController::class, 'login'])->name('login.custom');
 Route::post('/login-by-phone', [AuthController::class, 'loginByPhone'])->name('login.phone');
+Route::post('/event-register', [AuthController::class, 'registerEventAttendance'])->name('event.register');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/', [MemberController::class, 'index'])->name('index');
@@ -241,9 +242,10 @@ Route::prefix('resources')->name('resources.')->group(function () {
     Route::get('/webinar', [WebinarController::class, 'index'])->name('webinar');
     Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
 
-    Route::get('/my_city_rebates', function () {
-        return view('resources.my_city_rebates');
-    })->name('my_city_rebates');
+    // Route::get('/my_city_rebates', function () {
+    //     return view('resources.my_city_rebates');
+    // })->name('my_city_rebates');
+    Route::get('/my_city_rebates', [ToolController::class, 'list'])->name('my_city_rebates');
 
     Route::get('/financing_form', function () {
         return view('resources.financing_form');

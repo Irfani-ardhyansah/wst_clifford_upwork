@@ -62,8 +62,7 @@
             <div class="ec-type ec-type--conference">{{ ucwords(str_replace('_', ' ', $item->event_type)) }}</div>
 
             <div class="ec-title">
-                {{ $interests[$item->interest] ?? 'General Inquiry' }} 
-                — {{ $item->last_name }}, {{ $item->first_name }} Conference
+                {{ $item->title }} — Conference
             </div>
 
             <div class="ec-location">
@@ -82,11 +81,39 @@
                 <span class="ec-past-tag">Past Event</span>
             @else
                 <span class="ec-wst-badge">{{$item->attendance_status}}</span>
-                <button class="ec-register-btn open-modal-btn"
-                    data-id="{{ $item->id }}"
-                    data-title="{{ $item->title }}">
-                    Register Interest
-                </button>
+                
+                @if($user && $user->role !== 'admin')
+                    {{-- User sudah login dan bukan admin --}}
+                    @if(in_array($item->id, $registeredEventIds))
+                        {{-- Already registered --}}
+                        <div style="display:flex; gap:8px; align-items:center;">
+                            <span style="font-size:12px; color:var(--green-lt); font-weight:500;">
+                                <i class="fa-solid fa-check-circle"></i> Registered
+                            </span>
+                            @if($item->external_url)
+                                <a href="{{ $item->external_url }}" target="_blank" class="ec-register-btn" style="background-color: var(--green-lt); color: white;">
+                                    Join Meeting
+                                </a>
+                            @endif
+                        </div>
+                    @else
+                        {{-- Not registered yet --}}
+                        <button class="ec-register-btn open-modal-btn"
+                            data-id="{{ $item->id }}"
+                            data-title="{{ $item->title }}"
+                            data-mode="register">
+                            Register Interest
+                        </button>
+                    @endif
+                @else
+                    {{-- User belum login atau admin --}}
+                    <button class="ec-register-btn open-modal-btn"
+                        data-id="{{ $item->id }}"
+                        data-title="{{ $item->title }}"
+                        data-mode="login">
+                        Register Interest
+                    </button>
+                @endif
             @endif
         </div>
     </div>
@@ -177,9 +204,27 @@ $(document).ready(function() {
 
         const eventId = $(this).data('id');
         const caseTitle = $(this).data('title');
-        const image     = $(this).data('image');
+        const mode = $(this).data('mode') || 'login'; // default login
+        const image = $(this).data('image');
+        
         $('#modal-case-id').val(eventId);
         $('#co-title-modal').text(caseTitle);
+        $('#modal-mode').val(mode);
+
+        if (mode === 'register') {
+            // Pure registration mode
+            $('#modal-form-title').text('Register for Event');
+            $('#modal-login-section').addClass('hidden');
+            $('#modal-register-section').removeClass('hidden');
+            $('#leads-form').attr('action', "{{ route('event.register') }}");
+        } else {
+            // Login + registration mode
+            $('#modal-form-title').text('Register Your Interest');
+            $('#modal-login-section').removeClass('hidden');
+            $('#modal-register-section').addClass('hidden');
+            $('#leads-form').show();
+            $('#leads-form').attr('action', "{{ route('login.phone') }}");
+        }
 
         $('#is_event').val(eventId); 
 

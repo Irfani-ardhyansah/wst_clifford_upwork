@@ -31,14 +31,23 @@
                             <i class="fa-solid fa-chevron-down" style="color:var(--text-3);font-size:9px;flex-shrink:0;"></i>
                         </div>
                         <div class="filter-item" style="min-width:130px;">
-                            <i class="fa-solid fa-building"></i>
-                            <select name="industry_id" onchange="this.form.submit()" style="color:var(--text-3);">
-                                <option value="">All Industries</option>
+                            <i class="fa-solid fa-layer-group"></i>
+                            <select id="parent_industry_filter" name="parent_industry_id" style="color:var(--text-3);">
+                                <option value="">All Parent Industries</option>
                                 @foreach($industries as $industry)
-                                    <option value="{{ $industry->id }}" {{ request('industry_id') == $industry->id ? 'selected' : '' }}>
-                                        {{ $industry->title }}
-                                    </option>
+                                    @if(!$industry->parent_id)
+                                        <option value="{{ $industry->id }}" {{ request('parent_industry_id') == $industry->id ? 'selected' : '' }}>
+                                            {{ $industry->title }}
+                                        </option>
+                                    @endif
                                 @endforeach
+                            </select>
+                            <i class="fa-solid fa-chevron-down" style="color:var(--text-3);font-size:9px;flex-shrink:0;"></i>
+                        </div>
+                        <div class="filter-item" style="min-width:130px;">
+                            <i class="fa-solid fa-building"></i>
+                            <select id="child_industry_filter" name="industry_id" onchange="this.form.submit()" style="color:var(--text-3);">
+                                <option value="">All Industries</option>
                             </select>
                             <i class="fa-solid fa-chevron-down" style="color:var(--text-3);font-size:9px;flex-shrink:0;"></i>
                         </div>
@@ -115,6 +124,52 @@
 @push('scripts')
 <script>
     $(document).ready(function() {
+        // ===== Industry Filter Setup =====
+        const $parentIndustry = $('#parent_industry_filter');
+        const $childIndustry = $('#child_industry_filter');
+
+        // Store all industries by parent
+        const industriesData = {
+            @foreach($industries as $industry)
+                {{ $industry->id }}: [
+                    @foreach($industry->children ?? [] as $child)
+                        { id: {{ $child->id }}, title: '{{ $child->title }}' },
+                    @endforeach
+                ],
+            @endforeach
+        };
+
+        // Handle parent industry change
+        $parentIndustry.on('change', function () {
+            const parentId = $(this).val();
+            const children = industriesData[parentId] || [];
+
+            let options = '<option value="">All Industries</option>';
+            children.forEach(child => {
+                options += `<option value="${child.id}">${child.title}</option>`;
+            });
+
+            $childIndustry.html(options);
+            
+            // Reset child selection
+            $childIndustry.val('');
+        });
+
+        // On page load, if parent is selected, populate children
+        @if(request('parent_industry_id'))
+            const currentParentId = '{{ request("parent_industry_id") }}';
+            if (currentParentId && industriesData[currentParentId]) {
+                const children = industriesData[currentParentId];
+                let options = '<option value="">All Industries</option>';
+                children.forEach(child => {
+                    const selected = '{{ request("industry_id") }}' == child.id ? 'selected' : '';
+                    options += `<option value="${child.id}" ${selected}>${child.title}</option>`;
+                });
+                $childIndustry.html(options);
+            }
+        @endif
+        
+        // ===== Modal Setup =====
         const $modal = $('#resourceModal');
         const $body = $('body');
         const $modalBody = $('#modalBody');

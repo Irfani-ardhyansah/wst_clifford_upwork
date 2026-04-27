@@ -48,6 +48,16 @@
 @elseif (request()->is('industries/service-stations-car-washes'))
     @php $title = 'Service Stations & Car Washes'; @endphp
     @include('components.industry.service-stations')
+@elseif (request()->is('industries/others-we-serve'))
+    @php $title = 'Other Sectors We Serve'; @endphp
+    @include('components.industry.others')
+@elseif (request()->is('industries/senior-living-homes'))
+    @php $title = 'Senior Living Homes'; @endphp
+    @include('components.industry.senior-living')
+@elseif (request()->is('industries/universities-stadiums'))
+    @php $title = 'Universities & Stadiums'; @endphp
+    @include('components.industry.universities-stadiums')
+
 @endif
 
 

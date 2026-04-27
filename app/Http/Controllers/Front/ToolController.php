@@ -17,4 +17,15 @@ class ToolController extends Controller
 
         return view('resources.tools', compact('tools'));
     }
+
+    public function list()
+    {
+        $tools = Asset::query()
+            ->where('category', 'tool')
+            ->where('is_active', 1)
+            ->orderBy('sort_order')
+            ->get();
+
+        return view('resources.my_city_rebates', compact('tools'));
+    }
 }

@@ -88,6 +88,11 @@ class Industry extends Model
         return $query->where('is_featured', true);
     }
 
+    public function scopeChildren($query)
+    {
+        return $query->where('parent_id', '!=', null);
+    }
+
     // ── Helper ────────────────────────────────────────────────────
 
     public function isRoot(): bool

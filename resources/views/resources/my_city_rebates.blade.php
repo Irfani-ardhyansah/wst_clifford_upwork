@@ -34,6 +34,10 @@
       <a href="#tool-savings"   class="ta-pill"><span class="ta-pill-num">2</span>Savings Opportunity Estimator</a>
       <a href="#tool-gresb"     class="ta-pill"><span class="ta-pill-num">3</span>GRESB Score Estimator</a>
       <a href="#tool-benchmark" class="ta-pill"><span class="ta-pill-num">4</span>Water Use Benchmarking</a>
+      @php $no = 4; @endphp
+      @foreach($tools as $row)
+        <a href="#{{ $row->slug }}" class="ta-pill"><span class="ta-pill-num">{{$no++}}</span>{{ $row->title }}</a>
+      @endforeach
     </div>
   </div>
   <div class="hero-strip">
@@ -506,6 +510,12 @@
     </button>
   </div>
 </div>
+
+@foreach($tools as $tool)
+<div id="{{ $tool->slug }}">
+  {!! $tool->html_content !!}
+</div>
+@endforeach
 
 
 <!-- RELATED RESOURCES -->

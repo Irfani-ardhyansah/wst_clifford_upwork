@@ -13,6 +13,7 @@ class AssetController extends Controller
     public $categories = [
             ['value' => 'case-study', 'text' => 'Case Study'], 
             ['value' => 'webinar', 'text' => 'Webinar'], 
+            ['value' => 'tool', 'text' => 'Tools'], 
         ];
     
     public function index(Request $request)

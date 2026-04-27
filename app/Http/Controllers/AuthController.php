@@ -95,6 +95,49 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
 
+    public function registerEventAttendance(Request $request)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'User not authenticated'
+            ], 401);
+        }
+
+        $eventId = $request->input('is_event');
+
+        if ($eventId) {
+            $attendance = EventAttendance::firstOrCreate(
+                [
+                    'event_id' => $eventId,
+                    'user_id'  => $user->id,
+                ],
+                [
+                    'notes'              => $request->input('notes'),
+                    'registration_type'  => 'confirmed',
+                    'status'             => EventAttendance::STATUS_APPROVED,
+                    'source'             => 'website',
+                    'token'              => \Illuminate\Support\Str::uuid(),
+                    'confirmed_at'       => now(),
+                ]
+            );
+
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Registration successful',
+                    'redirect_url' => route('member-dashboard.index')
+                ]);
+            }
+
+            return redirect()->route('member-dashboard.index')->with('success', 'Event registration successful!');
+        }
+
+        return back()->with('error', 'Event not found');
+    }
+
     public function storeEventAttendance($request, $user)
     {
         $eventId = $request->input('is_event');
@@ -113,7 +156,7 @@ class AuthController extends Controller
                     'job_title'          => $request->input('job_title'),
                     'notes'              => $request->input('notes'),
                     'registration_type'  => 'interest',
-                    'status'             => 0,
+                    'status'             => EventAttendance::STATUS_APPROVED,
                     'source'             => 'website',
                     'token'              => \Illuminate\Support\Str::uuid(),
                 ]
